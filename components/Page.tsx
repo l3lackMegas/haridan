@@ -58,7 +58,7 @@ class Page extends Component<IReciept> {
                 <title>{ `${pageTitle} - Résumé`}</title>
             </Head>
             <motion.div className={className} >
-                <div style={{position: 'absolute', width: '100%', height: '100%', overflow: 'hidden'}}>
+                <div style={{position: 'absolute', width: '100%', height: '100%', minHeight: '750px', overflow: 'hidden'}}>
                     <div className="sub">
                         <motion.div style={{
                             position: 'absolute',
