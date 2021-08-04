@@ -49,7 +49,11 @@ class Home extends Component {
         const { isMounted, y } = this.state
 
         return <Page pageTitle="Jaruwat Pohong" onSelected="store" isReady={isMounted}>
-            <div className="section" style={{ height: '100vh' }}>
+            <div className="section" style={{
+                position: 'relative',
+                minHeight: '750px',
+                height: '100vh'
+            }}>
                 <Landing isReady={isMounted}/>
             </div>
             { isMounted && 

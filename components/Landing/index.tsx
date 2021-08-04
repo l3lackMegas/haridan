@@ -44,7 +44,9 @@ class Landing extends Component<IReciept> {
         const { isReady, nextFn } = this.props
         
         return <>
-            <div className={`centerContain ${styles.cardMobile}`}>
+            <div className={`centerContain ${styles.cardMobile}`} style={{
+                zIndex: 1000
+            }}>
                 <NameCard isReady={isReady} />
             </div>
             {isReady && 
