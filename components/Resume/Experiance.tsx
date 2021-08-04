@@ -25,6 +25,16 @@ class Works extends Component<IReciept> {
         return <>
             <Column2 title="Experiance">
                 <CardInfo
+                    title="BUMIT Website"
+                    date="2021"
+                    org="BUMIT (Bangkok University Multimedia Intelligent Technology)"
+                    link="https://mit.bu.ac.th"
+                >
+                    <p>Implement all new website with Next.js</p>
+                    <p>BUMIT&apos;s Lab Probject</p>
+                </CardInfo>
+
+                <CardInfo
                     title="Flight - Visualization"
                     date="2020 - 2021"
                     org="BUMIT (Bangkok University Multimedia Intelligent Technology)"
