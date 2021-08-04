@@ -16,17 +16,17 @@ class Column2 extends Component<IReciept> {
 
     render() {
 
+        const { title, children } = this.props
+
         return <>
-            <div className="col-2">
+            <div className="harfShade">
                 <div className="topic">
                     <div className="navContainer">
-                        <Link href="#ability">
-                            <a><h2>{this.props.title}</h2></a>
-                        </Link>
+                        <h2>{title}</h2>
                     </div>
                 </div>
                 <div className="detail">
-                    { this.props.children }
+                    { children }
                 </div>
             </div>
         </>

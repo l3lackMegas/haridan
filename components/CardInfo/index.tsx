@@ -16,6 +16,7 @@ interface IReciept {
     title: string
     date: string
     org: string
+    link?: string
 }
 
 class CardInfo extends Component<IReciept> {
@@ -26,7 +27,7 @@ class CardInfo extends Component<IReciept> {
 
     render() {
 
-        const { title, date, org, children } = this. props
+        const { title, date, org, link, children } = this.props
 
         return <div className={styles.container}>
             <p className={styles.date}>{ date }</p>
@@ -36,6 +37,11 @@ class CardInfo extends Component<IReciept> {
                 <div className={styles.detail}>
                     { children }
                 </div>
+                {link && 
+                    <Link href={link}>
+                        <a className={styles.link} target="_blank" rel="noreferrer">{link}</a>
+                    </Link>
+                }
             </div>
         </div>
     }
