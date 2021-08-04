@@ -21,22 +21,6 @@ interface IReciept {
     nextFn?: Function
 }
 
-const animFadeIn = {
-    hidden: {
-        opacity: 0,
-        transition: {
-            duration: .1
-        }
-    },
-
-    show: {
-        opacity: 1,
-        transition: {
-            duration: .25
-        }
-    }
-}
-
 class Landing extends Component<IReciept> {
 
     render() {
@@ -49,16 +33,6 @@ class Landing extends Component<IReciept> {
             }}>
                 <NameCard isReady={isReady} />
             </div>
-            {isReady && 
-                <motion.div className={styles.scrollDown}
-                    variants={animFadeIn}
-                    initial="hidden"
-                    animate="show"
-                >
-                    <p style={{ fontSize: 15 }}>SCROLL DOWN</p>
-                    <FontAwesomeIcon icon={faChevronDown}/>
-                </motion.div>
-            }
         </>
     }
 

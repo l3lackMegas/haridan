@@ -1,5 +1,5 @@
 /* React Module */
-import { Component } from "react";
+import React, { Component } from "react";
 
 /* Next Module */
 import Head from "next/head"
@@ -7,8 +7,26 @@ import Link from "next/link"
 
 /* External Module */
 import { AnimationProps, motion } from 'framer-motion'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 /* Components */
+
+const animFadeIn = {
+    hidden: {
+        opacity: 0,
+        transition: {
+            duration: .1
+        }
+    },
+
+    show: {
+        opacity: 1,
+        transition: {
+            duration: .25
+        }
+    }
+}
 
 interface IReciept {
     isReady?: boolean
@@ -63,7 +81,7 @@ class Page extends Component<IReciept> {
                         <motion.div style={{
                             position: 'absolute',
                             width: '100%',
-                            height: '100vh',
+                            height: '100%',
                             backgroundImage: 'url(/img/bg-blur.jpg)',
                             backgroundRepeat: 'no-repeat',
                             backgroundSize: 'cover',
@@ -73,7 +91,18 @@ class Page extends Component<IReciept> {
                         animate={ isReady ? { opacity: 1, scale: 1 } : {}}
                         transition={{ duration: .5 }}
                     >
-                        <div className="sub" style={{ backgroundImage: 'linear-gradient(to bottom, transparent, #06243c)' }}></div>
+                        <div className="sub" style={{ backgroundImage: 'linear-gradient(to bottom, transparent, #06243c)' }}>
+                        {isReady && 
+                            <motion.div className="scrollDown"
+                                variants={animFadeIn}
+                                initial="hidden"
+                                animate="show"
+                            >
+                                <p style={{ fontSize: 15 }}>SCROLL DOWN</p>
+                                <FontAwesomeIcon icon={faChevronDown}/>
+                            </motion.div>
+                        }
+                        </div>
                     </motion.div>
                     </div>
                 </div>
