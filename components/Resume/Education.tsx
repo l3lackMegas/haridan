@@ -46,24 +46,20 @@ class Education extends Component<IReciept> {
                     date="2016 - 2018"
                     org="Bangkok - Thailand"
                 >
-                    <p>Compoter Business</p>
+                    <p>Computer Business</p>
                 </CardInfo>
 
                 <CardInfo
                     title="Sirirattanathorn School"
                     date="2013 - 2015"
                     org="Bangkok - Thailand"
-                >
-                    <p>Compoter Business</p>
-                </CardInfo>
+                ></CardInfo>
 
                 <CardInfo
                     title="Samahan Suksa School"
                     date="2005 - 2012"
                     org="Bangkok - Thailand"
-                >
-                    <p>Compoter Business</p>
-                </CardInfo>
+                ></CardInfo>
             </Column2>
         </>
     }
