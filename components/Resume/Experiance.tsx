@@ -31,7 +31,7 @@ class Works extends Component<IReciept> {
                     link="https://mit.bu.ac.th"
                 >
                     <p>Implement all new website with Next.js</p>
-                    <p>BUMIT&apos;s Lab Probject</p>
+                    <p>BUMIT&apos;s Lab Project</p>
                 </CardInfo>
 
                 <CardInfo
@@ -41,7 +41,7 @@ class Works extends Component<IReciept> {
                     link="https://mit.bu.ac.th/visualization"
                 >
                     <p>Re-Design Frontend</p>
-                    <p>BUMIT&apos;s Lab Probject</p>
+                    <p>BUMIT&apos;s Lab Project</p>
                 </CardInfo>
 
                 <CardInfo
