@@ -10,9 +10,9 @@ import { motion } from 'framer-motion'
 /* Components */
 import Page from '../components/Page'
 import Landing from '../components/Landing'
-import Section from "../components/MainLayout/Section";
-import Education from "../components/Resume/Education";
-import Experiance from "../components/Resume/Experiance";
+import Section from "../components/MainLayout/Section"
+import Education from "../components/Resume/Education"
+import Experiance from "../components/Resume/Experiance"
 
 class Home extends Component {
 
