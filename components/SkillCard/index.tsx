@@ -64,7 +64,7 @@ class SkillCard extends Component {
                     title="Backend Dev"
                     icon={<FontAwesomeIcon icon={faCode}/>}
                     describe={<>
-                        <p>Everything start here.</p>
+                        <p>Everything starts here.</p>
                         <p>I started coding at 13 yeas old.</p>
                     </>}
                 >
