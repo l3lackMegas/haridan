@@ -56,13 +56,13 @@ class Home extends Component {
         if(skillParallax &&
             skillParallax.getBoundingClientRect().top - window.innerHeight <=0 &&
             skillParallax.getBoundingClientRect().top + skillParallax.offsetHeight >= 0
-        ) parallaxObjec.skill = window.innerHeight + 500 + (currentScroll / 2)
+        ) parallaxObjec.skill = window.innerHeight + 300 + (currentScroll / 2)
 
         // Check is resume section appear
         if(resumeParallax && skillParallax &&
             resumeParallax.getBoundingClientRect().top - window.innerHeight <=0 &&
             resumeParallax.getBoundingClientRect().top + resumeParallax.offsetHeight >= 0
-        ) parallaxObjec.resume = window.innerHeight + 500 + skillParallax.offsetHeight + (currentScroll / 2)
+        ) parallaxObjec.resume = skillParallax.offsetHeight + (currentScroll / 2)
 
 
         this.setState({ 
