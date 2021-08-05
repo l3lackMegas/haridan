@@ -27,7 +27,9 @@ class MyApp extends App<AppProps> {
                 this.setState({ isLoaded: true })
             }, 1000);
         })
-          
+        setTimeout(() => {
+            this.setState({ isLoaded: true })
+        }, 3000);
     }   
 
     render() {
