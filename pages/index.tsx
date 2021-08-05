@@ -52,7 +52,7 @@ class Home extends Component {
             <div className="section" style={{
                 position: 'relative',
                 minHeight: '750px',
-                height: '100%'
+                height: '100vh'
             }}>
                 <Landing isReady={isMounted}/>
             </div>
