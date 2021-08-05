@@ -228,6 +228,10 @@ h1, h2, h3, h4, p {
 
 @media only screen and (max-width: 500px) {
 
+    .scroll-container {
+        overflow: unset;
+    }
+
     .scrollDown {
         bottom: 70px;
     }
