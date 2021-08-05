@@ -75,11 +75,11 @@ class SkillCard extends Component {
 
                     <div className={styles.info}>
                         <p className={styles.topic}>Tech Stack &amp; Language &amp; Tools:</p>
-                        <p>Nodejs</p>
-                        <p>TypeScript</p>
+                        <p>Nodejs / TypeScript</p>
                         <p>Next.js</p>
                         <p>PHP</p>
                         <p>C# / VB.NET</p>
+                        <p>MySQL / MongoDB</p>
                         <p>Docker</p>
                     </div>
                 </ItemSkill>
