@@ -212,6 +212,10 @@ h1, h2, h3, h4, p {
     color: rgba(255, 255, 255, .5);
 }
 
+.scrollDown a {
+    text-decoration: none;
+}
+
 .credit {
     padding: 10px;
     width: 100%;
