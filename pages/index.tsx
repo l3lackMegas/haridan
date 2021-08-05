@@ -18,7 +18,10 @@ class Home extends Component {
 
     state = {
         isMounted: true,
-        y: 0
+        y: 0,
+        landingParallax: 0,
+        skillParallax: 0,
+        resumeParallax: 0
     }
 
     componentDidMount() {
@@ -36,12 +39,43 @@ class Home extends Component {
     }
 
     scrollHandler() {
-        this.setState({ y: window.scrollY })
+        let currentScroll = window.scrollY,
+            skillParallax: HTMLElement | null = document.querySelector('#skill-section'),
+            resumeParallax: HTMLElement | null = document.querySelector('#resume-section'),
+            parallaxObjec = {
+                landing: this.state.landingParallax,
+                skill: this.state.skillParallax,
+                resume: this.state.resumeParallax
+            }
+
+        // Check is skill landing appear
+        if(currentScroll <= window.innerHeight)
+            parallaxObjec.landing = currentScroll
+
+        // Check is skill section appear
+        if(skillParallax &&
+            skillParallax.getBoundingClientRect().top - window.innerHeight <=0 &&
+            skillParallax.getBoundingClientRect().top + skillParallax.offsetHeight >= 0
+        ) parallaxObjec.skill = window.innerHeight + 500 + (currentScroll / 2)
+
+        // Check is resume section appear
+        if(resumeParallax && skillParallax &&
+            resumeParallax.getBoundingClientRect().top - window.innerHeight <=0 &&
+            resumeParallax.getBoundingClientRect().top + resumeParallax.offsetHeight >= 0
+        ) parallaxObjec.resume = window.innerHeight + 500 + skillParallax.offsetHeight + (currentScroll / 2)
+
+
+        this.setState({ 
+            y: currentScroll,
+            landingParallax: parallaxObjec.landing,
+            skillParallax: parallaxObjec.skill,
+            resumeParallax: parallaxObjec.resume
+        })
     }
 
     render() {
 
-        const { isMounted, y } = this.state
+        const { isMounted, y, landingParallax, skillParallax, resumeParallax } = this.state
 
         return <Page pageTitle="Jaruwat Pohong" onSelected="store" isReady={isMounted}>
             <div className="section" style={{
@@ -49,7 +83,7 @@ class Home extends Component {
                 minHeight: '750px',
                 height: '100vh'
             }}>
-                <Landing y={y} isReady={isMounted}/>
+                <Landing y={landingParallax} isReady={isMounted}/>
             </div>
             { isMounted && 
             <>
@@ -73,11 +107,13 @@ class Home extends Component {
                     </div>
                 </Section>
 
-                <Section style={{ 
-                    textAlign: 'center',
-                    backgroundImage: 'url(/img/skill-bg.jpg)',
-                    backgroundSize: 'cover',
-                    backgroundPositionY: `calc(100vh + 500px + ${y / 3}px)`
+                <Section
+                    id="skill-section"
+                    style={{
+                        textAlign: 'center',
+                        backgroundImage: 'url(/img/skill-bg.jpg)',
+                        backgroundSize: 'cover',
+                        backgroundPositionY: skillParallax
                 }}>
                     <div style={{ padding: '0 20px'}}>
                         <h1 className="infoTitle">My Skill</h1>
@@ -86,10 +122,11 @@ class Home extends Component {
                 </Section>
 
                 <h1 className="infoTitle" style={{ textAlign: 'center' }}>Résumé</h1>
-                <Section style={{
-                    backgroundImage: 'url(/img/mobile-background.jpg)',
-                    backgroundSize: 'cover',
-                    backgroundPositionY: `calc(100vh + ${y / 2}px)`
+                <Section id="resume-section"
+                    style={{
+                        backgroundImage: 'url(/img/mobile-background.jpg)',
+                        backgroundSize: 'cover',
+                        backgroundPositionY: resumeParallax
                 }}>
                     <div style={{ padding: '0 10px'}}>
                         <Experiance/>
