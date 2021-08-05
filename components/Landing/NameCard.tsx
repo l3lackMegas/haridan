@@ -7,7 +7,7 @@ import Link from 'next/link'
 /* External Module */
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookMessenger, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 /* Styles */
 import styles from './styles.module.css'
@@ -72,12 +72,11 @@ class NameCard extends Component<IReciept> {
                         </button>
                     </a>
                 </Link>
-                <Link href="#information">
-                    <a>
-                        <button disabled={isReady ? false : true} className={styles.btn} style={{ width: 146 }}
-                            onClick={()=>window.scrollTo(0, window.innerHeight) }
-                        >
-                            <span>Information</span>
+                <Link href="https://github.com/l3lackMegas">
+                    <a target="_blank" rel="noreferrer">
+                        <button className={`${styles.btn} ${styles.github}`}>
+                            <FontAwesomeIcon icon={faGithub} />
+                            <span>GitHub</span>
                         </button>
                     </a>
                 </Link>

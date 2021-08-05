@@ -88,6 +88,19 @@
     background-color: #005bda;
 }
 
+.btn.github {
+    color: #333;
+    background-color: white;
+}
+
+.btn.github:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+.btn.github:active {
+    background-color: rgb(197, 197, 197);
+}
+
 .btn:disabled {
     background-color: rgba(255, 255, 255, .1);
 }
