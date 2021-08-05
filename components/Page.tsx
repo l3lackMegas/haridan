@@ -76,40 +76,8 @@ class Page extends Component<IReciept> {
             <Head>
                 <title>{ `${pageTitle} - Résumé`}</title>
             </Head>
-            <motion.div className={className} >
-                <div style={{position: 'absolute', width: '100%', height: '100%', minHeight: '750px', overflow: 'hidden'}}>
-                    <div className="sub">
-                        <motion.div style={{
-                            position: 'absolute',
-                            width: '100%',
-                            height: '100%',
-                            backgroundImage: 'url(/img/bg-blur.jpg)',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: 'cover',
-                            backgroundPositionY: y / 2
-                        }}
-                        initial={{ opacity: 0, scale: 1.5 }}
-                        animate={ isReady ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: .5 }}
-                    >
-                        <div className="sub" style={{ backgroundImage: 'linear-gradient(to bottom, transparent, #06243c)' }}>
-                        {isReady && 
-                            <motion.div className="scrollDown"
-                                variants={animFadeIn}
-                                initial="hidden"
-                                animate="show"
-                            >
-                                <p style={{ fontSize: 15 }}>SCROLL DOWN</p>
-                                <FontAwesomeIcon icon={faChevronDown}/>
-                            </motion.div>
-                        }
-                        </div>
-                    </motion.div>
-                    </div>
-                </div>
-                <div className="container">
-                    { children }
-                </div>
+            <motion.div className={`container ${className}`} >
+                { children }
             </motion.div>
             <Crefit/>
         </>
