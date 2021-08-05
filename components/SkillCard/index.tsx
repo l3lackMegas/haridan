@@ -39,7 +39,7 @@ class SkillCard extends Component {
                 </ItemSkill>
 
                 <ItemSkill
-                    title="Frontend Developer"
+                    title="Frontend Dev"
                     icon={<FontAwesomeIcon icon={faTerminal}/>}
                     describe={<>
                         <p>This is my favorite work.</p>
@@ -62,7 +62,7 @@ class SkillCard extends Component {
                 </ItemSkill>
 
                 <ItemSkill
-                    title="Backend Developer"
+                    title="Backend Dev"
                     icon={<FontAwesomeIcon icon={faCode}/>}
                     describe={<>
                         <p>Everything start here.</p>
