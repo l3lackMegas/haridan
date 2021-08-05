@@ -75,7 +75,7 @@ class NameCard extends Component<IReciept> {
                 <Link href="#information">
                     <a>
                         <button disabled={isReady ? false : true} className={styles.btn} style={{ width: 146 }}
-                            onClick={()=>nextFn ? nextFn() : null }
+                            onClick={()=>window.scrollTo(0, window.innerHeight) }
                         >
                             <span>Information</span>
                         </button>
