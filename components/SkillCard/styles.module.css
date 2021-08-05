@@ -17,7 +17,7 @@
 
 .container .item .headInfo {
     text-align: center;
-    color: rgba(255, 255, 255, .75);
+    color: #c7cbcf;
 }
 
 .container .item .headInfo svg {
@@ -34,7 +34,7 @@
 .container .item .info {
     margin: 80px 0;
     font-size: 18px;
-    color: rgba(255, 255, 255, .75);
+    color: #c7cbcf;
 }
 
 .container .item .info .topic {
