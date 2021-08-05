@@ -116,10 +116,10 @@ h1, h2, h3, h4, p {
     position: relative;
     margin: 50px auto;
     width: fit-content;
-    height: 300px;
 }
 
 .understandCSS .frame {
+    position: relative;
     margin: auto;
     padding: 10px;
     width: 200px;
@@ -178,6 +178,11 @@ h1, h2, h3, h4, p {
     padding-top: 50px;
     padding-left: 50px;
     width: calc(100% - 50px);
+    overflow: hidden;
+}
+
+.parallaxImage {
+
 }
 
 .scrollDown {
@@ -219,12 +224,32 @@ h1, h2, h3, h4, p {
     }
 
     .harfShade {
-        grid-template-columns: 130px auto;
+        grid-template-columns: 130px calc(100% - 130px);
     }
 
     .harfShade .detail {
         padding-left: 20px;
-        width: calc(100% - 20px);
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 310px) {
+
+    .harfShade {
+        grid-template-columns: 110px calc(100% - 110px);
+    }
+
+    .harfShade .topic .navContainer h2 {
+        font-size: 20px;
+    }
+
+    .understandCSS .frame {
+        width: 100px;
+    }
+
+    .understandCSS .frame h1 {
+        font-size: 20px;
     }
 
 }
