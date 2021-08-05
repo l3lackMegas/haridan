@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 /* Components */
+import Crefit from './MainLayout/Credit'
 
 const animFadeIn = {
     hidden: {
@@ -110,27 +111,7 @@ class Page extends Component<IReciept> {
                     { children }
                 </div>
             </motion.div>
-            <div className="credit">
-                <span>Ⓒ Since 2021. Powered by </span>
-                <Link href="http://fb.com/Jaruwat.P">
-                    <a target="_blank" rel="noreferrer">Jaruwat Pohong</a>
-                </Link>
-                <span>. </span>
-                <p className="blockMobile">
-                    <span>View source code on </span>
-                    <Link href="https://github.com/l3lackMegas/l3lackmegas.github.io">
-                        <a target="_blank" rel="noreferrer">GitHub</a>
-                    </Link>
-                    <span>. </span>
-                </p>
-                <p className="blockMobile">
-                    <span>Background Image by </span>
-                    <Link href="http://www.freepik.com">
-                        <a target="_blank" rel="noreferrer">fanjianhua / Freepik</a>
-                    </Link>
-                    <span>.</span>
-                </p>
-            </div>
+            <Crefit/>
         </>
     }
 
