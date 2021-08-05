@@ -50,9 +50,9 @@ class Landing extends Component<IReciept> {
                         backgroundImage: 'url(/img/bg-blur.jpg)',
                         backgroundPositionY: y / 2
                     }}
-                    initial={{ opacity: 0, scale: 1.5 }}
+                    initial={{ opacity: 0, scale: 1.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: .5 }}
+                    transition={{ duration: 1 }}
                 >
                     <div className="sub" style={{ backgroundImage: 'linear-gradient(to bottom, transparent, #06243c)' }}>
                     {isReady && 

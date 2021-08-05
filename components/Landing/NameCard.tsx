@@ -42,9 +42,9 @@ class NameCard extends Component<IReciept> {
         const { isReady, nextFn } = this.props
         
         return <motion.div className={styles.nameCard}
-            initial={{ opacity: 0, scale: .8 }}
+            initial={{ opacity: 0, scale: .5 }}
             animate={ isReady ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: .5 }}
+            transition={{ duration: .75 }}
         >
             <div className={styles.circlePic}>
                 <div className={styles.img}
