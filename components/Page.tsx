@@ -31,7 +31,6 @@ class Page extends Component<IReciept> {
         return <>
             <Head>
                 <title>{ `${pageTitle} - Résumé`}</title>
-                <link rel="icon" href="/img/favicon.jpg" type="image/gif" sizes="16x16"/>
             </Head>
             <motion.div className={`container ${className}`} >
                 { children }
