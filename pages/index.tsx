@@ -40,6 +40,7 @@ class Home extends Component {
 
     scrollHandler() {
         let currentScroll = window.scrollY,
+            informationObject: HTMLElement | null = document.querySelector('#information'),
             skillParallax: HTMLElement | null = document.querySelector('#skill-section'),
             resumeParallax: HTMLElement | null = document.querySelector('#resume-section'),
             parallaxObjec = {
@@ -53,13 +54,13 @@ class Home extends Component {
             parallaxObjec.landing = currentScroll
 
         // Check is skill section appear
-        if(skillParallax &&
+        if(informationObject && skillParallax &&
             skillParallax.getBoundingClientRect().top - window.innerHeight <=0 &&
             skillParallax.getBoundingClientRect().top + skillParallax.offsetHeight >= 0
-        ) parallaxObjec.skill = window.innerHeight + 300 + (currentScroll / 2)
+        ) parallaxObjec.skill = window.innerHeight + (informationObject.offsetHeight / 2) + (currentScroll / 2)
 
         // Check is resume section appear
-        if(resumeParallax && skillParallax &&
+        if(informationObject && resumeParallax && skillParallax &&
             resumeParallax.getBoundingClientRect().top - window.innerHeight <=0 &&
             resumeParallax.getBoundingClientRect().top + resumeParallax.offsetHeight >= 0
         ) parallaxObjec.resume = skillParallax.offsetHeight + (currentScroll / 2)
