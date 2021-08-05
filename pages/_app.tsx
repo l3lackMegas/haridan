@@ -70,7 +70,7 @@ class MyApp extends App<AppProps> {
                                 <p style={{
                                     padding: "5px 15px",
                                     border: '1px rgba(255, 255, 255, .5) solid'
-                                }}>Just a sec <span style={{fontSize: 30, lineHeight: '22px'}}>...</span></p>
+                                }}>Just a sec.</p>
                             </motion.div>
                         }
                         {isLoaded &&
