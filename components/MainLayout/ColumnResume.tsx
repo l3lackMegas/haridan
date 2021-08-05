@@ -8,7 +8,7 @@ interface IReciept {
     title: string
 }
 
-class Column2 extends Component<IReciept> {
+class ColumnResume extends Component<IReciept> {
 
     constructor(props: IReciept) {
         super(props)
@@ -34,4 +34,4 @@ class Column2 extends Component<IReciept> {
 
 }
 
-export default Column2;
+export default ColumnResume;
