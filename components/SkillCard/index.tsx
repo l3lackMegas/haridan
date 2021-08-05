@@ -51,10 +51,11 @@ class SkillCard extends Component {
 
                     <div className={styles.info}>
                         <p className={styles.topic}>Library &amp; Tools:</p>
-                        <p>HTML, CSS, JS</p>
+                        <p>HTML, CSS</p>
+                        <p>JavaScript</p>
                         <p>React.js</p>
                         <p>SASS / LESS</p>
-                        <p>Framer-Motion</p>
+                        <p>Framer Motion</p>
                         <p>jQuery</p>
                     </div>
                 </ItemSkill>
@@ -73,11 +74,12 @@ class SkillCard extends Component {
                     </div>
 
                     <div className={styles.info}>
-                        <p className={styles.topic}>Tech Stack &amp; Library &amp; Tools:</p>
+                        <p className={styles.topic}>Tech Stack &amp; Language &amp; Tools:</p>
                         <p>Nodejs</p>
                         <p>TypeScript</p>
                         <p>Next.js</p>
                         <p>PHP</p>
+                        <p>C# / VB.NET</p>
                         <p>Docker</p>
                     </div>
                 </ItemSkill>
