@@ -19,32 +19,16 @@ interface IReciept {
     nextFn?: Function
 }
 
-const animFadeIn = {
-    hidden: {
-        opacity: 0,
-        transition: {
-            duration: .1
-        }
-    },
-
-    show: {
-        opacity: 1,
-        transition: {
-            duration: .25
-        }
-    }
-}
-
 class NameCard extends Component<IReciept> {
 
     render() {
 
-        const { isReady, nextFn } = this.props
+        const { isReady } = this.props
         
         return <motion.div className={styles.nameCard}
-            initial={{ opacity: 0, scale: .5 }}
-            animate={ isReady ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: .75 }}
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={ isReady ? { opacity: 1, scaleY: 1 } : {}}
+            transition={{ duration: .35 }}
         >
             <div className={styles.circlePic}>
                 <div className={styles.img}

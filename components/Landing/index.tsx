@@ -77,6 +77,7 @@ class Landing extends Component<IReciept> {
                 </div>
             </div>
             <div className={`centerContain ${styles.cardMobile}`} style={{
+                width: '100%',
                 zIndex: 1000
             }}>
                 <NameCard isReady={isReady} />

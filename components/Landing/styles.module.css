@@ -2,11 +2,10 @@
     margin: 0 auto;
     padding: 20px;
     max-width: 100vw;
-    width: 450px;
+    width: 100%;
     color: white;
-    background-color: #09395f96;
+    background-color: #19395594;
     border: 1px rgba(255, 255, 255, .1) solid;
-    border-radius: 20px;
     box-shadow: 0 0 20px 1px rgba(26, 26, 26, 0.445);
 }
 
