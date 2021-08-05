@@ -94,9 +94,9 @@ class Home extends Component {
 
         this.setState({ 
             y: currentScroll,
-            landingParallax: parallaxObjec.landing,
-            skillParallax: parallaxObjec.skill,
-            resumeParallax: parallaxObjec.resume
+            landingParallax: this.state.isMobile ? 0 : parallaxObjec.landing,
+            skillParallax: this.state.isMobile ? 0 : parallaxObjec.skill,
+            resumeParallax: this.state.isMobile ? 0 : parallaxObjec.resume
         })
     }
 
