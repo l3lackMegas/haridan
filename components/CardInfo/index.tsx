@@ -4,9 +4,6 @@ import { Component } from "react";
 /* Next Module */
 import Link from "next/link"
 
-/* External Module */
-import { AnimationProps, motion } from 'framer-motion'
-
 /* Styles */
 import styles from './styles.module.css'
 

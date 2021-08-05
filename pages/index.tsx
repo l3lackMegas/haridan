@@ -1,12 +1,6 @@
 /* React Module */
 import { Component, createRef } from "react";
 
-/* Nest Module */
-import Link from "next/link"
-
-/* External Module */
-import { motion } from 'framer-motion'
-
 /* Components */
 import Page from '../components/Page'
 import Landing from '../components/Landing'

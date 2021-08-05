@@ -12,8 +12,6 @@ class SkillCard extends Component {
 
     render() {
 
-        const { children } = this.props
-
         return <>
             <div className={styles.container}>
                 <ItemSkill

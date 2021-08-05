@@ -1,24 +1,11 @@
 /* React Module */
 import React, { Component } from "react";
 
-/* Next Module */
-import Link from "next/link"
-
-/* External Module */
-
 /* Components */
 import ColumnResume from "../MainLayout/ColumnResume";
 import CardInfo from '../CardInfo'
 
-interface IReciept {
-
-}
-
-class Education extends Component<IReciept> {
-
-    constructor(props: IReciept) {
-        super(props)
-    }
+class Education extends Component {
 
     render() {
 

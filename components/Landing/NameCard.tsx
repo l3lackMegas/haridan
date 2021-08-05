@@ -2,14 +2,12 @@
 import { Component } from "react";
 
 /* Next Module */
-import Image from 'next/image'
 import Link from 'next/link'
 
 /* External Module */
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookMessenger } from '@fortawesome/free-brands-svg-icons'
-import LoadingIcons from 'react-loading-icons'
 
 /* Styles */
 import styles from './styles.module.css'

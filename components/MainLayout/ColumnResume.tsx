@@ -1,9 +1,6 @@
 /* React Module */
 import { Component } from "react";
 
-/* Next Module */
-import Link from "next/link"
-
 interface IReciept {
     title: string
 }
