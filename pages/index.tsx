@@ -49,7 +49,7 @@ class Home extends Component {
                 minHeight: '750px',
                 height: '100vh'
             }}>
-                <Landing isReady={isMounted}/>
+                <Landing y={y} isReady={isMounted}/>
             </div>
             { isMounted && 
             <>
