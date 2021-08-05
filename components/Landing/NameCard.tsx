@@ -12,8 +12,6 @@ import { faFacebookMessenger, faGithub } from '@fortawesome/free-brands-svg-icon
 /* Styles */
 import styles from './styles.module.css'
 
-/* Components */
-
 interface IReciept {
     isReady: Boolean
     nextFn?: Function
@@ -26,9 +24,9 @@ class NameCard extends Component<IReciept> {
         const { isReady } = this.props
         
         return <motion.div className={styles.nameCard}
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={ isReady ? { opacity: 1, scaleY: 1 } : {}}
-            transition={{ duration: .35 }}
+            initial={{ opacity: 0, scale: .5 }}
+            animate={ isReady ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: .65 }}
         >
             <div className={styles.circlePic}>
                 <div className={styles.img}
