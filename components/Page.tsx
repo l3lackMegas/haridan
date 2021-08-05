@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 /* Components */
+import Crefit from './MainLayout/Credit'
 
 const animFadeIn = {
     hidden: {
@@ -75,62 +76,10 @@ class Page extends Component<IReciept> {
             <Head>
                 <title>{ `${pageTitle} - Résumé`}</title>
             </Head>
-            <motion.div className={className} >
-                <div style={{position: 'absolute', width: '100%', height: '100%', minHeight: '750px', overflow: 'hidden'}}>
-                    <div className="sub">
-                        <motion.div style={{
-                            position: 'absolute',
-                            width: '100%',
-                            height: '100%',
-                            backgroundImage: 'url(/img/bg-blur.jpg)',
-                            backgroundRepeat: 'no-repeat',
-                            backgroundSize: 'cover',
-                            backgroundPositionY: y / 2
-                        }}
-                        initial={{ opacity: 0, scale: 1.5 }}
-                        animate={ isReady ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ duration: .5 }}
-                    >
-                        <div className="sub" style={{ backgroundImage: 'linear-gradient(to bottom, transparent, #06243c)' }}>
-                        {isReady && 
-                            <motion.div className="scrollDown"
-                                variants={animFadeIn}
-                                initial="hidden"
-                                animate="show"
-                            >
-                                <p style={{ fontSize: 15 }}>SCROLL DOWN</p>
-                                <FontAwesomeIcon icon={faChevronDown}/>
-                            </motion.div>
-                        }
-                        </div>
-                    </motion.div>
-                    </div>
-                </div>
-                <div className="container">
-                    { children }
-                </div>
+            <motion.div className={`container ${className}`} >
+                { children }
             </motion.div>
-            <div className="credit">
-                <span>Ⓒ Since 2021. Powered by </span>
-                <Link href="http://fb.com/Jaruwat.P">
-                    <a target="_blank" rel="noreferrer">Jaruwat Pohong</a>
-                </Link>
-                <span>. </span>
-                <p className="blockMobile">
-                    <span>View source code on </span>
-                    <Link href="https://github.com/l3lackMegas/l3lackmegas.github.io">
-                        <a target="_blank" rel="noreferrer">GitHub</a>
-                    </Link>
-                    <span>. </span>
-                </p>
-                <p className="blockMobile">
-                    <span>Background Image by </span>
-                    <Link href="http://www.freepik.com">
-                        <a target="_blank" rel="noreferrer">fanjianhua / Freepik</a>
-                    </Link>
-                    <span>.</span>
-                </p>
-            </div>
+            <Crefit/>
         </>
     }
 

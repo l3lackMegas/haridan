@@ -13,6 +13,7 @@ import Landing from '../components/Landing'
 import Section from "../components/MainLayout/Section"
 import Education from "../components/Resume/Education"
 import Experiance from "../components/Resume/Experiance"
+import SkillCard from "../components/SkillCard";
 
 class Home extends Component {
 
@@ -75,6 +76,18 @@ class Home extends Component {
                                 <p style={{textAlign: 'center'}}>Just kidding</p>
                             </div>
                         </div>
+                    </div>
+                </Section>
+
+                <Section style={{ 
+                    textAlign: 'center',
+                    backgroundImage: 'url(/img/skill-bg.jpg)',
+                    backgroundSize: 'cover',
+                    backgroundPositionY: `calc(100vh + 500px + ${y / 3}px)`
+                }}>
+                    <div style={{ padding: '0 20px'}}>
+                        <h1 className="infoTitle">My Skill</h1>
+                        <SkillCard/>
                     </div>
                 </Section>
 

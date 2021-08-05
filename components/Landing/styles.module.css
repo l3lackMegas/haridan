@@ -53,16 +53,10 @@
     margin: 8vh 0 20px 0;
 }
 
-.nameCard .buttonPanel > .btn + .btn,
-.nameCard .buttonPanel > a + .btn,
-.nameCard .buttonPanel > .btn + a,
-.nameCard .buttonPanel > a + a
-{
-    margin-left: 10px;
-}
-
 .btn {
+    margin: 5px 10px;
     padding: 5px 15px;
+    width: 146px;
     font-family: inherit;
     font-size: 18px;
     color: white;

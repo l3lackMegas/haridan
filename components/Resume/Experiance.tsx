@@ -7,7 +7,7 @@ import Link from "next/link"
 /* External Module */
 
 /* Components */
-import Column2 from "../MainLayout/Column2";
+import ColumnResume from "../MainLayout/ColumnResume";
 import CardInfo from '../CardInfo'
 
 interface IReciept {
@@ -23,7 +23,7 @@ class Works extends Component<IReciept> {
     render() {
 
         return <>
-            <Column2 title="Experiance">
+            <ColumnResume title="Experiance">
                 <CardInfo
                     title="BUMIT Website"
                     date="2021"
@@ -53,7 +53,7 @@ class Works extends Component<IReciept> {
                     <p>Freelance Work</p>
                     <p>Frontend Developer</p>
                 </CardInfo>
-            </Column2>
+            </ColumnResume>
         </>
     }
 

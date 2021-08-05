@@ -36,6 +36,10 @@
     unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
+:root {
+    --primary-color: #1ba3e4;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -116,10 +120,10 @@ h1, h2, h3, h4, p {
     position: relative;
     margin: 50px auto;
     width: fit-content;
-    height: 300px;
 }
 
 .understandCSS .frame {
+    position: relative;
     margin: auto;
     padding: 10px;
     width: 200px;
@@ -178,6 +182,15 @@ h1, h2, h3, h4, p {
     padding-top: 50px;
     padding-left: 50px;
     width: calc(100% - 50px);
+    overflow: hidden;
+}
+
+.parallaxHero {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .scrollDown {
@@ -206,6 +219,10 @@ h1, h2, h3, h4, p {
 
 @media only screen and (max-width: 500px) {
 
+    .scrollDown {
+        bottom: 70px;
+    }
+
     .credit {
         text-align: center;
     }
@@ -219,12 +236,32 @@ h1, h2, h3, h4, p {
     }
 
     .harfShade {
-        grid-template-columns: 130px auto;
+        grid-template-columns: 130px calc(100% - 130px);
     }
 
     .harfShade .detail {
         padding-left: 20px;
-        width: calc(100% - 20px);
+        width: 100%;
+    }
+
+}
+
+@media only screen and (max-width: 310px) {
+
+    .harfShade {
+        grid-template-columns: 110px calc(100% - 110px);
+    }
+
+    .harfShade .topic .navContainer h2 {
+        font-size: 20px;
+    }
+
+    .understandCSS .frame {
+        width: 100px;
+    }
+
+    .understandCSS .frame h1 {
+        font-size: 20px;
     }
 
 }
