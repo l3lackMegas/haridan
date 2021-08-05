@@ -38,7 +38,7 @@ class Home extends Component {
             })
         }, 100);
         
-        if(isMobile) {
+        if(!isMobile) {
             window.addEventListener("scroll", this.scrollHandler)
 
             let observer = new MutationObserver(this.scrollHandler),
