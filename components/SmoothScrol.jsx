@@ -11,30 +11,35 @@ import {
   motion
 } from "framer-motion"
 
-const SmoothScroll = ({ isMobile, children }) => {
+import { checkIsMobile } from '../lib/utility'
+
+const SmoothScroll = ({ children }) => {
+
+  let isMobile = checkIsMobile()
   // scroll container
   const scrollRef = useRef(null)
   // page scrollable height based on content length
   const [pageHeight, setPageHeight] = useState(0)
 
-  if(!isMobile) {
-
-    // update scrollable height when browser is resizing
-    const resizePageHeight = useCallback(entries => {
+  // update scrollable height when browser is resizing
+  const resizePageHeight = useCallback(entries => {
+    if(!isMobile) {
       for (let entry of entries) {
         setPageHeight(entry.contentRect.height)
       }
-    }, [])
+    }
+  }, [isMobile])
 
-    // observe when browser is resizing
-    useLayoutEffect(() => {
+  // observe when browser is resizing
+  useLayoutEffect(() => {
+    if(!isMobile) {
       const resizeObserver = new ResizeObserver(entries =>
         resizePageHeight(entries)
       )
       scrollRef && resizeObserver.observe(scrollRef.current)
       return () => resizeObserver.disconnect()
-    }, [scrollRef, resizePageHeight]) 
-  }
+    }
+  }, [isMobile, scrollRef, resizePageHeight]) 
 
   const { scrollY } = useViewportScroll() // measures how many pixels user has scrolled vertically
   // as scrollY changes between 0px and the scrollable height, create a negative scroll value...

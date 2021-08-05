@@ -18,8 +18,7 @@ import SmoothScroll from '../components/SmoothScrol'
 class MyApp extends App<AppProps> {
 
     state = {
-        isLoaded: false,
-        isMobile: false
+        isLoaded: false
     }
 
     componentDidMount() {
@@ -28,16 +27,13 @@ class MyApp extends App<AppProps> {
                 this.setState({ isLoaded: true })
             }, 1000);
         })
-
-        let isMobile = checkIsMobile();
-        this.setState({isMobile})
           
     }   
 
     render() {
         const { Component, pageProps, router } = this.props
 
-        const { isLoaded, isMobile } = this.state
+        const { isLoaded } = this.state
 
         return (
             <>
@@ -58,7 +54,7 @@ class MyApp extends App<AppProps> {
                             </motion.div>
                         }
                         {isLoaded &&
-                            <SmoothScroll isMobile={isMobile}>
+                            <SmoothScroll>
                                 <Component {...pageProps} key={router.route}  />
                             </SmoothScroll>
                         }
