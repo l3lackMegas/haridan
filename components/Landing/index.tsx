@@ -1,5 +1,8 @@
 /* React Module */
-import { Children, Component } from "react";
+import React, { Component } from "react";
+
+/* Next Module */
+import Link from 'next/link'
 
 /* External Module */
 import { motion } from 'framer-motion'
@@ -61,8 +64,12 @@ class Landing extends Component<IReciept> {
                             initial="hidden"
                             animate="show"
                         >
-                            <p style={{ fontSize: 15 }}>SCROLL DOWN</p>
-                            <FontAwesomeIcon icon={faChevronDown}/>
+                            <Link href="#information">
+                                <a onClick={()=>window.scrollTo(0, window.innerHeight) }>
+                                    <p style={{ fontSize: 15 }}>SCROLL DOWN</p>
+                                    <FontAwesomeIcon icon={faChevronDown}/>
+                                </a>
+                            </Link>
                         </motion.div>
                     }
                     </div>
