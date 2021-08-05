@@ -54,3 +54,10 @@
 .container .link:hover {
     background-color: rgba(255, 255, 255, .2);
 }
+
+@media only screen and (max-width: 500px) {
+    .container .link {
+        max-width: 100%;
+        width: fit-content;
+    }
+}
