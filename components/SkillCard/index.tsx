@@ -79,7 +79,7 @@ class SkillCard extends Component {
                         <p>Nodejs</p>
                         <p>TypeScript</p>
                         <p>Next.js</p>
-                        <p>Django</p>
+                        <p>PHP</p>
                         <p>Docker</p>
                     </div>
                 </ItemSkill>
