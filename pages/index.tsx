@@ -37,24 +37,17 @@ class Home extends Component {
                 y: window.scrollY
             })
         }, 100);
-        window.addEventListener("scroll", this.scrollHandler)
+        
+        if(isMobile) {
+            window.addEventListener("scroll", this.scrollHandler)
 
-        let observer = new MutationObserver(this.scrollHandler),
-            scrollling: any = document.querySelector("#smoothScrolling")
-        observer.observe(scrollling, {
-            attributes: true,
-            attributeFilter: ['style'],
-        });
-
-        var oldIndex = scrollling.style.transform;
-
-        function styleChangedCallback(mutations: any) {
-            var newIndex = mutations[0].target.style.transform;
-            if (newIndex !== oldIndex) {
-                console.log('new:',newIndex , 'old:', oldIndex);
-            }
+            let observer = new MutationObserver(this.scrollHandler),
+                scrollling: any = document.querySelector("#smoothScrolling")
+            observer.observe(scrollling, {
+                attributes: true,
+                attributeFilter: ['style'],
+            });
         }
-
     }
 
     componentWillUnmount() {

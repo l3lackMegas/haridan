@@ -14,25 +14,27 @@ import {
 const SmoothScroll = ({ isMobile, children }) => {
   // scroll container
   const scrollRef = useRef(null)
-
   // page scrollable height based on content length
   const [pageHeight, setPageHeight] = useState(0)
 
-  // update scrollable height when browser is resizing
-  const resizePageHeight = useCallback(entries => {
-    for (let entry of entries) {
-      setPageHeight(entry.contentRect.height)
-    }
-  }, [])
+  if(!isMobile) {
 
-  // observe when browser is resizing
-  useLayoutEffect(() => {
-    const resizeObserver = new ResizeObserver(entries =>
-      resizePageHeight(entries)
-    )
-    scrollRef && resizeObserver.observe(scrollRef.current)
-    return () => resizeObserver.disconnect()
-  }, [scrollRef, resizePageHeight])
+    // update scrollable height when browser is resizing
+    const resizePageHeight = useCallback(entries => {
+      for (let entry of entries) {
+        setPageHeight(entry.contentRect.height)
+      }
+    }, [])
+
+    // observe when browser is resizing
+    useLayoutEffect(() => {
+      const resizeObserver = new ResizeObserver(entries =>
+        resizePageHeight(entries)
+      )
+      scrollRef && resizeObserver.observe(scrollRef.current)
+      return () => resizeObserver.disconnect()
+    }, [scrollRef, resizePageHeight]) 
+  }
 
   const { scrollY } = useViewportScroll() // measures how many pixels user has scrolled vertically
   // as scrollY changes between 0px and the scrollable height, create a negative scroll value...
