@@ -79,7 +79,7 @@ class Home extends Component {
                     </div>
                 </Section>
 
-                <Section id="information" style={{ textAlign: 'center' }}>
+                <Section style={{ textAlign: 'center' }}>
                     <div style={{ padding: '0 20px'}}>
                         <h1 className="infoTitle">My Skill</h1>
                         <SkillCard/>
