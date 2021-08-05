@@ -79,7 +79,12 @@ class Home extends Component {
                     </div>
                 </Section>
 
-                <Section style={{ textAlign: 'center' }}>
+                <Section style={{ 
+                    textAlign: 'center',
+                    backgroundImage: 'url(/img/skill-bg.jpg)',
+                    backgroundSize: 'cover',
+                    backgroundPositionY: `calc(100vh + 500px + ${y / 3}px)`
+                }}>
                     <div style={{ padding: '0 20px'}}>
                         <h1 className="infoTitle">My Skill</h1>
                         <SkillCard/>
