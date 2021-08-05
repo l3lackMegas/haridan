@@ -73,17 +73,12 @@ class Landing extends Component<IReciept> {
         return <>
             <div style={{position: 'absolute', width: '100%', height: '100%', overflow: 'hidden'}}>
                 <div className="sub">
-                    <motion.div style={{
-                        position: 'absolute',
-                        width: '100%',
-                        height: '100%',
+                    <motion.div className="parallaxHero" style={{
                         backgroundImage: 'url(/img/bg-blur.jpg)',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: 'cover',
                         backgroundPositionY: y / 2
                     }}
                     initial={{ opacity: 0, scale: 1.5 }}
-                    animate={ isReady ? { opacity: 1, scale: 1 } : {}}
+                    animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: .5 }}
                 >
                     <div className="sub" style={{ backgroundImage: 'linear-gradient(to bottom, transparent, #06243c)' }}>

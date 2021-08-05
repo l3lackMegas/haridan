@@ -181,8 +181,12 @@ h1, h2, h3, h4, p {
     overflow: hidden;
 }
 
-.parallaxImage {
-
+.parallaxHero {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .scrollDown {
@@ -210,6 +214,10 @@ h1, h2, h3, h4, p {
 }
 
 @media only screen and (max-width: 500px) {
+
+    .scrollDown {
+        bottom: 70px;
+    }
 
     .credit {
         text-align: center;
