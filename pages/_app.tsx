@@ -9,12 +9,17 @@ import '../styles/globals.css'
 /* External Module */
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
 
+/* Library */
+import { checkIsMobile } from '../lib/utility'
+
 /* Components */
+import SmoothScroll from '../components/SmoothScrol'
 
 class MyApp extends App<AppProps> {
 
     state = {
-        isLoaded: false
+        isLoaded: false,
+        isMobile: false
     }
 
     componentDidMount() {
@@ -23,12 +28,16 @@ class MyApp extends App<AppProps> {
                 this.setState({ isLoaded: true })
             }, 1000);
         })
-    }
+
+        let isMobile = checkIsMobile();
+        this.setState({isMobile})
+          
+    }   
 
     render() {
         const { Component, pageProps, router } = this.props
 
-        const { isLoaded } = this.state
+        const { isLoaded, isMobile } = this.state
 
         return (
             <>
@@ -62,7 +71,9 @@ class MyApp extends App<AppProps> {
                             </motion.div>
                         }
                         {isLoaded &&
-                            <Component {...pageProps} key={router.route}  />
+                            <SmoothScroll isMobile={isMobile}>
+                                <Component {...pageProps} key={router.route}  />
+                            </SmoothScroll>
                         }
                     </AnimatePresence>
                 </AnimateSharedLayout>

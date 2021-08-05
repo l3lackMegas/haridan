@@ -1,13 +1,16 @@
 /* React Module */
 import { Component, createRef } from "react";
 
+/* Library */
+import { checkIsMobile } from '../lib/utility'
+
 /* Components */
 import Page from '../components/Page'
 import Landing from '../components/Landing'
 import Section from "../components/MainLayout/Section"
 import Education from "../components/Resume/Education"
 import Experiance from "../components/Resume/Experiance"
-import SkillCard from "../components/SkillCard";
+import SkillCard from "../components/SkillCard"
 
 class Home extends Component {
 
@@ -21,10 +24,13 @@ class Home extends Component {
         y: 0,
         landingParallax: 0,
         skillParallax: 0,
-        resumeParallax: 0
+        resumeParallax: 0,
+        isMobile: false
     }
 
     componentDidMount() {
+        let isMobile = checkIsMobile()
+        this.setState({isMobile})
         setTimeout(() => {
             this.setState({ 
                 isMounted: true,
@@ -32,6 +38,23 @@ class Home extends Component {
             })
         }, 100);
         window.addEventListener("scroll", this.scrollHandler)
+
+        let observer = new MutationObserver(this.scrollHandler),
+            scrollling: any = document.querySelector("#smoothScrolling")
+        observer.observe(scrollling, {
+            attributes: true,
+            attributeFilter: ['style'],
+        });
+
+        var oldIndex = scrollling.style.transform;
+
+        function styleChangedCallback(mutations: any) {
+            var newIndex = mutations[0].target.style.transform;
+            if (newIndex !== oldIndex) {
+                console.log('new:',newIndex , 'old:', oldIndex);
+            }
+        }
+
     }
 
     componentWillUnmount() {
@@ -39,7 +62,10 @@ class Home extends Component {
     }
 
     scrollHandler() {
-        let currentScroll = window.scrollY,
+        let scrollling = document.querySelector("#smoothScrolling"),
+            compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
+            matrix = new WebKitCSSMatrix(compos.transform),
+            currentScroll = this.state.isMobile ? window.scrollY : matrix.m42 * -1,
             informationObject: HTMLElement | null = document.querySelector('#information'),
             skillParallax: HTMLElement | null = document.querySelector('#skill-section'),
             resumeParallax: HTMLElement | null = document.querySelector('#resume-section'),

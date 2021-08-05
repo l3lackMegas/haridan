@@ -102,6 +102,15 @@ h1, h2, h3, h4, p {
     display: inline-block;
 }
 
+.scroll-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    will-change: transform;
+}
+
 .container {
     margin: 0 auto;
     width: 100%;
