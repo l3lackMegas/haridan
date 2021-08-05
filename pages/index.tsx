@@ -111,9 +111,9 @@ class Home extends Component {
                     <div style={{ padding: '0 20px'}}>
                         <h1 className="infoTitle">Hi there!</h1>
                         <div style={{ color: 'rgba(255, 255, 255, .75)'}}>
-                            <p>I am Jaruwat Pohong, Frontend Developer.</p>
-                            <p>Actually I am a student in university who would like to do anything about web design and frontend development.</p>
-                            <p>I understand HTML, CSS and JavaScript as well. And I can use modern library like React.js, TypeScript, etc.</p>
+                            <p>I am Jaruwat Pohong, Desktop and Web Developer. (or just wanna be)</p>
+                            <p>Actually I am a student in Computer Science who would like to do anything about web design and frontend development.</p>
+                            <p>I usually play video games, listen to music and coding my mini project.</p>
                             <div className="understandCSS">
                                 <div className="frame">
                                     <h1>CSS</h1>
