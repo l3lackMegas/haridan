@@ -35,7 +35,7 @@ class MyDocument extends Document {
 					<PreLoader id="IE-Message">Sorry, This website does not support your browser.</PreLoader>
 					<Main />
 					<NextScript />
-					<script src="/js/checkOutdataBrowser.js"/>
+					<script async src="/js/checkOutdataBrowser.js"/>
 				</body>
 			</Html>
 		)
