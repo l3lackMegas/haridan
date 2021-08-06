@@ -32,7 +32,7 @@ class MyDocument extends Document {
 						<meta property="og:image" content="https://jaruwat.fucking-thai.dev/img/og-image.jpg" />
 				</Head>
 				<body>
-					<PreLoader id="IE-Message">Sorry, This website does not support your browser.</PreLoader>
+					<PreLoader id="IE-Message" style={{ display: 'none' }}>Sorry, This website does not support your browser.</PreLoader>
 					<Main />
 					<NextScript />
 					<script async src="/js/checkOutdataBrowser.js"/>

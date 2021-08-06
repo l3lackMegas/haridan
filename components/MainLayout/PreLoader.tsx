@@ -1,20 +1,22 @@
 /* React Module */
-import { Children, Component } from "react";
+import { Children, Component, CSSProperties } from "react";
 
 /* External Module */
 import { motion } from 'framer-motion'
 
 interface IReciept {
-    id?: string
+    id?: string,
+    style?: CSSProperties
 }
 
 class PreLoader extends Component<IReciept> {
 
     render() {
-        const { id, children } = this.props
+        const { id, style, children } = this.props
         return <>
             <motion.div className="centerContain"
                 id={id || ''}
+                style={style}
                 initial={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
             >
