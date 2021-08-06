@@ -5,7 +5,7 @@ import { Children, Component } from "react";
 import { motion } from 'framer-motion'
 
 interface IReciept {
-    id: string
+    id?: string
 }
 
 class PreLoader extends Component<IReciept> {
