@@ -97,7 +97,7 @@ class Home extends Component {
 
         const { isMounted, y, landingParallax, skillParallax, resumeParallax } = this.state
 
-        return <Page pageTitle="Jaruwat Pohong" onSelected="store" isReady={isMounted}>
+        return <Page pageTitle="l3lackMegas" onSelected="store" isReady={isMounted}>
             <div className="section" style={{
                 position: 'relative',
                 minHeight: '750px',

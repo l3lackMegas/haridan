@@ -40,7 +40,7 @@ class MyApp extends App<AppProps> {
         return (
             <>
                 <Head>
-                    <title>Jaruwat Pohong</title>
+                    <title>l3lackMegas</title>
                 </Head>
                 <AnimateSharedLayout type='crossfade'>
                     <AnimatePresence exitBeforeEnter onExitComplete={()=>{ window.scroll(0, 0)}}>
