@@ -8,4 +8,6 @@ function checkUnES6Support() {
 
 if(!checkUnES6Support()) {
     document.getElementById('IE-Message').remove();
+} else {
+    document.getElementById('IE-Message').style.display = "block"
 }
