@@ -35,7 +35,7 @@ class MyDocument extends Document {
 					<PreLoader id="IE-Message" style={{ display: 'none' }}>Sorry, This website does not support your browser.</PreLoader>
 					<Main />
 					<NextScript />
-					<script async src="/js/checkOutdataBrowser.js"/>
+					<script async src="/js/checkOutdataBrowser.js?v=1"/>
 				</body>
 			</Html>
 		)
