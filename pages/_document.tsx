@@ -29,7 +29,7 @@ class MyDocument extends Document {
 										Actually I am a student in university who would like to do anything about web design and frontend development.
 										I understand HTML, CSS and JavaScript as well. And I can use modern library like React.js, TypeScript, etc."
 						/>
-						<meta property="og:image" content="https://jaruwat.fucking-thai.dev/img/og-image.jpg" />
+						<meta property="og:image" content="https://jaruwat.fucking-thai.dev/img/og-img.jpg" />
 				</Head>
 				<body>
 					<PreLoader id="IE-Message" style={{ display: 'none' }}>Sorry, This website does not support your browser.</PreLoader>
