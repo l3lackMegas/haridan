@@ -23,7 +23,7 @@ class MyDocument extends Document {
 
 						<meta property="og:url" content="https://jaruwat.fucking-thai.dev" />
 						<meta property="og:type" content="website" />
-						<meta property="og:title" content="Jaruwat Pohong - Résumé" />
+						<meta property="og:title" content="l3lackMegas - Résumé" />
 						<meta property="og:description"
 								content="I am Jaruwat Pohong, Frontend Developer.
 										Actually I am a student in university who would like to do anything about web design and frontend development.
