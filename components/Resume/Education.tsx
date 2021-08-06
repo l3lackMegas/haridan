@@ -24,6 +24,7 @@ class Education extends Component {
                     title="Young Creator Camp #1"
                     date="2019"
                     org="Bangkok - Thailand"
+                    link="https://ycc.in.th"
                 >
                     <p>Change the dreamer to be an innovator.</p>
                 </CardInfo>
