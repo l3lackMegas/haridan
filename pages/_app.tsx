@@ -10,9 +10,10 @@ import '../styles/globals.css'
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
 
 /* Library */
-import { checkIsMobile } from '../lib/utility'
+import { isIE } from '../lib/utility'
 
 /* Components */
+import PreLoader from '../components/MainLayout/PreLoader'
 import SmoothScroll from '../components/SmoothScrol'
 
 class MyApp extends App<AppProps> {
@@ -36,7 +37,6 @@ class MyApp extends App<AppProps> {
         const { Component, pageProps, router } = this.props
 
         const { isLoaded } = this.state
-
         return (
             <>
                 <Head>
@@ -45,15 +45,7 @@ class MyApp extends App<AppProps> {
                 <AnimateSharedLayout type='crossfade'>
                     <AnimatePresence exitBeforeEnter onExitComplete={()=>{ window.scroll(0, 0)}}>
                         {!isLoaded &&
-                            <motion.div className="centerContain"
-                                initial={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                            >
-                                <p style={{
-                                    padding: "5px 15px",
-                                    border: '1px rgba(255, 255, 255, .5) solid'
-                                }}>&lt;/&gt; Just a sec.</p>
-                            </motion.div>
+                            <PreLoader>&lt;/&gt; Just a sec.</PreLoader>
                         }
                         {isLoaded &&
                             <SmoothScroll>
