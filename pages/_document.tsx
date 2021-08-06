@@ -25,9 +25,9 @@ class MyDocument extends Document {
 						<meta property="og:type" content="website" />
 						<meta property="og:title" content="l3lackMegas - Résumé" />
 						<meta property="og:description"
-								content="I am Jaruwat Pohong, Frontend Developer.
-										Actually I am a student in university who would like to do anything about web design and frontend development.
-										I understand HTML, CSS and JavaScript as well. And I can use modern library like React.js, TypeScript, etc."
+								content="I am Jaruwat Pohong, Desktop and Web Developer. (or just wanna be)
+								Actually I am a student in Computer Science who would like to do anything about web design and frontend development.
+								I usually play video games, listen to music and coding my mini project."
 						/>
 						<meta property="og:image" content="https://jaruwat.fucking-thai.dev/img/og-img.jpg" />
 				</Head>
