@@ -9,14 +9,24 @@ function get_browser() {
 		if (tem != null) { return { name: 'Opera', version: tem[1] }; }
 	}
 	if (window.navigator.userAgent.indexOf("Edge") > -1) {
-		tem = ua.match(/\Edge\/(\d+)/)
+		tem = ua.match(/\bEdge\/(\d+)/)
 		if (tem != null) { return { name: 'Edge', version: tem[1] }; }      
 	}
-	M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+	if (window.navigator.userAgent.indexOf("FBAN") > -1 || window.navigator.userAgent.indexOf("FBAV") > -1) {
+		tem = ua.match(/\bFBAV\/(\d+)/)
+		if (tem != null) { return { name: 'FBAN', version: tem[1] }; }      
+	}
+	if (window.navigator.userAgent.indexOf("Instagram") > -1) {
+		tem = ua.match(/\bInstagram\/(\d+)/)
+		if (tem != null) { return { name: 'Instagram', version: tem[1] }; }      
+	}
+	let FM = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+	
 	if ((tem = ua.match(/version\/(\d+)/i)) != null) { M.splice(1, 1, tem[1]); }
+	
 	return {
-		name: M[0],
-		version: +M[1]
+		name: FM[0],
+		version: +FM[1]
 	};
 }
 
@@ -29,9 +39,13 @@ function isSupported(browser) {
 	  	supported = true;
 	} else if (browser.name === "Edge") {
 	  	supported = true;
-	}
+	} else if (browser.name === "FBAN") {
+		supported = true;
+  	} else if (browser.name === "Instagram") {
+		supported = true;
+  	}
 	return supported;
-  }
+}
 
 if (!isSupported) {
 	document.getElementById("IE-Message").style.display = "block";
