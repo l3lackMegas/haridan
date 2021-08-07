@@ -32,10 +32,10 @@ class MyDocument extends Document {
 						<meta property="og:image" content="https://jaruwat.fucking-thai.dev/img/og-img.jpg" />
 				</Head>
 				<body>
-					<PreLoader id="IE-Message" style={{ display: 'none' }}>Sorry, This website does not support your browser.</PreLoader>
+					<PreLoader id="IE-Message" style={{ display: 'none', top: 50, width: '100%' }}>Sorry, This website may not support your browser.</PreLoader>
 					<Main />
 					<NextScript />
-					<script async src="/js/checkOutdataBrowser.js?v=1"/>
+					<script async src="/js/checkOutdataBrowser.js?v=2"/>
 				</body>
 			</Html>
 		)
