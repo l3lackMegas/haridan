@@ -33,6 +33,7 @@ class SkillCard extends Component {
                         <p>MS Paint</p>
                         <p>Pen / Paper</p>
                         <p>Photoshop</p>
+                        <p>Proto.io</p>
                     </div>
                 </ItemSkill>
 
@@ -54,8 +55,10 @@ class SkillCard extends Component {
                         <p>HTML, CSS</p>
                         <p>JavaScript</p>
                         <p>React.js</p>
-                        <p>SASS / LESS</p>
+                        <p>SASS / SCSS</p>
+                        <p>LESS</p>
                         <p>Framer Motion</p>
+                        <p>Electron.js</p>
                         <p>jQuery</p>
                     </div>
                 </ItemSkill>
@@ -76,8 +79,10 @@ class SkillCard extends Component {
                     <div className={styles.info}>
                         <p className={styles.topic}>Tech Stack &amp; Language &amp; Tools:</p>
                         <p>Nodejs / TypeScript</p>
-                        <p>Next.js / Express.js</p>
+                        <p>Next.js</p>
+                        <p>Express.js</p>
                         <p>PHP</p>
+                        <p>Lua</p>
                         <p>C# / VB.NET</p>
                         <p>MySQL / MongoDB</p>
                         <p>Docker</p>
