@@ -73,15 +73,17 @@ class Home extends Component {
             parallaxObjec.landing = currentScroll
 
         // Check is skill section appear
+        let skillParallaxOffset = skillParallax ? skillParallax.getBoundingClientRect().top : 0
         if(informationObject && skillParallax &&
-            skillParallax.getBoundingClientRect().top - window.innerHeight <=0 &&
-            skillParallax.getBoundingClientRect().top + skillParallax.offsetHeight >= 0
+            skillParallaxOffset - window.innerHeight <=0 &&
+            skillParallaxOffset + skillParallax.offsetHeight >= 0
         ) parallaxObjec.skill = window.innerHeight + (informationObject.offsetHeight / 2) + (currentScroll / 2)
 
         // Check is resume section appear
+        let resumeParallaxOffset = resumeParallax ? resumeParallax.getBoundingClientRect().top : 0
         if(informationObject && resumeParallax && skillParallax &&
-            resumeParallax.getBoundingClientRect().top - window.innerHeight <=0 &&
-            resumeParallax.getBoundingClientRect().top + resumeParallax.offsetHeight >= 0
+            resumeParallaxOffset - window.innerHeight <=0 &&
+            resumeParallaxOffset + resumeParallax.offsetHeight >= 0
         ) parallaxObjec.resume = skillParallax.offsetHeight + (currentScroll / 2)
 
 
@@ -130,7 +132,7 @@ class Home extends Component {
                     id="skill-section"
                     style={{
                         textAlign: 'center',
-                        backgroundImage: 'url(/img/skill-bg.jpg)',
+                        backgroundImage: 'url(/img/skill-background.jpg)',
                         backgroundSize: 'cover',
                         backgroundPositionY: skillParallax
                 }}>
