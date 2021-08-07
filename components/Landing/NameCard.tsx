@@ -35,7 +35,7 @@ class NameCard extends Component<IReciept> {
             </div>
             <div className={styles.identity}>
                 <p className={styles.name}>JARUWAT POHONG</p>
-                <p className={styles.subName}>(l3lackMegas)</p>
+                <p className={styles.subName}>(Web Developer)</p>
             </div>
             <div className={styles.statusQuote}>
                 <p>I love cat, but cat NEVER love me.</p>
