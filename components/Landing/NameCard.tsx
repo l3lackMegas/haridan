@@ -7,6 +7,7 @@ import Link from 'next/link'
 /* External Module */
 import { motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookMessenger, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 /* Styles */
@@ -59,6 +60,16 @@ class NameCard extends Component<IReciept> {
                         <button className={`${styles.btn} ${styles.github}`}>
                             <FontAwesomeIcon icon={faGithub} />
                             <span>GitHub</span>
+                        </button>
+                    </a>
+                </Link>
+                <Link href="/l3lackMegas - Resume.pdf">
+                    <a target="_blank" rel="noreferrer">
+                        <button
+                            className={`${styles.btn} ${styles.github}`}
+                        >
+                            <FontAwesomeIcon icon={faDownload} />
+                            <span>Résumé</span>
                         </button>
                     </a>
                 </Link>
