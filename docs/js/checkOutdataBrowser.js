@@ -30,13 +30,20 @@ function get_browser() {
 	};
 }
 
+
 var browser = get_browser()
 var isSupported = isSupported(browser);
 
 function isSupported(browser) {
 	var supported = false;
-	if (browser.name === "Chrome" && browser.version >= 48) {
+	if (browser.name === "Chrome" && browser.version >= 51) {
 	  	supported = true;
+	} else if (browser.name === "Firefox" && browser.version >= 52) {
+		supported = true; 
+	} else if (browser.name === "Safari" && browser.version >= 10) {
+		supported = true; 
+	} else if (browser.name === "Opera" && browser.version >= 38) {
+		supported = true; 
 	} else if (browser.name === "Edge") {
 	  	supported = true;
 	} else if (browser.name === "FBAN") {
