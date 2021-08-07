@@ -51,11 +51,12 @@
 }
 
 .btn {
-    margin: 5px 10px;
+    margin: 5px 10px 10px 5px;
     padding: 5px 15px;
-    width: 146px;
+    min-width: 146px;
     font-family: inherit;
     font-size: 18px;
+    white-space: nowrap;
     color: white;
     background-color: rgba(255, 255, 255, .1);
     border: unset;
