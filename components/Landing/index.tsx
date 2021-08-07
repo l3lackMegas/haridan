@@ -49,6 +49,38 @@ class Landing extends Component<IReciept> {
         return <>
             <div style={{position: 'absolute', width: '100%', height: '100%', overflow: 'hidden'}}>
                 <div className="sub">
+                    <Link href="https://webring.wonderful.software#jaruwat.fucking-thai.dev">
+                        <a title="วงแหวนเว็บ" style={{ position: 'absolute', top: 10, right: 10, zIndex: 100}}>
+                            <motion.div
+                                style={{width: 32, height: 32}}
+                                initial={{ 
+                                    opacity: 0,
+                                    transform: 'rotate(0deg)'
+                                }}
+                                animate={{ 
+                                    opacity: 1,
+                                    transform: 'rotate(360deg)',
+                                    transition: {
+                                        duration: 1
+                                    }
+                                }}
+                                whileHover={{
+                                    transform: 'rotate(0deg)',
+                                    transition:{
+                                        ease: 'linear',
+                                        repeat: Infinity
+                                    }
+                                }}
+                            >
+                                <img
+                                    alt="วงแหวนเว็บ"
+                                    width="32"
+                                    height="32"
+                                    src="https://webring.wonderful.software/webring.white.svg"
+                                />
+                            </motion.div>
+                        </a>
+                    </Link>
                     <motion.div className="parallaxHero" style={{
                         backgroundImage: 'url(/img/bg-blur.jpg)',
                         backgroundPositionY: y / 2
