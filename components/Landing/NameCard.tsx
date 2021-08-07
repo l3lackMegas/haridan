@@ -66,7 +66,7 @@ class NameCard extends Component<IReciept> {
                 <Link href="/l3lackMegas - Resume.pdf">
                     <a target="_blank" rel="noreferrer">
                         <button
-                            className={`${styles.btn} ${styles.github}`}
+                            className={styles.btn}
                         >
                             <FontAwesomeIcon icon={faDownload} />
                             <span>Résumé</span>
