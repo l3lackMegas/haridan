@@ -77,7 +77,7 @@ class Home extends Component {
         if(informationObject && skillParallax &&
             skillParallaxOffset - window.innerHeight <=0 &&
             skillParallaxOffset + skillParallax.offsetHeight >= 0
-        ) parallaxObjec.skill = window.innerHeight + (informationObject.offsetHeight / 2) + (currentScroll / 2)
+        ) parallaxObjec.skill = informationObject.offsetHeight + (currentScroll / 2)
 
         // Check is resume section appear
         let resumeParallaxOffset = resumeParallax ? resumeParallax.getBoundingClientRect().top : 0
