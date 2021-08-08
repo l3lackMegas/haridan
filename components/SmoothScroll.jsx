@@ -15,7 +15,7 @@ import { checkIsMobile, isSafari } from '../lib/utility'
 
 const SmoothScroll = ({ children }) => {
   // I don't think Safari can smooth when scroll, LMAO
-  let isCanSmooth = checkIsMobile() && isSafari()
+  let isCanNotSmooth = checkIsMobile() && isSafari()
   // scroll container
   const scrollRef = useRef(null)
   // page scrollable height based on content length
@@ -23,23 +23,23 @@ const SmoothScroll = ({ children }) => {
 
   // update scrollable height when browser is resizing
   const resizePageHeight = useCallback(entries => {
-    if(!isCanSmooth) {
+    if(!isCanNotSmooth) {
       for (let entry of entries) {
         setPageHeight(entry.contentRect.height)
       }
     }
-  }, [isCanSmooth])
+  }, [isCanNotSmooth])
 
   // observe when browser is resizing
   useLayoutEffect(() => {
-    if(!isCanSmooth) {
+    if(!isCanNotSmooth) {
       const resizeObserver = new ResizeObserver(entries =>
         resizePageHeight(entries)
       )
       scrollRef && resizeObserver.observe(scrollRef.current)
       return () => resizeObserver.disconnect()
     }
-  }, [isCanSmooth, scrollRef, resizePageHeight]) 
+  }, [isCanNotSmooth, scrollRef, resizePageHeight]) 
 
   const { scrollY } = useViewportScroll() // measures how many pixels user has scrolled vertically
   // as scrollY changes between 0px and the scrollable height, create a negative scroll value...
@@ -53,7 +53,7 @@ const SmoothScroll = ({ children }) => {
       <motion.div
         id="smoothScrolling"
         ref={scrollRef}
-        style={isCanSmooth ? {
+        style={isCanNotSmooth ? {
             position: 'relative'
         } : {
             y: spring
@@ -65,7 +65,7 @@ const SmoothScroll = ({ children }) => {
       {/* blank div that has a dynamic height based on the content's inherent height */}
       {/* this is neccessary to allow the scroll container to scroll... */}
       {/* ... using the browser's native scroll bar */}
-      {!isCanSmooth && <div style={{ height: pageHeight }} />}
+      {!isCanNotSmooth && <div style={{ height: pageHeight }} />}
     </>
   )
 }
