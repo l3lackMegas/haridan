@@ -15,7 +15,7 @@ import { checkIsMobile, isSafari } from '../lib/utility'
 
 const SmoothScroll = ({ children }) => {
   // I don't think Safari can smooth when scroll, LMAO
-  let isMobile = checkIsMobile() && isSafari() === false
+  let isMobile = checkIsMobile() && isSafari()
   // scroll container
   const scrollRef = useRef(null)
   // page scrollable height based on content length
