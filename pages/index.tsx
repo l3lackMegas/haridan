@@ -29,7 +29,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        let isCanNotSmooth = checkIsMobile() && isSafari()
+        let isCanNotSmooth = checkIsMobile() || isSafari()
 
         this.setState({isCanNotSmooth})
         setTimeout(() => {
