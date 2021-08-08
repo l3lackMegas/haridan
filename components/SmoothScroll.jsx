@@ -11,11 +11,11 @@ import {
   motion
 } from "framer-motion"
 
-import { checkIsMobile } from '../lib/utility'
+import { checkIsMobile, isSafari } from '../lib/utility'
 
 const SmoothScroll = ({ children }) => {
-
-  let isMobile = checkIsMobile()
+  // I don't think Safari can smooth when scroll, LMAO
+  let isMobile = checkIsMobile() && isSafari() === false
   // scroll container
   const scrollRef = useRef(null)
   // page scrollable height based on content length

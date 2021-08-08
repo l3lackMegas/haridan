@@ -14,7 +14,7 @@ import { isIE } from '../lib/utility'
 
 /* Components */
 import PreLoader from '../components/MainLayout/PreLoader'
-import SmoothScroll from '../components/SmoothScrol'
+import SmoothScroll from '../components/SmoothScroll'
 
 class MyApp extends App<AppProps> {
 
