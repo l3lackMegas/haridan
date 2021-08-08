@@ -2,7 +2,7 @@
 import { Component, createRef } from "react";
 
 /* Library */
-import { checkIsMobile, isSafari } from '../lib/utility'
+import { checkIsMobile } from '../lib/utility'
 
 /* Components */
 import Page from '../components/Page'
@@ -29,7 +29,8 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        let isCanSmooth = checkIsMobile() && !isSafari() // I don't think Safari can smooth when scroll, lol
+        let isCanSmooth = checkIsMobile()
+
         this.setState({isCanSmooth})
         setTimeout(() => {
             this.setState({ 
