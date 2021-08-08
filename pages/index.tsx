@@ -25,13 +25,12 @@ class Home extends Component {
         landingParallax: 0,
         skillParallax: 0,
         resumeParallax: 0,
-        isCanSmooth: false
+        isMobile: false
     }
 
     componentDidMount() {
-        let isCanSmooth = checkIsMobile()
-
-        this.setState({isCanSmooth})
+        let isMobile = checkIsMobile()
+        this.setState({isMobile})
         setTimeout(() => {
             this.setState({ 
                 isMounted: true,
@@ -39,7 +38,7 @@ class Home extends Component {
             })
         }, 100);
         
-        if(!isCanSmooth) {
+        if(!isMobile) {
             window.addEventListener("scroll", this.scrollHandler)
 
             let observer = new MutationObserver(this.scrollHandler),
@@ -59,7 +58,7 @@ class Home extends Component {
         let scrollling = document.querySelector("#smoothScrolling"),
             compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
             matrix = new WebKitCSSMatrix(compos.transform),
-            currentScroll = this.state.isCanSmooth ? window.scrollY : matrix.m42 * -1,
+            currentScroll = this.state.isMobile ? window.scrollY : matrix.m42 * -1,
             informationObject: HTMLElement | null = document.querySelector('#information'),
             skillParallax: HTMLElement | null = document.querySelector('#skill-section'),
             resumeParallax: HTMLElement | null = document.querySelector('#resume-section'),
@@ -90,9 +89,9 @@ class Home extends Component {
 
         this.setState({ 
             y: currentScroll,
-            landingParallax: this.state.isCanSmooth ? 0 : parallaxObjec.landing,
-            skillParallax: this.state.isCanSmooth ? 0 : parallaxObjec.skill,
-            resumeParallax: this.state.isCanSmooth ? 0 : parallaxObjec.resume
+            landingParallax: this.state.isMobile ? 0 : parallaxObjec.landing,
+            skillParallax: this.state.isMobile ? 0 : parallaxObjec.skill,
+            resumeParallax: this.state.isMobile ? 0 : parallaxObjec.resume
         })
     }
 
