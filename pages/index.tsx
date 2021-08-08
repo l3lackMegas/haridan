@@ -1,8 +1,8 @@
 /* React Module */
-import { Component, createRef } from "react";
+import { Component } from "react";
 
 /* Library */
-import { checkIsMobile } from '../lib/utility'
+import { checkIsMobile, isSafari } from '../lib/utility'
 
 /* Components */
 import Page from '../components/Page'
@@ -25,12 +25,13 @@ class Home extends Component {
         landingParallax: 0,
         skillParallax: 0,
         resumeParallax: 0,
-        isMobile: false
+        isCanNotSmooth: false
     }
 
     componentDidMount() {
-        let isMobile = checkIsMobile()
-        this.setState({isMobile})
+        let isCanNotSmooth = checkIsMobile() && isSafari()
+
+        this.setState({isCanNotSmooth})
         setTimeout(() => {
             this.setState({ 
                 isMounted: true,
@@ -38,7 +39,7 @@ class Home extends Component {
             })
         }, 100);
         
-        if(!isMobile) {
+        if(!isCanNotSmooth) {
             window.addEventListener("scroll", this.scrollHandler)
 
             let observer = new MutationObserver(this.scrollHandler),
@@ -58,7 +59,7 @@ class Home extends Component {
         let scrollling = document.querySelector("#smoothScrolling"),
             compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
             matrix = new WebKitCSSMatrix(compos.transform),
-            currentScroll = this.state.isMobile ? window.scrollY : matrix.m42 * -1,
+            currentScroll = this.state.isCanNotSmooth ? window.scrollY : matrix.m42 * -1,
             informationObject: HTMLElement | null = document.querySelector('#information'),
             skillParallax: HTMLElement | null = document.querySelector('#skill-section'),
             resumeParallax: HTMLElement | null = document.querySelector('#resume-section'),
@@ -89,9 +90,9 @@ class Home extends Component {
 
         this.setState({ 
             y: currentScroll,
-            landingParallax: this.state.isMobile ? 0 : parallaxObjec.landing,
-            skillParallax: this.state.isMobile ? 0 : parallaxObjec.skill,
-            resumeParallax: this.state.isMobile ? 0 : parallaxObjec.resume
+            landingParallax: this.state.isCanNotSmooth ? 0 : parallaxObjec.landing,
+            skillParallax: this.state.isCanNotSmooth ? 0 : parallaxObjec.skill,
+            resumeParallax: this.state.isCanNotSmooth ? 0 : parallaxObjec.resume
         })
     }
 
