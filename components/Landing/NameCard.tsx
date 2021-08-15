@@ -63,7 +63,7 @@ class NameCard extends Component<IReciept> {
                         </button>
                     </a>
                 </Link>
-                <Link href="/l3lackMegas - Resume.pdf">
+                <Link href="/docs/Jaruwat Pohong - Resume.pdf">
                     <a target="_blank" rel="noreferrer">
                         <button
                             className={styles.btn}
