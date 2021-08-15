@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import ColumnResume from "../MainLayout/ColumnResume";
 import CardInfo from '../CardInfo'
 
-class Works extends Component {
+class Experiance extends Component {
 
     render() {
 
@@ -40,10 +40,26 @@ class Works extends Component {
                     <p>Freelance Work</p>
                     <p>Frontend Developer</p>
                 </CardInfo>
+
+                <CardInfo
+                    title="Intership at Meteorological Department of Thailand."
+                    date="2018 (March - May)"
+                    org="Telecommunication Technology Sub-division"
+                    link={[
+                        "https://tmd.go.th",
+                        {
+                            name: 'View Internship-Certificate',
+                            link: "/docs/Internship-Certificate.pdf"
+                        }
+                    ]}
+                >
+                    <p>I work as IT Support staff here.</p>
+                    <p>My duty is Maintain the IT system in the organization.</p>
+                </CardInfo>
             </ColumnResume>
         </>
     }
 
 }
 
-export default Works;
+export default Experiance;
