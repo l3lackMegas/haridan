@@ -10,6 +10,7 @@ import Landing from '../components/Landing'
 import Section from "../components/MainLayout/Section"
 import Education from "../components/Resume/Education"
 import Experiance from "../components/Resume/Experiance"
+import Rewards from "../components/Resume/Rewards"
 import SkillCard from "../components/SkillCard"
 
 class Home extends Component {
@@ -152,6 +153,7 @@ class Home extends Component {
                 }}>
                     <div style={{ padding: '0 10px'}}>
                         <Experiance/>
+                        <Rewards/>
                         <Education/>
                     </div>
                 </Section>
