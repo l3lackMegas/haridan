@@ -47,6 +47,7 @@
     padding: 0 5px;
     width: fit-content;
     word-break: normal;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     background-color: rgba(255, 255, 255, .15);
