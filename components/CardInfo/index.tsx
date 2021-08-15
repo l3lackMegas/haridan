@@ -13,7 +13,7 @@ interface IReciept {
     title: string
     date: string
     org: string
-    link?: string
+    link?: string | Array<string>
 }
 
 class CardInfo extends Component<IReciept> {
@@ -34,10 +34,18 @@ class CardInfo extends Component<IReciept> {
                 <div className={styles.detail}>
                     { children }
                 </div>
-                {link && 
+                {link && typeof(link) == "string" &&
                     <Link href={link}>
                         <a className={styles.link} target="_blank" rel="noreferrer">{link}</a>
                     </Link>
+                }
+
+                {link && typeof(link) == "object" &&
+                    link.map((ctx, i)=>{
+                        return <Link key={i} href={ctx}>
+                            <a className={styles.link} target="_blank" rel="noreferrer">{link}</a>
+                        </Link>
+                    })
                 }
             </div>
         </div>
