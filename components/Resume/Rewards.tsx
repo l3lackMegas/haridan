@@ -24,7 +24,7 @@ class Rewards extends Component {
 
                 <CardInfo
                     title="Gold Medal, Invention Competition, Innovation"
-                    date="2019 - Present"
+                    date="2018"
                     org="Restaurant System"
                     link={[{
                         name: "View Certificate",
