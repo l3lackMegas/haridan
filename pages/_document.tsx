@@ -1,5 +1,10 @@
+/* Next's module */
 import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document'
 
+/* External module */
+import { AnimateSharedLayout, AnimatePresence } from 'framer-motion'
+
+/* Component */
 import PreLoader from '../components/MainLayout/PreLoader'
 
 class MyDocument extends Document {
@@ -32,6 +37,7 @@ class MyDocument extends Document {
 						<meta property="og:image" content="https://jaruwat.fucking-thai.dev/img/og-img.jpg" />
 				</Head>
 				<body>
+					<div id="modal-root"></div>
 					<PreLoader id="IE-Message" style={{ display: 'none', top: 50, width: 'auto' }}>Sorry, This website may not support your browser.</PreLoader>
 					<Main />
 					<NextScript />

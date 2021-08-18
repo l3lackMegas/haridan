@@ -9,9 +9,6 @@ import '../styles/globals.css'
 /* External Module */
 import { AnimateSharedLayout, AnimatePresence, motion } from "framer-motion"
 
-/* Library */
-import { isIE } from '../lib/utility'
-
 /* Components */
 import PreLoader from '../components/MainLayout/PreLoader'
 import SmoothScroll from '../components/SmoothScroll'

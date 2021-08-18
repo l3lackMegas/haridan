@@ -1,0 +1,29 @@
+.imageList {
+    margin: 20px 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    border-radius: 10px;
+}
+
+.imageList .imageOverflow {
+    overflow-x: auto;
+}
+
+.imageList .imageOverflow .image {
+    display: inline-block;
+    width: 100%;
+    height: 260px;
+    border-radius: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    transition-duration: .25s;
+}
+
+.imageList .imageOverflow .image:hover {
+    filter: brightness(.9);
+}
+
+.imageList .imageOverflow > .image + .image {
+    margin-left: 10px;
+}

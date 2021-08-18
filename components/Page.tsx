@@ -8,7 +8,7 @@ import Head from "next/head"
 import { AnimationProps, motion } from 'framer-motion'
 
 /* Components */
-import Crefit from './MainLayout/Credit'
+import Credit from './MainLayout/Credit'
 
 interface IReciept {
     isReady?: boolean
@@ -35,7 +35,7 @@ class Page extends Component<IReciept> {
             <motion.div className={`container ${className}`} >
                 { children }
             </motion.div>
-            <Crefit/>
+            <Credit/>
         </>
     }
 
