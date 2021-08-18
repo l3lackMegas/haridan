@@ -49,8 +49,7 @@ class Gallery extends Component<IReciept> {
                                     <ModalActive layoutId={`img-${ctx}`}
                                         closeAnyWhere={true}
                                         modalStyle={{
-                                            width: '90vw',
-                                            height: '90vh'
+                                            width: '90vw'
                                         }}
                                         modalChildren={<>
                                             <img src={ctx} width="100%" height="100%" alt="image"/>
