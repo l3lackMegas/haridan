@@ -93,7 +93,6 @@ const SliderImage: React.FC<IReciept> = (props) => {
                         isDisableScrollHandle={true}
                         modalStyle={{
                             width: '90vw',
-                            height: '90vh',
                             backgroundColor: 'transparent'
                         }}
                         modalChildren={<>
