@@ -100,7 +100,7 @@ const SliderImage: React.FC<IReciept> = (props) => {
                                 padding: '0 20px',
                                 lineHeight: '35px',
                                 color: 'white'
-                            }}>{imageIndex}/{images.length}</p>
+                            }}>{imageIndex + 1}/{images.length}</p>
                             <motion.img src={images[imageIndex]} style={{
                                 width: '100%',
                                 height: 'auto'
