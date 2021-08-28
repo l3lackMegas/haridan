@@ -104,7 +104,10 @@ class Home extends Component {
                 <Section id="information" style={{ textAlign: 'left' }}>
                     <div style={{ padding: '0 20px'}}>
                         <h1 className="infoTitle">Hi there!</h1>
-                        <div style={{ color: 'rgba(255, 255, 255, .75)'}}>
+                        <div style={{
+                            color: 'rgba(255, 255, 255, .75)',
+                            lineHeight: '30px'
+                        }}>
                             <p>I am Jaruwat Pohong, Desktop and Web Developer. (or just wanna be)</p>
                             <p>Actually I am a student in Computer Science who would like to do anything about web design and frontend development.</p>
                             <p>I usually play video games, listen to music and coding my mini project.</p>
