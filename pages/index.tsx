@@ -113,7 +113,7 @@ class Home extends Component {
                             <p>I usually play video games, listen to music and coding my mini project.</p>
                             <div className="understandCSS">
                                 <div className="frame">
-                                    <h1 style={{marginTop: 40}}>CSS</h1>
+                                    <h1 style={{marginTop: 60}}>CSS</h1>
                                     <h1>IS</h1>
                                     <h1 style={{transform: 'translateX(-23px)'}}>AWESOME</h1>
                                 </div>
