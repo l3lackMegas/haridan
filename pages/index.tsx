@@ -9,7 +9,7 @@ import Page from '../components/Page'
 import Landing from '../components/Landing'
 import Section from "../components/MainLayout/Section"
 import Education from "../components/Resume/Education"
-import Experiance from "../components/Resume/Experiance"
+import Experience from "../components/Resume/Experience"
 import Rewards from "../components/Resume/Rewards"
 import SkillCard from "../components/SkillCard"
 import WorkList from '../components/Works/List'
@@ -151,7 +151,7 @@ class Home extends Component {
                         backgroundPositionY: resumeParallax
                 }}>
                     <div style={{ padding: '0 10px'}}>
-                        <Experiance/>
+                        <Experience/>
                         <Rewards/>
                         <Education/>
                     </div>
