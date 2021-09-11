@@ -95,19 +95,23 @@ const SliderImage: React.FC<IReciept> = (props) => {
                             width: '90vw',
                             backgroundColor: 'transparent'
                         }}
-                        modalChildren={<>
+                        modalChildren={<div style={{ textAlign: 'center' }}>
                             <p style={{
+                                position: 'absolute',
+                                top: '0',
+                                left: '0',
                                 padding: '0 20px',
                                 lineHeight: '35px',
-                                color: 'white'
+                                color: 'white',
+                                backgroundColor: 'rgba(0, 0, 0, .5)'
                             }}>{imageIndex + 1}/{images.length}</p>
                             <motion.img src={images[imageIndex]} style={{
-                                width: '100%',
-                                height: 'auto'
+                                maxWidth: '100%',
+                                maxHeight: '90vh',
                             }}
                             
                             alt="image"/>
-                        </>}
+                        </div>}
                     >
                         <motion.div
                             className={styles.slideContainer}

@@ -5,12 +5,12 @@ import React, { Component } from "react";
 import ColumnResume from "../MainLayout/ColumnResume";
 import CardInfo from '../CardInfo'
 
-class Experiance extends Component {
+class Experience extends Component {
 
     render() {
 
         return <>
-            <ColumnResume title="Experiance">
+            <ColumnResume title="Experience">
                 <CardInfo
                     title="BUMIT Website"
                     date="2021"
@@ -62,4 +62,4 @@ class Experiance extends Component {
 
 }
 
-export default Experiance;
+export default Experience;
