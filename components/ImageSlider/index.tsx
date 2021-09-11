@@ -69,8 +69,8 @@ const SliderImage: React.FC<IReciept> = (props) => {
     // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
     const imageIndex = wrap(0, images.length, page);
 
-    const paginate = (newDirection: number) => {
-        if(isPause) return false
+    const paginate = (newDirection: number, force?: boolean) => {
+        if(isPause && !force) return false
         if(images.length > 1)
             setPage([page + newDirection, newDirection]);
     };
@@ -94,7 +94,6 @@ const SliderImage: React.FC<IReciept> = (props) => {
                         onClose={()=>{
                             setPause(false)
                         }}
-                        closeAnyWhere={true}
                         isDisableScrollHandle={true}
                         modalStyle={{
                             backgroundColor: 'transparent'
@@ -106,6 +105,14 @@ const SliderImage: React.FC<IReciept> = (props) => {
                                 exit={{ scale: .5 }}
                                 transition={{ duration: .25 }}
                             >
+                                {images.length > 1 && <>
+                                    <div className={styles['slider-next']} onClick={() => paginate(1, true)}>
+                                        <FontAwesomeIcon icon={faChevronRight} />
+                                    </div>
+                                    <div className={styles['slider-prev']} onClick={() => paginate(-1, true)}>
+                                        <FontAwesomeIcon icon={faChevronLeft} />
+                                    </div>
+                                </>}
                                 <p style={{
                                     position: 'absolute',
                                     top: '0',
@@ -115,11 +122,10 @@ const SliderImage: React.FC<IReciept> = (props) => {
                                     color: 'white',
                                     backgroundColor: 'rgba(0, 0, 0, .5)'
                                 }}>{imageIndex + 1}/{images.length}</p>
-                                <motion.img src={images[imageIndex]} style={{
+                                <img src={images[imageIndex]} style={{
                                     maxWidth: '100vw',
                                     maxHeight: '90vh',
                                 }}
-                                
                                 alt="image"/>
                             </motion.div>
                         </div>}
@@ -163,10 +169,10 @@ const SliderImage: React.FC<IReciept> = (props) => {
                     </ModalActive>
                 </AnimatePresence>
                 {images.length > 1 && <>
-                    <div className={styles.next} onClick={() => paginate(1)}>
+                    <div className={styles['slider-next']} onClick={() => paginate(1)}>
                         <FontAwesomeIcon icon={faChevronRight} />
                     </div>
-                    <div className={styles.prev} onClick={() => paginate(-1)}>
+                    <div className={styles['slider-prev']} onClick={() => paginate(-1)}>
                         <FontAwesomeIcon icon={faChevronLeft} />
                     </div>
                 </>}
