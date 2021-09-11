@@ -60,6 +60,7 @@ interface IReciept {
 const SliderImage: React.FC<IReciept> = (props) => {
     const [[page, direction], setPage] = useState([0, 0]);
     const [isShow, setShow] = useState(false);
+    const [isPause, setPause] = useState(false);
 
     const { images } = props
     // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -69,6 +70,7 @@ const SliderImage: React.FC<IReciept> = (props) => {
     const imageIndex = wrap(0, images.length, page);
 
     const paginate = (newDirection: number) => {
+        if(isPause) return false
         if(images.length > 1)
             setPage([page + newDirection, newDirection]);
     };
@@ -89,31 +91,41 @@ const SliderImage: React.FC<IReciept> = (props) => {
             {isShow && <>
                 <AnimatePresence>
                     <ModalActive
+                        onClose={()=>{
+                            setPause(false)
+                        }}
                         closeAnyWhere={true}
                         isDisableScrollHandle={true}
                         modalStyle={{
-                            width: '90vw',
                             backgroundColor: 'transparent'
                         }}
                         modalChildren={<div style={{ textAlign: 'center' }}>
-                            <p style={{
-                                position: 'absolute',
-                                top: '0',
-                                left: '0',
-                                padding: '0 20px',
-                                lineHeight: '35px',
-                                color: 'white',
-                                backgroundColor: 'rgba(0, 0, 0, .5)'
-                            }}>{imageIndex + 1}/{images.length}</p>
-                            <motion.img src={images[imageIndex]} style={{
-                                maxWidth: '100%',
-                                maxHeight: '90vh',
-                            }}
-                            
-                            alt="image"/>
+                            <motion.div
+                                initial={{ scale: .5 }}
+                                animate={{ scale: 1 }}
+                                exit={{ scale: .5 }}
+                                transition={{ duration: .25 }}
+                            >
+                                <p style={{
+                                    position: 'absolute',
+                                    top: '0',
+                                    left: '0',
+                                    padding: '0 20px',
+                                    lineHeight: '35px',
+                                    color: 'white',
+                                    backgroundColor: 'rgba(0, 0, 0, .5)'
+                                }}>{imageIndex + 1}/{images.length}</p>
+                                <motion.img src={images[imageIndex]} style={{
+                                    maxWidth: '90vw',
+                                    maxHeight: '90vh',
+                                }}
+                                
+                                alt="image"/>
+                            </motion.div>
                         </div>}
                     >
                         <motion.div
+                            onClick={()=>setPause(true)}
                             className={styles.slideContainer}
                             key={page}
                             custom={direction}
