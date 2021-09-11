@@ -90,8 +90,9 @@ interface ModalActive {
     isDelay?: boolean
     closeAnyWhere?: boolean
     isDisableScrollHandle?: boolean
+    onClose?: Function
 }
-export function ModalActive({ layoutId, children, modalChildren, modalStyle, isDelay, closeAnyWhere, isDisableScrollHandle }: ModalActive) {
+export function ModalActive({ layoutId, children, modalChildren, modalStyle, isDelay, closeAnyWhere, isDisableScrollHandle, onClose }: ModalActive) {
     const [showModal, setShowModal] = useState(false);
     const [prepairing, setPrepairState] = useState(false);
 
@@ -112,6 +113,7 @@ export function ModalActive({ layoutId, children, modalChildren, modalStyle, isD
                 onClose={() => {
                     setPrepairState(false)
                     setShowModal(false)
+                    if(onClose) onClose()
                 }}
                 closeAnyWhere={closeAnyWhere}
                 isDisableScrollHandle={isDisableScrollHandle}
