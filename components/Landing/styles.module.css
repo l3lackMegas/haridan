@@ -47,6 +47,10 @@
     color: rgb(219, 219, 219);
 }
 
+.nameCard .statusQuote span {
+    font-size: 23px;
+}
+
 .nameCard .buttonPanel {
     margin: 8vh 0 20px 0;
 }

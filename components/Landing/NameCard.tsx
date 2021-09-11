@@ -39,7 +39,7 @@ class NameCard extends Component<IReciept> {
                 <p className={styles.subName}>Software Developer</p>
             </div>
             <div className={styles.statusQuote}>
-                <p>I love cat, but cat NEVER love me.</p>
+                <p><span>“</span>Cluttered code by me.<span>”</span></p>
             </div>
             <div className={styles.buttonPanel}>
                 <div style={{ margin: '20px 0'}}>
