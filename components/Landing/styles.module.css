@@ -33,15 +33,16 @@
 }
 
 .nameCard .identity .name {
-    margin: 5px 0;
+    margin-top: 5px;
     font-size: 25px;
 }
 
 .nameCard .identity .subName {
-    color: rgb(219, 219, 219);
+    color: rgb(184, 184, 184);
 }
 
 .nameCard .statusQuote {
+    margin-top: 5px;
     font-size: 18px;
     color: rgb(219, 219, 219);
 }
