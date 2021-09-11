@@ -116,7 +116,7 @@ const SliderImage: React.FC<IReciept> = (props) => {
                                     backgroundColor: 'rgba(0, 0, 0, .5)'
                                 }}>{imageIndex + 1}/{images.length}</p>
                                 <motion.img src={images[imageIndex]} style={{
-                                    maxWidth: '90vw',
+                                    maxWidth: '100vw',
                                     maxHeight: '90vh',
                                 }}
                                 
