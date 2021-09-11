@@ -2,7 +2,7 @@
 This is a source code of my [Resume Website](https://jaruwat.fucking-thai.dev/).
 
 # Setup and running
-First, You have to make sure that you're install [tools and dependencies](#tools-abd-dependencies) already.
+First, You have to make sure that you're install [tools and dependencies](#tools-and-dependencies) already.
 
 Then clone this repo to your workspace.
 ```
