@@ -1,6 +1,7 @@
 .ImageSlider-container {
     margin: 20px 0;
     width: 100%;
+    min-height: 264px;
     position: relative;
     display: flex;
     justify-content: center;
@@ -89,6 +90,10 @@
 }
 
 @media only screen and (max-width: 500px) {
+    .ImageSlider-container {
+        min-height: 184px;
+    }
+
     .ImageSlider-container img {
         min-height: 184px;
     }
