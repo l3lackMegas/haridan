@@ -259,7 +259,7 @@ h1, h2, h3, h4, p {
     max-height: 95vh;
     height: fit-content;
     border-radius: 10px;
-    overflow: hidden auto;
+    overflow: hidden;
 }
 
 .modal .modalContainer .sub {
