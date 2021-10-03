@@ -22,6 +22,7 @@ class Home extends Component {
     }
 
     state = {
+        workItems: [],
         isMounted: true,
         y: 0,
         landingParallax: 0,
@@ -32,64 +33,7 @@ class Home extends Component {
 
     render() {
 
-        let workItems = [
-            {
-                id: 1,
-                title: "FPSThailand Member",
-                img: "/img/works/fpsmember/logo.png",
-                date: "2020 - 2021",
-                link: 'https://member.fpsthailand.com/',
-                imageList: ["https://www.youtube.com/watch?v=b7fKYZ81JKg"]
-            },
-            {
-                id: 2,
-                title: "Website BUMIT",
-                img: "/img/works/website-bumit/logo.png",
-                date: "2021",
-                link: 'https://mit.bu.ac.th/',
-                imageList: [
-                    "/img/works/website-bumit/1.png",
-                    "/img/works/website-bumit/3.png",
-                    "/img/works/website-bumit/4.png",
-                    "/img/works/website-bumit/5.png",
-                    "/img/works/website-bumit/6.png",
-                    "/img/works/website-bumit/7.png",
-                    "/img/works/website-bumit/8.png",
-                    "/img/works/website-bumit/9.png",
-                    "/img/works/website-bumit/10.png",
-                    "/img/works/website-bumit/11.png",
-                    "/img/works/website-bumit/12.png",
-                    "/img/works/website-bumit/13.png"
-                ],
-                color: 'white'
-            },
-            {
-                id: 3,
-                title: "Flight Visualization",
-                img: "/img/works/flight-visualization/logo.png",
-                date: "2020",
-                link: 'https://mit.bu.ac.th/visualization/',
-                imageList: [
-                    "/img/works/flight-visualization/1.png",
-                    "/img/works/flight-visualization/2.png",
-                    "/img/works/flight-visualization/3.png",
-                    "/img/works/flight-visualization/4.png",
-                    "/img/works/flight-visualization/5.png",
-                    "/img/works/flight-visualization/6.png",
-                    "/img/works/flight-visualization/7.png",
-                    "/img/works/flight-visualization/8.png",
-                    "/img/works/flight-visualization/9.png",
-                    "/img/works/flight-visualization/10.png",
-                    "/img/works/flight-visualization/11.png",
-                    "/img/works/flight-visualization/12.png",
-                    "/img/works/flight-visualization/13.png",
-                    "/img/works/flight-visualization/14.png",
-                    "/img/works/flight-visualization/15.png"
-                ]
-            }
-        ]
-
-        const { isMounted, y, landingParallax, skillParallax, resumeParallax } = this.state
+        const { workItems, isMounted, y, landingParallax, skillParallax, resumeParallax } = this.state
 
         return <Page pageTitle="l3lackMegas" onSelected="store" isReady={isMounted}>
             <div className="section" style={{
@@ -161,7 +105,7 @@ class Home extends Component {
         </Page>
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         let isCanNotSmooth = checkIsMobile() || isSafari()
 
         this.setState({isCanNotSmooth})
@@ -181,6 +125,28 @@ class Home extends Component {
                 attributes: true,
                 attributeFilter: ['style'],
             });
+        }
+
+        let settings = {
+            "crossDomain": true,
+            "url": "/homepage.json",
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "corona-virus-world-and-india-data.p.rapidapi.com",
+                "x-rapidapi-key": "1701d13606mshe21b7df1bb42eb2p1821a6jsn967e1de12519"
+            }
+        }
+
+        try {
+            const response = await fetch(settings.url, settings)
+            if(response.status == 200) {
+                const HomePageData = await response.json()
+                this.setState({
+                    workItems: HomePageData.workItem
+                })
+            }
+        } catch (error) {
+
         }
     }
 
