@@ -15,7 +15,10 @@ interface ItemStructures {
     id: number
     title: string
     img: string
-    date: string
+    date: {
+        from: Date | string
+        to: Date | string
+    }
     link?: string
     imageList?: Array<string>
     color?: string
@@ -38,6 +41,13 @@ class List extends Component<IReciept> {
             <div className={styles.container}>
 
                 { items.map((ctx: ItemStructures, i)=>{
+                    let date = {
+                        from: new Date(ctx.date.from),
+                        to: new Date(ctx.date.to)
+                    },
+                    dateString: string = date.from.getFullYear() == date.to.getFullYear() ? 
+                                date.from.getFullYear().toString() :
+                                `${date.from.getFullYear()} - ${date.to.getFullYear()}`
                     return <motion.div
                         key={i}
                         whileHover={{
@@ -57,7 +67,7 @@ class List extends Component<IReciept> {
                                     id={ctx.id}
                                     title={ctx.title}
                                     img={ctx.img}
-                                    date={ctx.date}
+                                    date={dateString}
                                     link={ctx.link}
                                     imageList={ctx.imageList}
                                     color={ctx.color}
@@ -70,7 +80,7 @@ class List extends Component<IReciept> {
                                 }}></motion.div>
                             </motion.div>
                             <motion.h3 layoutId={`modalTitle-${ctx.id}`} className={styles.title}>{ctx.title}</motion.h3>
-                            <motion.p layoutId={`modalDate-${ctx.id}`}>({ctx.date})</motion.p>
+                            <motion.p layoutId={`modalDate-${ctx.id}`}>({dateString})</motion.p>
                             
                         </ModalActive>
                     </motion.div>
