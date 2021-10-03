@@ -8,11 +8,26 @@ import { checkIsMobile, isSafari } from '../lib/utility'
 import Page from '../components/Page'
 import Landing from '../components/Landing'
 import Section from "../components/MainLayout/Section"
+import Resume from '../components/Resume'
 import Education from "../components/Resume/Education"
 import Experience from "../components/Resume/Experience"
 import Rewards from "../components/Resume/Rewards"
 import SkillCard from "../components/SkillCard"
 import WorkList from '../components/Works/List'
+
+interface ResumeStructure {
+    title: string
+    date: string
+    org: string
+    link?: string | Array<string | object>
+    describe?: string | Array<string>
+}
+
+interface ResumeObject {
+    experiance: Array<ResumeStructure>
+    education: Array<ResumeStructure>
+    rewards: Array<ResumeStructure>
+}
 
 class Home extends Component {
 
@@ -23,6 +38,11 @@ class Home extends Component {
 
     state = {
         workItems: [],
+        resume: {
+            experiance: [],
+            rewards: [],
+            education: []
+        },
         isMounted: true,
         y: 0,
         landingParallax: 0,
@@ -33,7 +53,7 @@ class Home extends Component {
 
     render() {
 
-        const { workItems, isMounted, y, landingParallax, skillParallax, resumeParallax } = this.state
+        const { resume, workItems, isMounted, y, landingParallax, skillParallax, resumeParallax } = this.state
 
         return <Page pageTitle="l3lackMegas" onSelected="store" isReady={isMounted}>
             <div className="section" style={{
@@ -95,9 +115,9 @@ class Home extends Component {
                         backgroundPositionY: resumeParallax
                 }}>
                     <div style={{ padding: '0 10px'}}>
-                        <Experience/>
-                        <Rewards/>
-                        <Education/>
+                        <Resume title="Experience" data={resume.experiance}/>
+                        <Resume title="Rewards" data={resume.rewards}/>
+                        <Resume title="Education" data={resume.education}/>
                     </div>
                 </Section>
                 </>
@@ -142,7 +162,8 @@ class Home extends Component {
             if(response.status == 200) {
                 const HomePageData = await response.json()
                 this.setState({
-                    workItems: HomePageData.workItem
+                    workItems: HomePageData.workItem,
+                    resume: HomePageData.resume
                 })
             }
         } catch (error) {
