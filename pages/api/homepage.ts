@@ -172,7 +172,7 @@ resumeItem: ResumeObject = {
         {
             title: 'Gold Medal, Invention Competition, Innovation',
             date: '2018',
-            org: 'Bangkok University',
+            org: 'Restaurant System',
             link: [
                 {
                     name: "View Certificate",
