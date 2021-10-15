@@ -23,7 +23,7 @@ class MyApp extends App<AppProps> {
         window.addEventListener("load", ()=>{
             setTimeout(() => {
                 this.setState({ isLoaded: true })
-            }, 1000);
+            }, 500);
         })
         setTimeout(() => {
             this.setState({ isLoaded: true })
