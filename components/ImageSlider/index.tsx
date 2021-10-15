@@ -21,6 +21,10 @@ import styles from './styles.module.css'
 import Youtube from '../MainLayout/YoutubeIframe'
 import { ModalActive } from "../MainLayout/Modal";
 
+
+/* Other Library */
+import { sleep } from '../../lib/utility'
+
 const variants = {
     enter: (direction: number) => {
         return {
@@ -62,6 +66,8 @@ const SliderImage: React.FC<IReciept> = (props) => {
     const [isShow, setShow] = useState(false);
     const [isPause, setPause] = useState(false);
 
+    const [isImgLoaded, setImgLoadState] = useState(false);
+
     const { images } = props
     // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
     // then wrap that within 0-2 to find our image ID in the array below. By passing an
@@ -69,10 +75,15 @@ const SliderImage: React.FC<IReciept> = (props) => {
     // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
     const imageIndex = wrap(0, images.length, page);
 
-    const paginate = (newDirection: number, force?: boolean) => {
+    const paginate = async (newDirection: number, force?: boolean) => {
+        if(isPause && images.length > 1) {
+            setImgLoadState(false)
+            await sleep(150)
+        }
         if(isPause && !force) return false
-        if(images.length > 1)
+        if(images.length > 1) {
             setPage([page + newDirection, newDirection]);
+        }
     };
 
     React.useEffect(()=>{
@@ -120,12 +131,16 @@ const SliderImage: React.FC<IReciept> = (props) => {
                                     padding: '0 20px',
                                     lineHeight: '35px',
                                     color: 'white',
-                                    backgroundColor: 'rgba(0, 0, 0, .5)'
-                                }}>{imageIndex + 1}/{images.length}</p>
+                                    backgroundColor: 'rgba(0, 0, 0, .5)',
+                                    zIndex: 1000
+                                }}>{imageIndex + 1}/{images.length}{!isImgLoaded ? ' Loading...' : ''}</p>
                                 <img src={images[imageIndex]} style={{
                                     maxWidth: '100vw',
                                     maxHeight: '90vh',
+                                    transitionDuration: '.15s',
+                                    opacity: isImgLoaded ? 1 : 0
                                 }}
+                                onLoad={() => setImgLoadState(true)}
                                 alt="image"/>
                             </motion.div>
                         </div>}
@@ -162,7 +177,10 @@ const SliderImage: React.FC<IReciept> = (props) => {
                                     height: 260
                                 }}/>
                                 :
-                                <img src={images[imageIndex]} alt="Slider Image" />
+                                <img
+                                    src={images[imageIndex]}
+                                    alt="Slider Image"
+                                />
                             }
                             
                         </motion.div>
