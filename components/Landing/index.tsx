@@ -49,7 +49,7 @@ class Landing extends Component<IReciept> {
         return <>
             <div style={{position: 'absolute', width: '100%', height: '100%', overflow: 'hidden'}}>
                 <div className="sub">
-                    <Link href="https://webring.wonderful.software#jaruwat.fucking-thai.dev">
+                    <Link href="https://webring.wonderful.software#jaruwat.dev">
                         <a title="วงแหวนเว็บ" style={{ position: 'absolute', top: 10, right: 10, zIndex: 100}}>
                             <motion.div
                                 style={{width: 32, height: 32}}
