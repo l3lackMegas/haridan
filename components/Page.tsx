@@ -12,10 +12,7 @@ import Credit from './MainLayout/Credit'
 
 interface IReciept {
     isReady?: boolean
-    className?: string,
-    disableAnimExit?: boolean,
-    animVariants?: AnimationProps["variants"],
-    onSelected?: string,
+    className?: string
     pageTitle: string
 }
 

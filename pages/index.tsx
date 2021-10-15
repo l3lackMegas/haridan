@@ -55,7 +55,7 @@ class Home extends Component {
 
         const { resume, workItems, isMounted, y, landingParallax, skillParallax, resumeParallax } = this.state
 
-        return <Page pageTitle="l3lackMegas" onSelected="store" isReady={isMounted}>
+        return <Page pageTitle="l3lackMegas" isReady={isMounted}>
             <div className="section" style={{
                 position: 'relative',
                 minHeight: '750px',
