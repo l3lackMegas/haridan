@@ -18,7 +18,6 @@ class MyDocument extends Document {
 		return (
 			<Html lang="en">
 				<Head>
-					<title>Jaruwat Pohong - Portfolio Website</title>
 					<link rel="icon" href="/img/favicon.jpg" type="image/gif" sizes="16x16"/>
 					<meta name="keywords" content="Jaruwat Pohong, l3lackMegas, Resume, HTML, CSS, JavaScript"></meta>
 					<meta name="description"
