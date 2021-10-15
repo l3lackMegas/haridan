@@ -8,7 +8,8 @@
 
 .container .item {
     display: inline-block;
-    margin: 20px 20px;
+    margin: 20px;
+    max-width: calc(100% - 40px);
     width: 250px;
     text-align: center;
 }
