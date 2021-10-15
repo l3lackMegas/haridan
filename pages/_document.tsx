@@ -41,7 +41,7 @@ class MyDocument extends Document {
 					<PreLoader id="IE-Message" style={{ display: 'none', top: 50, width: '90%', color: 'orange' }}>Sorry, This website may not support your browser.</PreLoader>
 					<Main />
 					<NextScript />
-					<script async src="/js/checkOutdataBrowser.js?v=2"/>
+					<script async src="/js/checkOutdataBrowser.js?v=3"/>
 				</body>
 			</Html>
 		)
