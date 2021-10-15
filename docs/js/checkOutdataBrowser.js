@@ -36,9 +36,9 @@ var isSupported = isSupported(browser);
 
 function isSupported(browser) {
 	var supported = false;
-	if (browser.name === "Chrome" && browser.version >= 51) {
+	if (browser.name === "Chrome" && browser.version >= 60) {
 	  	supported = true;
-	} else if (browser.name === "Firefox" && browser.version >= 52) {
+	} else if (browser.name === "Firefox" && browser.version >= 60) {
 		supported = true; 
 	} else if (browser.name === "Safari" && browser.version >= 10) {
 		supported = true; 
@@ -60,3 +60,6 @@ if (!isSupported) {
 	let ieMsgElm = document.getElementById("IE-Message");
 	ieMsgElm.parentNode.removeChild(ieMsgElm);
 }
+
+// document.getElementById("IE-Message").style.display = "block";
+// document.getElementById("IE-Message").innerHTML = browser.version
