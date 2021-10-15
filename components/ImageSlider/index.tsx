@@ -76,11 +76,11 @@ const SliderImage: React.FC<IReciept> = (props) => {
     const imageIndex = wrap(0, images.length, page);
 
     const paginate = async (newDirection: number, force?: boolean) => {
-        if(isPause && images.length > 1) {
+        if(isPause && !force) return false
+        if(force && images.length > 1) {
             setImgLoadState(false)
             await sleep(150)
         }
-        if(isPause && !force) return false
         if(images.length > 1) {
             setPage([page + newDirection, newDirection]);
         }
