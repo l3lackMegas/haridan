@@ -38,7 +38,7 @@ class MyDocument extends Document {
 				</Head>
 				<body>
 					<div id="modal-root"></div>
-					<PreLoader id="IE-Message" style={{ display: 'none', top: 50, width: 'auto' }}>Sorry, This website may not support your browser.</PreLoader>
+					<PreLoader id="IE-Message" style={{ display: 'none', top: 50, width: '90%', color: 'orange' }}>Sorry, This website may not support your browser.</PreLoader>
 					<Main />
 					<NextScript />
 					<script async src="/js/checkOutdataBrowser.js?v=2"/>
