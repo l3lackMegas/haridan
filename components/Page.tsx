@@ -27,7 +27,7 @@ class Page extends Component<IReciept> {
 
         return <>
             <Head>
-                <title>{ `${pageTitle} - Résumé`}</title>
+                <title>{ `${pageTitle} - Jaruwat.dev`}</title>
             </Head>
             <motion.div className={`container ${className}`} >
                 { children }

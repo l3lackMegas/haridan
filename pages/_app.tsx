@@ -1,7 +1,6 @@
 /* Next Module */
 import { AppProps } from "next/app";
 import App from 'next/app'
-import Head from 'next/head'
 
 /* Styles */
 import '../styles/globals.css'
@@ -36,9 +35,6 @@ class MyApp extends App<AppProps> {
         const { isLoaded } = this.state
         return (
             <>
-                <Head>
-                    <title>l3lackMegas</title>
-                </Head>
                 <AnimateSharedLayout type='crossfade'>
                     <AnimatePresence exitBeforeEnter>
                         {!isLoaded &&
