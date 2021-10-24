@@ -43,8 +43,8 @@ class NameCard extends Component<IReciept> {
             </div>
             <div className={styles.buttonPanel}>
                 <div style={{ margin: '20px 0'}}>
-                    <Link href="mailto:jaruwat.is@fucking-thai.dev">
-                        <a>jaruwat.is@fucking-thai.dev</a>
+                    <Link href="mailto:contact@jaruwat.dev">
+                        <a>contact@jaruwat.dev</a>
                     </Link>
                 </div>
                 <Link href="https://m.me/Jaruwat.P">
