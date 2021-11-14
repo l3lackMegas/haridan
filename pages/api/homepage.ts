@@ -117,7 +117,7 @@ resumeItem: ResumeObject = {
             link: 'https://mit.bu.ac.th',
             describe: [
                 'Implement all new website with Next.js',
-                'BUMIT&apos;s Lab Project'
+                "BUMIT's Lab Project"
             ]
         },
         {
@@ -127,7 +127,7 @@ resumeItem: ResumeObject = {
             link: 'https://mit.bu.ac.th/visualization',
             describe: [
                 'Re-Design Frontend',
-                'BUMIT&apos;s Lab Project'
+                "BUMIT's Lab Project"
             ]
         },
         {
