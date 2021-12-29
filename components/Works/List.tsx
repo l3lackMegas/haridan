@@ -79,7 +79,7 @@ class List extends Component<IReciept> {
                                     backgroundImage: `url(${ctx.img})`
                                 }}></motion.div>
                             </motion.div>
-                            <motion.h3 layoutId={`modalTitle-${ctx.id}`} className={styles.title}>{ctx.title}</motion.h3>
+                            <motion.p layoutId={`modalTitle-${ctx.id}`} className={styles.title}>{ctx.title}</motion.p>
                             <motion.p layoutId={`modalDate-${ctx.id}`}>({dateString})</motion.p>
                             
                         </ModalActive>
