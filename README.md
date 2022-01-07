@@ -1,5 +1,5 @@
 # l3lackmegas Resume Website
-This is a source code of my [Resume Website](https://jaruwat.fucking-thai.dev/).
+This is a source code of my [Resume Website](https://jaruwat.dev/).
 
 # Setup and running
 First, You have to make sure that you're install [tools and dependencies](#tools-and-dependencies) already.
