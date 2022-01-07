@@ -26,7 +26,7 @@ class MyDocument extends Document {
 									I understand HTML, CSS and JavaScript as well. And I can use modern library like React.js, TypeScript, etc."
 					/>
 
-					<meta property="og:url" content="https://jaruwat.fucking-thai.dev" />
+					<meta property="og:url" content="https://jaruwat.dev" />
 					<meta property="og:type" content="website" />
 					<meta property="og:title" content="l3lackMegas - Résumé" />
 					<meta property="og:description"
@@ -34,7 +34,7 @@ class MyDocument extends Document {
 							Actually I am a student in Computer Science who would like to do anything about web design and frontend development.
 							I usually play video games, listen to music and coding my mini project."
 					/>
-					<meta property="og:image" content="https://jaruwat.fucking-thai.dev/img/og-img.jpg" />
+					<meta property="og:image" content="https://jaruwat.dev/img/og-img.jpg" />
 				</Head>
 				<body>
 					<div id="modal-root"></div>
