@@ -257,13 +257,14 @@ h1, h2, h3, h4, p {
     transform: translate(-50%, -50%);
     max-width: 95vw;
     max-height: 95vh;
-    height: fit-content;
+    height: 600px;
     border-radius: 10px;
     overflow: hidden;
 }
 
 .modal .modalContainer .sub {
     background-color: #313131;
+    overflow: auto;
 }
 
 .modal .modalContainer .xButton {
