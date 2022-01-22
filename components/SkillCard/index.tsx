@@ -73,7 +73,7 @@ class SkillCard extends Component {
                 >
                     <div className={styles.info}>
                         <p className={styles.topic}>The things I can do:</p>
-                        <p>RESful API, Database and Container</p>
+                        <p>RESTful API, Database and Container</p>
                     </div>
 
                     <div className={styles.info}>
