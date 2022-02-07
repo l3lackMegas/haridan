@@ -61,7 +61,7 @@ class List extends Component<IReciept> {
                     >
                         <ModalActive layoutId={ctx.id}
                             isDelay={true}
-                            modalStyle={{ width: 500 }}
+                            modalStyle={{ width: 500, height: 600 }}
                             modalChildren={
                                 <ModalContent
                                     id={ctx.id}
