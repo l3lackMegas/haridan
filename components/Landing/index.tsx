@@ -87,7 +87,11 @@ class Landing extends Component<IReciept> {
                     }}
                     initial={{ opacity: 0, scale: 1.8 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 1 }}
+                    // transition={{ duration: 1 }}
+                    transition={{
+                        duration: 2,
+                        ease: [0.5, 0.025, 0, 1]
+                    }}
                 >
                     <div className="sub" style={{ backgroundImage: 'linear-gradient(to bottom, transparent, #06243c)' }}>
                     {isReady && 
@@ -109,8 +113,7 @@ class Landing extends Component<IReciept> {
                 </div>
             </div>
             <div className={`centerContain ${styles.cardMobile}`} style={{
-                zIndex: 1000,
-                overflow: 'hidden'
+                zIndex: 1000
             }}>
                 <NameCard isReady={isReady} />
             </div>

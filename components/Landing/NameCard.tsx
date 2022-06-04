@@ -29,19 +29,29 @@ class NameCard extends Component<IReciept> {
             animate={ isReady ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: .65 }}
         >
-            <div className={styles.circlePic}>
-                <div className={styles.img}
-                    style={{ backgroundImage: 'url(/img/profile-portrait.jpg)' }}
-                ></div>
-            </div>
-            <div className={styles.identity}>
-                <p className={styles.name}>JARUWAT POHONG</p>
-                <p className={styles.subName}>Software Developer</p>
-            </div>
-            <div className={styles.statusQuote}>
-                <p><span>“</span>Cluttered code by me.<span>”</span></p>
-            </div>
-            <div className={styles.buttonPanel}>
+            <motion.div
+                initial={{ opacity: 0, y: 200 }}
+                animate={ isReady ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: .75 }}
+            >
+                <div className={styles.circlePic}>
+                    <div className={styles.img}
+                        style={{ backgroundImage: 'url(/img/profile-portrait.jpg)' }}
+                    ></div>
+                </div>
+                <div className={styles.identity}>
+                    <p className={styles.name}>JARUWAT POHONG</p>
+                    <p className={styles.subName}>Software Developer</p>
+                </div>
+                <div className={styles.statusQuote}>
+                    <p><span>“</span>Cluttered code by me.<span>”</span></p>
+                </div>
+            </motion.div>
+            <motion.div className={styles.buttonPanel}
+                initial={{ opacity: 0, y: 200 }}
+                animate={ isReady ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: .1, duration: .75 }}
+            >
                 <div style={{ margin: '20px 0'}}>
                     <Link href="mailto:contact@jaruwat.dev">
                         <a>contact@jaruwat.dev</a>
@@ -73,7 +83,7 @@ class NameCard extends Component<IReciept> {
                         </button>
                     </a>
                 </Link>
-            </div>
+            </motion.div>
         </motion.div>
     }
 
