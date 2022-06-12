@@ -38,34 +38,8 @@ class SkillCard extends Component {
                 </ItemSkill>
 
                 <ItemSkill
-                    title="Frontend Dev"
-                    icon={<FontAwesomeIcon icon={faTerminal}/>}
-                    describe={<>
-                        <p>This is my favorite work.</p>
-                        <p>I can enjoy with it all day.</p>
-                    </>}
-                >
-                    <div className={styles.info}>
-                        <p className={styles.topic}>Styles of my frontend:</p>
-                        <p>Flat, Glassmorphism and Visualization</p>
-                    </div>
-
-                    <div className={styles.info}>
-                        <p className={styles.topic}>Library &amp; Tools:</p>
-                        <p>HTML, CSS</p>
-                        <p>JavaScript</p>
-                        <p>React.js</p>
-                        <p>SASS / SCSS</p>
-                        <p>LESS</p>
-                        <p>Framer Motion</p>
-                        <p>Electron.js</p>
-                        <p>jQuery</p>
-                    </div>
-                </ItemSkill>
-
-                <ItemSkill
                     title="Backend Dev"
-                    icon={<FontAwesomeIcon icon={faCode}/>}
+                    icon={<FontAwesomeIcon icon={faTerminal}/>}
                     describe={<>
                         <p>Everything starts here.</p>
                         <p>I started coding at 13 yeas old.</p>
@@ -86,6 +60,32 @@ class SkillCard extends Component {
                         <p>C# / VB.NET</p>
                         <p>MySQL / MongoDB</p>
                         <p>Docker</p>
+                    </div>
+                </ItemSkill>
+
+                <ItemSkill
+                    title="Frontend Dev"
+                    icon={<FontAwesomeIcon icon={faCode}/>}
+                    describe={<>
+                        <p>This is my favorite work.</p>
+                        <p>I can enjoy with it all day.</p>
+                    </>}
+                >
+                    <div className={styles.info}>
+                        <p className={styles.topic}>Styles of my frontend:</p>
+                        <p>Flat, Glassmorphism and Visualization</p>
+                    </div>
+
+                    <div className={styles.info}>
+                        <p className={styles.topic}>Library &amp; Tools:</p>
+                        <p>HTML, CSS</p>
+                        <p>JavaScript</p>
+                        <p>React.js</p>
+                        <p>SASS / SCSS</p>
+                        <p>LESS</p>
+                        <p>Framer Motion</p>
+                        <p>Electron.js</p>
+                        <p>jQuery</p>
                     </div>
                 </ItemSkill>
             </div>
