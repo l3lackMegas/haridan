@@ -170,7 +170,7 @@ resumeItem: ResumeObject = {
     rewards: [
         {
             title: 'BUCreative Scholarship',
-            date: '2019 - Present',
+            date: '2019 - 2022',
             org: 'Bangkok University',
             link: [
                 {
