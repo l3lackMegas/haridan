@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import Link from 'next/link'
 
 /* External Module */
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
@@ -40,6 +40,10 @@ class Landing extends Component<IReciept> {
 
     constructor(props: IReciept) {
         super(props)
+    }
+
+    state = {
+        onHover: false
     }
 
     render() {
@@ -112,10 +116,20 @@ class Landing extends Component<IReciept> {
                 </motion.div>
                 </div>
             </div>
+            { this.state.onHover && <AnimatePresence exitBeforeEnter={true}>
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                    className={styles.iLeanedCss}
+                ></motion.div>
+            </AnimatePresence>
+            }
             <div className={`centerContain ${styles.cardMobile}`} style={{
                 zIndex: 1000
             }}>
-                <NameCard isReady={isReady} />
+                <NameCard isReady={isReady} onHover={(hover: Boolean) => this.setState({onHover: hover})}/>
             </div>
         </>
     }
