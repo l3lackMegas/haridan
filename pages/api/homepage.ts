@@ -111,7 +111,7 @@ let workItems: Array<WorkStructure> = [
 resumeItem: ResumeObject = {
     experiance: [
         {
-            title: 'Research and Development',
+            title: 'Software Development',
             date: '2022 - Present',
             org: 'Taximail Co.,Ltd.',
             link: 'https://taximail.com/',
