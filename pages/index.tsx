@@ -24,7 +24,7 @@ interface ResumeStructure {
 }
 
 interface ResumeObject {
-    experiance: Array<ResumeStructure>
+    experience: Array<ResumeStructure>
     education: Array<ResumeStructure>
     rewards: Array<ResumeStructure>
 }
@@ -39,7 +39,7 @@ class Home extends Component {
     state = {
         workItems: [],
         resume: {
-            experiance: [],
+            experience: [],
             rewards: [],
             education: []
         },
@@ -115,7 +115,7 @@ class Home extends Component {
                         backgroundPositionY: resumeParallax
                 }}>
                     <div style={{ padding: '0 10px'}}>
-                        <Resume title="Experience" data={resume.experiance}/>
+                        <Resume title="Experience" data={resume.experience}/>
                         <Resume title="Rewards" data={resume.rewards}/>
                         <Resume title="Education" data={resume.education}/>
                     </div>

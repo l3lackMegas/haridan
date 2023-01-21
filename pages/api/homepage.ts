@@ -23,7 +23,7 @@ interface ResumeStructure {
 }
 
 interface ResumeObject {
-    experiance: Array<ResumeStructure>
+    experience: Array<ResumeStructure>
     education: Array<ResumeStructure>
     rewards: Array<ResumeStructure>
 }
@@ -109,7 +109,7 @@ let workItems: Array<WorkStructure> = [
     }
 ],
 resumeItem: ResumeObject = {
-    experiance: [
+    experience: [
         {
             title: 'Software Development',
             date: '2022 - Present',
