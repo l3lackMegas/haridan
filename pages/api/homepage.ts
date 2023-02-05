@@ -1,6 +1,8 @@
 /* Next Module */
 import type { NextApiRequest, NextApiResponse } from 'next'
-
+export const config = {
+    runtime: 'edge',
+}
 interface WorkStructure {
     id: number
     title: string

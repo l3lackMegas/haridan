@@ -149,7 +149,7 @@ class Home extends Component {
 
         let settings = {
             "crossDomain": true,
-            "url": "/homepage.json",
+            "url": "api/homepage",
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "corona-virus-world-and-india-data.p.rapidapi.com",
