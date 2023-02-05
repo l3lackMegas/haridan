@@ -49,7 +49,7 @@ class Landing extends Component<IReciept> {
         return <>
             <div style={{position: 'absolute', width: '100%', height: '100%', overflow: 'hidden'}}>
                 <div className="sub">
-                    <Link href="https://webring.wonderful.software#jaruwat.dev">
+                    <Link legacyBehavior href="https://webring.wonderful.software#jaruwat.dev">
                         <a title="วงแหวนเว็บ" style={{ position: 'absolute', top: 10, right: 10, zIndex: 100}}>
                             <motion.div
                                 style={{width: 32, height: 32}}
@@ -100,7 +100,7 @@ class Landing extends Component<IReciept> {
                             initial="hidden"
                             animate="show"
                         >
-                            <Link href="#information">
+                            <Link legacyBehavior href="#information">
                                 <a onClick={()=>window.scrollTo(0, window.innerHeight) }>
                                     <p style={{ fontSize: 15 }}>SCROLL DOWN</p>
                                     <FontAwesomeIcon icon={faChevronDown}/>

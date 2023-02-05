@@ -53,11 +53,11 @@ class NameCard extends Component<IReciept> {
                 transition={{ delay: .1, duration: .75 }}
             >
                 <div style={{ margin: '20px 0'}}>
-                    <Link href="mailto:contact@jaruwat.dev">
+                    <Link legacyBehavior href="mailto:contact@jaruwat.dev">
                         <a>contact@jaruwat.dev</a>
                     </Link>
                 </div>
-                <Link href="https://m.me/Jaruwat.P">
+                <Link legacyBehavior href="https://m.me/Jaruwat.P">
                     <a target="_blank" rel="noreferrer">
                         <button className={`${styles.btn} ${styles.facebook}`}>
                             <FontAwesomeIcon icon={faFacebookMessenger} />
@@ -65,7 +65,7 @@ class NameCard extends Component<IReciept> {
                         </button>
                     </a>
                 </Link>
-                <Link href="https://github.com/l3lackMegas">
+                <Link legacyBehavior href="https://github.com/l3lackMegas">
                     <a target="_blank" rel="noreferrer">
                         <button className={`${styles.btn} ${styles.github}`}>
                             <FontAwesomeIcon icon={faGithub} />
@@ -73,7 +73,7 @@ class NameCard extends Component<IReciept> {
                         </button>
                     </a>
                 </Link>
-                <Link href="/docs/Jaruwat Pohong - Resume.pdf">
+                <Link legacyBehavior href="/docs/Jaruwat Pohong - Resume.pdf">
                     <a target="_blank" rel="noreferrer">
                         <button
                             className={styles.btn}

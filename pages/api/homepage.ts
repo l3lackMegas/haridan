@@ -1,5 +1,6 @@
-/* Next Module */
+// /* Next Module */
 import type { NextApiRequest, NextApiResponse } from 'next'
+import type { NextRequest } from "next/server";
 export const config = {
     runtime: 'edge',
 }
@@ -36,13 +37,17 @@ type Data = {
 }
 
 export default function handler(
-    req: NextApiRequest,
-    res: NextApiResponse<Data>
+    req: NextRequest
 ) {
-    res.status(200).json({
+    return new Response(JSON.stringify({
         workItem: workItems,
         resume: resumeItem
-    })
+    }), {
+        status: 200,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 }
 
 let workItems: Array<WorkStructure> = [

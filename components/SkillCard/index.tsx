@@ -111,7 +111,7 @@ class ItemSkill extends Component<ItemProps> {
             <div className={styles.headInfo}>
                 <h1>{icon}</h1>
                 <p className={styles.title}>{title}</p>
-                <p>{describe}</p>
+                <div>{describe}</div>
             </div>
             { children }
         </div>

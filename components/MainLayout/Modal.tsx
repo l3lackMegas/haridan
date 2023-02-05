@@ -44,7 +44,7 @@ class Modal extends Component<IReciept> {
     render() {
         const { id, style, isShow, children, onClose, closeAnyWhere, isDisableScrollHandle } = this.props
         const { isMounted } = this.state
-        //console.log(this.modalRoot.current)
+        // console.log(this.modalRoot.current)
         return isMounted ? ReactDOM.createPortal(<>
         <AnimatePresence exitBeforeEnter onExitComplete={()=>{
             if(!isDisableScrollHandle) document.body.style.overflow = ''
@@ -84,6 +84,7 @@ export default Modal;
 
 interface ModalActive {
     layoutId?: number | string
+    layoutUniqueId: number | string
     children?: ReactNode
     modalChildren?: ReactNode
     modalStyle?: CSSProperties
@@ -92,13 +93,13 @@ interface ModalActive {
     isDisableScrollHandle?: boolean
     onClose?: Function
 }
-export function ModalActive({ layoutId, children, modalChildren, modalStyle, isDelay, closeAnyWhere, isDisableScrollHandle, onClose }: ModalActive) {
+export function ModalActive({ layoutId, layoutUniqueId, children, modalChildren, modalStyle, isDelay, closeAnyWhere, isDisableScrollHandle, onClose }: ModalActive) {
     const [showModal, setShowModal] = useState(false);
     const [prepairing, setPrepairState] = useState(false);
-
+    console.log('layoutUniqueId', layoutUniqueId)
     return (
       <>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence key={`modalActive-${layoutUniqueId}`} exitBeforeEnter>
             <div className={ prepairing && isDelay ? 'brinessDown' : ''}
             onClick={() => {
                 document.body.style.overflow = 'hidden'

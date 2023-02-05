@@ -47,6 +47,7 @@ class Gallery extends Component<IReciept> {
                             else
                                 imgBox = <>
                                     <ModalActive layoutId={`img-${ctx}`}
+                                        layoutUniqueId={`img-${ctx}`}
                                         closeAnyWhere={true}
                                         modalStyle={{
                                             width: '90vw'

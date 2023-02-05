@@ -26,6 +26,7 @@ interface ItemStructures {
 
 interface IReciept {
     items: Array<ItemStructures>
+    layoutUniqueId: string
 }
 
 class List extends Component<IReciept> {
@@ -35,7 +36,7 @@ class List extends Component<IReciept> {
     }
 
     render() {
-        const { items, children } = this.props
+        const { items, layoutUniqueId, children } = this.props
 
         return <>
             <div className={styles.container}>
@@ -60,6 +61,7 @@ class List extends Component<IReciept> {
                         className={styles.item}
                     >
                         <ModalActive layoutId={ctx.id}
+                            layoutUniqueId={`modal-${layoutUniqueId}-${ctx.id}`}
                             isDelay={true}
                             modalStyle={{ width: 500, height: 600 }}
                             modalChildren={

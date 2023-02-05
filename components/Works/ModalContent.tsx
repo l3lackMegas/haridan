@@ -43,9 +43,9 @@ class ModalContent extends Component<IReciept> {
                     <motion.h2 layoutId={`modalTitle-${id}`}>{title}</motion.h2>
                     <motion.p layoutId={`modalDate-${id}`}>({date})</motion.p>
                     {/* {imageList && <Gallery imageList={imageList} />} */}
-                    {imageList && <ImageSlider images={imageList} />}
+                    {imageList && <ImageSlider slideLayoutId={`${id}`} images={imageList} />}
                     {link &&
-                        <Link href={link}><a target="_blank" rel="noreferrer">
+                        <Link legacyBehavior href={link}><a target="_blank" rel="noreferrer">
                             <button className="btn">Visit a website</button>
                         </a></Link>
                     }

@@ -58,7 +58,8 @@ const swipePower = (offset: number, velocity: number) => {
 };
 
 interface IReciept {
-    images: Array<string>
+    images: Array<string>,
+    slideLayoutId: String
 }
 
 const SliderImage: React.FC<IReciept> = (props) => {
@@ -68,7 +69,7 @@ const SliderImage: React.FC<IReciept> = (props) => {
 
     const [isImgLoaded, setImgLoadState] = useState(false);
 
-    const { images } = props
+    const { images, slideLayoutId } = props
     // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
     // then wrap that within 0-2 to find our image ID in the array below. By passing an
     // absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
@@ -100,8 +101,9 @@ const SliderImage: React.FC<IReciept> = (props) => {
         <div className={styles['ImageSlider-container']}>
             <div className="sub">
             {isShow && <>
-                <AnimatePresence>
+                <AnimatePresence key={`imageSlider-${slideLayoutId}`}>
                     <ModalActive
+                        layoutUniqueId={`imageSlider-${slideLayoutId}`}
                         onClose={()=>{
                             setPause(false)
                         }}
