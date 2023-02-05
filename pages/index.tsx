@@ -103,7 +103,7 @@ class Home extends Component {
                 <h1 className="work-list" style={{ textAlign: 'center' }}>My Works</h1>
                 <Section id="work-section">
                     <div style={{ padding: '0 10px'}}>
-                        <WorkList items={ workItems } />
+                        <WorkList layoutUniqueId={`layoutWorklist`} items={ workItems } />
                     </div>
                 </Section>
 
@@ -149,7 +149,7 @@ class Home extends Component {
 
         let settings = {
             "crossDomain": true,
-            "url": "api/homepage",
+            "url": "homepage.json",
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "corona-virus-world-and-india-data.p.rapidapi.com",
