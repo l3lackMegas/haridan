@@ -44,7 +44,7 @@ class NameCard extends Component<IReciept> {
                     <p className={styles.subName}>Software Developer</p>
                 </div>
                 <div className={styles.statusQuote}>
-                    <p><span>“</span>AKA: l3lackMegas<span>”</span></p>
+                    <p>l3lackMegas ༼ つ ◕_◕ ༽つ</p>
                 </div>
             </motion.div>
             <motion.div className={styles.buttonPanel}
