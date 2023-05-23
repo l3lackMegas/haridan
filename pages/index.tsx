@@ -70,9 +70,9 @@ class Home extends Component {
                         <h1 className="infoTitle">Hi there!</h1>
                         <div style={{ color: 'rgba(255, 255, 255, .75)' }}>
                             <div style={{ lineHeight: '30px' }}>
-                                <p>I am Jaruwat Pohong, Desktop and Web Developer. (or just wanna be)</p>
-                                <p>Actually I am a student in Computer Science who would like to do anything about web design and frontend development.</p>
-                                <p>I usually play video games, listen to music and coding my mini project.</p>
+                                <p>I am Jaruwat Pohong, a Software Developer who work in Web, Desktop and Mobile application.</p>
+                                <p>Actually, I am a Frontend Dev and I would like to do anything about web design and frontend development.</p>
+                                <p>But even if it{"'s"} not a frontend job, I can still enjoy with it. {"<3"}</p>
                             </div>
                             <div className="understandCSS">
                                 <div className="frame">

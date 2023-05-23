@@ -3,7 +3,7 @@ import { Component } from "react";
 
 /* External Module */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPencilRuler, faTerminal, faCode } from '@fortawesome/free-solid-svg-icons'
+import { faPencilRuler, faTerminal, faCode, faMobileAlt } from '@fortawesome/free-solid-svg-icons'
 
 /* Styles */
 import styles from './styles.module.css'
@@ -13,8 +13,8 @@ class SkillCard extends Component {
     render() {
 
         return <>
-            <div className={styles.container}>
-                <ItemSkill
+            <div className={styles.container} style={{marginBottom: '0'}}>
+                {/* <ItemSkill
                     title="Designer"
                     icon={<FontAwesomeIcon icon={faPencilRuler}/>}
                     describe={<>
@@ -35,7 +35,7 @@ class SkillCard extends Component {
                         <p>Photoshop</p>
                         <p>Proto.io</p>
                     </div>
-                </ItemSkill>
+                </ItemSkill> */}
 
                 <ItemSkill
                     title="Backend Dev"
@@ -64,6 +64,29 @@ class SkillCard extends Component {
                 </ItemSkill>
 
                 <ItemSkill
+                    title="Mobile Dev"
+                    icon={<FontAwesomeIcon icon={faMobileAlt}/>}
+                    describe={<>
+                        <p>I can do this job with a modern stack.</p>
+                    </>}
+                >
+                    <div className={styles.info}>
+                        <p className={styles.topic}>Platforms</p>
+                        <p>Android only for now.</p>
+                        <p>cuz I {"don't"} have a Macbook.</p>
+                    </div>
+
+                    <div className={styles.info}>
+                        <p className={styles.topic}>Tools &amp; SDK:</p>
+                        <p>Flutter</p>
+                        <p>Drift</p>
+                        <p>Vue Native</p>
+                        <p>React Native</p>
+                        <p>Expo</p>
+                    </div>
+                </ItemSkill>
+
+                <ItemSkill
                     title="Frontend Dev"
                     icon={<FontAwesomeIcon icon={faCode}/>}
                     describe={<>
@@ -81,8 +104,7 @@ class SkillCard extends Component {
                         <p>HTML, CSS</p>
                         <p>JavaScript</p>
                         <p>React.js</p>
-                        <p>SASS / SCSS</p>
-                        <p>LESS</p>
+                        <p>SCSS / LESS</p>
                         <p>Framer Motion</p>
                         <p>Electron.js</p>
                         <p>jQuery</p>
