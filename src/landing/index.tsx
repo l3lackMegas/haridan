@@ -40,7 +40,18 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
                     className='landing-page'
                     key={'landingPage'}
                 >
-
+                    <motion.div className="parallaxHero"
+                        initial={{ opacity: 0, scale: 1.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        // transition={{ duration: 1 }}
+                        transition={{
+                            delay: .5,
+                            duration: 5,
+                            ease: [0.05, 0.025, 0, 1]
+                        }}
+                    >
+                        <motion.div className="gradient"></motion.div>
+                    </motion.div>
                 </motion.div>
             </PageContainer>
         );

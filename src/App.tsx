@@ -39,6 +39,7 @@ export default function App() {
 declare global {
     interface Window {
         onLoadSuccessfully: Function;
+        onFirstMounted: boolean;
     }
 }
 
@@ -57,6 +58,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState> {
 
     componentDidMount(): void {
         window.onLoadSuccessfully = () => {
+            window.onFirstMounted = true;
             setTimeout(() => {
                 this.setState({
                     isLoaded: true,
@@ -80,7 +82,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState> {
                         }}
                         exit={{
                             opacity: 0,
-                            scale: .5,
+                            scale: 0,
                         }}
                     >
                         <LoadingIcon/>

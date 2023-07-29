@@ -99,9 +99,9 @@ class Header extends React.Component<Props, State, IThemeState> {
                             y: isToggleNav ? 0 : -100,
                             opacity: isToggleNav ? 1 : 0,
                             transition: {
-                                duration: .35,
-                                delay: isToggleNav ? 0.65 : 1,
-                                ease: [1, .0, .15, 1],
+                                duration: .5,
+                                delay: isToggleNav ? .4 : 1,
+                                ease: [0.5, 0.025, 0, 1],
                             }
                         }}
                     >
@@ -134,7 +134,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                         color: textColor.value
                     }}>Jaruwat Pohong</h3>
                     
-                    <AnimatePresence mode='wait'>
+                    <AnimatePresence mode='wait' key="pageNameAnimated">
                         {!isToggleNav && crrPageName !== '' &&
                             <motion.h3
                                 className="pageName" style={{
@@ -146,6 +146,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 animate={{
                                     opacity: 1,
                                     transition: {
+                                        delay: .5,
                                         duration: .5,
                                     }
                                 }}
@@ -159,31 +160,54 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 <motion.div
                                     layoutId={'link-item-crr-page'}
                                 >{crrPageName}</motion.div>
+                            </motion.h3>   
+                        }
+                    </AnimatePresence>
+                    <AnimatePresence mode='wait' key="pageNameWebringAnimated">
+                        {isToggleNav &&
+                            <motion.h3
+                                className="pageName" style={{
+                                    color: textColor.value
+                                }}
+                                initial={{
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    transition: {
+                                        delay: .5,
+                                        duration: .5,
+                                    }
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    transition: {
+                                        duration: .5,
+                                    }
+                                }}
+                            >
+                                <this.WebRing/>
                             </motion.h3>
                         }
                     </AnimatePresence>
+                    <div style={{
+                        opacity: 0,
+                        pointerEvents: 'none'
+                    }}><this.WebRing/></div>
                 </motion.div>
 
-                <motion.div className="socialLink"
-                    initial={{
-                        opacity: 0,
-                    }}
-                    animate={{
-                        opacity: isToggleNav ? 1 : 0,
-                        transition: {
-                            duration: .5,
-                            delay: isToggleNav ? 0.65 : 1,
-                        }
-                    }}
-                >
+                <motion.div className="socialLink">
                     <motion.div className="sub"
+                        initial={{
+                            opacity: 0,
+                        }}
                         animate={{
                             y: isToggleNav ? 0 : -100,
                             opacity: isToggleNav ? 1 : 0,
                             transition: {
                                 duration: .5,
-                                delay: isToggleNav ? 0.4 : 1,
-                                ease: [1, .0, .15, 1],
+                                delay: isToggleNav ? 0.25 : 1,
+                                ease: [0.5, 0.025, 0, 1],
                             }
                         }}
                     >
@@ -230,11 +254,40 @@ class Header extends React.Component<Props, State, IThemeState> {
         </motion.div>;
     }
 
-    createNamespaceFromPath(path: string): string {
-        if(path === '/' || path === '') {
-            return 'home'
-        }
-        return path.slice(1, path.length);
+    WebRing() {
+        return <motion.a href="https://webring.wonderful.software#jaruwat.dev" title="วงแหวนเว็บ" style={{ position: 'absolute', top: 10, right: 10, zIndex: 100}}>
+            <motion.div
+                style={{
+                    width: 32,
+                    height: 32
+                }}
+                initial={{ 
+                    opacity: 0,
+                    transform: 'rotate(0deg)'
+                }}
+                animate={{ 
+                    opacity: 1,
+                    transform: 'rotate(360deg)',
+                    transition: {
+                        duration: 1
+                    }
+                }}
+                whileHover={{
+                    transform: 'rotate(0deg)',
+                    transition:{
+                        ease: 'linear',
+                        repeat: Infinity
+                    }
+                }}
+            >
+                <img
+                    alt="วงแหวนเว็บ"
+                    width="32"
+                    height="32"
+                    src="https://webring.wonderful.software/webring.white.svg"
+                />
+            </motion.div>
+        </motion.a>;
     }
 }
 

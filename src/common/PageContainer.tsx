@@ -72,7 +72,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                     borderRadius: 0,
                     transition: {
                         duration: mounted ? 0.75 : 1,
-                        ease: [1, .1, .35, 1],
+                        ease: !window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
                     }
                 }}
                 exit='exit'
@@ -93,14 +93,14 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                                 opacity: 1,
                                 transition: {
                                     duration: .75,
-                                    ease: [1, .1, .35, 1],
+                                    ease: [0.5, 0.025, 0, 1],
                                 }
                             }}
                             exit={{
                                 opacity: 0,
                                 transition: {
                                     duration: .75,
-                                    ease: [1, .1, .35, 1],
+                                    ease: [0.5, 0.025, 0, 1],
                                 }
                             }}
                             onClick={() => {

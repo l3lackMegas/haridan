@@ -18,7 +18,7 @@ export default function LoadingIcon(
         scale: [0.75, 0.6, 2, 1.5, 1.5, 2, 0.6, 0.75],
         opacity: [1, 0.5, 1, 1, 1, 1, 0.5, 1],
         rotate: [0, 0, 300, 270, 270, 320, 0, 0],
-        borderRadius: ["50%", "50%", "0%", "0%", "0%", "0%", "50%", "50%"],
+        borderRadius: ["50%", "50%", "10%", "10%", "10%", "10%", "50%", "50%"],
     }}
     transition={{
         duration: duration || 2,
