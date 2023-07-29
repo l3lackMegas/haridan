@@ -1,31 +1,53 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import PageContainer from '../common/PageContainer';
+
+import './index.scss';
+
+import { TextColor, IThemeState } from '../context';
 
 type PageProps = {
 };
 type PageState = {
     
 };
-class MusicPage extends React.Component<PageProps, PageState> {
+class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
+    context!: IThemeState;
+
     state: PageState = {
         
     };
 
+    componentDidMount() {
+        const { setTextColor, setCrrFeature }: IThemeState = this.context;
+        setTextColor('#f8ff00');
+        setCrrFeature('/playlist');
+    }
+
+    componentWillUnmount(): void {
+        const { setTextColor, crrFeature, setCrrFeature }: IThemeState = this.context;
+        // console.log(crrFeature)
+        if(crrFeature === '/playlist') {
+            setTextColor('white');
+        }
+    }
+
     render() {
         return (
-            <motion.div
-                key={'musicPage'}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ y: -500, opacity: 0 }}
-                transition={{ duration: 2 }}
-            >
-                <h1>Landing Page</h1>
-                <Link to='/'>Home</Link>
-            </motion.div>
+            <PageContainer>
+                <motion.div
+                    className='music-page'
+                    key={'musicPage'}
+                >
+                    <h1>Music Page</h1>
+                    <Link to='/'>Home</Link>
+                </motion.div>
+            </PageContainer>
         );
     }
 }
+
+MusicPage.contextType = TextColor;
 
 export default MusicPage;

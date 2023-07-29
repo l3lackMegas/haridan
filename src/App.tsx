@@ -4,8 +4,12 @@ import {
     Routes,
 	Route
 } from 'react-router-dom';
-import { LayoutGroup, AnimatePresence } from 'framer-motion';
+import { LayoutGroup, AnimatePresence, motion } from 'framer-motion';
 
+// Components
+import Header from './common/header';
+
+// Pages
 import LandingPage from './landing';
 import MusicPage from './music';
 
@@ -15,11 +19,14 @@ export default function App() {
 	const location = useLocation();
 	  
 	return (
-        <LayoutGroup>
-            <AnimatePresence mode='wait'>
+    <LayoutGroup>
+            <AnimatePresence mode='sync'>
+                <Header key={'nav-header'} />
+            </AnimatePresence>
+            <AnimatePresence mode='sync'>
                 <Routes location={location} key={location.pathname}>
                     <Route path="/" element={<LandingPage />} />
-                    <Route path="/music" element={<MusicPage  />} />
+                    <Route path="/playlist" element={<MusicPage  />} />
                 </Routes>
             </AnimatePresence>
         </LayoutGroup>

@@ -9,15 +9,20 @@ import reportWebVitals from './reportWebVitals';
 
 import App from './App';
 
+
+import ContextWraper, { TextColor, IThemeState } from './context';
+
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
 );
 root.render(
 <React.StrictMode>
 	<BrowserRouter>
-		<Routes>
-			<Route path="/*" element={<App />} />
-		</Routes>
+		<ContextWraper>
+			<Routes>
+				<Route path="/*" element={<App />} />
+			</Routes>
+		</ContextWraper>
 	</BrowserRouter>
 </React.StrictMode>
 );

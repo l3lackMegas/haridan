@@ -1,3 +1,79 @@
+/* Definition font family */
+
+@font-face {
+    font-family: 'Anuphan';
+    font-style: normal;
+    font-weight: 100;
+    font-display: swap;
+    src: local('Anuphan Thin'), local('Anuphan-Thin'), url(../public/font/Anuphan-Thin.ttf) format('truetype');
+    // unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+    font-family: 'Anuphan';
+    font-style: normal;
+    font-weight: 200;
+    font-display: swap;
+    src: local('Anuphan ExtraLight'), local('Anuphan-ExtraLight'), url(../public/font/Anuphan-ExtraLight.ttf) format('truetype');
+    // unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+    font-family: 'Anuphan';
+    font-style: normal;
+    font-weight: 300;
+    font-display: swap;
+    src: local('Anuphan Light'), local('Anuphan-Light'), url(../public/font/Anuphan-Light.ttf) format('truetype');
+    // unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+    font-family: 'Anuphan';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Anuphan Regular'), local('Anuphan-Regular'), url(../public/font/Anuphan-Regular.ttf) format('truetype');
+    // unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+    font-family: 'Anuphan';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local('Anuphan Medium'), local('Anuphan-Medium'), url(../public/font/Anuphan-Medium.ttf) format('truetype');
+    // unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+    font-family: 'Anuphan';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('Anuphan SemiBold'), local('Anuphan-SemiBold'), url(../public/font/Anuphan-SemiBold.ttf) format('truetype');
+    // unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
+@font-face {
+    font-family: 'Anuphan';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Anuphan Bold'), local('Anuphan-Bold'), url(../public/font/Anuphan-Bold.ttf) format('truetype');
+    // unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
+}
+
 html, body {
     margin: 0;
+    font-family: 'Anuphan', sans-serif;
+    overflow: hidden;
+    background-color: black;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0
+}
+
+a {
+    text-decoration: none;
 }
