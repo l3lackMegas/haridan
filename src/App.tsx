@@ -23,17 +23,17 @@ export default function App() {
 	  
 	return (
         <LayoutGroup key={'mainLayoutGroup'}>
-            <AnimatePresence mode='sync' key="headerAnimated">
+            <AnimatePresence mode='wait' key="headerAnimated">
                 <Header key={'nav-header'} />
             </AnimatePresence>
-                <AppClass>
-                    <AnimatePresence mode='sync' key="routeAnimated">
-                        <Routes location={location} key={location.pathname}>
-                            <Route key={'home'} path="/" element={<LandingPage key={'ladnding'}/>} />
-                            <Route key={'playlist'} path="/playlist" element={<MusicPage key={'playlistPage'} />} />
-                        </Routes>
-                    </AnimatePresence>
-                </AppClass>
+            <AppClass>
+                <AnimatePresence mode='sync' key="routeAnimated">
+                    <Routes location={location} key={location.pathname}>
+                        <Route key={'home'} path="/" element={<LandingPage key={'ladnding'}/>} />
+                        <Route key={'playlist'} path="/playlist" element={<MusicPage key={'playlistPage'} />} />
+                    </Routes>
+                </AnimatePresence>
+            </AppClass>
         </LayoutGroup>
 	);
 }

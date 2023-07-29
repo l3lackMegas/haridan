@@ -60,10 +60,10 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         this.setState({
             unieqKey: Date.now(),
         });
+        window.scrollTo(0, 0);
+        this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
         setTimeout(() => {
-            window.scrollTo(0, 0);
-            this.context.setIsToggleNav(false);
-            this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
+            this.context.setIsToggleNav(false); 
             window.addEventListener('scroll', this.onScrollHandler);
         }, 500);
     }
