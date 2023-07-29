@@ -90,7 +90,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                         opacity: isToggleNav ? 1 : 0,
                         transition: {
                             duration: .5,
-                            delay: isToggleNav ? 0.5 : 1,
+                            delay: isToggleNav ? 0.5 : .25,
                         }
                     }}
                 >
@@ -100,7 +100,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                             opacity: isToggleNav ? 1 : 0,
                             transition: {
                                 duration: .5,
-                                delay: isToggleNav ? .4 : 1,
+                                delay: isToggleNav ? .4 : .3,
                                 ease: [0.5, 0.025, 0, 1],
                             }
                         }}
@@ -207,7 +207,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                             opacity: isToggleNav ? 1 : 0,
                             transition: {
                                 duration: .5,
-                                delay: isToggleNav ? 0.25 : 1,
+                                delay: isToggleNav ? 0.25 : .2,
                                 ease: [0.5, 0.025, 0, 1],
                             }
                         }}

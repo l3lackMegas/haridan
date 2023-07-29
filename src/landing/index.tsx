@@ -27,7 +27,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     componentWillUnmount(): void {
-        const { setTextColor, crrFeature, setCrrFeature }: IThemeState = this.context;
+        const { setTextColor, crrFeature, setCrrFeature, scrollTop }: IThemeState = this.context;
         if(crrFeature === '/') {
             setTextColor('white');
         }
@@ -42,7 +42,10 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
                 >
                     <motion.div className="parallaxHero"
                         initial={{ opacity: 0, scale: 1.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        animate={{ 
+                            opacity: 1,
+                            scale: 1,
+                        }}
                         // transition={{ duration: 1 }}
                         transition={{
                             delay: .5,
