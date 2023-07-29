@@ -8,13 +8,15 @@ import { LayoutGroup, AnimatePresence, motion } from 'framer-motion';
 
 // Components
 import Header from './common/header';
+import LoadingIcon from './common/LoadingIcon';
 
 // Pages
 import LandingPage from './landing';
 import MusicPage from './music';
 
+import { TextColor, IThemeState } from './context';
+
 import './App.scss';
-import LoadingIcon from './common/LoadingIcon';
 
 export default function App() {
 	const location = useLocation();
@@ -50,14 +52,17 @@ interface IAppClassProps {
 interface IAppClassState {
     isLoaded: boolean;
 }
-class AppClass extends React.Component<IAppClassProps, IAppClassState> {
+class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeState> {
+    context!: IThemeState;
 
     state: IAppClassState = {
         isLoaded: false,
     }
 
     componentDidMount(): void {
+        document.getElementById('preloaderTxt')?.remove();
         window.onLoadSuccessfully = () => {
+            console.log("Recieved successfully loaded from preloader");
             window.onFirstMounted = true;
             setTimeout(() => {
                 this.setState({
@@ -70,6 +75,14 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState> {
         return (
             <>
                 {this.state.isLoaded && this.props.children}
+                {!this.state.isLoaded && <motion.div style={{
+                    opacity: 0,
+                    zIndex: -1,
+                }}>{this.props.children}
+                </motion.div>}
+                <div style={{
+                    height: this.context.crrPageHeight,
+                }}></div>
                 <AnimatePresence mode='wait' key="landing-loader">
                 {!this.state.isLoaded && <motion.div className="loadingCenter">
                     <motion.div className="sub"
@@ -93,3 +106,5 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState> {
         );
     }
 }
+
+AppClass.contextType = TextColor;

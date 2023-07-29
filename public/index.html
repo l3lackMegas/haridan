@@ -39,11 +39,49 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
-    <script>
-      window.addEventListener('load', function () {
-        if(window.onLoadSuccessfully) {
-          window.onLoadSuccessfully()
+
+    <div id="preloaderTxt">
+      <p id="preloadTxt">&lt;/&gt; Preparing...</p>
+      <style>
+        html, body {
+          background-color: #000;
         }
+        #preloaderTxt {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        }
+  
+        #preloadTxt {
+          padding: 5px 15px;
+          font-family: cursive;
+          font-size: 20px;
+          color: white;
+          border: 1px rgba(255, 255, 255, 0.5) solid;
+          animation: fadeIn 3s forwards;
+        }
+
+        @keyframes fadeIn {
+          0% {
+            opacity: 0;
+          }
+          100% {
+            opacity: 1;
+          }
+        }
+      </style>
+    </div>
+    <script>
+      function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      window.addEventListener('load', async function () {
+        while(!window.onLoadSuccessfully) {
+          await sleep(100);
+        }
+        console.log("Start calling onLoadSuccessfully", window.onLoadSuccessfully);
+        window.onLoadSuccessfully();
       })
     </script>
   </body>

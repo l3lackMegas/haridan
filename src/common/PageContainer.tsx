@@ -10,19 +10,22 @@ import { TextColor, IThemeState } from '../context';
 import './PageContainer.scss';
 
 type Props = {
+    pathName: string,
     children: React.ReactNode
 };
 type State = {
     toggleNav: Boolean,
-    mounted: Boolean
+    mounted: Boolean,
 };
 class PageContainer extends React.Component<Props, State, IThemeState> {
     context!: IThemeState;
 
     state: State = {
         toggleNav: false,
-        mounted: false,
+        mounted: false
     };
+
+    contentScroll = React.createRef<HTMLDivElement>();
 
     containerVariant = {
         initial: {
@@ -51,17 +54,33 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         }
     }
 
-    componentWillUnmount(): void {
+    componentDidMount(): void {
+        window.scrollTo(0, 0);
         this.context.setIsToggleNav(false);
+        this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
+        setTimeout(() => {
+            window.addEventListener('scroll', this.onScrollHandler);
+        }, 500);
+    }
+
+    componentWillUnmount(): void {
+        console.log(321);
+        window.removeEventListener('scroll', this.onScrollHandler);
+    }
+
+    onScrollHandler = (e: Event) => {
+        this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
+        this.context.setScrollTop(window.scrollY);
     }
 
     render() {
-        const { textColor, isToggleNav, setIsToggleNav }: IThemeState = this.context;
+        const { textColor, crrFeature, isToggleNav, setIsToggleNav }: IThemeState = this.context;
+        const { pathName } = this.props;
         const { toggleNav, mounted } = this.state;
 
         return (
             <motion.div
-                className='PageContainer'
+                className={'PageContainer'}
                 key={'PageContainer'}
                 variants={this.containerVariant}
                 initial='initial'
@@ -181,7 +200,17 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         </motion.div>}
                     </motion.div>
                 </motion.button>
-                {this.props.children}
+                <motion.div className="sub content-overflow" ref={this.contentScroll}
+                    animate={{
+                        y: this.context.scrollTop * -1,
+                        transition: {
+                            duration: pathName !== crrFeature ? 100 : 0,
+                            ease: 'linear',
+                        }
+                    }}
+                >
+                    {this.props.children}
+                </motion.div>
             </motion.div>
         );
     }

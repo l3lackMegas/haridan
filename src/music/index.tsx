@@ -35,7 +35,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
 
     render() {
         return (
-            <PageContainer>
+            <PageContainer pathName='/playlist'>
                 <motion.div
                     className='music-page'
                     key={'musicPage'}

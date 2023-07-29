@@ -35,7 +35,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
 
     render() {
         return (
-            <PageContainer>
+            <PageContainer pathName='/'>
                 <motion.div
                     className='landing-page'
                     key={'landingPage'}
