@@ -118,7 +118,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                 </motion.div>
                 <motion.div className="small-nav"
                     initial={{
-                        // y: -200,
+                        y: -100,
                         opacity: 0,
                     }}
                     animate={{
@@ -127,6 +127,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                         transition: {
                             duration: .5,
                             delay: 1,
+                            ease: [0.5, 0.025, 0, 1],
                         }
                     }}
                 >

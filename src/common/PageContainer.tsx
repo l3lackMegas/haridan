@@ -66,10 +66,10 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                 variants={this.containerVariant}
                 initial='initial'
                 animate={{
-                    y: toggleNav ? 150 : 0,
-                    scale: 1,
+                    y: toggleNav ? 140 : 0,
+                    scale: toggleNav ? 0.95 : 1,
                     opacity: 1,
-                    borderRadius: 0,
+                    borderRadius: toggleNav ? 50 : 0,
                     transition: {
                         duration: mounted ? 0.75 : 1,
                         ease: !window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
