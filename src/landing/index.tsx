@@ -27,6 +27,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     componentWillUnmount(): void {
+        console.log('unmount', "/");
         const { setTextColor, crrFeature, setCrrFeature, scrollTop }: IThemeState = this.context;
         if(crrFeature === '/') {
             setTextColor('white');
@@ -35,7 +36,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
 
     render() {
         return (
-            <PageContainer pathName='/'>
+            <PageContainer key={'home'} pathName='/'>
                 <motion.div
                     className='landing-page'
                     key={'landingPage'}

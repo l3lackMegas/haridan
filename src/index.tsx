@@ -18,11 +18,10 @@ const root = ReactDOM.createRoot(
 root.render(
 <React.StrictMode>
 	<BrowserRouter>
-		<ContextWraper>
 			<Routes>
-				<Route path="/*" element={<App />} />
+				<Route path="/*" element={
+				<ContextWraper><App /></ContextWraper>} />
 			</Routes>
-		</ContextWraper>
 	</BrowserRouter>
 </React.StrictMode>
 );

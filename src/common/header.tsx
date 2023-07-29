@@ -90,7 +90,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                         opacity: isToggleNav ? 1 : 0,
                         transition: {
                             duration: .5,
-                            delay: isToggleNav ? 0.5 : .25,
+                            delay: isToggleNav ? 0.5 : .1,
                         }
                     }}
                 >

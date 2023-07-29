@@ -22,15 +22,15 @@ export default function App() {
 	const location = useLocation();
 	  
 	return (
-        <LayoutGroup>
-            <AnimatePresence mode='sync'>
+        <LayoutGroup key={'mainLayoutGroup'}>
+            <AnimatePresence mode='sync' key="headerAnimated">
                 <Header key={'nav-header'} />
             </AnimatePresence>
                 <AppClass>
-                    <AnimatePresence mode='sync'>
+                    <AnimatePresence mode='sync' key="routeAnimated">
                         <Routes location={location} key={location.pathname}>
-                            <Route path="/" element={<LandingPage />} />
-                            <Route path="/playlist" element={<MusicPage  />} />
+                            <Route key={'home'} path="/" element={<LandingPage key={'ladnding'}/>} />
+                            <Route key={'playlist'} path="/playlist" element={<MusicPage key={'playlistPage'} />} />
                         </Routes>
                     </AnimatePresence>
                 </AppClass>
@@ -75,15 +75,15 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
         return (
             <>
                 {this.state.isLoaded && this.props.children}
-                {!this.state.isLoaded && <motion.div style={{
+                {/* {!this.state.isLoaded && <motion.div style={{
                     opacity: 0,
                     zIndex: -1,
                 }}>{this.props.children}
-                </motion.div>}
+                </motion.div>} */}
                 <div style={{
                     height: this.context.crrPageHeight,
                 }}></div>
-                <AnimatePresence mode='wait' key="landing-loader">
+                <AnimatePresence mode='sync' key="landing-loader">
                 {!this.state.isLoaded && <motion.div className="loadingCenter">
                     <motion.div className="sub"
                         initial={{ opacity: 0 }}

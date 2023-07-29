@@ -26,6 +26,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     componentWillUnmount(): void {
+        console.log('unmount', "/playlist");
         const { setTextColor, crrFeature, setCrrFeature }: IThemeState = this.context;
         // console.log(crrFeature)
         if(crrFeature === '/playlist') {
@@ -35,7 +36,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
 
     render() {
         return (
-            <PageContainer pathName='/playlist'>
+            <PageContainer key={'paylist'} pathName='/playlist'>
                 <motion.div
                     className='music-page'
                     key={'musicPage'}

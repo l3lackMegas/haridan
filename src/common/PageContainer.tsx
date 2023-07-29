@@ -16,13 +16,15 @@ type Props = {
 type State = {
     toggleNav: Boolean,
     mounted: Boolean,
+    unieqKey: number,
 };
 class PageContainer extends React.Component<Props, State, IThemeState> {
     context!: IThemeState;
 
     state: State = {
         toggleNav: false,
-        mounted: false
+        mounted: false,
+        unieqKey: 0,
     };
 
     contentScroll = React.createRef<HTMLDivElement>();
@@ -55,16 +57,18 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     componentDidMount(): void {
-        window.scrollTo(0, 0);
-        this.context.setIsToggleNav(false);
-        this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
+        this.setState({
+            unieqKey: Date.now(),
+        });
         setTimeout(() => {
+            window.scrollTo(0, 0);
+            this.context.setIsToggleNav(false);
+            this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
             window.addEventListener('scroll', this.onScrollHandler);
         }, 500);
     }
 
     componentWillUnmount(): void {
-        console.log(321);
         window.removeEventListener('scroll', this.onScrollHandler);
     }
 
@@ -76,12 +80,14 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     render() {
         const { textColor, crrFeature, isToggleNav, setIsToggleNav }: IThemeState = this.context;
         const { pathName } = this.props;
-        const { toggleNav, mounted } = this.state;
+        const { toggleNav, mounted, unieqKey } = this.state;
+
+        const namespace = (pathName.split('/')[1] || 'home') + unieqKey.toString();
 
         return (
             <motion.div
-                className={'PageContainer'}
-                key={'PageContainer'}
+                className={'PageContainer ' + namespace}
+                key={'PageContainer' + namespace}
                 variants={this.containerVariant}
                 initial='initial'
                 animate={{
@@ -101,7 +107,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                     })
                 }}
             >
-                <AnimatePresence mode='wait' key="pageDimer">
+                <AnimatePresence mode='sync' key="pageDimer">
                     { toggleNav &&
                         <motion.div
                             className='dimPullMenu'
@@ -204,7 +210,8 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                     animate={{
                         y: this.context.scrollTop * -1,
                         transition: {
-                            duration: pathName !== crrFeature ? 100 : 0,
+                            duration: 0,
+                            delay: pathName !== crrFeature ? 3 : 0,
                             ease: 'linear',
                         }
                     }}
