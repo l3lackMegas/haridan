@@ -73,7 +73,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                 crrPageName = 'Contact';
                 break;
             default:
-                crrPageName = 'Portfolio';
+                crrPageName = '';
                 break;
         }
 
@@ -135,7 +135,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                     }}>Jaruwat Pohong</h3>
                     
                     <AnimatePresence mode='wait'>
-                        {!isToggleNav &&
+                        {!isToggleNav && crrPageName !== '' &&
                             <motion.h3
                                 className="pageName" style={{
                                     color: textColor.value
