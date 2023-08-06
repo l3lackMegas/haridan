@@ -24,18 +24,18 @@ class NameCard extends Component<IReciept> {
 
         const { isReady } = this.props
         
-        return <div className={`centerContain ${styles.cardMobile}`} style={{
+        return <motion.div className={`centerContain ${styles.cardMobile}`} style={{
             // zIndex: 1000
         }}>
-            <div className={styles.nameCard}
+            <motion.div className={styles.nameCard}
                 // initial={{ opacity: 0, scale: .5 }}
                 // animate={ isReady ? { opacity: 1, scale: 1 } : {}}
                 // transition={{ duration: .45 }}
             >
-                <div
-                    // initial={{ opacity: 0, y: 300 }}
-                    // animate={ isReady ? { opacity: 1, y: 0 } : {}}
-                    // transition={{ duration: .45, ease: [0.5, 0.025, 0, 1] }}
+                <motion.div
+                    initial={{ opacity: 0, y: 300 }}
+                    animate={ isReady ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: .45, ease: [0.5, 0.025, 0, 1] }}
                 >
                     <div className={styles.circlePic}>
                         <div className={styles.img}
@@ -49,11 +49,11 @@ class NameCard extends Component<IReciept> {
                     <div className={styles.statusQuote}>
                         <p>l3lackMegas ༼ つ ◕_◕ ༽つ</p>
                     </div>
-                </div>
-                <div className={styles.buttonPanel}
-                    // initial={{ opacity: 0, y: 300 }}
-                    // animate={ isReady ? { opacity: 1, y: 0 } : {}}
-                    // transition={{ delay: .1, duration: .45, ease: [0.5, 0.025, 0, 1] }}
+                </motion.div>
+                <motion.div className={styles.buttonPanel}
+                    initial={{ opacity: 0, y: 300 }}
+                    animate={ isReady ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: .1, duration: .45, ease: [0.5, 0.025, 0, 1] }}
                 >
                     <div style={{ margin: '20px 0'}}>
                         <Link to="mailto:contact@jaruwat.dev">
@@ -80,9 +80,9 @@ class NameCard extends Component<IReciept> {
                             <span>Résumé</span>
                         </button>
                     </Link>
-                </div>
-            </div>
-        </div>
+                </motion.div>
+            </motion.div>
+        </motion.div>
     }
 
 }
