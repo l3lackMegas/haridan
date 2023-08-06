@@ -35,6 +35,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     render() {
+        console.log(this.context.parallaxPos)
         return (
             <PageContainer key={'home'} pathName='/'>
                 <motion.div
@@ -54,6 +55,11 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
                             ease: [0.05, 0.025, 0, 1]
                         }}
                     >
+                        <motion.div className="img"
+                            style={{
+                                y: this.context.parallaxPos / 2
+                            }}
+                        ></motion.div>
                         <motion.div className="gradient"></motion.div>
                     </motion.div>
                 </motion.div>
