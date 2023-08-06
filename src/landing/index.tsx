@@ -49,7 +49,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
             this.setState({
                 mounted: true
             });
-        }, 750);
+        }, window.onFirstMounted ? 750 : 1250);
     }
 
     componentWillUnmount(): void {

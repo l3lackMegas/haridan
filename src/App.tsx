@@ -69,7 +69,6 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
     componentDidMount(): void {
         document.getElementById('preloaderTxt')?.remove();
         window.onLoadSuccessfully = () => {
-            console.log("Recieved successfully loaded from preloader");
             window.onFirstMounted = true;
             setTimeout(() => {
                 this.setState({

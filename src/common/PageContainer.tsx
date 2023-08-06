@@ -138,11 +138,12 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         borderRadius: isToggleNav ? 50 : 0,
                         transition: {
                             duration: mounted ? 0.75 : 1,
-                            ease: !window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
+                            ease: window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
                         }
                     }}
                     exit='exit'
                     onAnimationComplete={() => {
+                        window.onFirstMounted = false;
                         this.setState({
                             mounted: true,
                             toggleNav: !mounted ? false : toggleNav
@@ -206,7 +207,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         scale: isToggleNav ? 0.95 : 1,
                         transition: {
                             duration: mounted ? 0.75 : 1,
-                            ease: !window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
+                            ease: window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
                         }
                     }}
                     exit='exit'
