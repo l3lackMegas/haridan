@@ -8,22 +8,48 @@ import { TextColor, IThemeState } from '../context';
 
 import PageContainer from '../common/PageContainer';
 
+import Section from "./components/MainLayout/Section"
+import NameCard from './components/NameCard';
+import Resume from './components/Resume'
+import Education from "./components/Resume/Education"
+import Experience from "./components/Resume/Experience"
+import Rewards from "./components/Resume/Rewards"
+import SkillCard from "./components/SkillCard"
+import WorkList from './components/Works/List'
+
 type PageProps = {
 };
 type PageState = {
-    
+    mounted: boolean;
+    workItems: any[];
+    resume: {
+        experience: any[];
+        rewards: any[];
+        education: any[];
+    }
 };
 class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     context!: IThemeState;
 
     state: PageState = {
-        
+        mounted: false,
+        workItems: [],
+        resume: {
+            experience: [],
+            rewards: [],
+            education: []
+        },
     };
 
     componentDidMount() {
         const { setTextColor, setCrrFeature }: IThemeState = this.context;
         setTextColor('white');
         // setCrrFeature('/');
+        setTimeout(() => {
+            this.setState({
+                mounted: true
+            });
+        }, 750);
     }
 
     componentWillUnmount(): void {
@@ -35,7 +61,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     render() {
-        console.log(this.context.parallaxPos)
+        const { mounted, workItems, resume } = this.state;
         return (
             <PageContainer key={'home'} pathName='/'>
                 <motion.div
@@ -54,13 +80,48 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
                             duration: 5,
                             ease: [0.05, 0.025, 0, 1]
                         }}
+                        style={{
+                            // backgroundPositionY: this.context.parallaxPos / 2
+                        }}
                     >
-                        <motion.div className="img"
-                            style={{
-                                y: this.context.parallaxPos / 2
-                            }}
-                        ></motion.div>
-                        <motion.div className="gradient"></motion.div>
+                        <motion.div className='sub'>
+                            <motion.div className="gradient"></motion.div>
+                        </motion.div>
+                    </motion.div>
+                    <motion.div style={{
+                        position: 'relative',
+                        width: '100vw',
+                        height: '100vh',
+                    }}>
+                        <NameCard isReady={mounted} />
+                    </motion.div>
+                    <motion.div style={{
+                        position: 'relative',
+                        width: '100vw',
+                        height: '100vh',
+                    }}>
+                        <NameCard isReady={mounted} />
+                    </motion.div>
+                    <motion.div style={{
+                        position: 'relative',
+                        width: '100vw',
+                        height: '100vh',
+                    }}>
+                        <NameCard isReady={mounted} />
+                    </motion.div>
+                    <motion.div style={{
+                        position: 'relative',
+                        width: '100vw',
+                        height: '100vh',
+                    }}>
+                        <NameCard isReady={mounted} />
+                    </motion.div>
+                    <motion.div style={{
+                        position: 'relative',
+                        width: '100vw',
+                        height: '100vh',
+                    }}>
+                        <NameCard isReady={mounted} />
                     </motion.div>
                 </motion.div>
             </PageContainer>

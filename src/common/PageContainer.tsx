@@ -17,24 +17,30 @@ type State = {
     toggleNav: Boolean,
     mounted: Boolean,
     unieqKey: number,
+    scrollY: number,
+    isNavToggling: Boolean,
 };
 class PageContainer extends React.Component<Props, State, IThemeState> {
     context!: IThemeState;
 
     state: State = {
-        toggleNav: false,
+        toggleNav: true,
         mounted: false,
         unieqKey: 0,
+        scrollY: 0,
+        isNavToggling: false,
     };
 
     contentScroll = React.createRef<HTMLDivElement>();
     smoothElmScroll = React.createRef<HTMLDivElement>();
+    pageElmContainer = React.createRef<HTMLDivElement>();
 
     containerVariant = {
         initial: {
-            y: '100vh',
-            scale: .8,
+            y: '120vh',
+            scale: .5,
             borderRadius: 50,
+            opacity: 0
         },
         // animate: {
         //     y: 0,
@@ -77,169 +83,212 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     onScrollHandler = (e: Event) => {
-        if(this.context.crrFeature === this.props.pathName) {
-            let scrollling = this.smoothElmScroll.current,
-                compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
-                matrix = new WebKitCSSMatrix(compos.transform),
-                currentScroll = window.isMobile ? window.scrollY : matrix.m42 * -1;
-            this.context.setParallaxPos(currentScroll);   
-        }
+        // if(this.context.crrFeature === this.props.pathName) {
+        //     let scrollling = this.smoothElmScroll.current,
+        //         compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
+        //         matrix = new WebKitCSSMatrix(compos.transform),
+        //         currentScroll = window.isMobile ? window.scrollY : matrix.m42 * -1;
+        //     this.context.setParallaxPos(currentScroll);   
+        // }
 
         this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
         this.context.setScrollTop(window.scrollY);
+        if(this.context.crrFeature === this.props.pathName) {
+            this.setState({
+                scrollY: window.scrollY
+            });
+        }
+    }
+
+    toggleNavHandler() {
+        if(this.state.isNavToggling) return;
+        this.setState({
+            isNavToggling: true
+        });
+        this.context.setIsToggleNav(!this.state.toggleNav);
+
+        setTimeout(() => {
+            this.setState({
+                toggleNav: !this.state.toggleNav,
+                isNavToggling: false
+            });
+        }, this.state.toggleNav ? 750 : 0);
     }
 
     render() {
         const { textColor, crrFeature, isToggleNav, setIsToggleNav }: IThemeState = this.context;
         const { pathName } = this.props;
-        const { toggleNav, mounted, unieqKey } = this.state;
+        const { toggleNav, mounted, unieqKey, scrollY } = this.state;
 
         const namespace = (pathName.split('/')[1] || 'home') + unieqKey.toString();
 
         return (
-            <motion.div
-                className={'PageContainer ' + namespace + (window.isMobile ? ' mobile' : '')}
-                key={'PageContainer' + namespace}
-                variants={this.containerVariant}
-                initial='initial'
-                animate={{
-                    y: toggleNav ? 140 : 0,
-                    scale: toggleNav ? 0.95 : 1,
-                    opacity: 1,
-                    borderRadius: toggleNav ? 50 : 0,
-                    transition: {
-                        duration: mounted ? 0.75 : 1,
-                        ease: !window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
-                    }
-                }}
-                exit='exit'
-                onAnimationComplete={() => {
-                    this.setState({
-                        mounted: true
-                    })
-                }}
-            >
-                <AnimatePresence mode='sync' key="pageDimer">
-                    { toggleNav &&
-                        <motion.div
-                            className='dimPullMenu'
-                            initial={{
-                                opacity: 0,
-                            }}
-                            animate={{
-                                opacity: 1,
-                                transition: {
-                                    duration: .75,
-                                    ease: [0.5, 0.025, 0, 1],
-                                }
-                            }}
-                            exit={{
-                                opacity: 0,
-                                transition: {
-                                    duration: .75,
-                                    ease: [0.5, 0.025, 0, 1],
-                                }
-                            }}
-                            onClick={() => {
-                                this.setState({
-                                    toggleNav: !toggleNav
-                                });
-                                setIsToggleNav(!toggleNav);
-                            }}
-                        ></motion.div>
-                    }
-                </AnimatePresence>
-                
-                <motion.button className={'btnTopCenter' + (toggleNav ? ' active' : '')} style={{
-                    color: textColor.value
-                }}
-                initial={{
-                    opacity: 0,
-                    y: -100,
-                }}
-                animate={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                        delay: .5,
-                        duration: .5,
-                        ease: [1, .1, .35, 1],
-                    }
-                }}
-                onClick={() => {
-                    this.setState({
-                        toggleNav: !toggleNav
-                    });
-                    setIsToggleNav(!toggleNav);
-                }}
+            <>
+                <motion.div
+                    id="PageContainer"
+                    ref={this.pageElmContainer}
+                    className={'PageContainer ' + namespace + (window.isMobile ? ' mobile' : '') + (toggleNav ? ' toggled' : '')}
+                    key={'PageContainer' + namespace}
+                    variants={this.containerVariant}
+                    initial='initial'
+                    animate={{
+                        y: isToggleNav ? 140 : 0,
+                        scale: isToggleNav ? 0.95 : 1,
+                        opacity: 1,
+                        borderRadius: isToggleNav ? 50 : 0,
+                        transition: {
+                            duration: mounted ? 0.75 : 1,
+                            ease: !window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
+                        }
+                    }}
+                    exit='exit'
+                    onAnimationComplete={() => {
+                        this.setState({
+                            mounted: true,
+                            toggleNav: !mounted ? false : toggleNav
+                        })
+                    }}
                 >
-                    <motion.div className="sub" style={{ overflow: 'hidden' }}>
-                        <motion.div className="bgPullMenu" style={{
-                            backgroundColor: textColor.value
-                        }}></motion.div>
-                        
-                        
-                        { toggleNav && <motion.div
-                            initial={{
-                                opacity: 0,
-                            }}
-                            animate={{
-                                opacity: 1,
-                                transition: {
-                                    duration: .25,
-                                }
-                            }}
-                            exit={{
-                                opacity: 0,
-                                transition: {
-                                    duration: .25,
-                                }
-                            }}
-                        >
-                            <FontAwesomeIcon icon={faChevronUp}/>
-                        </motion.div>}
-                        
-                        { !toggleNav && <motion.div
-                            initial={{
-                                opacity: 0,
-                            }}
-                            animate={{
-                                opacity: 1,
-                                transition: {
-                                    duration: .25,
-                                }
-                            }}
-                            exit={{
-                                opacity: 0,
-                                transition: {
-                                    duration: .25,
-                                }
-                            }}
-                        >
-                            <FontAwesomeIcon icon={faChevronDown}/>
-                        </motion.div>}
-                    </motion.div>
-                </motion.button>
-                <motion.div className="sub content-overflow" ref={this.contentScroll}>
-                    {/* {
-                        window.window.isMobile && <motion.div
+                    <AnimatePresence mode='sync' key="pageDimer">
+                        { isToggleNav &&
+                            <motion.div
+                                className='dimPullMenu'
+                                initial={{
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    transition: {
+                                        duration: .75,
+                                        ease: [0.5, 0.025, 0, 1],
+                                    }
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    transition: {
+                                        duration: .75,
+                                        ease: [0.5, 0.025, 0, 1],
+                                    }
+                                }}
+                                onClick={() => {
+                                    this.toggleNavHandler();
+                                }}
+                            ></motion.div>
+                        }
+                    </AnimatePresence>
+                    {/* <WrapPageScroll
+                        crrPathName={pathName}
+                        refSmooth={this.smoothElmScroll}
+                    > */}
+                        <motion.div className="sub content-overflow" ref={this.contentScroll}
                             style={{
-                                y: -this.context.scrollTop,
+                                y: toggleNav ? -scrollY : 0,
                             }}
                         >
                             {this.props.children}
                         </motion.div>
-                    } */}
-                    {/* { !window.window.isMobile && */}
-                        <WrapPageScroll
-                            crrPathName={pathName}
-                            refSmooth={this.smoothElmScroll}
-                        >
-                            {this.props.children}
-                        </WrapPageScroll>
-                    {/* } */}
+                    {/* </WrapPageScroll> */}
                 </motion.div>
-            </motion.div>
+                { toggleNav &&
+                    <div style={{
+                        height: this.context.crrPageHeight,
+                    }}></div>
+                }
+                
+                <motion.div
+                    className={'PageContainer toggled'}
+                    key={'subPage' + namespace}
+                    variants={this.containerVariant}
+                    initial='initial'
+                    animate={{
+                        opacity: 1,
+                        y: isToggleNav ? 140 : 0,
+                        scale: isToggleNav ? 0.95 : 1,
+                        transition: {
+                            duration: mounted ? 0.75 : 1,
+                            ease: !window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
+                        }
+                    }}
+                    exit='exit'
+                    style={{
+                        top: 0,
+                        height: 0,
+                        minHeight: 'unset',
+                        overflow: 'unset',
+                    }}
+                >
+                    <motion.button className={'btnTopCenter' + (toggleNav ? ' active' : '')} style={{
+                            color: textColor.value,
+                            pointerEvents: 'all',
+                            zIndex: 9999,
+                        }}
+                        initial={{
+                            opacity: 0,
+                            y: -100,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            y: 0,
+                            transition: {
+                                delay: .5,
+                                duration: .5,
+                                ease: [1, .1, .35, 1],
+                            }
+                        }}
+                        onClick={() => {
+                            // if(toggleNav !== isToggleNav) return;
+                            this.toggleNavHandler();
+                        }}
+                    >
+                        <motion.div className="sub" style={{ overflow: 'hidden' }}>
+                            <motion.div className="bgPullMenu" style={{
+                                backgroundColor: textColor.value
+                            }}></motion.div>
+                            
+                            
+                            { toggleNav && <motion.div
+                                initial={{
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    transition: {
+                                        duration: .25,
+                                    }
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    transition: {
+                                        duration: .25,
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faChevronUp}/>
+                            </motion.div>}
+                            
+                            { !toggleNav && <motion.div
+                                initial={{
+                                    opacity: 0,
+                                }}
+                                animate={{
+                                    opacity: 1,
+                                    transition: {
+                                        duration: .25,
+                                    }
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    transition: {
+                                        duration: .25,
+                                    }
+                                }}
+                            >
+                                <FontAwesomeIcon icon={faChevronDown}/>
+                            </motion.div>}
+                        </motion.div>
+                    </motion.button>
+                </motion.div>
+            </>
         );
     }
 }
@@ -261,13 +310,13 @@ const WrapPageScroll = ({ children, crrPathName, refSmooth }: {
     
 
     // console.log(appContext.crrPageHeight)
-    const transform = useTransform(scrollY, [0, appContext.crrPageHeight], [0, -appContext.crrPageHeight])
-    const physics = {
-        damping: 15,
-        mass: 0.27,
-        stiffness: 100
-    } // easing of smooth scroll
-    const spring = useSpring(transform, physics); // apply easing to the negative scroll value
+    // const transform = useTransform(scrollY, [0, appContext.crrPageHeight], [0, -appContext.crrPageHeight])
+    // const physics = {
+    //     damping: 15,
+    //     mass: 0.27,
+    //     stiffness: 100,
+    // } // easing of smooth scroll
+    // const spring = useSpring(transform, physics); // apply easing to the negative scroll value
 
     React.useLayoutEffect(() => {
         if(appContext.crrFeature !== crrPathName) {
@@ -275,12 +324,13 @@ const WrapPageScroll = ({ children, crrPathName, refSmooth }: {
         }
         scrollY.set(appContext.scrollTop);
     }, [appContext.crrFeature, appContext.scrollTop, crrPathName, scrollY]);
-
+    console.log(scrollY)
     return (
         <motion.div
             ref={refSmooth}
+            // className="scroll-container"
             style={{
-                y: window.isMobile ? transform : spring
+                y: -scrollY.get(),
             }}
         >
             {children}

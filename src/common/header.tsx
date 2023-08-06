@@ -93,6 +93,10 @@ class Header extends React.Component<Props, State, IThemeState> {
                             delay: isToggleNav ? 0.5 : .1,
                         }
                     }}
+
+                    style={{
+                        zIndex: isToggleNav ? 100000 : -1,
+                    }}
                 >
                     <motion.div className="sub"
                         animate={{
@@ -229,6 +233,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                         </a>
                     </motion.div>
                 </motion.div>
+                
             </>
         );
     }
@@ -252,7 +257,7 @@ class Header extends React.Component<Props, State, IThemeState> {
     }
 
     WebRing() {
-        return <motion.a href="https://webring.wonderful.software#jaruwat.dev" title="วงแหวนเว็บ" style={{ position: 'absolute', pointerEvents: 'all'}}>
+        return <motion.a href="https://webring.wonderful.software#jaruwat.dev" title="วงแหวนเว็บ" style={{ display: 'inline-block', pointerEvents: 'all'}}>
             <motion.div
                 style={{
                     width: 32,

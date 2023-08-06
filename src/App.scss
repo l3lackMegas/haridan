@@ -63,6 +63,16 @@
     // unicode-range: U+0E01-0E5B, U+200C-200D, U+25CC;
 }
 
+:root {
+    --primary-color: #1ba3e4;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 html, body {
     margin: 0;
     font-family: 'Anuphan', sans-serif;
@@ -72,15 +82,21 @@ html, body {
 
 body {
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 h1, h2, h3, h4, h5, h6, p {
     margin: 0
 }
 
-a {
+a{
+    color: white;
     text-decoration: none;
+    outline: 0;
+}
+
+img{
+    pointer-events: none;
 }
 
 .loadingCenter {
@@ -88,4 +104,12 @@ a {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.centerContain {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }

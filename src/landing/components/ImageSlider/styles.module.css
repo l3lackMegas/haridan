@@ -1,0 +1,118 @@
+.ImageSlider-container {
+    margin: 20px 0;
+    width: 100%;
+    min-height: 264px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+
+.slideContainer {
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(114, 114, 114);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.slider-next,
+.slider-prev {
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    background: white;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    opacity: .5;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 50%;
+    z-index: 2;
+    transition-duration: .25s;
+}
+
+.ImageSlider-container:hover .slider-next,
+.ImageSlider-container:hover .slider-prev {
+    opacity: 1;
+}
+
+.slider-next:hover,
+.slider-prev:hover {
+    background: rgb(221, 221, 221);
+}
+
+.ImageSlider-container >
+.slider-next:active,
+.slider-prev:active {
+    background: rgb(196, 196, 196);
+    transition-duration: .1s;
+}
+
+.slider-next,
+.slider-prev {
+    background: rgb(133, 133, 133);
+    color: black;
+}
+
+.slider-next {
+    right: 5px;
+}
+
+.slider-prev {
+    left: 5px;
+}
+
+.ImageSlider-container .slider-next {
+    right: -15px;
+}
+
+.ImageSlider-container .slider-prev {
+    left: -15px;
+}
+
+.ImageSlider-container .slider-next,
+.ImageSlider-container .slider-prev {
+    background: rgb(221, 221, 221);
+}
+
+.ImageSlider-container img {
+    left: 0;
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 264px;
+}
+
+.slider-refresh {
+    padding: 10px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+    .ImageSlider-container {
+        min-height: 184px;
+    }
+
+    .ImageSlider-container img {
+        min-height: 184px;
+    }
+}

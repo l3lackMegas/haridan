@@ -1,0 +1,69 @@
+.container {
+    padding-bottom: 20px;
+    width: 100%;
+    word-break: normal;
+}
+
+.container + .container:before {
+    content: '';
+    margin-bottom: 20px;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(to right,
+                    rgba(255, 255, 255, .75),
+                    rgba(255, 255, 255, 0));
+}
+
+.container .date {
+    padding: 3px 10px;
+    width: fit-content;
+    color: var(--primary-color);
+    border: 1px var(--primary-color) solid;
+    border-radius: 5px;
+}
+
+.infoZone {
+    margin-top: 10px;
+}
+
+.container .title {
+    font-size: 25px;
+}
+
+.container .org {
+    font-size: 18px;
+    color: rgb(199, 199, 199);
+}
+
+.container .detail {
+    margin-top: 20px;
+    color: rgb(199, 199, 199);
+}
+
+.container .link {
+    margin-top: 20px;
+    display: block;
+    padding: 0 5px;
+    width: fit-content;
+    word-break: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: rgba(255, 255, 255, .15);
+}
+
+.container .link:hover {
+    background-color: rgba(255, 255, 255, .2);
+}
+
+.container .link + .link {
+    margin-top: 5px;
+}
+
+@media only screen and (max-width: 500px) {
+    .container .link {
+        max-width: 100%;
+        width: fit-content;
+    }
+}

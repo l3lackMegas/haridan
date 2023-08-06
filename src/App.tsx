@@ -87,9 +87,9 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                     zIndex: -1,
                 }}>{this.props.children}
                 </motion.div>} */}
-                <div style={{
+                {/* <div style={{
                     height: this.context.crrPageHeight,
-                }}></div>
+                }}></div> */}
                 <AnimatePresence mode='sync' key="landing-loader">
                 {!this.state.isLoaded && <motion.div className="loadingCenter">
                     <motion.div className="sub"
