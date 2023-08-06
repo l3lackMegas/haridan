@@ -12,7 +12,7 @@ type PageProps = {
 type PageState = {
     
 };
-class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
+class StoryPage extends React.Component<PageProps, PageState, IThemeState> {
     context!: IThemeState;
 
     state: PageState = {
@@ -22,26 +22,26 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
     componentDidMount() {
         const { setTextColor, setCrrFeature }: IThemeState = this.context;
         setTextColor('#f8ff00');
-        setCrrFeature('/playlist');
+        // setCrrFeature('/story');
     }
 
     componentWillUnmount(): void {
-        console.log('unmount', "/playlist");
+        console.log('unmount', "/story");
         const { setTextColor, crrFeature, setCrrFeature }: IThemeState = this.context;
         // console.log(crrFeature)
-        if(crrFeature === '/playlist') {
+        if(crrFeature === '/story') {
             setTextColor('white');
         }
     }
 
     render() {
         return (
-            <PageContainer key={'paylist'} pathName='/playlist'>
+            <PageContainer key={'paylist'} pathName='/story'>
                 <motion.div
-                    className='music-page'
-                    key={'musicPage'}
+                    className='story-page'
+                    key={'StoryPage'}
                 >
-                    <h1>Music Page</h1>
+                    <h1>Music Page<h1>Music Page<h1>Music Page<h1>Music Page<h1>Music Page<h1>Music Page<h1>Music Page<h1>Music Page<h1>Music Page<h1>Music Page</h1></h1></h1></h1></h1></h1></h1></h1></h1></h1>
                     <Link to='/'>Home</Link>
                 </motion.div>
             </PageContainer>
@@ -49,6 +49,6 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 }
 
-MusicPage.contextType = TextColor;
+StoryPage.contextType = TextColor;
 
-export default MusicPage;
+export default StoryPage;

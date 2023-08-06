@@ -66,8 +66,8 @@ class Header extends React.Component<Props, State, IThemeState> {
             case '/':
                 crrPageName = 'Portfolio';
                 break;
-            case '/playlist':
-                crrPageName = 'Playlist';
+            case '/story':
+                crrPageName = 'Story';
                 break;
             case '/contact':
                 crrPageName = 'Contact';
@@ -111,7 +111,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                             animate='show'
                         >
                             <this.LinkItem path="/">Portfolio</this.LinkItem>
-                            <this.LinkItem path="/playlist">Playlist</this.LinkItem>
+                            <this.LinkItem path="/story">Story</this.LinkItem>
                             <this.LinkItem path="/contact">Contact</this.LinkItem>
                         </motion.div>
                     </motion.div>
@@ -133,7 +133,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                 >
                     <h3 className="siteName" style={{
                         color: textColor.value
-                    }}>Jaruwat Pohong</h3>
+                    }}>Jaruwat's Website</h3>
                     
                     <AnimatePresence mode='wait' key="pageNameAnimated">
                         {!isToggleNav && crrPageName !== '' &&
@@ -241,11 +241,7 @@ class Header extends React.Component<Props, State, IThemeState> {
         children?: React.ReactNode
     }) {
         const { textColor, crrFeature }: IThemeState = this.context;
-        return <motion.div  className={'link-item'  + (crrFeature === path ? ' active' : '')}
-            whileTap={{
-                scale: .9,
-            }}
-        >
+        return <motion.div  className={'link-item'  + (crrFeature === path ? ' active' : '')}>
             <Link to={path} style={{
                 color: textColor.value
             }}>{children}</Link>
@@ -256,7 +252,7 @@ class Header extends React.Component<Props, State, IThemeState> {
     }
 
     WebRing() {
-        return <motion.a href="https://webring.wonderful.software#jaruwat.dev" title="วงแหวนเว็บ" style={{ position: 'absolute', top: 10, right: 10, zIndex: 100}}>
+        return <motion.a href="https://webring.wonderful.software#jaruwat.dev" title="วงแหวนเว็บ" style={{ position: 'absolute', pointerEvents: 'all'}}>
             <motion.div
                 style={{
                     width: 32,

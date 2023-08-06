@@ -23,7 +23,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     componentDidMount() {
         const { setTextColor, setCrrFeature }: IThemeState = this.context;
         setTextColor('white');
-        setCrrFeature('/');
+        // setCrrFeature('/');
     }
 
     componentWillUnmount(): void {

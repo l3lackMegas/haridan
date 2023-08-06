@@ -12,11 +12,12 @@ import LoadingIcon from './common/LoadingIcon';
 
 // Pages
 import LandingPage from './landing';
-import MusicPage from './music';
+import StoryPage from './story';
 
 import { TextColor, IThemeState } from './context';
 
 import './App.scss';
+import { checkIsMobile } from './lib/utility';
 
 export default function App() {
 	const location = useLocation();
@@ -30,7 +31,7 @@ export default function App() {
                 <AnimatePresence mode='sync' key="routeAnimated">
                     <Routes location={location} key={location.pathname}>
                         <Route key={'home'} path="/" element={<LandingPage key={'ladnding'}/>} />
-                        <Route key={'playlist'} path="/playlist" element={<MusicPage key={'playlistPage'} />} />
+                        <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} />
                     </Routes>
                 </AnimatePresence>
             </AppClass>
@@ -42,6 +43,7 @@ declare global {
     interface Window {
         onLoadSuccessfully: Function;
         onFirstMounted: boolean;
+        isMobile: boolean;
     }
 }
 
@@ -57,6 +59,11 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
 
     state: IAppClassState = {
         isLoaded: false,
+    }
+
+    constructor(props: IAppClassProps) {
+        super(props);
+        window.isMobile = checkIsMobile();
     }
 
     componentDidMount(): void {

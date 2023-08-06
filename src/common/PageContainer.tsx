@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence, motion, stagger } from 'framer-motion';
+import { AnimatePresence, motion, MotionValue, stagger, useMotionValue, useSpring, useTransform, useViewportScroll } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
@@ -28,6 +28,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     };
 
     contentScroll = React.createRef<HTMLDivElement>();
+    smoothElmScroll = React.createRef<HTMLDivElement>();
 
     containerVariant = {
         initial: {
@@ -57,6 +58,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     componentDidMount(): void {
+        this.context.setCrrFeature(this.props.pathName);
         this.setState({
             unieqKey: Date.now(),
         });
@@ -65,6 +67,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         setTimeout(() => {
             this.context.setIsToggleNav(false); 
             window.addEventListener('scroll', this.onScrollHandler);
+            this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
         }, 500);
     }
 
@@ -73,6 +76,12 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     onScrollHandler = (e: Event) => {
+        let scrollling = document.querySelector("#smoothScrolling"),
+            compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
+            matrix = new WebKitCSSMatrix(compos.transform),
+            currentScroll = window.isMobile ? window.scrollY : matrix.m42 * -1;
+        this.context.setParallaxPos(currentScroll);
+
         this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
         this.context.setScrollTop(window.scrollY);
     }
@@ -86,7 +95,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
 
         return (
             <motion.div
-                className={'PageContainer ' + namespace}
+                className={'PageContainer ' + namespace + (window.isMobile ? ' mobile' : '')}
                 key={'PageContainer' + namespace}
                 variants={this.containerVariant}
                 initial='initial'
@@ -137,6 +146,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         ></motion.div>
                     }
                 </AnimatePresence>
+                
                 <motion.button className={'btnTopCenter' + (toggleNav ? ' active' : '')} style={{
                     color: textColor.value
                 }}
@@ -164,6 +174,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         <motion.div className="bgPullMenu" style={{
                             backgroundColor: textColor.value
                         }}></motion.div>
+                        
                         
                         { toggleNav && <motion.div
                             initial={{
@@ -206,17 +217,24 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         </motion.div>}
                     </motion.div>
                 </motion.button>
-                <motion.div className="sub content-overflow" ref={this.contentScroll}
-                    animate={{
-                        y: this.context.scrollTop * -1,
-                        transition: {
-                            duration: 0,
-                            delay: pathName !== crrFeature ? 3 : 0,
-                            ease: 'linear',
-                        }
-                    }}
-                >
-                    {this.props.children}
+                <motion.div className="sub content-overflow" ref={this.contentScroll}>
+                    {
+                        window.window.isMobile && <motion.div
+                            style={{
+                                y: -this.context.scrollTop,
+                            }}
+                        >
+                            {this.props.children}
+                        </motion.div>
+                    }
+                    { !window.window.isMobile &&
+                        <WrapPageScroll
+                            crrPathName={pathName}
+                            ref={this.contentScroll}
+                        >
+                            {this.props.children}
+                        </WrapPageScroll>
+                    }
                 </motion.div>
             </motion.div>
         );
@@ -226,3 +244,43 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
 PageContainer.contextType = TextColor;
 
 export default PageContainer;
+
+const WrapPageScroll = ({ children, crrPathName, ref }: {
+    children: React.ReactNode
+    crrPathName: string
+    ref: React.RefObject<HTMLDivElement>
+}) => {
+
+    const appContext: IThemeState = React.useContext(TextColor);
+
+    const scrollY = useMotionValue(appContext.scrollTop);
+    // const { scrollY } = useViewportScroll()
+    
+
+    // console.log(appContext.crrPageHeight)
+    const transform = useTransform(scrollY, [0, appContext.crrPageHeight], [0, -appContext.crrPageHeight])
+    const physics = {
+        damping: 15,
+        mass: 0.27,
+        stiffness: 100
+    } // easing of smooth scroll
+    const spring = useSpring(transform, physics); // apply easing to the negative scroll value
+
+    React.useLayoutEffect(() => {
+        if(appContext.crrFeature !== crrPathName) {
+            return
+        }
+        scrollY.set(appContext.scrollTop);
+    }, [appContext.crrFeature, appContext.scrollTop, crrPathName, scrollY]);
+
+    return (
+        <motion.div
+            ref={ref}
+            style={{
+                y: spring
+            }}
+        >
+            {children}
+        </motion.div>
+    ); 
+}

@@ -15,6 +15,8 @@ export interface IThemeState {
     setScrollTop: (scrollTop: number) => void;
     crrPageHeight: number;
     setCrrPageHeight: (crrPageHeight: number) => void;
+    parallaxPos: number;
+    setParallaxPos: (pararaxPosition: number) => void;
 }
 
 
@@ -30,6 +32,22 @@ export const TextColor = React.createContext({
     crrFeature: '',
     setCrrFeature: (crrFeature: string) => {
         
+    },
+    isToggleNav: false,
+    setIsToggleNav: (isToggleNav: boolean) => {
+        
+    },
+    scrollTop: 0,
+    setScrollTop: (scrollTop: number) => {
+        
+    },
+    crrPageHeight: 0,
+    setCrrPageHeight: (crrPageHeight: number) => {
+        
+    },
+    parallaxPos: 0,
+    setParallaxPos: (pararaxPosition: number) => {
+
     }
 });
 
@@ -75,6 +93,12 @@ class ContextWraper extends React.Component<PageProps, PageState> {
         setCrrPageHeight: (crrPageHeight: number) => {
             this.setState({
                 crrPageHeight: crrPageHeight,
+            });
+        },
+        parallaxPos: 0,
+        setParallaxPos: (pararaxPosition: number) => {
+            this.setState({
+                parallaxPos: pararaxPosition,
             });
         }
     };
