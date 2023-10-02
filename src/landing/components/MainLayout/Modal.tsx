@@ -47,7 +47,7 @@ class Modal extends Component<IReciept> {
         const { isMounted } = this.state
         // console.log(this.modalRoot.current)
         return isMounted ? ReactDOM.createPortal(<>
-        <AnimatePresence exitBeforeEnter onExitComplete={()=>{
+        <AnimatePresence mode="wait" onExitComplete={()=>{
             if(!isDisableScrollHandle) document.body.style.overflow = ''
         }}>
             { isShow &&
@@ -100,7 +100,7 @@ export function ModalActive({ layoutId, layoutUniqueId, children, modalChildren,
     console.log('layoutUniqueId', layoutUniqueId)
     return (
       <>
-        <AnimatePresence key={`modalActive-${layoutUniqueId}`} exitBeforeEnter>
+        <AnimatePresence key={`modalActive-${layoutUniqueId}`} mode="wait">
             <div className={ prepairing && isDelay ? 'brinessDown' : ''}
             onClick={() => {
                 document.body.style.overflow = 'hidden'

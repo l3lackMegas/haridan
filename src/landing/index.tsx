@@ -17,6 +17,9 @@ import Rewards from "./components/Resume/Rewards"
 import SkillCard from "./components/SkillCard"
 import WorkList from './components/Works/List'
 
+import LandingData from '../data/landing'
+import Credit from './components/MainLayout/Credit';
+
 type PageProps = {
 };
 type PageState = {
@@ -47,7 +50,9 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
         // setCrrFeature('/');
         setTimeout(() => {
             this.setState({
-                mounted: true
+                mounted: true,
+                workItems: LandingData().workItem,
+                resume: LandingData().resume
             });
         }, window.onFirstMounted ? 750 : 1250);
     }
@@ -95,35 +100,62 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
                     }}>
                         <NameCard isReady={mounted} />
                     </motion.div>
-                    <motion.div style={{
-                        position: 'relative',
-                        width: '100vw',
-                        height: '100vh',
+                    <Section id="information" style={{ textAlign: 'left' }}>
+                        <div style={{ padding: '0 20px'}}>
+                            <h1 className="infoTitle">Hi there!</h1>
+                            <div style={{ color: 'rgba(255, 255, 255, .75)' }}>
+                                <div style={{ lineHeight: '30px' }}>
+                                    <p>I am Jaruwat Pohong, a Software Developer who work in Web, Desktop and Mobile application.</p>
+                                    <p>Actually, I am a Frontend Dev and I would like to do anything about web design and frontend development.</p>
+                                    <p>But even if it{"'s"} not a frontend job, I can still enjoy with it. {"<3"}</p>
+                                </div>
+                                <div className="understandCSS">
+                                    <div className="frame">
+                                        <h1 style={{marginTop: 40}}>CSS</h1>
+                                        <h1>IS</h1>
+                                        <h1 style={{transform: 'translateX(-23px)'}}>AWESOME</h1>
+                                    </div>
+                                    <p style={{textAlign: 'center'}}>Just kidding</p>
+                                </div>
+                            </div>
+                        </div>
+                    </Section>
+                    <Section
+                        id="skill-section"
+                        style={{
+                            textAlign: 'center',
+                            backgroundImage: 'url(/img/skill-background.jpg)',
+                            backgroundSize: 'cover',
+                            backgroundPositionY: 1283
                     }}>
-                        <NameCard isReady={mounted} />
-                    </motion.div>
-                    <motion.div style={{
-                        position: 'relative',
-                        width: '100vw',
-                        height: '100vh',
+                        <div style={{ padding: '0 20px'}}>
+                            <h1 className="infoTitle">My Skill</h1>
+                            <SkillCard/>
+                        </div>
+                    </Section>
+
+                    <h1 className="work-list" style={{ textAlign: 'center' }}>My Works</h1>
+                    <Section id="work-section">
+                        <div style={{ padding: '0 10px'}}>
+                            <WorkList layoutUniqueId={`layoutWorklist`} items={ workItems } />
+                        </div>
+                    </Section>
+
+                    <h1 className="infoTitle" style={{ textAlign: 'center' }}>Résumé</h1>
+                    <Section id="resume-section"
+                        style={{
+                            backgroundImage: 'url(/img/mobile-background.jpg)',
+                            backgroundSize: 'cover',
+                            backgroundPositionY: 2424
                     }}>
-                        <NameCard isReady={mounted} />
-                    </motion.div>
-                    <motion.div style={{
-                        position: 'relative',
-                        width: '100vw',
-                        height: '100vh',
-                    }}>
-                        <NameCard isReady={mounted} />
-                    </motion.div>
-                    <motion.div style={{
-                        position: 'relative',
-                        width: '100vw',
-                        height: '100vh',
-                    }}>
-                        <NameCard isReady={mounted} />
-                    </motion.div>
+                        <div style={{ padding: '0 10px'}}>
+                            <Resume title="Experience" data={resume.experience}/>
+                            <Resume title="Rewards" data={resume.rewards}/>
+                            <Resume title="Education" data={resume.education}/>
+                        </div>
+                    </Section>
                 </motion.div>
+                <Credit/>
             </PageContainer>
         );
     }

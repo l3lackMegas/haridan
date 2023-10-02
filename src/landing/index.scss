@@ -3,6 +3,7 @@
     width: 100vw;
     min-height: 100vh;
     background-color: rgb(6, 36, 60);
+    color: white;
 }
 
 .parallaxHero {
@@ -34,4 +35,145 @@
         height: 100%;
         background-image: linear-gradient(rgba(6, 36, 60, 0), rgb(6, 36, 60));
     }
+}
+
+.infoTitle {
+    margin: 50px 0;
+    color: white;
+}
+
+.understandCSS {
+    position: relative;
+    margin: 50px auto;
+    width: fit-content;
+}
+
+.understandCSS .frame {
+    position: relative;
+    margin: auto;
+    padding: 10px;
+    width: 200px;
+    white-space: nowrap;
+    font-size: 15px;
+    text-align: left;
+    border: 3px white solid;
+}
+
+.harfShade {
+    position: relative;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.harfShade::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(to right,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, .75),
+                    rgba(255, 255, 255, 0));
+}
+
+.harfShade .topic {
+    padding-top: 50px;
+    padding-right: 50px;
+    width: 100%;
+    text-align: right;
+    border-right: 1px rgba(255, 255, 255, .1) solid;
+}
+
+.harfShade .topic .navContainer {
+    position: sticky;
+    top: 30px;
+}
+
+.harfShade .topic .navContainer h2 {
+    font-weight: 600;
+    color: white;
+}
+
+.harfShade .topic .navContainer a {
+    color: rgba(255, 255, 255, .75);
+}
+
+.harfShade .topic .navContainer svg {
+    color: white;
+}
+
+.harfShade .detail {
+    padding-top: 50px;
+    padding-left: 50px;
+    width: calc(100% - 50px);
+    overflow: hidden;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .75);
+    z-index: 10009;
+}
+
+.modal .modalContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 95vw;
+    max-height: 95vh;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.modal .modalContainer .sub {
+    background-color: #313131;
+}
+
+.modal .modalContainer .xButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 10px;
+    text-align: right;
+    font-family: inherit;
+    font-weight: 100;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: default;
+    transition-duration: .25s;
+}
+
+.modal .modalContainer .xButton:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal .modalContainer .xButton:active {
+    background-color: rgba(0, 0, 0, 0.5);
+    transition-duration: .1s;
+}
+
+.brinessDown {
+    filter: brightness(.5);
+    transition-duration: 1s;
+}
+
+.credit {
+    padding: 10px;
+    width: 100%;
+    text-align: right;
+    font-size: 15px;
+    color: rgb(255 255 255 / 75%);
+    text-align: center;
+    background-color: #041b2d;
+}
+
+.credit p {
+    display: inline;
 }
