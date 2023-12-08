@@ -8,51 +8,28 @@ import { TextColor, IThemeState } from '../context';
 
 import PageContainer from '../common/PageContainer';
 
-import Section from "./components/MainLayout/Section"
-import NameCard from './components/NameCard';
-import Resume from './components/Resume'
-import Education from "./components/Resume/Education"
-import Experience from "./components/Resume/Experience"
-import Rewards from "./components/Resume/Rewards"
-import SkillCard from "./components/SkillCard"
-import WorkList from './components/Works/List'
 
 import LandingData from '../data/landing'
-import Credit from './components/MainLayout/Credit';
 
 type PageProps = {
 };
 type PageState = {
     mounted: boolean;
-    workItems: any[];
-    resume: {
-        experience: any[];
-        rewards: any[];
-        education: any[];
-    }
 };
 class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     context!: IThemeState;
 
     state: PageState = {
         mounted: false,
-        workItems: [],
-        resume: {
-            experience: [],
-            rewards: [],
-            education: []
-        },
     };
 
     componentDidMount() {
         const { setTextColor, setCrrFeature }: IThemeState = this.context;
-        setTextColor('white');
+        setTextColor('#895252', '#fd9595');
         // setCrrFeature('/');
         setTimeout(() => {
             this.setState({
                 mounted: true,
-                workItems: LandingData().workItem,
-                resume: LandingData().resume
             });
         }, window.onFirstMounted ? 750 : 1250);
     }
@@ -65,98 +42,129 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
         }
     }
 
+    landingTextAnimateVariant = {
+        hidden: {
+            opacity: 0,
+        },
+        show: {
+            opacity: 1,
+            transition: {
+                duration: .25,
+                ease: 'easeInOut',
+                delay: .5,
+                staggerChildren: 0.025,
+                delayChildren: 0.5,
+            },
+        },
+    }
+
+    variantEachLetter = {
+        hidden: {
+            opacity: 0,
+            // x: 150,
+            y: 150,
+        },
+        show: {
+            opacity: 1,
+            // x: 0,
+            y: 0,
+            transition: {
+                duration: .5,
+                ease: 'easeInOut',
+            },
+        },
+    }
+
     render() {
-        const { mounted, workItems, resume } = this.state;
+        const { mounted, } = this.state;
         return (
             <PageContainer key={'home'} pathName='/'>
                 <motion.div
                     className='landing-page'
                     key={'landingPage'}
+                    style={{
+                        fontSize: 'calc(150/1920*100*1vw)',
+                        lineHeight: 1,
+                    }}
                 >
-                    <motion.div className="parallaxHero"
-                        initial={{ opacity: 0, scale: 1.8 }}
-                        animate={{ 
-                            opacity: 1,
-                            scale: 1,
-                        }}
-                        // transition={{ duration: 1 }}
-                        transition={{
-                            delay: .5,
-                            duration: 5,
-                            ease: [0.05, 0.025, 0, 1]
-                        }}
-                        style={{
-                            // backgroundPositionY: this.context.parallaxPos / 2
-                        }}
+                    <br/>
+                    <motion.div
+                        className='centerContain'
+                        // style={{
+                        //     textAlign: 'right',
+                        // }}
                     >
-                        <motion.div className='sub'>
-                            <motion.div className="gradient"></motion.div>
-                        </motion.div>
+                        <motion.p
+                            variants={this.landingTextAnimateVariant}
+                            initial="hidden"
+                            animate="show"
+                            style={{
+                                whiteSpace: 'nowrap',
+                                fontWeight: 'normal',
+                            }}
+                        >
+                           
+                            <this.wrapLetterAnimated letter='l' />
+                            <this.wrapLetterAnimated letter="3" />
+                            <this.wrapLetterAnimated letter='l' />
+                            <this.wrapLetterAnimated letter='a' />
+                            <this.wrapLetterAnimated letter='c' />
+                            <this.wrapLetterAnimated letter='k' />
+                            <this.wrapLetterAnimated letter='M' />
+                            <this.wrapLetterAnimated letter='e' />
+                            <this.wrapLetterAnimated letter='g' />
+                            <this.wrapLetterAnimated letter='a' />
+                            <this.wrapLetterAnimated letter='s' />
+                            {/* <motion.div style={{
+                                display: 'inline-block',
+                                width: 'calc(100/2920*100*1vw)',
+                            }}></motion.div>
+                            <this.wrapLetterAnimated letter='I' />
+                            <this.wrapLetterAnimated letter='S' /> */}
+                        </motion.p>
+                        <motion.p
+                            style={{
+                                whiteSpace: 'nowrap',
+                                fontWeight: 'bold',
+                                fontSize: '0.5em',
+                                backgroundColor: '#895252',
+                                color: 'white',
+                                display: 'inline-block',
+                                padding: '0 10px',
+                                overflow: 'hidden',
+                            }}
+                            initial={{
+                                opacity: 0,
+                                // x: 150,
+                                y: 150,
+                            }}
+                            animate={{
+                                opacity: 1,
+                                // x: 0,
+                                y: 0,
+                                transition: {
+                                    duration: .5,
+                                    ease: 'easeInOut',
+                                    delay: .65,
+                                },
+                            }}
+                        >SOFTWARE DEVELOPER</motion.p>
                     </motion.div>
-                    <motion.div style={{
-                        position: 'relative',
-                        width: '100vw',
-                        height: '100vh',
-                    }}>
-                        <NameCard isReady={mounted} />
-                    </motion.div>
-                    <Section id="information" style={{ textAlign: 'left' }}>
-                        <div style={{ padding: '0 20px'}}>
-                            <h1 className="infoTitle">Hi there!</h1>
-                            <div style={{ color: 'rgba(255, 255, 255, .75)' }}>
-                                <div style={{ lineHeight: '30px' }}>
-                                    <p>I am Jaruwat Pohong, a Software Developer who work in Web, Desktop and Mobile application.</p>
-                                    <p>Actually, I am a Frontend Dev and I would like to do anything about web design and frontend development.</p>
-                                    <p>But even if it{"'s"} not a frontend job, I can still enjoy with it. {"<3"}</p>
-                                </div>
-                                <div className="understandCSS">
-                                    <div className="frame">
-                                        <h1 style={{marginTop: 40}}>CSS</h1>
-                                        <h1>IS</h1>
-                                        <h1 style={{transform: 'translateX(-23px)'}}>AWESOME</h1>
-                                    </div>
-                                    <p style={{textAlign: 'center'}}>Just kidding</p>
-                                </div>
-                            </div>
-                        </div>
-                    </Section>
-                    <Section
-                        id="skill-section"
-                        style={{
-                            textAlign: 'center',
-                            backgroundImage: 'url(/img/skill-background.jpg)',
-                            backgroundSize: 'cover',
-                            backgroundPositionY: 1283
-                    }}>
-                        <div style={{ padding: '0 20px'}}>
-                            <h1 className="infoTitle">My Skill</h1>
-                            <SkillCard/>
-                        </div>
-                    </Section>
-
-                    <h1 className="work-list" style={{ textAlign: 'center' }}>My Works</h1>
-                    <Section id="work-section">
-                        <div style={{ padding: '0 10px'}}>
-                            <WorkList layoutUniqueId={`layoutWorklist`} items={ workItems } />
-                        </div>
-                    </Section>
-
-                    <h1 className="infoTitle" style={{ textAlign: 'center' }}>Résumé</h1>
-                    <Section id="resume-section"
-                        style={{
-                            backgroundImage: 'url(/img/mobile-background.jpg)',
-                            backgroundSize: 'cover',
-                            backgroundPositionY: 2424
-                    }}>
-                        <div style={{ padding: '0 10px'}}>
-                            <Resume title="Experience" data={resume.experience}/>
-                            <Resume title="Rewards" data={resume.rewards}/>
-                            <Resume title="Education" data={resume.education}/>
-                        </div>
-                    </Section>
                 </motion.div>
-                <Credit/>
             </PageContainer>
+        );
+    }
+
+    wrapLetterAnimated = ({letter} : {
+        letter?: string,
+    }) => {
+        return (
+            <motion.span
+                variants={this.variantEachLetter}
+                style={{
+                    display: 'inline-block',
+                }}
+            >{letter}</motion.span>
         );
     }
 }

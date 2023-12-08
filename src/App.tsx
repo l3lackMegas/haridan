@@ -12,6 +12,8 @@ import LoadingIcon from './common/LoadingIcon';
 
 // Pages
 import LandingPage from './landing';
+import AboutPage from './about';
+import ResumePage from './resume';
 import StoryPage from './story';
 
 import { TextColor, IThemeState } from './context';
@@ -30,8 +32,9 @@ export default function App() {
             <AppClass>
                 <AnimatePresence mode='sync' key="routeAnimated">
                     <Routes location={location} key={location.pathname}>
-                        <Route key={'home'} path="/" element={<LandingPage key={'ladnding'}/>} />
-                        <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} />
+                        <Route key={'resume'} path="/" element={<ResumePage key={'resume'}/>} />
+                        <Route key={'about'} path="/about" element={<AboutPage key={'about'}/>} />
+                        {/* <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} /> */}
                     </Routes>
                 </AnimatePresence>
             </AppClass>

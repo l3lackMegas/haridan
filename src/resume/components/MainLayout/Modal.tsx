@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom'
 /* External Module */
 import { AnimatePresence, motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 interface IReciept {
     id?: number | string
@@ -47,7 +47,7 @@ class Modal extends Component<IReciept> {
         const { isMounted } = this.state
         // console.log(this.modalRoot.current)
         return isMounted ? ReactDOM.createPortal(<>
-        <AnimatePresence mode="sync" onExitComplete={()=>{
+        <AnimatePresence key={`animated-modal-${id}`} mode="sync" onExitComplete={()=>{
             if(!isDisableScrollHandle) document.body.style.overflow = ''
         }}>
             { isShow &&
@@ -67,7 +67,9 @@ class Modal extends Component<IReciept> {
                         <div className="sub" onClick={()=>{onClose()}}></div>
                         <motion.div className="modalContainer" style={style}>
                             <motion.div className="sub" layoutId={`modalCard-${id}`}>
-                                <h2 className="xButton" onClick={()=>{onClose()}}>X</h2>
+                                <h2 className="xButton" onClick={()=>{onClose()}}>
+                                    <FontAwesomeIcon icon={faTimes}/>
+                                </h2>
                                 { children }
                             </motion.div>
                         </motion.div>

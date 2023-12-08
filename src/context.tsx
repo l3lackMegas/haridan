@@ -6,7 +6,8 @@ export interface IThemeStateObject {
 
 export interface IThemeState {
     textColor: IThemeStateObject;
-    setTextColor: (textColor: string) => void;
+    setTextColor: (textColor: string, textNavColor?: string) => void;
+    textNavColor: IThemeStateObject;
     crrFeature: string;
     setCrrFeature: (textColor: string) => void;
     isToggleNav: boolean;
@@ -26,9 +27,10 @@ const TextColorObject: IThemeStateObject = {
 };
 export const TextColor = React.createContext({
     textColor: TextColorObject,
-    setTextColor: (textColor: string) => {
+    setTextColor: (textColor: string, textNavColor?: string) => {
         
     },
+    textNavColor: TextColorObject,
     crrFeature: '',
     setCrrFeature: (crrFeature: string) => {
         
@@ -64,18 +66,44 @@ class ContextWraper extends React.Component<PageProps, PageState> {
         textColor: {
             value: 'white',
         },
-        setTextColor: (textColor: string) => {
+        setTextColor: (textColor: string, textNavColor?: string) => {
             this.setState({
                 textColor: {
                     value: textColor,
-                }
+                },
+                textNavColor: {
+                    value: textNavColor || 'white',
+                },
             });
+        },
+        textNavColor: {
+            value: 'white',
         },
         crrFeature: '',
         setCrrFeature: (crrFeature: string) => {
             this.setState({
                 crrFeature: crrFeature,
             });
+            let crrPageName = ' - Jaruwat.dev';
+            switch(crrFeature) {
+                case '/':
+                    crrPageName = 'Resume' + crrPageName;
+                    break;
+                case '/about':
+                    crrPageName = 'About' + crrPageName;
+                    break;
+                case '/story':
+                    crrPageName = 'Story' + crrPageName;
+                    break;
+                case '/contact':
+                    crrPageName = 'Contact' + crrPageName;
+                    break;
+                default:
+                    crrPageName = 'Jaruwat.dev';
+                    break;
+            }
+
+            window.document.title = crrPageName;
         },
         isToggleNav: false,
         setIsToggleNav: (isToggleNav: boolean) => {

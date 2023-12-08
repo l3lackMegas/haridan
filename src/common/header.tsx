@@ -58,13 +58,16 @@ class Header extends React.Component<Props, State, IThemeState> {
     }
 
     render() {
-        const { textColor, crrFeature, isToggleNav }: IThemeState = this.context;
+        const { textColor, textNavColor, crrFeature, isToggleNav }: IThemeState = this.context;
         // console.log(this.context)
 
         let crrPageName = '';
         switch(crrFeature) {
             case '/':
-                crrPageName = 'Portfolio';
+                crrPageName = 'Resume';
+                break;
+            case '/about':
+                crrPageName = 'About';
                 break;
             case '/story':
                 crrPageName = 'Story';
@@ -101,6 +104,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                 >
                     <AnimatePresence mode='wait' key="pageNameWebringAnimated">
                         <motion.div className="sub"
+                            key={'headerSubItem'}
                             animate={{
                                 y: isToggleNav ? 0 : -100,
                                 opacity: isToggleNav ? 1 : 0,
@@ -116,12 +120,14 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 initial='hidden'
                                 animate='show'
                             >
-                                <this.LinkItem path="/">Portfolio</this.LinkItem>
-                                <this.LinkItem path="/story">Story</this.LinkItem>
-                                <this.LinkItem path="/contact">Contact</this.LinkItem>
+                                <this.LinkItem path="/">Resume</this.LinkItem>
+                                <this.LinkItem path="/about">About</this.LinkItem>
+                                {/* <this.LinkItem path="/story">Story</this.LinkItem>
+                                <this.LinkItem path="/contact">Playlist</this.LinkItem> */}
                             </motion.div>
                         </motion.div>
                         <motion.div className="small-nav"
+                            key={'headerSubWebRing'}
                             initial={{
                                 y: -100,
                                 opacity: 0,
@@ -139,7 +145,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                             {isToggleNav &&
                                 <motion.h3
                                     className="pageName" style={{
-                                        color: textColor.value
+                                        color: isToggleNav ? textNavColor.value : textColor.value
                                     }}
                                     initial={{
                                         opacity: 0,
@@ -176,15 +182,15 @@ class Header extends React.Component<Props, State, IThemeState> {
                         }
                     }}
                 >
-                    <h3 className="siteName" style={{
-                        color: textColor.value
-                    }}>Jaruwat's Website</h3>
+                    <motion.h3 className="siteName" style={{
+                        color: isToggleNav ? textNavColor.value : textColor.value
+                    }}>{crrPageName}</motion.h3>
                     
                     <AnimatePresence mode='wait' key="pageNameAnimated">
                         {!isToggleNav && crrPageName !== '' &&
                             <motion.h3
                                 className="pageName" style={{
-                                    color: textColor.value
+                                    color: isToggleNav ? textNavColor.value : textColor.value
                                 }}
                                 initial={{
                                     opacity: 0,
@@ -203,16 +209,28 @@ class Header extends React.Component<Props, State, IThemeState> {
                                     }
                                 }}
                             >
-                                <motion.div
+                                {/* <motion.div
                                     layoutId={'link-item-crr-page'}
-                                >{crrPageName}</motion.div>
+                                >{crrPageName}</motion.div> */}
+                                <motion.div style={{
+                                    position: 'fixed',
+                                    top: 10,
+                                    right: 10,
+                                    padding: '10px',
+                                    width: 52,
+                                    height: 51,
+                                    backgroundColor: 'rgba(0, 0, 0, .5)',
+                                    borderRadius: '50%',
+                                }}>
+                                    <this.WebRing />
+                                </motion.div>
                             </motion.h3>   
                         }
                     </AnimatePresence>
-                    <div style={{
-                        opacity: 0,
-                        pointerEvents: 'none'
-                    }}><this.WebRing/></div>
+                    {/* <div style={{
+                        // opacity: 0,
+                        // pointerEvents: 'none'
+                    }}><this.WebRing/></div> */}
                 </motion.div>
 
                 <motion.div className="socialLink">
@@ -231,17 +249,17 @@ class Header extends React.Component<Props, State, IThemeState> {
                         }}
                     >
                         <a href="https://www.facebook.com/Jaruwat.P" target="_blank" rel="noreferrer" style={{
-                            color: textColor.value
+                            color: isToggleNav ? textNavColor.value : textColor.value
                         }}>
                             <FontAwesomeIcon icon={faFacebook} />
                         </a>
                         <a href="mailto:contact@jaruwat.dev" target="_blank" rel="noreferrer" style={{
-                            color: textColor.value
+                            color: isToggleNav ? textNavColor.value : textColor.value
                         }}>
                             <FontAwesomeIcon icon={faAt} />
                         </a>
                         <a href="https://github.com/l3lackMegas" target="_blank" rel="noreferrer" style={{
-                            color: textColor.value
+                            color: isToggleNav ? textNavColor.value : textColor.value
                         }}>
                             <FontAwesomeIcon icon={faGithub} />
                         </a>
@@ -259,18 +277,18 @@ class Header extends React.Component<Props, State, IThemeState> {
         path: string,
         children?: React.ReactNode
     }) {
-        const { textColor, crrFeature }: IThemeState = this.context;
+        const { textColor, textNavColor, crrFeature, isToggleNav }: IThemeState = this.context;
         return <motion.div  className={'link-item'  + (crrFeature === path ? ' active' : '')}>
             <Link to={path} style={{
-                color: textColor.value
+                color: isToggleNav ? textNavColor.value : textColor.value
             }}>{children}</Link>
             <motion.div className={"underline-text"} style={{
-                backgroundColor: textColor.value
+                backgroundColor: isToggleNav ? textNavColor.value : textColor.value
             }}></motion.div>
         </motion.div>;
     }
 
-    WebRing() {
+    WebRing({isBlack}: {isBlack?: boolean}) {
         return <motion.a href="https://webring.wonderful.software#jaruwat.dev" title="วงแหวนเว็บ" style={{ display: 'inline-block', pointerEvents: 'all'}}>
             <motion.div
                 style={{
@@ -300,7 +318,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                     alt="วงแหวนเว็บ"
                     width="32"
                     height="32"
-                    src="https://webring.wonderful.software/webring.white.svg"
+                    src={`https://webring.wonderful.software/webring.${isBlack ? 'black' : 'white'}.svg`}
                 />
             </motion.div>
         </motion.a>;

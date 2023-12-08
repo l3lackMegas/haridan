@@ -318,13 +318,13 @@ const WrapPageScroll = ({ children, crrPathName, refSmooth }: {
         }
         scrollY.set(appContext.scrollTop);
     }, [appContext.crrFeature, appContext.scrollTop, crrPathName, scrollY]);
-    console.log(scrollY)
+    // console.log(scrollY)
     return (
         <motion.div
             ref={refSmooth}
             // className="scroll-container"
             style={{
-                y: -scrollY.get(),
+                y: -scrollY.get() * 0.00005,
             }}
         >
             {children}
