@@ -51,7 +51,7 @@ class List extends Component<IReciept> {
                                 date.from.getFullYear().toString() :
                                 `${date.from.getFullYear()} - ${date.to.getFullYear()}`
                     return <motion.div
-                        key={i}
+                        key={ctx.id}
                         whileHover={{
                             y: -5
                         }}

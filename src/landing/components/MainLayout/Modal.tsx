@@ -47,7 +47,7 @@ class Modal extends Component<IReciept> {
         const { isMounted } = this.state
         // console.log(this.modalRoot.current)
         return isMounted ? ReactDOM.createPortal(<>
-        <AnimatePresence mode="wait" onExitComplete={()=>{
+        <AnimatePresence mode="sync" onExitComplete={()=>{
             if(!isDisableScrollHandle) document.body.style.overflow = ''
         }}>
             { isShow &&
@@ -97,10 +97,10 @@ interface ModalActive {
 export function ModalActive({ layoutId, layoutUniqueId, children, modalChildren, modalStyle, isDelay, closeAnyWhere, isDisableScrollHandle, onClose }: ModalActive) {
     const [showModal, setShowModal] = useState(false);
     const [prepairing, setPrepairState] = useState(false);
-    console.log('layoutUniqueId', layoutUniqueId)
+    // console.log('layoutUniqueId', layoutUniqueId)
     return (
       <>
-        <AnimatePresence key={`modalActive-${layoutUniqueId}`} mode="wait">
+        <AnimatePresence key={`modalActive-${layoutUniqueId}`} mode="sync">
             <div className={ prepairing && isDelay ? 'brinessDown' : ''}
             onClick={() => {
                 document.body.style.overflow = 'hidden'
@@ -110,6 +110,7 @@ export function ModalActive({ layoutId, layoutUniqueId, children, modalChildren,
                 { children }
             </div>
             <Modal
+                key={`modalActive-${layoutUniqueId}`}
                 style={modalStyle}
                 id={layoutId}
                 onClose={() => {

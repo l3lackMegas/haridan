@@ -95,30 +95,71 @@ class Header extends React.Component<Props, State, IThemeState> {
                     }}
 
                     style={{
-                        zIndex: isToggleNav ? 100000 : -1,
+                        zIndex: 100000,
+                        pointerEvents: isToggleNav ? 'all' : 'none',
                     }}
                 >
-                    <motion.div className="sub"
-                        animate={{
-                            y: isToggleNav ? 0 : -100,
-                            opacity: isToggleNav ? 1 : 0,
-                            transition: {
-                                duration: .5,
-                                delay: isToggleNav ? .4 : .1,
-                                ease: [0.5, 0.025, 0, 1],
-                            }
-                        }}
-                    >
-                        <motion.div className="link-contain"
-                            variants={this.containerVariant}
-                            initial='hidden'
-                            animate='show'
+                    <AnimatePresence mode='wait' key="pageNameWebringAnimated">
+                        <motion.div className="sub"
+                            animate={{
+                                y: isToggleNav ? 0 : -100,
+                                opacity: isToggleNav ? 1 : 0,
+                                transition: {
+                                    duration: .5,
+                                    delay: isToggleNav ? .4 : .1,
+                                    ease: [0.5, 0.025, 0, 1],
+                                }
+                            }}
                         >
-                            <this.LinkItem path="/">Portfolio</this.LinkItem>
-                            <this.LinkItem path="/story">Story</this.LinkItem>
-                            <this.LinkItem path="/contact">Contact</this.LinkItem>
+                            <motion.div className="link-contain"
+                                variants={this.containerVariant}
+                                initial='hidden'
+                                animate='show'
+                            >
+                                <this.LinkItem path="/">Portfolio</this.LinkItem>
+                                <this.LinkItem path="/story">Story</this.LinkItem>
+                                <this.LinkItem path="/contact">Contact</this.LinkItem>
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
+                        <motion.div className="small-nav"
+                            initial={{
+                                y: -100,
+                                opacity: 0,
+                            }}
+                            animate={{
+                                y: 0,
+                                opacity: 1,
+                                transition: {
+                                    duration: .5,
+                                    delay: 1,
+                                    ease: [0.5, 0.025, 0, 1],
+                                }
+                            }}
+                        >
+                            {isToggleNav &&
+                                <motion.h3
+                                    className="pageName" style={{
+                                        color: textColor.value
+                                    }}
+                                    initial={{
+                                        opacity: 0,
+                                    }}
+                                    animate={{
+                                        opacity: 1,
+                                        transition: {
+                                            delay: .5,
+                                            duration: .5,
+                                        }
+                                    }}
+                                    exit={{
+                                        opacity: 0
+                                    }}
+                                >
+                                    <this.WebRing/>
+                                </motion.h3>
+                            }
+                        </motion.div>
+                    </AnimatePresence>
                 </motion.div>
                 <motion.div className="small-nav"
                     initial={{
@@ -166,33 +207,6 @@ class Header extends React.Component<Props, State, IThemeState> {
                                     layoutId={'link-item-crr-page'}
                                 >{crrPageName}</motion.div>
                             </motion.h3>   
-                        }
-                    </AnimatePresence>
-                    <AnimatePresence mode='wait' key="pageNameWebringAnimated">
-                        {isToggleNav &&
-                            <motion.h3
-                                className="pageName" style={{
-                                    color: textColor.value
-                                }}
-                                initial={{
-                                    opacity: 0,
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    transition: {
-                                        delay: .5,
-                                        duration: .5,
-                                    }
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    transition: {
-                                        duration: .5,
-                                    }
-                                }}
-                            >
-                                <this.WebRing/>
-                            </motion.h3>
                         }
                     </AnimatePresence>
                     <div style={{

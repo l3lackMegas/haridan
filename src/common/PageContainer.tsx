@@ -14,11 +14,12 @@ type Props = {
     children: React.ReactNode
 };
 type State = {
-    toggleNav: Boolean,
-    mounted: Boolean,
+    toggleNav: boolean,
+    mounted: boolean,
     unieqKey: number,
     scrollY: number,
-    isNavToggling: Boolean,
+    isNavToggling: boolean,
+    isToggleNavContext: boolean,
 };
 class PageContainer extends React.Component<Props, State, IThemeState> {
     context!: IThemeState;
@@ -29,6 +30,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         unieqKey: 0,
         scrollY: 0,
         isNavToggling: false,
+        isToggleNavContext: false,
     };
 
     contentScroll = React.createRef<HTMLDivElement>();
@@ -103,7 +105,8 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     toggleNavHandler() {
         if(this.state.isNavToggling) return;
         this.setState({
-            isNavToggling: true
+            isNavToggling: true,
+            isToggleNavContext: !this.state.toggleNav
         });
         this.context.setIsToggleNav(!this.state.toggleNav);
 
@@ -112,13 +115,13 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                 toggleNav: !this.state.toggleNav,
                 isNavToggling: false
             });
-        }, this.state.toggleNav ? 750 : 0);
+        }, this.state.toggleNav ? 500 : 0);
     }
 
     render() {
         const { textColor, crrFeature, isToggleNav, setIsToggleNav }: IThemeState = this.context;
         const { pathName } = this.props;
-        const { toggleNav, mounted, unieqKey, scrollY } = this.state;
+        const { isToggleNavContext, toggleNav, mounted, unieqKey, scrollY } = this.state;
 
         const namespace = (pathName.split('/')[1] || 'home') + unieqKey.toString();
 
@@ -166,10 +169,6 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                                 }}
                                 exit={{
                                     opacity: 0,
-                                    transition: {
-                                        duration: .75,
-                                        ease: [0.5, 0.025, 0, 1],
-                                    }
                                 }}
                                 onClick={() => {
                                     this.toggleNavHandler();
@@ -247,7 +246,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                             }}></motion.div>
                             
                             
-                            { toggleNav && <motion.div
+                            { isToggleNavContext && <motion.div
                                 initial={{
                                     opacity: 0,
                                 }}
@@ -258,16 +257,13 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                                     }
                                 }}
                                 exit={{
-                                    opacity: 0,
-                                    transition: {
-                                        duration: .25,
-                                    }
+                                    opacity: 0
                                 }}
                             >
                                 <FontAwesomeIcon icon={faChevronUp}/>
                             </motion.div>}
                             
-                            { !toggleNav && <motion.div
+                            { !isToggleNavContext && <motion.div
                                 initial={{
                                     opacity: 0,
                                 }}
@@ -278,10 +274,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                                     }
                                 }}
                                 exit={{
-                                    opacity: 0,
-                                    transition: {
-                                        duration: .25,
-                                    }
+                                    opacity: 0
                                 }}
                             >
                                 <FontAwesomeIcon icon={faChevronDown}/>
