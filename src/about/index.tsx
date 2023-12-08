@@ -7,6 +7,8 @@ import './index.scss';
 import { TextColor, IThemeState } from '../context';
 
 import PageContainer from '../common/PageContainer';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWarning } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -202,6 +204,18 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
                         </motion.div>
                     </motion.div>
                 </motion.div>
+                <p style={{
+                    position: 'fixed',
+                    bottom: 30,
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    color: 'white',
+                    fontSize: '1.1em',
+                }}>
+                    <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} />
+                    <span style={{margin: '0 10px'}}>This page is under construction.</span>
+                    <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} />
+                </p>
             </PageContainer>
         );
     }
