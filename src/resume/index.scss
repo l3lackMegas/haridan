@@ -203,3 +203,18 @@
 .credit p {
     display: inline;
 }
+
+@media screen and (max-width: 768px) {
+    .harfShade {
+        grid-template-columns: 40% 60%;
+    }
+
+    .harfShade .topic {
+        padding-right: 20px;
+    }
+
+    .harfShade .detail {
+        padding-left: 20px;
+        width: calc(100% - 20px);
+    }
+}
