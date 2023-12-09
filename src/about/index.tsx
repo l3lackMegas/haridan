@@ -211,9 +211,10 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
                     transform: 'translateX(-50%)',
                     color: 'white',
                     fontSize: '1.1em',
+                    whiteSpace: 'nowrap' 
                 }}>
                     <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} />
-                    <span style={{margin: '0 10px'}}>This page is under construction.</span>
+                    <span style={{margin: '0 10px' }}>This page is under construction.</span>
                     <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} />
                 </p>
             </PageContainer>
