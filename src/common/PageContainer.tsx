@@ -8,18 +8,22 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { TextColor, IThemeState } from '../context';
 
 import './PageContainer.scss';
+import { checkIsMobile, isSafari } from '../lib/utility';
 
 type Props = {
     pathName: string,
-    children: React.ReactNode
+    children: React.ReactNode,
+    parallaxCallback?: (pallraxPos: number) => void
 };
 type State = {
     toggleNav: boolean,
     mounted: boolean,
     unieqKey: number,
     scrollY: number,
+    currentScroll: number,
+    pageHeight: number,
     isNavToggling: boolean,
-    isToggleNavContext: boolean,
+    isToggleNavContext: boolean
 };
 class PageContainer extends React.Component<Props, State, IThemeState> {
     context!: IThemeState;
@@ -29,6 +33,8 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         mounted: false,
         unieqKey: 0,
         scrollY: 0,
+        currentScroll: 0,
+        pageHeight: 0,
         isNavToggling: false,
         isToggleNavContext: false,
     };
@@ -65,7 +71,10 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         }
     }
 
+    isCanNotSmooth = false;
+
     componentDidMount(): void {
+        this.isCanNotSmooth = checkIsMobile() || isSafari()
         this.context.setCrrFeature(this.props.pathName);
         this.setState({
             unieqKey: Date.now(),
@@ -77,14 +86,28 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
             this.context.setIsToggleNav(false); 
             window.addEventListener('scroll', this.onScrollHandler);
             this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
+            this.setState({
+                pageHeight: this.contentScroll.current?.clientHeight || 0,
+            });
         }, 500);
+
+        if(!this.isCanNotSmooth) {
+            window.addEventListener("scroll", this.onScrollHandler)
+
+            let observer = new MutationObserver(this.onScrollHandler),
+                scrollling: any = document.querySelector("#smoothScrolling")
+            observer.observe(scrollling, {
+                attributes: true,
+                attributeFilter: ['style'],
+            });
+        }
     }
 
     componentWillUnmount(): void {
         window.removeEventListener('scroll', this.onScrollHandler);
     }
 
-    onScrollHandler = (e: Event) => {
+    onScrollHandler: any = (e: Event) => {
         // if(this.context.crrFeature === this.props.pathName) {
         //     let scrollling = this.smoothElmScroll.current,
         //         compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
@@ -93,12 +116,20 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         //     this.context.setParallaxPos(currentScroll);   
         // }
 
-        this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
-        this.context.setScrollTop(window.scrollY);
+        // this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
+        // this.context.setScrollTop(window.scrollY);
         if(this.context.crrFeature === this.props.pathName) {
+            let scrollling = document.querySelector("#smoothScrolling"),
+                compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
+                matrix = new WebKitCSSMatrix(compos.transform),
+                currentScroll = window.isMobile ? window.scrollY : matrix.m42 * -1;
             this.setState({
-                scrollY: window.scrollY
+                scrollY: window.scrollY,
+                currentScroll: currentScroll,
+                pageHeight: this.contentScroll.current?.clientHeight || 0,
             });
+            
+            if(this.props.parallaxCallback) this.props.parallaxCallback(currentScroll);
         }
     }
 
@@ -119,9 +150,9 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     render() {
-        const { textColor, crrFeature, isToggleNav, setIsToggleNav }: IThemeState = this.context;
+        const { textColor, crrFeature, isToggleNav, setIsToggleNav, isCanNotSmooth }: IThemeState = this.context;
         const { pathName } = this.props;
-        const { isToggleNavContext, toggleNav, mounted, unieqKey, scrollY } = this.state;
+        const { isToggleNavContext, toggleNav, mounted, unieqKey, scrollY, currentScroll } = this.state;
 
         const namespace = (pathName.split('/')[1] || 'home') + unieqKey.toString();
 
@@ -180,20 +211,28 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         crrPathName={pathName}
                         refSmooth={this.smoothElmScroll}
                     > */}
-                        <motion.div className="sub content-overflow" ref={this.contentScroll}
+                        <motion.div
+                            // className="scroll-container"
                             style={{
-                                y: toggleNav ? -scrollY : 0,
+                                position: 'fixed',
+                                y: -currentScroll,
                             }}
                         >
-                            {this.props.children}
+                            <motion.div className="sub content-overflow" ref={this.contentScroll}
+                                style={{
+                                    // y: toggleNav ? -scrollY : 0,
+                                }}
+                            >
+                                {this.props.children}
+                            </motion.div>
                         </motion.div>
                     {/* </WrapPageScroll> */}
                 </motion.div>
-                { toggleNav &&
+                {/* { toggleNav && */}
                     <div style={{
-                        height: this.context.crrPageHeight,
+                        height: this.state.pageHeight,
                     }}></div>
-                }
+                
                 
                 <motion.div
                     className={'PageContainer toggled'}
@@ -217,7 +256,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         overflow: 'unset',
                     }}
                 >
-                    <motion.button className={'btnTopCenter' + (toggleNav ? ' active' : '')} style={{
+                    <motion.button className={'btnTopCenter' + (toggleNav ? ' ' : '')} style={{
                             color: textColor.value,
                             pointerEvents: 'all',
                             zIndex: 9999,

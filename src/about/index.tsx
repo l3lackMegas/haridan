@@ -160,7 +160,7 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
                                     height: 73
                                 }}
                             >
-                                <AnimatePresence mode='wait'
+                                <AnimatePresence mode='sync'
                                     key={'about-me-text'}
                                 >
                                 

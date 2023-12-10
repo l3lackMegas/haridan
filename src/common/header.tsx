@@ -102,7 +102,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                         pointerEvents: isToggleNav ? 'all' : 'none',
                     }}
                 >
-                    <AnimatePresence mode='wait' key="pageNameWebringAnimated">
+                    <AnimatePresence mode='sync' key="pageNameWebringAnimated">
                         <motion.div className="sub"
                             key={'headerSubItem'}
                             animate={{
@@ -186,7 +186,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                         color: isToggleNav ? textNavColor.value : textColor.value
                     }}>{crrPageName}</motion.h3>
                     
-                    <AnimatePresence mode='wait' key="pageNameAnimated">
+                    <AnimatePresence mode='sync' key="pageNameAnimated">
                         {!isToggleNav && crrPageName !== '' &&
                             <motion.h3
                                 className="pageName" style={{

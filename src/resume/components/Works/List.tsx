@@ -40,7 +40,7 @@ class List extends Component<IReciept> {
         const { items, layoutUniqueId, children } = this.props
 
         return <>
-            <div className={styles.container}>
+            <motion.div className={styles.container}>
 
                 { items.map((ctx: ItemStructures, i)=>{
                     let date = {
@@ -77,19 +77,27 @@ class List extends Component<IReciept> {
                                 />
                             }
                         >
-                            <motion.div layoutId={`modalCard-${ctx.id}`} className={styles.imgContain}>
-                                <motion.div layoutId={`modalLogo-${ctx.id}`} className={styles.img} style={{
+                            <motion.div 
+                                // layoutId={`modalCard-${ctx.id}`}
+                                className={styles.imgContain}>
+                                <motion.div 
+                                    // layoutId={`modalLogo-${ctx.id}`}
+                                    className={styles.img} style={{
                                     backgroundImage: `url(${ctx.img})`
                                 }}></motion.div>
                             </motion.div>
-                            <motion.p layoutId={`modalTitle-${ctx.id}`} className={styles.title}>{ctx.title}</motion.p>
-                            <motion.p layoutId={`modalDate-${ctx.id}`}>({dateString})</motion.p>
+                            <motion.p 
+                                // layoutId={`modalTitle-${ctx.id}`}
+                                className={styles.title}>{ctx.title}</motion.p>
+                            <motion.p 
+                                // layoutId={`modalDate-${ctx.id}`}
+                            >({dateString})</motion.p>
                             
                         </ModalActive>
                     </motion.div>
                 })}
                 
-            </div>
+            </motion.div>
         </>
     }
 

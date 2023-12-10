@@ -34,14 +34,14 @@ class ModalContent extends Component<IReciept> {
         const { id, title, img, date, link, imageList, color } = this.props
 
         return <>
-            <div className={styles.modal}>
-                <motion.div layoutId={`modalLogo-${id}`} className={styles.logo} style={{
+            <motion.div className={styles.modal}>
+                <motion.div className={styles.logo} style={{
                     backgroundImage: `url(${img})`,
                     backgroundColor: color
                 }}></motion.div>
-                <div className={styles.content}>
-                    <motion.h2 layoutId={`modalTitle-${id}`}>{title}</motion.h2>
-                    <motion.p layoutId={`modalDate-${id}`}>({date})</motion.p>
+                <motion.div className={styles.content}>
+                    <motion.h2 >{title}</motion.h2>
+                    <motion.p >({date})</motion.p>
                     {/* {imageList && <Gallery imageList={imageList} />} */}
                     {imageList && <ImageSlider slideLayoutId={`${id}`} images={imageList} />}
                     {link &&
@@ -49,8 +49,8 @@ class ModalContent extends Component<IReciept> {
                             <button className="btn">Visit a website</button>
                         </Link>
                     }
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </>
     }
 

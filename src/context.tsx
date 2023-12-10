@@ -1,10 +1,13 @@
 import * as React from 'react';
+import SmoothScroll from './common/SmoothScroll';
+import { checkIsMobile, isSafari } from './lib/utility';
 
 export interface IThemeStateObject {
     [value: string]: string;
 }
 
 export interface IThemeState {
+    isCanNotSmooth: boolean;
     textColor: IThemeStateObject;
     setTextColor: (textColor: string, textNavColor?: string) => void;
     textNavColor: IThemeStateObject;
@@ -26,6 +29,7 @@ const TextColorObject: IThemeStateObject = {
     value: 'black',
 };
 export const TextColor = React.createContext({
+    isCanNotSmooth: checkIsMobile() || isSafari(),
     textColor: TextColorObject,
     setTextColor: (textColor: string, textNavColor?: string) => {
         
@@ -63,6 +67,7 @@ class ContextWraper extends React.Component<PageProps, PageState> {
     
 
     state: IThemeState = {
+        isCanNotSmooth: checkIsMobile() || isSafari(),
         textColor: {
             value: 'white',
         },
@@ -130,6 +135,15 @@ class ContextWraper extends React.Component<PageProps, PageState> {
             });
         }
     };
+
+    constructor(props: PageProps) {
+        super(props);
+    }
+
+    componentDidMount() {
+        let isCanNotSmooth = checkIsMobile() || isSafari()
+        this.setState({isCanNotSmooth})
+    }
 
     render() {
         return (

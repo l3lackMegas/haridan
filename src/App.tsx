@@ -16,28 +16,34 @@ import AboutPage from './about';
 import ResumePage from './resume';
 import StoryPage from './story';
 
-import { TextColor, IThemeState } from './context';
+import ContextWraper, { TextColor, IThemeState } from './context';
 
 import './App.scss';
 import { checkIsMobile } from './lib/utility';
+import SmoothScroll from './common/SmoothScroll';
 
 export default function App() {
 	const location = useLocation();
 	  
 	return (
         <LayoutGroup key={'mainLayoutGroup'}>
-            <AnimatePresence mode='wait' key="headerAnimated">
-                <Header key={'nav-header'} />
-            </AnimatePresence>
-            <AppClass>
-                <AnimatePresence mode='sync' key="routeAnimated">
-                    <Routes location={location} key={location.pathname}>
-                        <Route key={'resume'} path="/" element={<ResumePage key={'resume'}/>} />
-                        <Route key={'about'} path="/about" element={<AboutPage key={'about'}/>} />
-                        {/* <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} /> */}
-                    </Routes>
-                </AnimatePresence>
-            </AppClass>
+            <SmoothScroll>
+                <ContextWraper>
+                    <AnimatePresence mode='sync' key="headerAnimated">
+                        <Header key={'nav-header'} />
+                    </AnimatePresence>
+                    <AppClass>
+                        <AnimatePresence mode='sync' key="routeAnimated">
+                            
+                                <Routes location={location} key={location.pathname}>
+                                    <Route key={'resume'} path="/" element={<ResumePage key={'resume'}/>} />
+                                    <Route key={'about'} path="/about" element={<AboutPage key={'about'}/>} />
+                                    {/* <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} /> */}
+                                </Routes>
+                        </AnimatePresence>
+                    </AppClass>
+                </ContextWraper>
+            </SmoothScroll>
         </LayoutGroup>
 	);
 }

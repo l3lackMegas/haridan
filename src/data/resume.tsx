@@ -45,7 +45,7 @@ let workItems: Array<WorkStructure> = [
         img: "/img/works/fpsmember/logo.png",
         date: {
             from: new Date(2020, 2, 30),
-            to: new Date()
+            to: new Date(2022, 1, 1)
         },
         link: 'https://member.fpsthailand.com/',
         imageList: ["https://www.youtube.com/watch?v=b7fKYZ81JKg"]
@@ -55,8 +55,8 @@ let workItems: Array<WorkStructure> = [
         title: "Website BUMIT",
         img: "/img/works/website-bumit/logo.png",
         date: {
-            from: new Date(2021, 0, 30),
-            to: new Date()
+            from: new Date(2021, 5, 30),
+            to: new Date(2022, 4, 30)
         },
         link: 'https://mit.bu.ac.th/',
         imageList: [

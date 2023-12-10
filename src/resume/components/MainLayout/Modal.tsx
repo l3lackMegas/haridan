@@ -66,7 +66,7 @@ class Modal extends Component<IReciept> {
                     >
                         <div className="sub" onClick={()=>{onClose()}}></div>
                         <motion.div className="modalContainer" style={style}>
-                            <motion.div className="sub" layoutId={`modalCard-${id}`}>
+                            <motion.div className="sub" >
                                 <h2 className="xButton" onClick={()=>{onClose()}}>
                                     <FontAwesomeIcon icon={faTimes}/>
                                 </h2>
