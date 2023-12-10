@@ -46,7 +46,7 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
                 mounted: true,
             });
             this.shuffleInterval = setInterval(this.shuffleLetter, 4000);
-        }, window.onFirstMounted ? 750 : 1250);
+        }, window.onFirstMounted ? 500 : 1000);
     }
 
     componentWillUnmount(): void {
@@ -82,7 +82,6 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
             transition: {
                 duration: .25,
                 ease: 'easeInOut',
-                delay: .5,
                 staggerChildren: 0.025,
                 delayChildren: 0.5,
             },
@@ -110,6 +109,7 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
         const { mounted, crrLetter } = this.state;
         return (
             <PageContainer key={'about'} pathName='/about'>
+                
                 <motion.div
                     className='about-page'
                     key={'aboutPage'}
@@ -118,105 +118,121 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
                         lineHeight: 1,
                     }}
                 >
-                    <br/>
-                    <motion.div
-                        className='centerContain'
-                        // style={{
-                        //     textAlign: 'right',
-                        // }}
-                    >
-                        <motion.p
-                            variants={this.aboutTextAnimateVariant}
-                            initial="hidden"
-                            animate="show"
-                            style={{
-                                whiteSpace: 'nowrap',
-                                fontWeight: 'normal',
-                            }}
-                        >
-                           
-                            <this.wrapLetterAnimated letter='J' />
-                            <this.wrapLetterAnimated letter="a" />
-                            <this.wrapLetterAnimated letter='r' />
-                            <this.wrapLetterAnimated letter='u' />
-                            <this.wrapLetterAnimated letter='w' />
-                            <this.wrapLetterAnimated letter='a' />
-                            <this.wrapLetterAnimated letter='t' />
-                            <motion.div style={{
-                                display: 'inline-block',
-                                width: 'calc(100/2920*100*1vw)',
-                            }}></motion.div>
-                            <this.wrapLetterAnimated letter='P' />
-                            <this.wrapLetterAnimated letter='o' />
-                            <this.wrapLetterAnimated letter='h' />
-                            <this.wrapLetterAnimated letter='o' />
-                            <this.wrapLetterAnimated letter='n' />
-                            <this.wrapLetterAnimated letter='g' />
-                        </motion.p>
+                    { mounted && <>
+                        <br/>
                         <motion.div
-                            style={{
-                                display: 'inline-block',
-                                height: 73
-                            }}
+                            className='centerContain'
+                            // style={{
+                            //     textAlign: 'right',
+                            // }}
                         >
-                            <AnimatePresence mode='wait'
-                                key={'about-me-text'}
+                            <motion.p
+                                variants={this.aboutTextAnimateVariant}
+                                initial="hidden"
+                                animate="show"
+                                style={{
+                                    whiteSpace: 'nowrap',
+                                    fontWeight: 'normal',
+                                }}
                             >
                             
-                                {crrLetter && 
-                                    <motion.p
-                                        style={{
-                                            whiteSpace: 'nowrap',
-                                            fontWeight: 'bold',
-                                            fontSize: '0.5em',
-                                            backgroundColor: '#952525',
-                                            color: 'white',
-                                            display: 'inline-block',
-                                            padding: '0 10px',
-                                            overflow: 'hidden',
-                                        }}
-                                        initial={{
-                                            opacity: 0,
-                                            // x: 150,
-                                            y: 150,
-                                        }}
-                                        animate={{
-                                            opacity: 1,
-                                            // x: 0,
-                                            y: 0,
-                                            transition: {
-                                                duration: .5,
-                                                ease: 'easeInOut',
-                                                delay: .65,
-                                            },
-                                        }}
-                                        exit={{
-                                            opacity: 0,
-                                            y: -50,
-                                            transition: {
-                                                duration: .5,
-                                                ease: 'easeInOut',
-                                            },
-                                        }}
-                                    >{crrLetter}</motion.p>
-                                }
-                            </AnimatePresence>
+                                <this.wrapLetterAnimated letter='J' />
+                                <this.wrapLetterAnimated letter="a" />
+                                <this.wrapLetterAnimated letter='r' />
+                                <this.wrapLetterAnimated letter='u' />
+                                <this.wrapLetterAnimated letter='w' />
+                                <this.wrapLetterAnimated letter='a' />
+                                <this.wrapLetterAnimated letter='t' />
+                                <motion.div style={{
+                                    display: 'inline-block',
+                                    width: 'calc(100/2920*100*1vw)',
+                                }}></motion.div>
+                                <this.wrapLetterAnimated letter='P' />
+                                <this.wrapLetterAnimated letter='o' />
+                                <this.wrapLetterAnimated letter='h' />
+                                <this.wrapLetterAnimated letter='o' />
+                                <this.wrapLetterAnimated letter='n' />
+                                <this.wrapLetterAnimated letter='g' />
+                            </motion.p>
+                            <motion.div
+                                style={{
+                                    display: 'inline-block',
+                                    height: 73
+                                }}
+                            >
+                                <AnimatePresence mode='wait'
+                                    key={'about-me-text'}
+                                >
+                                
+                                    {crrLetter && 
+                                        <motion.p
+                                            style={{
+                                                whiteSpace: 'nowrap',
+                                                fontWeight: 'bold',
+                                                fontSize: '0.5em',
+                                                backgroundColor: '#952525',
+                                                color: 'white',
+                                                display: 'inline-block',
+                                                padding: '0 10px',
+                                                overflow: 'hidden',
+                                            }}
+                                            initial={{
+                                                opacity: 0,
+                                                // x: 150,
+                                                y: 150,
+                                            }}
+                                            animate={{
+                                                opacity: 1,
+                                                // x: 0,
+                                                y: 0,
+                                                transition: {
+                                                    duration: .5,
+                                                    ease: 'easeInOut',
+                                                    delay: .65,
+                                                },
+                                            }}
+                                            exit={{
+                                                opacity: 0,
+                                                y: -50,
+                                                transition: {
+                                                    duration: .5,
+                                                    ease: 'easeInOut',
+                                                },
+                                            }}
+                                        >{crrLetter}</motion.p>
+                                    }
+                                </AnimatePresence>
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
+                    </>}
                 </motion.div>
-                <p style={{
-                    position: 'fixed',
-                    bottom: 30,
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    color: 'white',
-                    fontSize: '1.1em',
-                    whiteSpace: 'nowrap' 
-                }}>
-                    <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} />
-                    <span style={{margin: '0 10px' }}>This page is under construction.</span>
-                    <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} />
-                </p>
+                { mounted && <>
+                    <motion.p style={{
+                        position: 'fixed',
+                        bottom: 30,
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        color: 'white',
+                        fontSize: '1.1em',
+                        whiteSpace: 'nowrap' 
+                    }}
+                    initial={{
+                        opacity: 0,
+                    }}
+                    animate={{
+                        opacity: 1,
+                        transition: {
+                            duration: .5,
+                            ease: 'easeInOut',
+                            delay: 1,
+                        },
+                    }}
+                    >
+                        <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} />
+                        <span style={{margin: '0 10px' }}>This page is under construction.</span>
+                        <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} />
+                    </motion.p>
+                </>}
             </PageContainer>
         );
     }
