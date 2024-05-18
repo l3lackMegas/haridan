@@ -98,7 +98,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                     }}
 
                     style={{
-                        zIndex: 100000,
+                        // zIndex: 100000,
                         pointerEvents: isToggleNav ? 'all' : 'none',
                     }}
                 >
