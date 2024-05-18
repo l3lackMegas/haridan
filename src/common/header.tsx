@@ -98,7 +98,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                     }}
 
                     style={{
-                        // zIndex: 100000,
+                        zIndex: 100000,
                         pointerEvents: isToggleNav ? 'all' : 'none',
                     }}
                 >
@@ -233,7 +233,9 @@ class Header extends React.Component<Props, State, IThemeState> {
                     }}><this.WebRing/></div> */}
                 </motion.div>
 
-                <motion.div className="socialLink">
+                <motion.div className="socialLink" style={{
+                    zIndex: isToggleNav ? 100000 : 0,
+                }}>
                     <motion.div className="sub"
                         initial={{
                             opacity: 0,
