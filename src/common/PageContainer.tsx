@@ -45,7 +45,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
 
     containerVariant = {
         initial: {
-            y: '120vh',
+            y: '130vh',
             scale: .5,
             borderRadius: 50,
             opacity: 0
@@ -90,6 +90,10 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                 pageHeight: this.contentScroll.current?.clientHeight || 0,
             });
         }, 500);
+
+        setTimeout(() => {
+            window.translateWithToggleNav = false;
+        }, 1000);
 
         if(!this.isCanNotSmooth) {
             window.addEventListener("scroll", this.onScrollHandler)
@@ -146,13 +150,15 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                 toggleNav: !this.state.toggleNav,
                 isNavToggling: false
             });
-        }, this.state.toggleNav ? 500 : 0);
+            window.translateWithToggleNav = !this.state.toggleNav;
+            console.log(window.translateWithToggleNav)
+        }, this.state.toggleNav ? 500  : 0);
     }
 
     render() {
         const { textColor, crrFeature, isToggleNav, setIsToggleNav, isCanNotSmooth }: IThemeState = this.context;
         const { pathName } = this.props;
-        const { isToggleNavContext, toggleNav, mounted, unieqKey, scrollY, currentScroll } = this.state;
+        const { isToggleNavContext, toggleNav, isNavToggling, mounted, unieqKey, scrollY, currentScroll } = this.state;
 
         const namespace = (pathName.split('/')[1] || 'home') + unieqKey.toString();
 
@@ -173,6 +179,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         transition: {
                             duration: mounted ? 0.75 : 1,
                             ease: window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
+                            delay: window.onFirstMounted || mounted || isNavToggling || window.translateWithToggleNav ? .0 : .5
                         }
                     }}
                     exit='exit'
@@ -269,7 +276,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                             opacity: 1,
                             y: 0,
                             transition: {
-                                delay: .5,
+                                delay: .5 + (window.onFirstMounted || mounted || isNavToggling || window.translateWithToggleNav ? .0 : .5),
                                 duration: .5,
                                 ease: [1, .1, .35, 1],
                             }

@@ -21,6 +21,7 @@ import ContextWraper, { TextColor, IThemeState } from './context';
 import './App.scss';
 import { checkIsMobile } from './lib/utility';
 import SmoothScroll from './common/SmoothScroll';
+import NotFoundPage from './404';
 
 export default function App() {
 	const location = useLocation();
@@ -39,6 +40,7 @@ export default function App() {
                                     <Route key={'resume'} path="/" element={<ResumePage key={'resume'}/>} />
                                     <Route key={'about'} path="/about" element={<AboutPage key={'about'}/>} />
                                     {/* <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} /> */}
+                                    <Route key={'404'} path="*" element={<NotFoundPage key={'404'}/>} />
                                 </Routes>
                         </AnimatePresence>
                     </AppClass>
@@ -52,6 +54,7 @@ declare global {
     interface Window {
         onLoadSuccessfully: Function;
         onFirstMounted: boolean;
+        translateWithToggleNav: boolean;
         isMobile: boolean;
     }
 }

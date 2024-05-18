@@ -72,8 +72,9 @@ class SkillCard extends Component {
                 >
                     <div className={styles.info}>
                         <p className={styles.topic}>Platforms</p>
-                        <p>Android only for now.</p>
-                        <p>cuz I {"don't"} have a Macbook.</p>
+                        <p>Android, iOS is fine!</p>
+                        <p>Um.. Windows Phone?</p>
+                        <p>idk what are u talk about!</p>
                     </div>
 
                     <div className={styles.info}>

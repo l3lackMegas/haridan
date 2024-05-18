@@ -106,23 +106,23 @@ let workItems: Array<WorkStructure> = [
 resumeItem: ResumeObject = {
     experience: [
         {
-            title: 'Software Development',
-            date: '2022 - Present',
+            title: 'Full Stack Developer',
+            date: '2024 - Present',
+            org: 'Orisma Technology Co., Ltd.',
+            link: 'https://www.orisma.com/',
+            describe: [
+                'Develop products for company and their customers',
+                '(Taximail was merging to Orisma Technology)'
+            ]
+        },
+        {
+            title: 'Software Developer',
+            date: '2022 - 2024',
             org: 'Taximail Co.,Ltd.',
             link: 'https://taximail.com/',
             describe: [
                 'Develop products for company and their customers',
-                'Junior Full-stack Developer',
-            ]
-        },
-        {
-            title: 'BUMIT Website',
-            date: '2021',
-            org: 'BUMIT (Bangkok University Multimedia Intelligent Technology)',
-            link: 'https://mit.bu.ac.th',
-            describe: [
-                'Implement all new website with Next.js',
-                "BUMIT's Lab Project"
+                'Junior Full Stack Developer',
             ]
         },
         {

@@ -64,7 +64,7 @@ class Header extends React.Component<Props, State, IThemeState> {
         let crrPageName = '';
         switch(crrFeature) {
             case '/':
-                crrPageName = 'Resume';
+                crrPageName = 'Résumé';
                 break;
             case '/about':
                 crrPageName = 'About';
@@ -120,7 +120,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 initial='hidden'
                                 animate='show'
                             >
-                                <this.LinkItem path="/">Resume</this.LinkItem>
+                                <this.LinkItem path="/">Résumé</this.LinkItem>
                                 <this.LinkItem path="/about">About</this.LinkItem>
                                 {/* <this.LinkItem path="/story">Story</this.LinkItem>
                                 <this.LinkItem path="/contact">Playlist</this.LinkItem> */}
@@ -142,7 +142,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 }
                             }}
                         >
-                            {isToggleNav &&
+                            {/* {isToggleNav &&
                                 <motion.h3
                                     className="pageName" style={{
                                         color: isToggleNav ? textNavColor.value : textColor.value
@@ -163,7 +163,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 >
                                     <this.WebRing/>
                                 </motion.h3>
-                            }
+                            } */}
                         </motion.div>
                     </AnimatePresence>
                 </motion.div>
@@ -187,7 +187,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                     }}>{crrPageName}</motion.h3>
                     
                     <AnimatePresence mode='sync' key="pageNameAnimated">
-                        {!isToggleNav && crrPageName !== '' &&
+                        {crrPageName !== '' &&
                             <motion.h3
                                 className="pageName" style={{
                                     color: isToggleNav ? textNavColor.value : textColor.value
@@ -289,7 +289,7 @@ class Header extends React.Component<Props, State, IThemeState> {
     }
 
     WebRing({isBlack}: {isBlack?: boolean}) {
-        return <motion.a href="https://webring.wonderful.software#jaruwat.dev" title="วงแหวนเว็บ" style={{ display: 'inline-block', pointerEvents: 'all'}}>
+        return <motion.a href="https://webring.wonderful.software#jaruwat.dev" title="วงแหวนเว็บ" target='_blank' style={{ display: 'inline-block', pointerEvents: 'all'}}>
             <motion.div
                 style={{
                     width: 32,
