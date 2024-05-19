@@ -116,6 +116,11 @@
     overflow: hidden;
 }
 
+.more-works {
+    display: block;
+    width: fit-content;
+}
+
 .btnViewMore {
     margin: 0 auto;
     display: block;
@@ -126,6 +131,7 @@
     font-size: 16px;
     white-space: nowrap;
     color: white;
+    text-align: center;
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
