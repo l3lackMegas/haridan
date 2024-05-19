@@ -151,7 +151,7 @@ resumeItem: ResumeObject = {
         },
         {
             title: 'Samahan Suksa School',
-            date: '2013 - 2015',
+            date: '2005 - 2012',
             org: 'Bangkok - Thailand',
             link: 'https://samaharn.thai.ac'
         }
