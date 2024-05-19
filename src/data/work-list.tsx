@@ -1,5 +1,6 @@
 // /* Next Module */
 export interface WorkStructure {
+    pin?: boolean,
     id: number
     title: string
     describe?: string
@@ -9,7 +10,7 @@ export interface WorkStructure {
         from: Date | string
         to: Date | string
     }
-    link: string
+    link?: string
     imageList: Array<string>
     color?: string
 }
@@ -26,6 +27,51 @@ export default function WorkListData() {
 
 let workItems: Array<WorkStructure> = [
     {
+        id: 6,
+        title: "Flutter Image Color Summarizer",
+        describe: `This project is an experiment to create color summaries for 50 images simultaneously. Optimization is done to enable multi-threaded operation to reduce UI rendering latency.`,
+        img: "/img/works/flutter-image-color-summarizer/logo.png",
+        tags: [
+            "Flutter",
+            "Learning",
+            "Hobby"
+        ],
+        date: {
+            from: new Date(2023, 8, 14),
+            to: new Date(2023, 8, 14)
+        },
+        
+        imageList: [
+            "https://youtube.com/watch?v=L0RlK03-yQ8",
+        ],
+        color: 'white'
+    },
+    {
+        id: 5,
+        title: "Valorant TH Ignition - Verify Riot ID",
+        describe: `This project is an identity verification system using Riot ID for the Valorant TH Ignition community. I was involved in the development of the entire frontend.`,
+        img: "/img/works/valorantth-ignition/03.png",
+        tags: [
+            "React.js",
+            "Framer-motion",
+            "Hobby"
+        ],
+        date: {
+            from: new Date(2023, 5, 31),
+            to: new Date(2023, 5, 31)
+        },
+        link: 'https://rso.vlr.in.th/oauth/finished',
+        imageList: [
+            "https://www.youtube.com/watch?v=Q_W3r4n66R8",
+            "/img/works/valorantth-ignition/01.png",
+            "/img/works/valorantth-ignition/02.png",
+            "/img/works/valorantth-ignition/03.png",
+            "/img/works/valorantth-ignition/04.png",
+        ],
+        color: '#181818'
+    },
+    {
+        pin: true,
         id: 1,
         title: "FPSThailand Member",
         describe: `This project was commissioned by FPSThailand to allow their Twitch members to participate in random prize giveaways from their favorite streamers. I was involved in the design and development of the frontend and the prize giveaway algorithm.`,
@@ -44,6 +90,7 @@ let workItems: Array<WorkStructure> = [
         color: '#181818'
     },
     {
+        pin: true,
         id: 2,
         title: "Website BUMIT",
         describe: `This project was developed during my sophomore year of undergraduate studies. I was involved in the development of the frontend and integration with the backend system.`,
@@ -75,6 +122,7 @@ let workItems: Array<WorkStructure> = [
         color: 'white'
     },
     {
+        pin: true,
         id: 3,
         title: "Flight Visualization",
         describe: `This project was developed during my sophomore year of undergraduate studies. I was involved in the development of the frontend and integration with the backend system.`,
@@ -106,6 +154,30 @@ let workItems: Array<WorkStructure> = [
             "/img/works/flight-visualization/13.png",
             "/img/works/flight-visualization/14.png",
             "/img/works/flight-visualization/15.png"
+        ],
+        color: '#181818'
+    },
+    {
+        id: 4,
+        title: "Shortest Path - Homework",
+        describe: `This project was an assignment for an algorithms course. My partner and I paired up to write an algorithm and create a simple visualization using React for a classroom presentation.`,
+        img: "/img/works/maze-homework/05.png",
+        tags: [
+            "JavaScript",
+            "Visualization",
+            "Learning"
+        ],
+        date: {
+            from: new Date(2022, 11, 8),
+            to: new Date(2022, 11, 8)
+        },
+        link: 'https://maze-hw10.pages.dev/',
+        imageList: [
+            "/img/works/maze-homework/01.png",
+            "/img/works/maze-homework/02.png",
+            "/img/works/maze-homework/03.png",
+            "/img/works/maze-homework/04.png",
+            "/img/works/maze-homework/05.png"
         ],
         color: '#181818'
     }

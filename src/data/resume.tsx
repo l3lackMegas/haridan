@@ -28,7 +28,9 @@ export default function LandingData() {
     };
 }
 
-let workItems: Array<WorkStructure> = WorkListData().workItem.slice(0, 3),
+let workItems: Array<WorkStructure> = WorkListData().workItem.filter((item: WorkStructure) => {
+    return item.pin === true
+}),
 resumeItem: ResumeObject = {
     experience: [
         {
