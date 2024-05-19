@@ -94,15 +94,15 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                 case '/':
                     crrPageName = 'Resume' + crrPageName;
                     break;
-                case '/about':
-                    crrPageName = 'About' + crrPageName;
+                case '/portfolio':
+                    crrPageName = 'Portfolio' + crrPageName;
                     break;
-                case '/story':
-                    crrPageName = 'Story' + crrPageName;
-                    break;
-                case '/contact':
-                    crrPageName = 'Contact' + crrPageName;
-                    break;
+                // case '/story':
+                //     crrPageName = 'Story' + crrPageName;
+                //     break;
+                // case '/contact':
+                //     crrPageName = 'Contact' + crrPageName;
+                //     break;
                 default:
                     crrPageName = 'Jaruwat.dev';
                     break;
