@@ -27,6 +27,30 @@ export default function WorkListData() {
 
 let workItems: Array<WorkStructure> = [
     {
+        id: 7,
+        title: "Film Reporter Assistance",
+        describe: `This is my undergraduate thesis project. It took three people to develop this project.
+Project Description
+        In order to reduce unnecessary steps and facilitate the work of various departments, the Film's Reporter Assistance system was developed. This system helps store footage files and save details into a database. It also uses artificial intelligence to analyze various elements within the footage. The program is designed to be easy to use for storing files and can be accessed quickly. This allows reporters to finish their work faster without having to manage folders. They can simply drag and drop footage files, preview the content, and type in the file details immediately.`,
+        img: "/img/works/film-reporter-assistance/logo-white.png",
+        tags: [
+            "Next.js",
+            "Fastify",
+            "Prisma",
+            "Google Vision API",
+            "Learning",
+        ],
+        date: {
+            from: new Date(2024, 1, 1),
+            to: new Date(2024, 1, 1)
+        },
+        
+        imageList: [
+            "https://www.youtube.com/watch?v=X_Sy1vVP_y8",
+        ],
+        color: '#191c23'
+    },
+    {
         id: 6,
         title: "Flutter Image Color Summarizer",
         describe: `This project is an experiment to create color summaries for 50 images simultaneously. Optimization is done to enable multi-threaded operation to reduce UI rendering latency.`,
@@ -69,6 +93,30 @@ let workItems: Array<WorkStructure> = [
             "/img/works/valorantth-ignition/04.png",
         ],
         color: '#181818'
+    },
+    {
+        id: 8,
+        title: "Whiteboard",
+        describe: `This project was an assignment for a university course. It utilized Konva.js to implement a board and Socket.io to allow multiple users to join a room and interact with the same board`,
+        img: "/img/works/whiteboard/01.png",
+        tags: [
+            "Fastify",
+            "Konva.js",
+            "Learning",
+        ],
+        link: 'https://whiteboard.jaruwat.dev/',
+        date: {
+            from: new Date(2023, 5, 2),
+            to: new Date(2023, 5, 2)
+        },
+        
+        imageList: [
+            "https://www.youtube.com/watch?v=ajyAJZkOS2w",
+            "/img/works/whiteboard/01.png",
+            "/img/works/whiteboard/02.png",
+            "/img/works/whiteboard/03.png",
+        ],
+        color: '#f5f5f5'
     },
     {
         pin: true,
