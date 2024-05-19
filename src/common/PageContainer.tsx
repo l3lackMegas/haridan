@@ -263,7 +263,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         overflow: 'unset',
                     }}
                 >
-                    <motion.button className={'btnTopCenter' + (toggleNav ? ' ' : '')} style={{
+                    <motion.button className={'btnTopCenter' + (toggleNav ? ' active' : '')} style={{
                             color: textColor.value,
                             pointerEvents: 'all',
                             zIndex: 9999,

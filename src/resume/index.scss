@@ -116,6 +116,35 @@
     overflow: hidden;
 }
 
+.btnViewMore {
+    margin: 0 auto;
+    display: block;
+    padding: 8px 15px;
+    width: 100%;
+    max-width: 700px;
+    font-family: inherit;
+    font-size: 16px;
+    white-space: nowrap;
+    color: white;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    outline: 0;
+    transition-duration: 0.15s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.3);
+        border: 2px solid transparent;
+    }
+
+    &:active {
+        background-color: rgba(255, 255, 255, 0.4);
+        border: 2px solid rgba(255, 255, 255, 0.2);
+        transition-duration: 0.1s;
+    }
+}
+
 .modal {
     position: fixed;
     top: 0;
@@ -178,6 +207,11 @@
     background-color: rgba(0, 0, 0, 0.25);
     cursor: pointer;
     transition-duration: .25s;
+    z-index: 100;
+
+    svg {
+        font-size: 40px;
+    }
 }
 
 .modal .modalContainer .xButton:hover {

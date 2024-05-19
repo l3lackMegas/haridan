@@ -66,8 +66,8 @@ class Header extends React.Component<Props, State, IThemeState> {
             case '/':
                 crrPageName = 'Résumé';
                 break;
-            case '/about':
-                crrPageName = 'About';
+            case '/portfolio':
+                crrPageName = 'Portfolio';
                 break;
             case '/story':
                 crrPageName = 'Story';
@@ -121,7 +121,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 animate='show'
                             >
                                 <this.LinkItem path="/">Résumé</this.LinkItem>
-                                <this.LinkItem path="/about">About</this.LinkItem>
+                                <this.LinkItem path="/portfolio">Portfolio</this.LinkItem>
                                 {/* <this.LinkItem path="/story">Story</this.LinkItem>
                                 <this.LinkItem path="/contact">Playlist</this.LinkItem> */}
                             </motion.div>
@@ -251,16 +251,19 @@ class Header extends React.Component<Props, State, IThemeState> {
                         }}
                     >
                         <a href="https://www.facebook.com/Jaruwat.P" target="_blank" rel="noreferrer" style={{
+                            transitionDuration: '.5s',
                             color: isToggleNav ? textNavColor.value : textColor.value
                         }}>
                             <FontAwesomeIcon icon={faFacebook} />
                         </a>
                         <a href="mailto:contact@jaruwat.dev" target="_blank" rel="noreferrer" style={{
+                            transitionDuration: '.5s',
                             color: isToggleNav ? textNavColor.value : textColor.value
                         }}>
                             <FontAwesomeIcon icon={faAt} />
                         </a>
                         <a href="https://github.com/l3lackMegas" target="_blank" rel="noreferrer" style={{
+                            transitionDuration: '.5s',
                             color: isToggleNav ? textNavColor.value : textColor.value
                         }}>
                             <FontAwesomeIcon icon={faGithub} />

@@ -22,6 +22,7 @@ import './App.scss';
 import { checkIsMobile } from './lib/utility';
 import SmoothScroll from './common/SmoothScroll';
 import NotFoundPage from './404';
+import PortfolioPage from './portfolio';
 
 export default function App() {
 	const location = useLocation();
@@ -38,7 +39,7 @@ export default function App() {
                             
                                 <Routes location={location} key={location.pathname}>
                                     <Route key={'resume'} path="/" element={<ResumePage key={'resume'}/>} />
-                                    <Route key={'about'} path="/about" element={<AboutPage key={'about'}/>} />
+                                    <Route key={'portfolio'} path="/portfolio" element={<PortfolioPage key={'portfolio'}/>} />
                                     {/* <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} /> */}
                                     <Route key={'404'} path="*" element={<NotFoundPage key={'404'}/>} />
                                 </Routes>

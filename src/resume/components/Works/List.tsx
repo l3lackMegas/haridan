@@ -10,27 +10,15 @@ import styles from './styles.module.scss'
 /* Components */
 import { ModalActive } from '../MainLayout/Modal'
 import ModalContent from './ModalContent'
-
-interface ItemStructures {
-    id: number
-    title: string
-    img: string
-    date: {
-        from: Date | string
-        to: Date | string
-    }
-    link?: string
-    imageList?: Array<string>
-    color?: string
-}
+import { WorkStructure } from "../../../data/work-list";
 
 interface IReciept {
-    items: Array<ItemStructures>
+    items: Array<WorkStructure>
     layoutUniqueId: string
     children?: React.ReactNode
 }
 
-class List extends Component<IReciept> {
+class WorkList extends Component<IReciept> {
 
     constructor(props: IReciept) {
         super(props)
@@ -42,7 +30,7 @@ class List extends Component<IReciept> {
         return <>
             <motion.div className={styles.container}>
 
-                { items.map((ctx: ItemStructures, i)=>{
+                { items.map((ctx: WorkStructure, i)=>{
                     let date = {
                         from: new Date(ctx.date.from),
                         to: new Date(ctx.date.to)
@@ -63,12 +51,14 @@ class List extends Component<IReciept> {
                     >
                         <ModalActive layoutId={ctx.id}
                             layoutUniqueId={`modal-${layoutUniqueId}-${ctx.id}`}
-                            isDelay={true}
-                            modalStyle={{ width: 500, height: 600 }}
+                            isDelay={false}
+                            modalStyle={{ width: '100vw', height: '100vh', maxWidth: 'unset', maxHeight: 'unset' }}
                             modalChildren={
                                 <ModalContent
                                     id={ctx.id}
                                     title={ctx.title}
+                                    tags={ctx.tags}
+                                    describe={ctx.describe}
                                     img={ctx.img}
                                     date={dateString}
                                     link={ctx.link}
@@ -79,6 +69,9 @@ class List extends Component<IReciept> {
                         >
                             <motion.div 
                                 // layoutId={`modalCard-${ctx.id}`}
+                                style={{
+                                    backgroundColor: ctx.color
+                                }}
                                 className={styles.imgContain}>
                                 <motion.div 
                                     // layoutId={`modalLogo-${ctx.id}`}
@@ -86,12 +79,17 @@ class List extends Component<IReciept> {
                                     backgroundImage: `url(${ctx.img})`
                                 }}></motion.div>
                             </motion.div>
+                            <br/>
                             <motion.p 
                                 // layoutId={`modalTitle-${ctx.id}`}
                                 className={styles.title}>{ctx.title}</motion.p>
                             <motion.p 
                                 // layoutId={`modalDate-${ctx.id}`}
                             >({dateString})</motion.p>
+                            
+                            <motion.div className={styles.tagList}>
+                                {ctx.tags?.map((tag: string, i: number) => <motion.div key={i} className={styles.tag}>{tag}</motion.div>)}
+                            </motion.div>
                             
                         </ModalActive>
                     </motion.div>
@@ -103,4 +101,4 @@ class List extends Component<IReciept> {
 
 }
 
-export default List;
+export default WorkList;

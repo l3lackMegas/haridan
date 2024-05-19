@@ -1,0 +1,111 @@
+.portfolio-page {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    color: white;
+    background-color: #181818;
+
+    .overlay-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 70px;
+        background-color: #1818189d;
+        z-index: 100;
+    }
+
+    h1 {
+        margin: 0;
+    }
+    
+    .first-section {
+        margin: 0 40px;
+        position: relative;
+        padding: 70px 40px 0;
+        width: calc(100% - 95px);
+        height: 70vh;
+        // background-color: rgb(130, 206, 140);
+        color: rgb(130, 206, 140);
+        border-radius: 40px;
+        overflow: hidden;
+
+        h1 {
+            font-size: 7em;
+        }
+
+        .wrapper {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+
+            .block-poly {
+                font-size: 25px;
+                h2 {
+                    font-size: 32px;
+                }
+            }
+        }
+
+        .in-row {
+            margin: 0 auto;
+            width: 95%;
+        }
+    }
+
+    .work-section {
+        position: relative;
+        padding: 40px 40px 0;
+        width: 100vw;
+        background-color: rgb(130, 206, 140);
+        color: black;
+        border-top-left-radius: 40px;
+        border-top-right-radius: 40px;
+        overflow: hidden;
+
+        h1 {
+            font-size: 3.5em;
+        }
+    }
+
+}
+
+@media screen and (max-width: 500px) {
+    .portfolio-page {
+        .first-section {
+            margin: 0 20px;
+            width: 100%;
+            height: 300px;
+            padding: 0;
+            padding-top: 40px;
+
+            .understandCSS {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .wrapper {
+                .block-poly {
+                    font-size: 20px;
+                    h2 {
+                        font-size: 32px;
+                    }
+                }
+            }
+        }
+    }
+
+    .portfolio-page .work-section {
+        padding: 20px 5px 0;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+
+        h1 {
+            font-size: 2.5em;
+        }
+    }
+}

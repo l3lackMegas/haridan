@@ -59,7 +59,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
 
     componentDidMount() {
         const { setTextColor, setCrrFeature }: IThemeState = this.context;
-        setTextColor('white');
+        setTextColor('white', '#58b1ff');
         setCrrFeature('/');
         setTimeout(() => {
             this.setState({
@@ -190,10 +190,15 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                         </div>
                     </Section>
 
-                    <h1 className="work-list" style={{ textAlign: 'center' }}>My Works</h1>
-                    <Section id="work-section">
+                    <h1 className="work-list" style={{ textAlign: 'center', marginBottom: 20 }}>My Works</h1>
+                    <Section id="work-section" maxWidth={'unset'}>
                         <div style={{ padding: '0 10px'}}>
                             <WorkList layoutUniqueId={`layoutWorklist`} items={ workItems } />
+                        </div>
+                        <div>
+                            <Link to="/portfolio" className="more-works">
+                                <button className="btnViewMore">View More Works</button>
+                            </Link>
                         </div>
                     </Section>
 

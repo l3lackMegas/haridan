@@ -55,14 +55,20 @@ class Modal extends Component<IReciept> {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: .25 }}
+                    transition={{ 
+                        duration: .25,
+                        ease: [0.5, 0.025, 0, 1],
+                    }}
                     onClick={()=>closeAnyWhere ? onClose() : false }
                 >
                     <motion.div className="sub"
-                        initial={{ y: 20, opacity: 0 }}
+                        initial={{ y: 200, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 20, opacity: 0 }}
-                        transition={{ duration: .25 }}
+                        exit={{ y: 200, opacity: 0 }}
+                        transition={{ 
+                            duration: .25,
+                            ease: [0.5, 0.025, 0, 1],
+                        }}
                     >
                         <div className="sub" onClick={()=>{onClose()}}></div>
                         <motion.div className="modalContainer" style={style}>
