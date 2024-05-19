@@ -31,7 +31,7 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
 
     componentDidMount() {
         const { setTextColor, setCrrFeature }: IThemeState = this.context;
-        setTextColor('white', 'rgb(130, 206, 140)');
+        setTextColor('#E3F0FF', '#64c571');
         // setCrrFeature('/portfolio');
         this.setState({
             workList: WorkListData().workItem
