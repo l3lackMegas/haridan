@@ -19,6 +19,8 @@ import WorkList from './components/Works/List'
 
 import resumeData from '../data/resume'
 import Credit from './components/MainLayout/Credit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 type PageProps = {
 };
@@ -145,8 +147,36 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                             style={{
                                 backgroundPositionY: this.state.landingParallax / 2.5
                             }}
+                        ></motion.div>
+                        {mounted && <motion.div className="scrollDown"
+                            initial={{
+                                opacity: 0,
+                            }}
+                            animate={{
+                                opacity: 1,
+                                transition: {
+                                    delay: .5,
+                                    ease: [0.05, 0.025, 0, 1]
+                                }
+                            }}
                         >
-                        </motion.div>
+                            <motion.div initial={{
+                                y: 100
+                            }}
+                            animate={{
+                                y: 0,
+                                transition: {
+                                    delay: .5,
+                                    ease: [0.05, 0.025, 0, 1]
+                                }
+                            }}
+                            >
+                                <Link to="#information" onClick={()=>window.scrollTo(0, window.innerHeight)}>
+                                    <p style={{ fontSize: 15 }}>SCROLL DOWN</p>
+                                    <FontAwesomeIcon icon={faChevronDown}/>
+                                </Link>
+                            </motion.div>
+                        </motion.div>}
                         <motion.div className="parallaxHero" style={{
                             backgroundImage: 'unset'
                         }}>
