@@ -74,7 +74,7 @@ resumeItem: ResumeObject = {
             ]
         },
         {
-            title: 'Intership at Meteorological Department of Thailand.',
+            title: 'internship at Meteorological Department of Thailand.',
             date: '2018 (March - May)',
             org: 'Telecommunication Technology Sub-division',
             link: [

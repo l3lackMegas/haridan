@@ -13,7 +13,7 @@ class Education extends Component {
             <ColumnResume title="Education">
                 <CardInfo
                     title="Bangkok University"
-                    date="2019 - Present"
+                    date="2019 - 2023"
                     org="Pathum Thani - Thailand"
                 >
                     <p>School of Information Technology and Innovation</p>
