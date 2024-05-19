@@ -82,6 +82,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         window.scrollTo(0, 0);
         this.context.setParallaxPos(0);
         this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
+        document.body.style.overflow = '';
         setTimeout(() => {
             this.context.setIsToggleNav(false); 
             window.addEventListener('scroll', this.onScrollHandler);
