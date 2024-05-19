@@ -110,6 +110,9 @@
 }
 
 .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     width: 100%;
     text-align: center;
@@ -206,6 +209,7 @@
             padding: 60px 20px 20px;
             width: 100%;
             min-width: unset;
+            min-height: unset;
             max-height: unset;
             overflow: unset;
 
