@@ -202,7 +202,8 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                                 opacity: 0,
                             }}
                         >
-                            <FontAwesomeIcon icon={faWarning} size='4x' color='yellow' />
+                            {/* <FontAwesomeIcon icon={faWarning} size='4x' color='yellow' /> */}
+                            <img src="/img/icon50.jpg" alt='website-logo'/>
                         </motion.div>
                         <br/>
                         <motion.h1
