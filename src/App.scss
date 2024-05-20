@@ -114,6 +114,15 @@ img{
     text-align: center;
 }
 
+.overlay-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 70px;
+    z-index: 0;
+}
+
 .scrollDown {
     position: absolute;
     left: 50%;

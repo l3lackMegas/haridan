@@ -11,8 +11,9 @@ import './PageContainer.scss';
 import { checkIsMobile, isSafari } from '../lib/utility';
 
 type Props = {
-    pathName: string,
-    children: React.ReactNode,
+    pathName: string
+    children: React.ReactNode
+    headerOverlayColor?: string
     parallaxCallback?: (pallraxPos: number) => void
 };
 type State = {
@@ -127,12 +128,14 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
             let scrollling = document.querySelector("#smoothScrolling"),
                 compos: any = scrollling ? window.getComputedStyle(scrollling) : {},
                 matrix = new WebKitCSSMatrix(compos.transform),
-                currentScroll = window.isMobile ? window.scrollY : matrix.m42 * -1;
+                currentScroll = this.isCanNotSmooth ? window.scrollY : matrix.m42 * -1;
             this.setState({
                 scrollY: window.scrollY,
                 currentScroll: currentScroll,
                 pageHeight: this.contentScroll.current?.clientHeight || 0,
             });
+
+            // console.log(currentScroll)
             
             if(this.props.parallaxCallback) this.props.parallaxCallback(currentScroll);
         }
@@ -152,7 +155,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                 isNavToggling: false
             });
             window.translateWithToggleNav = !this.state.toggleNav;
-            console.log(window.translateWithToggleNav)
+            // console.log(window.translateWithToggleNav)
         }, this.state.toggleNav ? 500  : 0);
     }
 
@@ -163,12 +166,14 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
 
         const namespace = (pathName.split('/')[1] || 'home') + unieqKey.toString();
 
+        let shouldFloat = crrFeature != pathName;
+
         return (
             <>
                 <motion.div
                     id="PageContainer"
                     ref={this.pageElmContainer}
-                    className={'PageContainer ' + namespace + (window.isMobile ? ' mobile' : '') + (toggleNav ? ' toggled' : '')}
+                    className={'PageContainer ' + namespace + (this.isCanNotSmooth ? ' mobile' : '') + (shouldFloat || toggleNav ? ' toggled' : '')}
                     key={'PageContainer' + namespace}
                     variants={this.containerVariant}
                     initial='initial'
@@ -182,6 +187,11 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                             ease: window.onFirstMounted || mounted ? [0.5, 0.025, 0, 1] : [1, .1, .35, 1],
                             delay: window.onFirstMounted || mounted || isNavToggling || window.translateWithToggleNav ? .0 : .5
                         }
+                    }}
+                    onAnimationStart={() => {
+                        // if(crrFeature != pathName) {
+                            
+                        // }
                     }}
                     exit='exit'
                     onAnimationComplete={() => {
@@ -221,7 +231,9 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                     > */}
                         <motion.div
                             // className="scroll-container"
-                            style={{
+                            style={!shouldFloat && this.isCanNotSmooth && !this.context.isToggleNav && !isNavToggling ? {
+                                position: 'relative'
+                            } : {
                                 position: 'fixed',
                                 y: -currentScroll,
                             }}
@@ -236,11 +248,30 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         </motion.div>
                     {/* </WrapPageScroll> */}
                 </motion.div>
-                {/* { toggleNav && */}
+                { (shouldFloat || this.context.isToggleNav || isNavToggling || !this.isCanNotSmooth) &&
                     <div style={{
                         height: this.state.pageHeight,
                     }}></div>
+                }
                 
+                <motion.div className='overlay-header'
+                    initial={{
+                        opacity: 0,
+                        y: -70
+                    }}
+                    animate={{
+                        y: !mounted || this.context.isToggleNav ? -70 : -5,
+                        opacity: !mounted || this.context.isToggleNav ? 0 : 1,
+                        transition: {
+                            duration: !mounted || this.context.isToggleNav ? .5 : .75,
+                            ease: [0.5, 0.025, 0, 1],
+                            delay: !mounted || this.context.isToggleNav ? 0 : .5
+                        }
+                    }}
+                    style={{
+                        backgroundColor: this.props.headerOverlayColor || 'transparent'
+                    }}
+                ></motion.div>
                 
                 <motion.div
                     className={'PageContainer toggled'}

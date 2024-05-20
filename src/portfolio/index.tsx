@@ -56,16 +56,13 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
     render() {
         const { currentScroll, workList } = this.state;
         return (
-            <PageContainer key={'portfolio'} pathName='/portfolio' parallaxCallback={this.parallaxCallback}>
+            <PageContainer key={'portfolio'} pathName='/portfolio' parallaxCallback={this.parallaxCallback}
+                headerOverlayColor='#1818189d'
+            >
                 <motion.div
                     className='portfolio-page'
                     key={'PortfolioPage'}
                 >
-                    <motion.div className='overlay-header'
-                        style={{
-                            top: currentScroll - 5
-                        }}
-                    ></motion.div>
                     <motion.div className='first-section'>
                         <motion.div className='wrapper'
                             initial={{

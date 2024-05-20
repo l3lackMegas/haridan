@@ -11,10 +11,14 @@
         // overflow: hidden;
     }
 
-    // &.toggled {
-    //     position: fixed;
-    //     overflow: hidden;
-    // }
+    &.mobile {
+        position: relative;
+    }
+
+    &.toggled {
+        position: fixed;
+        overflow: hidden;
+    }
 }
 
 .sub {
