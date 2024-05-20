@@ -59,6 +59,7 @@ declare global {
         onFirstMounted: boolean;
         translateWithToggleNav: boolean;
         isMobile: boolean;
+        isSafari: boolean;
     }
 }
 
@@ -83,6 +84,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
     constructor(props: IAppClassProps) {
         super(props);
         window.isMobile = checkIsMobile();
+        window.isSafari = isSafari();
         this.hidePerformanceDialog = this.hidePerformanceDialog.bind(this);
     }
 
@@ -91,7 +93,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
         window.onLoadSuccessfully = () => {
             window.onFirstMounted = true;
             setTimeout(() => {
-                if(window.isMobile || isSafari()) {
+                if(window.isMobile || window.isSafari) {
                     this.setState({
                         performanceMode: true,
                     });
@@ -229,8 +231,14 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                                 opacity: 0,
                             }}
                         >
-                            <motion.p>Some features doesn't work on your device,</motion.p>
-                            <motion.p>but don't worry, you can still use this website.</motion.p>
+                            {window.isMobile && <>
+                                <motion.p>This website is best viewed on a desktop.</motion.p>
+                                <motion.p>Some features don't  work on your device.</motion.p>
+                            </>}
+                            { !window.isMobile && window.isSafari && <>
+                                <motion.p>Some features don't work on your device.</motion.p>
+                                <motion.p>but don't worry, you can still use this website.</motion.p>
+                            </>}
                         </motion.div>
                         <br/>
                         <motion.button className='commonBtn'
