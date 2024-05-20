@@ -237,7 +237,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                                 <motion.p>Some features don't  work on your device.</motion.p>
                             </>}
                             { !window.isMobile && window.isSafari && <>
-                                <motion.p>Some features don't work on your device.</motion.p>
+                                <motion.p>Some features don't work on your browser.</motion.p>
                                 <motion.p>but don't worry, you can still use this website.</motion.p>
                             </>}
                         </motion.div>
