@@ -19,10 +19,12 @@ import StoryPage from './story';
 import ContextWraper, { TextColor, IThemeState } from './context';
 
 import './App.scss';
-import { checkIsMobile } from './lib/utility';
+import { checkIsMobile, isSafari } from './lib/utility';
 import SmoothScroll from './common/SmoothScroll';
 import NotFoundPage from './404';
 import PortfolioPage from './portfolio';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle, faWarning } from '@fortawesome/free-solid-svg-icons';
 
 export default function App() {
 	const location = useLocation();
@@ -66,17 +68,22 @@ interface IAppClassProps {
 
 interface IAppClassState {
     isLoaded: boolean;
+    performanceMode: boolean;
+    performanceModeTimerLeft: number;
 }
 class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeState> {
     context!: IThemeState;
 
     state: IAppClassState = {
         isLoaded: false,
+        performanceMode: false,
+        performanceModeTimerLeft: 8
     }
 
     constructor(props: IAppClassProps) {
         super(props);
         window.isMobile = checkIsMobile();
+        this.hidePerformanceDialog = this.hidePerformanceDialog.bind(this);
     }
 
     componentDidMount(): void {
@@ -84,12 +91,38 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
         window.onLoadSuccessfully = () => {
             window.onFirstMounted = true;
             setTimeout(() => {
+                if(window.isMobile || isSafari()) {
+                    this.setState({
+                        performanceMode: true,
+                    });
+                    this.performanceModeTimerInterval = window.setInterval(() => {
+                        if(this.state.performanceModeTimerLeft <= 1) {
+                            this.hidePerformanceDialog();
+                            return;
+                        }
+                        this.setState({
+                            performanceModeTimerLeft: this.state.performanceModeTimerLeft - 1
+                        })
+                    }, 1000);
+                    return;
+                }
+
                 this.setState({
                     isLoaded: true,
                 });
             }, 1000);
         }
     }
+
+    performanceModeTimerInterval = 0;
+    hidePerformanceDialog() {
+        window.clearInterval(this.performanceModeTimerInterval);
+        this.setState({
+            isLoaded: true,
+            performanceMode: false
+        });
+    }
+    
     render() {
         return (
             <>
@@ -103,8 +136,8 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                     height: this.context.crrPageHeight,
                 }}></div> */}
                 <AnimatePresence mode='sync' key="landing-loader">
-                {!this.state.isLoaded && <motion.div className="loadingCenter">
-                    <motion.div className="sub"
+                    {!this.state.isLoaded && !this.state.performanceMode && <motion.div className="loadingCenter"
+                        key={'root-loading'}
                         initial={{ opacity: 0 }}
                         animate={{
                             opacity: 1,
@@ -114,12 +147,108 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                         }}
                         exit={{
                             opacity: 0,
-                            scale: 0,
+                            transition: {
+                                duration: .35,
+                            }
                         }}
                     >
-                        <LoadingIcon/>
-                    </motion.div>
-                </motion.div>}
+                        <motion.div className="sub"
+                            initial={{ opacity: 0 }}
+                            animate={{
+                                opacity: 1,
+                                transition: {
+                                    duration: 1,
+                                }
+                            }}
+                            exit={{
+                                opacity: 0,
+                                scale: 0,
+                            }}
+                        >
+                            <LoadingIcon/>
+                        </motion.div>
+                    </motion.div>}
+
+                    {this.state.performanceMode && <motion.div className="loadingCenter"
+                        key={'root-performance-mode'}
+                        style={{
+                            width: '90%',
+                            color: "white",
+                            textAlign: 'center',
+                            fontSize: 18
+                        }}
+                        initial={{ opacity: 0 }}
+                        animate={{
+                            opacity: 1,
+                            transition: {
+                                duration: 1,
+                            }
+                        }}
+                        exit={{
+                            opacity: 0,
+                        }}
+                    >
+                        <motion.div initial={{ opacity: 0, y: 100 }}
+                            animate={{
+                                opacity: 1,
+                                y: 0,
+                                transition: {
+                                    duration: .5,
+                                }
+                            }}
+                            exit={{
+                                opacity: 0,
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faWarning} size='4x' color='yellow' />
+                        </motion.div>
+                        <br/>
+                        <motion.h1
+                            initial={{ opacity: 0, y: 100 }}
+                            animate={{
+                                y: 0,
+                                opacity: 1,
+                                transition: {
+                                    duration: .5,
+                                    delay: 0.25
+                                }
+                            }}
+                        >Performance Mode Enabled</motion.h1>
+                        <br/>
+                        <motion.div
+                            initial={{ opacity: 0, y: 75 }}
+                            animate={{
+                                y: 0,
+                                opacity: 1,
+                                transition: {
+                                    duration: .5,
+                                    delay: 0.5
+                                }
+                            }}
+                            exit={{
+                                opacity: 0,
+                            }}
+                        >
+                            <motion.p>Some features doesn't work on your device,</motion.p>
+                            <motion.p>but don't worry, you can still use this website.</motion.p>
+                        </motion.div>
+                        <br/>
+                        <motion.button className='commonBtn'
+                            onClick={this.hidePerformanceDialog}
+                            initial={{ opacity: 0, y: 75 }}
+                            animate={{
+                                y: 0,
+                                opacity: 1,
+                                transition: {
+                                    duration: .5,
+                                    delay: .75
+                                }
+                            }}
+                            exit={{
+                                opacity: 0,
+                            }}
+                        >{`Continue (${this.state.performanceModeTimerLeft}s)`}</motion.button>
+                    </motion.div>}
                 </AnimatePresence>
             </>
         );
