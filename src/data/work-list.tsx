@@ -119,6 +119,30 @@ Project Description
         color: '#f5f5f5'
     },
     {
+        id: 4,
+        title: "Shortest Path - Homework",
+        describe: `This project was an assignment for an algorithms course. My partner and I paired up to write an algorithm and create a simple visualization using React for a classroom presentation.`,
+        img: "/img/works/maze-homework/05.png",
+        tags: [
+            "JavaScript",
+            "Visualization",
+            "Learning"
+        ],
+        date: {
+            from: new Date(2022, 11, 8),
+            to: new Date(2022, 11, 8)
+        },
+        link: 'https://maze-hw10.pages.dev/',
+        imageList: [
+            "/img/works/maze-homework/01.png",
+            "/img/works/maze-homework/02.png",
+            "/img/works/maze-homework/03.png",
+            "/img/works/maze-homework/04.png",
+            "/img/works/maze-homework/05.png"
+        ],
+        color: '#181818'
+    },
+    {
         pin: true,
         id: 1,
         title: "FPSThailand Member",
@@ -205,28 +229,4 @@ Project Description
         ],
         color: '#181818'
     },
-    {
-        id: 4,
-        title: "Shortest Path - Homework",
-        describe: `This project was an assignment for an algorithms course. My partner and I paired up to write an algorithm and create a simple visualization using React for a classroom presentation.`,
-        img: "/img/works/maze-homework/05.png",
-        tags: [
-            "JavaScript",
-            "Visualization",
-            "Learning"
-        ],
-        date: {
-            from: new Date(2022, 11, 8),
-            to: new Date(2022, 11, 8)
-        },
-        link: 'https://maze-hw10.pages.dev/',
-        imageList: [
-            "/img/works/maze-homework/01.png",
-            "/img/works/maze-homework/02.png",
-            "/img/works/maze-homework/03.png",
-            "/img/works/maze-homework/04.png",
-            "/img/works/maze-homework/05.png"
-        ],
-        color: '#181818'
-    }
 ];
