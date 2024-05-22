@@ -143,6 +143,40 @@ Project Description
         color: '#181818'
     },
     {
+        id: 9,
+        title: "Dyztiny Store",
+        describe: `This project is a concept design where I conceptualized and designed the web pages myself. It serves as an experiment in utilizing Framer motion within Next.js.`,
+        img: "/img/works/dyz-store/dyztiny.png",
+        tags: [
+            "Next.js",
+            "Framer-motion",
+            "Frontend-dev",
+            "Mockup",
+            "Learning",
+        ],
+        link: 'https://dyz-store.jaruwat.dev/',
+        date: {
+            from: new Date(2021, 5, 2),
+            to: new Date(2021, 5, 2)
+        },
+        
+        imageList: [
+            "/img/works/dyz-store/01.png",
+            "/img/works/dyz-store/02.png",
+            "/img/works/dyz-store/03.png",
+            "/img/works/dyz-store/04.png",
+            "/img/works/dyz-store/05.png",
+            "/img/works/dyz-store/06.png",
+            "/img/works/dyz-store/07.png",
+            "/img/works/dyz-store/08.png",
+            "/img/works/dyz-store/09.png",
+            "/img/works/dyz-store/10.png",
+            "/img/works/dyz-store/11.png",
+            "/img/works/dyz-store/12.png",
+        ],
+        color: 'rgba(1,29,45)'
+    },
+    {
         pin: true,
         id: 1,
         title: "FPSThailand Member",
@@ -226,6 +260,28 @@ Project Description
             "/img/works/flight-visualization/13.png",
             "/img/works/flight-visualization/14.png",
             "/img/works/flight-visualization/15.png"
+        ],
+        color: '#181818'
+    },
+    {
+        id: 11,
+        title: "Wasender",
+        describe: `Just a small calendar components and I don't know why it is called wasender.`,
+        img: "/img/works/wasender/01.png",
+        date: {
+            from: new Date(2017, 0, 30),
+            to: new Date(2017, 7, 30)
+        },
+        tags: [
+            "jQuery",
+            "Hobby",
+            "Learning"
+        ],
+        link: 'https://wasenders.pages.dev/',
+        imageList: [
+            "/img/works/wasender/01.png",
+            "/img/works/wasender/02.png",
+            "/img/works/wasender/03.png",
         ],
         color: '#181818'
     },
