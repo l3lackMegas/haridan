@@ -132,21 +132,21 @@
     white-space: nowrap;
     color: white;
     text-align: center;
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    background-color: #ffffff0f;
+    border: 1px solid #ffffff03;
     border-radius: 5px;
     outline: 0;
     transition-duration: 0.15s;
     cursor: pointer;
 
     &:hover {
-        background-color: rgba(255, 255, 255, 0.3);
-        border: 2px solid transparent;
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid transparent;
     }
 
     &:active {
-        background-color: rgba(255, 255, 255, 0.4);
-        border: 2px solid rgba(255, 255, 255, 0.2);
+        background-color: rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
         transition-duration: 0.1s;
     }
 }
