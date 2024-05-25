@@ -264,26 +264,26 @@ Project Description
         ],
         color: '#493416'
     },
-    {
-        id: 11,
-        title: "Wasender",
-        describe: `Just a small calendar components and I don't know why it is called wasender.`,
-        img: "/img/works/wasender/01.png",
-        date: {
-            from: new Date(2017, 0, 30),
-            to: new Date(2017, 7, 30)
-        },
-        tags: [
-            "jQuery",
-            "Hobby",
-            "Learning"
-        ],
-        link: 'https://wasenders.pages.dev/',
-        imageList: [
-            "/img/works/wasender/01.png",
-            "/img/works/wasender/02.png",
-            "/img/works/wasender/03.png",
-        ],
-        color: '#85265b'
-    },
+    // {
+    //     id: 11,
+    //     title: "Wasender",
+    //     describe: `Just a small calendar components and I don't know why it is called wasender.`,
+    //     img: "/img/works/wasender/01.png",
+    //     date: {
+    //         from: new Date(2017, 0, 30),
+    //         to: new Date(2017, 7, 30)
+    //     },
+    //     tags: [
+    //         "jQuery",
+    //         "Hobby",
+    //         "Learning"
+    //     ],
+    //     link: 'https://wasenders.pages.dev/',
+    //     imageList: [
+    //         "/img/works/wasender/01.png",
+    //         "/img/works/wasender/02.png",
+    //         "/img/works/wasender/03.png",
+    //     ],
+    //     color: '#85265b'
+    // },
 ];
