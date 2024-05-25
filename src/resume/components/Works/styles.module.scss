@@ -73,9 +73,13 @@
         }
     }
 
+    .contentInfo {
+        transform: translateY(0);
+        transition-duration: .5s;
+    }
+
     &:hover {
         .imgContain {
-            margin-bottom: 20px;
             transform: scale(1.2);
             box-shadow: 0 0 20px 2px rgba(0, 0, 0, .75);
         }
@@ -84,6 +88,10 @@
             left: -5%;
             transform: rotate(-5deg) translate(15%, 25%) scale(1.1);
             transform-origin: center;
+        }
+
+        .contentInfo {
+            transform: translateY(20px);
         }
     }
 }

@@ -88,15 +88,17 @@ class WorkList extends Component<IReciept> {
                                 />
                             </motion.div>
                             <br/>
-                            <motion.p 
-                                // layoutId={`modalTitle-${ctx.id}`}
-                                className={styles.title}>{ctx.title}</motion.p>
-                            <motion.p 
-                                // layoutId={`modalDate-${ctx.id}`}
-                            >({dateString})</motion.p>
-                            
-                            <motion.div className={styles.tagList}>
-                                {ctx.tags?.map((tag: string, i: number) => <motion.div key={i} className={styles.tag}>{tag}</motion.div>)}
+                            <motion.div className={styles.contentInfo}>
+                                <motion.p 
+                                    // layoutId={`modalTitle-${ctx.id}`}
+                                    className={styles.title}>{ctx.title}</motion.p>
+                                <motion.p 
+                                    // layoutId={`modalDate-${ctx.id}`}
+                                >({dateString})</motion.p>
+                                
+                                <motion.div className={styles.tagList}>
+                                    {ctx.tags?.map((tag: string, i: number) => <motion.div key={i} className={styles.tag}>{tag}</motion.div>)}
+                                </motion.div>
                             </motion.div>
                             
                         </ModalActive>
