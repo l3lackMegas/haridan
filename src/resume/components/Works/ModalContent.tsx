@@ -66,9 +66,12 @@ class ModalContent extends Component<IReciept> {
                     <motion.div className={styles.logoArea}
                         style={{
                             backgroundColor: color,
-                            backgroundImage: `url(${img})`
+                            // backgroundImage: `url(${img})`
                         }}
-                    ></motion.div>
+                    >
+                        <motion.div className={styles.subGradient}></motion.div>
+                        <motion.img className={styles.img} src={img} />
+                    </motion.div>
                     <motion.h2 >{title}</motion.h2>
                     <motion.p >({date})</motion.p>
                     <motion.div className={styles.tagList}>

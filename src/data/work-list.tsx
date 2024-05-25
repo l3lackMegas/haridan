@@ -32,7 +32,7 @@ let workItems: Array<WorkStructure> = [
         describe: `This is my undergraduate thesis project. It took three people to develop this project.
 Project Description
         In order to reduce unnecessary steps and facilitate the work of various departments, the Film's Reporter Assistance system was developed. This system helps store footage files and save details into a database. It also uses artificial intelligence to analyze various elements within the footage. The program is designed to be easy to use for storing files and can be accessed quickly. This allows reporters to finish their work faster without having to manage folders. They can simply drag and drop footage files, preview the content, and type in the file details immediately.`,
-        img: "/img/works/film-reporter-assistance/logo-white.png",
+        img: "/img/works/film-reporter-assistance/01.png",
         tags: [
             "Next.js",
             "Fastify",
@@ -48,28 +48,28 @@ Project Description
         imageList: [
             "https://www.youtube.com/watch?v=X_Sy1vVP_y8",
         ],
-        color: '#191c23'
+        color: '#0d3799'
     },
-    {
-        id: 6,
-        title: "Flutter Image Color Summarizer",
-        describe: `This project is an experiment to create color summaries for 50 images simultaneously. Optimization is done to enable multi-threaded operation to reduce UI rendering latency.`,
-        img: "/img/works/flutter-image-color-summarizer/logo.png",
-        tags: [
-            "Flutter",
-            "Learning",
-            "Hobby"
-        ],
-        date: {
-            from: new Date(2023, 8, 14),
-            to: new Date(2023, 8, 14)
-        },
+    // {
+    //     id: 6,
+    //     title: "Flutter Image Color Summarizer",
+    //     describe: `This project is an experiment to create color summaries for 50 images simultaneously. Optimization is done to enable multi-threaded operation to reduce UI rendering latency.`,
+    //     img: "/img/works/flutter-image-color-summarizer/01.png",
+    //     tags: [
+    //         "Flutter",
+    //         "Learning",
+    //         "Hobby"
+    //     ],
+    //     date: {
+    //         from: new Date(2023, 8, 14),
+    //         to: new Date(2023, 8, 14)
+    //     },
         
-        imageList: [
-            "https://youtube.com/watch?v=L0RlK03-yQ8",
-        ],
-        color: 'white'
-    },
+    //     imageList: [
+    //         "https://youtube.com/watch?v=L0RlK03-yQ8",
+    //     ],
+    //     color: 'white'
+    // },
     {
         id: 5,
         title: "Valorant TH Ignition - Verify Riot ID",
@@ -92,7 +92,7 @@ Project Description
             "/img/works/valorantth-ignition/03.png",
             "/img/works/valorantth-ignition/04.png",
         ],
-        color: '#181818'
+        color: '#dc3d4b'
     },
     {
         id: 8,
@@ -140,13 +140,14 @@ Project Description
             "/img/works/maze-homework/04.png",
             "/img/works/maze-homework/05.png"
         ],
-        color: '#181818'
+        color: '#a37e15'
     },
     {
         id: 9,
+        pin: true,
         title: "Dyztiny Store",
         describe: `This project is a concept design where I conceptualized and designed the web pages myself. It serves as an experiment in utilizing Framer motion within Next.js.`,
-        img: "/img/works/dyz-store/dyztiny.png",
+        img: "/img/works/dyz-store/02.png",
         tags: [
             "Next.js",
             "Framer-motion",
@@ -181,7 +182,7 @@ Project Description
         id: 1,
         title: "FPSThailand Member",
         describe: `This project was commissioned by FPSThailand to allow their Twitch members to participate in random prize giveaways from their favorite streamers. I was involved in the design and development of the frontend and the prize giveaway algorithm.`,
-        img: "/img/works/fpsmember/logo.png",
+        img: "/img/works/fpsmember/01.png",
         tags: [
             "JavaScript",
             "Frontend Dev",
@@ -193,14 +194,13 @@ Project Description
         },
         link: 'https://member.fpsthailand.com/',
         imageList: ["https://www.youtube.com/watch?v=b7fKYZ81JKg"],
-        color: '#181818'
+        color: '#000929'
     },
     {
-        pin: true,
         id: 2,
         title: "Website BUMIT",
         describe: `This project was developed during my sophomore year of undergraduate studies. I was involved in the development of the frontend and integration with the backend system.`,
-        img: "/img/works/website-bumit/logo.png",
+        img: "/img/works/website-bumit/12.png",
         tags: [
             "Next.js",
             "Frontend Dev",
@@ -225,14 +225,15 @@ Project Description
             "/img/works/website-bumit/12.png",
             "/img/works/website-bumit/13.png"
         ],
-        color: 'white'
+        color: '#262045'
     },
     {
         pin: true,
         id: 3,
         title: "Flight Visualization",
         describe: `This project was developed during my sophomore year of undergraduate studies. I was involved in the development of the frontend and integration with the backend system.`,
-        img: "/img/works/flight-visualization/logo.png",
+        // img: "/img/works/flight-visualization/logo.png",
+        img: "/img/works/flight-visualization/1.png",
         date: {
             from: new Date(2021, 0, 30),
             to: new Date(2021, 7, 30)
@@ -261,7 +262,7 @@ Project Description
             "/img/works/flight-visualization/14.png",
             "/img/works/flight-visualization/15.png"
         ],
-        color: '#181818'
+        color: '#493416'
     },
     {
         id: 11,
@@ -283,6 +284,6 @@ Project Description
             "/img/works/wasender/02.png",
             "/img/works/wasender/03.png",
         ],
-        color: '#181818'
+        color: '#85265b'
     },
 ];

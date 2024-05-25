@@ -40,13 +40,13 @@ class WorkList extends Component<IReciept> {
                                 `${date.from.getFullYear()} - ${date.to.getFullYear()}`
                     return <motion.div
                         key={ctx.id}
-                        whileHover={{
-                            y: -5
-                        }}
-                        whileTap={{
-                            y: -5,
-                            scale: 1.02
-                        }}
+                        // whileHover={{
+                        //     y: -5
+                        // }}
+                        // whileTap={{
+                        //     y: -5,
+                        //     scale: 1.02
+                        // }}
                         className={styles.item}
                     >
                         <ModalActive layoutId={ctx.id}
@@ -72,12 +72,20 @@ class WorkList extends Component<IReciept> {
                                 style={{
                                     backgroundColor: ctx.color
                                 }}
-                                className={styles.imgContain}>
-                                <motion.div 
-                                    // layoutId={`modalLogo-${ctx.id}`}
-                                    className={styles.img} style={{
+                                className={styles.imgContain}
+                            >
+                                <motion.div className={styles.subImgBlur} style={{
                                     backgroundImage: `url(${ctx.img})`
                                 }}></motion.div>
+                                <motion.div className={styles.subGradient}></motion.div>
+                                <motion.img 
+                                    // layoutId={`modalLogo-${ctx.id}`}
+                                    className={styles.img}
+                                    // style={{
+                                    //     backgroundImage: `url(${ctx.img})`
+                                    // }}
+                                    src={ctx.img}
+                                />
                             </motion.div>
                             <br/>
                             <motion.p 
