@@ -42,7 +42,7 @@ class Experience extends Component {
                 </CardInfo>
 
                 <CardInfo
-                    title="internship at Meteorological Department of Thailand."
+                    title="Internship at Meteorological Department of Thailand."
                     date="2018 (March - May)"
                     org="Telecommunication Technology Sub-division"
                     link={[
