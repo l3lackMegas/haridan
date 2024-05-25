@@ -18,6 +18,8 @@
 }
 
 .container .item {
+    cursor: pointer;
+    
     .imgContain {
         position: relative;
         margin-bottom: 5px;
@@ -73,6 +75,7 @@
 
     &:hover {
         .imgContain {
+            margin-bottom: 20px;
             transform: scale(1.2);
             box-shadow: 0 0 20px 2px rgba(0, 0, 0, .75);
         }
