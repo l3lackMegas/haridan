@@ -152,7 +152,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                 }}
 
                                 animate={{                    
-                                    maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '80px' : '0px',
+                                    maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '0px',
                                     minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '0px',
                                     transition: {
                                         duration: 1,
@@ -167,10 +167,10 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     animate={{
                                         width: isOnMusicPage ? 40 : 30,
                                         height: isOnMusicPage ? 40 : 30,
+                                        minWidth: '40px',
+                                        opacity: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? 1 : 0,
                                         transition: {
-                                            duration: 1,
-                                            delay: isOnMusicPage ? 1 : 0,
-                                            ease: [0.5, 0.025, 0, 1]
+                                            duration: .5,
                                         }
                                     }}
                                     onClick={() => {

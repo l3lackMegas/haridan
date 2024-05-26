@@ -198,8 +198,8 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                 while (!canPlay) {
                     try {
                         this.state.youtubePlayerEvent.playVideo();
-                        await sleep(100);
                         canPlay = this.state.youtubePlayerEvent.getPlayerState() === 1;
+                        await sleep(10);
                     } catch (error) {
                         await sleep(100);
                     }
