@@ -4,15 +4,17 @@ import { AnimatePresence, motion, stagger } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faArrowUpRightFromSquare, faAt, faLink, faPause, faPlay, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUpRightFromSquare, faAt, faChevronLeft, faLink, faPause, faPlay, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import YouTubePlayer from 'react-youtube';
 
 import { AppMainContext, IThemeState } from '../context';
 
 import './index.scss';
-import { getYoutubeId } from '../lib/utility';
+import { getYoutubeId, sleep } from '../lib/utility';
 import LoadingIcon from '../common/LoadingIcon';
+
+import MusicListData, { MusicStructure } from '../data/music-list';
 
 type Props = {
 };
@@ -47,10 +49,24 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
     render() {
         const { textColor, textNavColor, crrFeature, isToggleNav, musicPlayerController }: IThemeState = this.context;
 
-        const { playerReady } = this.state;
+        const { playerReady, crrTime, maxTime } = this.state;
 
         // if(musicPlayerController.crrUrl === '') return <></>;
-        const youtubeId = getYoutubeId(musicPlayerController.crrUrl);
+        let youtubeId = getYoutubeId(musicPlayerController.crrUrl);
+        let songList = MusicListData().songList;
+        let songIndex = songList.findIndex((item: MusicStructure) => item.url === musicPlayerController.crrUrl || item.videoUrl === musicPlayerController.crrUrl);
+        let thumbnailId
+        let songName, authorName;
+        if(songIndex === -1) {
+            thumbnailId = getYoutubeId(musicPlayerController.crrUrl);
+            songName = this.state.songName;
+            authorName = this.state.authorName;
+        } else {
+            thumbnailId = getYoutubeId(songList[songIndex].url);
+            songName = songList[songIndex].title;
+            authorName = songList[songIndex].author;
+        }
+        
         const opts = {
             height: '100%',
             width: '100%',
@@ -66,6 +82,8 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
         };
         
         const isOnMusicPage = crrFeature === '/music';
+
+        const isSongPlaying = (musicPlayerController.isPaused || this.state.songName === '') && this.context.youtubePlayerEvent && this.context.youtubePlayerEvent.getPlayerState();
 
         return (
             <AnimatePresence mode='sync' key={'music-backdrop-controller'}>
@@ -104,11 +122,68 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             }
                         }}
                     >
+                        <motion.div className='player-progress'
+                            onClick={(e) => {
+                                // get mouse position
+                                const rect = e.currentTarget.getBoundingClientRect();
+                                const x = e.clientX - rect.left; //x position within the element
+                                let percent = x / rect.width;
+
+                                let newTime = percent * maxTime;
+                                musicPlayerController.seekTo(newTime);
+                            }}
+                            animate={{
+                                opacity: isOnMusicPage ? 1 : 0,
+                                transition: {
+                                    duration: isOnMusicPage ? 1 : .25,
+                                    delay: isOnMusicPage ? 1 : 0,
+                                    ease: [0.5, 0.025, 0, 1]
+                                }
+                            }}
+                        >
+                            <motion.div className='player-progress-bar' animate={{
+                                width: `${crrTime / maxTime * 100}%`
+                            }}></motion.div>
+                        </motion.div>
                         <motion.div className='player-flex-tools'>
+                            { <motion.div className='player-button'
+                                style={{
+                                    overflow: 'hidden',
+                                }}
+
+                                animate={{                    
+                                    maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '80px' : '0px',
+                                    minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '0px',
+                                    transition: {
+                                        duration: 1,
+                                        delay: musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused && isOnMusicPage ? .5 : 0,
+                                        ease: [0.5, 0.025, 0, 1]
+                                    }
+                                }}
+                            >
+                                <motion.button
+                                    key={'player-button-back'}
+                                    className='button-control'
+                                    animate={{
+                                        width: isOnMusicPage ? 40 : 30,
+                                        height: isOnMusicPage ? 40 : 30,
+                                        transition: {
+                                            duration: 1,
+                                            delay: isOnMusicPage ? 1 : 0,
+                                            ease: [0.5, 0.025, 0, 1]
+                                        }
+                                    }}
+                                    onClick={() => {
+                                        musicPlayerController.hidePlayer();
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={faChevronLeft} style={{transform: 'translateX(1px)',}} />
+                                </motion.button>
+                            </motion.div>}
                             <motion.div className='player-thumbnail'
                                 style={{
                                     cursor: isOnMusicPage ? 'default' : 'pointer',
-                                    backgroundImage: `url(https://img.youtube.com/vi/${youtubeId}/default.jpg)`,
+                                    backgroundImage: `url(https://img.youtube.com/vi/${thumbnailId}/maxresdefault.jpg)`,
                                 }}
                                 animate={{
                                     width: isOnMusicPage ? 100 : 50,
@@ -131,49 +206,62 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                 {isOnMusicPage && <motion.div className='link-overlay'
                                     onClick={() => {
                                         musicPlayerController.pause();
-                                        console.log(musicPlayerController.crrUrl + '?t=' + Math.floor(this.state.crrTime));
+                                        // console.log(musicPlayerController.crrUrl + '?t=' + Math.floor(this.state.crrTime));
                                         window.open(musicPlayerController.crrUrl + '?t=' + Math.floor(this.state.crrTime), '_blank');
                                     }}
                                 >
                                     <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                                 </motion.div>}
                             </motion.div>
-                            <motion.div className='player-info-text'>
+                            <motion.div className='player-info-text'
+                                animate={{
+                                    marginBottom: isOnMusicPage ? '10px' : '0px',
+                                    transition: {
+                                        duration: 1,
+                                        delay: isOnMusicPage ? 1 : 0,
+                                        ease: [0.5, 0.025, 0, 1]
+                                    }
+                                }}
+                            >
                                 <motion.p
                                     key={'song-name'}
                                     className='song-name'
                                     style={{
-                                        cursor: isOnMusicPage ? 'default' : 'pointer',
-                                    }}
-                                    initial={{
-                                        x: '100%'
-                                    }}
-                                    animate={{
-                                        x: '-100%',
-                                        transition: {
-                                            duration: 20,
-                                            repeat: Infinity,
-                                            ease: 'linear'
-                                        }
+                                        cursor: isOnMusicPage && musicPlayerController.isPlayerDisplay ? 'default' : 'pointer',
                                     }}
                                     onClick={() => {
-                                        if(isOnMusicPage) return;
+                                        if(isOnMusicPage) {
+                                            if(!musicPlayerController.isPlayerDisplay) {
+                                                musicPlayerController.showPlayer();
+                                            }
+                                            return;
+                                        }
                                         this.context.pushNavigate('/music');
                                     }}
-                                >{this.state.songName || 'Loading...'}</motion.p>
+                                >
+                                    <motion.span
+                                        style={{
+                                            textOverflow: 'ellipsis',
+                                            width: '100%',
+                                            overflow: 'hidden',
+                                        }}
+                                    >
+                                        {songName ? `${songName}` : 'Loading...'}
+                                    </motion.span>
+                                </motion.p>
                                 <motion.p
                                     key={'author-name'}
                                     className='author-name'
                                     animate={{
                                         opacity: isOnMusicPage ? 1 : 0,
-                                        height: isOnMusicPage ? 15 : 0,
+                                        height: isOnMusicPage ? 18 : 0,
                                         transition: {
                                             duration: 1,
                                             delay: isOnMusicPage ? 1 : 0,
                                             ease: [0.5, 0.025, 0, 1]
                                         }
                                     }}
-                                >{this.state.authorName}</motion.p>
+                                >{authorName}</motion.p>
                             </motion.div>
                             <motion.div className='player-button'>
                                 <motion.button
@@ -189,11 +277,11 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                         }
                                     }}
                                     onClick={() => {
-                                        if(musicPlayerController.isPaused || this.state.songName === '') musicPlayerController.play();
+                                        if(isSongPlaying) musicPlayerController.play();
                                         else musicPlayerController.pause();
                                     }}
                                 >
-                                    {musicPlayerController.isPaused || this.state.songName === ''
+                                    {isSongPlaying
                                         ? <FontAwesomeIcon icon={faPlay} style={{transform: isOnMusicPage ? 'translateX(1px)' : 'translateX(2px)',}} />
                                         : <FontAwesomeIcon icon={faPause} style={{transform: isOnMusicPage ? 'translateX(0px)' : 'translateX(1px)',}} />
                                     }
@@ -210,11 +298,14 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                             ease: [0.5, 0.025, 0, 1]
                                         }
                                     }}
-                                    onClick={() => {
-                                        musicPlayerController.setCrrUrl('');
+                                    onClick={async () => {
+                                        await musicPlayerController.pause();
+                                        await musicPlayerController.hidePlayer();
+                                        await sleep(250);
+                                        await musicPlayerController.setCrrUrl('');
                                     }}
                                 >
-                                    <FontAwesomeIcon icon={faTimes} style={{ transform: isOnMusicPage ? 'translateX(-0.5px)' : 'translateX(0.5px)' }} />
+                                    <FontAwesomeIcon icon={faTimes} style={{ transform: isOnMusicPage ? 'translateX(0)' : 'translateX(0.5px)' }} />
                                 </motion.button>
                             </motion.div>
                         </motion.div>
@@ -226,8 +317,8 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     animate={{
                         opacity: !musicPlayerController.isPaused &&isOnMusicPage && !isToggleNav && musicPlayerController.isPlaying && musicPlayerController.isPlayerDisplay ? 1 : 0,
                         transition: {
-                            duration: !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? .25 : 1,
-                            delay: !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? 0 : .75
+                            duration: !musicPlayerController.isPlayerDisplay || !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? .25 : 1,
+                            delay: !musicPlayerController.isPlayerDisplay || !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? 0 : .75
                         }
                     }}
                 >
@@ -241,19 +332,23 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
     }
 
     youtubeAPIRefresher: any = 0;
-    _onReady(event: any) {
+    async _onReady(event: any) {
         // access to player in all event handlers via event.target
         window.player = event.target;
         // console.log(event.target);
         // event.target.pauseVideo();
         const { musicPlayerController } = this.context;
 
+        while (!event.target) {
+            await sleep(100);
+        }
+
         musicPlayerController.setYoutubePlayerEvent(event.target);
 
         let _this = this;
 
-        event.target.addEventListener('onStateChange', (e: any) => {
-            // console.log(event)
+        event.target.addEventListener('onStateChange', async (e: any) => {
+            console.log(e.data)
             switch(e.data) {
                 case 1:
                     event.target.setVolume(50);
@@ -262,21 +357,40 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                         songName: videoDataInfo.title.trim(),
                         authorName: videoDataInfo.author.trim()
                     });
+                    clearInterval(_this.youtubeAPIRefresher);
                     _this.youtubeAPIRefresher = setInterval(() => {
+                        // console.log(event.target.getCurrentTime(), event.target.getDuration());
                         _this.setState({
                             crrTime: event.target.getCurrentTime(),
                             maxTime: event.target.getDuration()
-            })
+                        })
                     }, 10);
                     break;
                 case 0:
                     clearInterval(_this.youtubeAPIRefresher);
-                    musicPlayerController.setCrrUrl('');
+                    await musicPlayerController.pause();
+                    _this.setState({
+                        crrTime: 0,
+                    })
+                    await sleep(500);
+                    let tempSong = musicPlayerController.crrUrl;
+                    let songList = MusicListData().songList;
+                    let songIndex = songList.findIndex((item: MusicStructure) => item.url === tempSong || item.videoUrl === tempSong);
+                    if(songIndex !== -1) {
+                        // play next song
+                        let nextSongIndex = (songIndex + 1) % songList.length;
+                        await musicPlayerController.setCrrUrl(songList[nextSongIndex].url);
+                    }
+                    break;
+
+                case 5:
+                    musicPlayerController.play();
                     break;
             }
         });
-        musicPlayerController.play();
 
+        event.target.playVideo();
+        musicPlayerController.play();
     }
 }
 

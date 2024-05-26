@@ -19,6 +19,7 @@ export interface IMusicPlayerController {
     showPlayer: () => void;
     hidePlayer: () => void;
     setYoutubePlayerEvent: (youtubePlayerEvent: any) => void;
+    seekTo: (time: number) => void;
 }
 
 export interface IThemeState {
@@ -86,6 +87,7 @@ export const AppMainContext = React.createContext({
         showPlayer: () => {},
         hidePlayer: () => {},
         setYoutubePlayerEvent: (youtubePlayerEvent: any) => {},
+        seekTo: (time: number) => {},
     },
     youtubePlayerEvent: null,
     pushNavigate: (url: string) => {},
@@ -182,24 +184,42 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                     musicPlayerController: {
                         ...this.state.musicPlayerController,
                         crrUrl: crrUrl,
+                        isPlaying: crrUrl !== '',
+                        isPaused: crrUrl !== '',
                     },
+                    youtubePlayerEvent: null,
                 });
             },
             isPlaying: false,
             isPaused: true,
             play: async () => {
                 await sleep(10);
-                this.state.youtubePlayerEvent.playVideo();
+                while (!this.state.youtubePlayerEvent) {
+                    await sleep(100);
+                }
+                let canPlay = false;
+                while (!canPlay) {
+                    try {
+                        this.state.youtubePlayerEvent.playVideo();
+                        await sleep(100);
+                        canPlay = this.state.youtubePlayerEvent.getPlayerState() === 1;
+                    } catch (error) {
+                        await sleep(100);
+                    }
+                }
                 this.setState({
                     musicPlayerController: {
                         ...this.state.musicPlayerController,
-                        isPlaying: true,
+                        isPlaying: canPlay,
                         isPaused: false,
                     },
                 });
             },
             pause: async () => {
                 await sleep(10);
+                while (!this.state.youtubePlayerEvent) {
+                    await sleep(100);
+                }
                 this.state.youtubePlayerEvent.pauseVideo();
                 this.setState({
                     musicPlayerController: {
@@ -233,6 +253,12 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                     youtubePlayerEvent: youtubePlayerEvent,
                 });
             },
+            seekTo: async (time: number) => {
+                while (!this.state.youtubePlayerEvent) {
+                    await sleep(100);
+                }
+                this.state.youtubePlayerEvent.seekTo(time, true);
+            }
         },
         youtubePlayerEvent: null,
     };

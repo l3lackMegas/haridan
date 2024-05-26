@@ -78,11 +78,12 @@ html, body {
     font-family: 'Anuphan', sans-serif;
     background-color: black;
     scroll-behavior: smooth;
+    scrollbar-color: white transparent;
 }
 
 body {
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 h1, h2, h3, h4, h5, h6, p {

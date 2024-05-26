@@ -21,12 +21,15 @@ import resumeData from '../data/resume'
 import Credit from './components/MainLayout/Credit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import MusicItem from '../music/MusicItem';
+import MusicListData, { MusicStructure } from '../data/music-list';
 
 type PageProps = {
 };
 type PageState = {
     mounted: boolean
     workItems: any[]
+    musicList: MusicStructure[]
     resume: {
         experience: any[]
         rewards: any[]
@@ -43,6 +46,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
     state: PageState = {
         mounted: false,
         workItems: [],
+        musicList: MusicListData().songList.filter((item: MusicStructure) => item.pin === true),
         resume: {
             experience: [],
             rewards: [],
@@ -195,13 +199,26 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                                     <p>Actually, I am a Frontend Dev and I would like to do anything about web design and frontend development.</p>
                                     <p>But even if it{"'s"} not a frontend job, I can still enjoy with it. {"<3"}</p>
                                 </div>
-                                <div className="understandCSS">
+                                {/* <div className="understandCSS">
                                     <div className="frame">
                                         <h1 style={{marginTop: 40}}>CSS</h1>
                                         <h1>IS</h1>
                                         <h1 style={{transform: 'translateX(-23px)'}}>AWESOME</h1>
                                     </div>
                                     <p style={{textAlign: 'center'}}>Just kidding</p>
+                                </div> */}
+                                <div className="understandCSS">
+                                    <p style={{textAlign: 'center'}}>Music is a part of my life ;3</p>
+                                    <motion.div className='music-list'>
+                                        {
+                                            this.state.musicList.map((item, index) => {
+                                                return (<MusicItem key={index} songInfo={item} videoDisabled={true} />)
+                                            })
+                                        }
+                                    </motion.div>
+                                    <Link to="/music" className="btnViewMore">
+                                        <span>View All Music Collections</span>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
