@@ -5,10 +5,14 @@ import './LoadingIcon.scss';
 export default function LoadingIcon(
 {
     duration,
-    elmKey
+    elmKey,
+    size,
+    borderSize
 } : {
     duration?: number
-    elmKey?: string
+    elmKey?: string,
+    size?: number,
+    borderSize?: number
 }) {
 
     return <motion.div
@@ -19,6 +23,9 @@ export default function LoadingIcon(
         opacity: [1, 0.5, 1, 1, 1, 1, 0.5, 1],
         rotate: [0, 0, 300, 270, 270, 320, 0, 0],
         borderRadius: ["50%", "50%", "10%", "10%", "10%", "10%", "50%", "50%"],
+        width: size || 50,
+        height: size || 50,
+        border: `${borderSize || 7}px white solid`
     }}
     transition={{
         duration: duration || 2,

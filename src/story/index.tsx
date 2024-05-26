@@ -5,7 +5,7 @@ import PageContainer from '../common/PageContainer';
 
 import './index.scss';
 
-import { TextColor, IThemeState } from '../context';
+import { AppMainContext, IThemeState } from '../context';
 
 type PageProps = {
 };
@@ -26,7 +26,7 @@ class StoryPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     componentWillUnmount(): void {
-        console.log('unmount', "/story");
+        // console.log('unmount', "/story");
         const { setTextColor, crrFeature, setCrrFeature }: IThemeState = this.context;
         // console.log(crrFeature)
         if(crrFeature === '/story') {
@@ -49,6 +49,6 @@ class StoryPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 }
 
-StoryPage.contextType = TextColor;
+StoryPage.contextType = AppMainContext;
 
 export default StoryPage;

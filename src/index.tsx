@@ -10,7 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import App from './App';
 
 
-import ContextWraper, { TextColor, IThemeState } from './context';
+import ContextWraper, { AppMainContext, IThemeState } from './context';
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement

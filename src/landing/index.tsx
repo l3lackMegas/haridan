@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import './index.scss';
 
-import { TextColor, IThemeState } from '../context';
+import { AppMainContext, IThemeState } from '../context';
 
 import PageContainer from '../common/PageContainer';
 
@@ -35,7 +35,7 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     componentWillUnmount(): void {
-        console.log('unmount', "/");
+        // console.log('unmount', "/");
         const { setTextColor, crrFeature, setCrrFeature, scrollTop }: IThemeState = this.context;
         if(crrFeature === '/') {
             setTextColor('white');
@@ -169,6 +169,6 @@ class LandingPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 }
 
-LandingPage.contextType = TextColor;
+LandingPage.contextType = AppMainContext;
 
 export default LandingPage;

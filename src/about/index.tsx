@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import './index.scss';
 
-import { TextColor, IThemeState } from '../context';
+import { AppMainContext, IThemeState } from '../context';
 
 import PageContainer from '../common/PageContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -51,7 +51,7 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
 
     componentWillUnmount(): void {
         clearInterval(this.shuffleInterval);
-        console.log('unmount', "/about");
+        // console.log('unmount', "/about");
         const { setTextColor, crrFeature, setCrrFeature, scrollTop }: IThemeState = this.context;
         if(crrFeature === '/') {
             setTextColor('white');
@@ -251,6 +251,6 @@ class AboutPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 }
 
-AboutPage.contextType = TextColor;
+AboutPage.contextType = AppMainContext;
 
 export default AboutPage;

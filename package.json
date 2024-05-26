@@ -23,6 +23,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
+    "react-youtube": "^10.1.0",
     "resize-observer-polyfill": "^1.5.1",
     "sass": "^1.63.4",
     "sort-by": "^1.2.0",

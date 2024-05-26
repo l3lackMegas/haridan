@@ -15,8 +15,9 @@ import LandingPage from './landing';
 import AboutPage from './about';
 import ResumePage from './resume';
 import StoryPage from './story';
+import MusicPage from './music';
 
-import ContextWraper, { TextColor, IThemeState } from './context';
+import ContextWraper, { AppMainContext, IThemeState } from './context';
 
 import './App.scss';
 import { checkIsMobile, isSafari } from './lib/utility';
@@ -25,6 +26,7 @@ import NotFoundPage from './404';
 import PortfolioPage from './portfolio';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faWarning } from '@fortawesome/free-solid-svg-icons';
+import MusicBackdrop from './music/MusicBackdrop';
 
 export default function App() {
 	const location = useLocation();
@@ -38,13 +40,15 @@ export default function App() {
                     </AnimatePresence>
                     <AppClass>
                         <AnimatePresence mode='sync' key="routeAnimated">
-                            
                                 <Routes location={location} key={location.pathname}>
                                     <Route key={'resume'} path="/" element={<ResumePage key={'resume'}/>} />
                                     <Route key={'portfolio'} path="/portfolio" element={<PortfolioPage key={'portfolio'}/>} />
+                                    <Route key={'music'} path="/music" element={<MusicPage key={'music'}/>} />
                                     {/* <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} /> */}
                                     <Route key={'404'} path="*" element={<NotFoundPage key={'404'}/>} />
                                 </Routes>
+
+                                <MusicBackdrop />
                         </AnimatePresence>
                     </AppClass>
                 </ContextWraper>
@@ -60,6 +64,7 @@ declare global {
         translateWithToggleNav: boolean;
         isMobile: boolean;
         isSafari: boolean;
+        player: any;
     }
 }
 
@@ -264,4 +269,4 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
     }
 }
 
-AppClass.contextType = TextColor;
+AppClass.contextType = AppMainContext;

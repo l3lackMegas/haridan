@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faAt } from '@fortawesome/free-solid-svg-icons'
 
-import { TextColor, IThemeState } from '../context';
+import { AppMainContext, IThemeState } from '../context';
 
 import './header.scss';
 
@@ -72,6 +72,9 @@ class Header extends React.Component<Props, State, IThemeState> {
             case '/story':
                 crrPageName = 'Story';
                 break;
+            case '/music':
+                crrPageName = 'Music';
+                break;
             case '/contact':
                 crrPageName = 'Contact';
                 break;
@@ -122,6 +125,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                             >
                                 <this.LinkItem path="/">Résumé</this.LinkItem>
                                 <this.LinkItem path="/portfolio">Portfolio</this.LinkItem>
+                                <this.LinkItem path="/music">Music</this.LinkItem>
                                 {/* <this.LinkItem path="/story">Story</this.LinkItem>
                                 <this.LinkItem path="/contact">Playlist</this.LinkItem> */}
                             </motion.div>
@@ -221,7 +225,14 @@ class Header extends React.Component<Props, State, IThemeState> {
                                     height: 51,
                                     backgroundColor: 'rgba(0, 0, 0, .5)',
                                     borderRadius: '50%',
-                                }}>
+                                }}
+                                    animate={{
+                                        opacity: isToggleNav ? 0 : 1,
+                                        transition: {
+                                            duration: .35,
+                                        }
+                                    }}
+                                >
                                     <this.WebRing />
                                 </motion.div>
                             </motion.h3>   
@@ -330,6 +341,6 @@ class Header extends React.Component<Props, State, IThemeState> {
     }
 }
 
-Header.contextType = TextColor;
+Header.contextType = AppMainContext;
 
 export default Header;

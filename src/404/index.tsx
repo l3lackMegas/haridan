@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import './index.scss';
 
-import { TextColor, IThemeState } from '../context';
+import { AppMainContext, IThemeState } from '../context';
 
 import PageContainer from '../common/PageContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -52,7 +52,7 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
 
     componentWillUnmount(): void {
         clearInterval(this.shuffleInterval);
-        console.log('unmount', "/404");
+        // console.log('unmount', "/404");
         const { setTextColor, crrFeature, setCrrFeature, scrollTop }: IThemeState = this.context;
         if(crrFeature === '/') {
             setTextColor('white');
@@ -254,6 +254,6 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 }
 
-NotFoundPage.contextType = TextColor;
+NotFoundPage.contextType = AppMainContext;
 
 export default NotFoundPage;

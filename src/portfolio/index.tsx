@@ -5,7 +5,7 @@ import PageContainer from '../common/PageContainer';
 
 import './index.scss';
 
-import { TextColor, IThemeState } from '../context';
+import { AppMainContext, IThemeState } from '../context';
 import Section from '../resume/components/MainLayout/Section';
 import WorkListData, { WorkStructure } from '../data/work-list';
 import WorkList from '../resume/components/Works/List';
@@ -39,7 +39,7 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     componentWillUnmount(): void {
-        console.log('unmount', "/portfolio");
+        // console.log('unmount', "/portfolio");
         const { setTextColor, crrFeature, setCrrFeature }: IThemeState = this.context;
         // console.log(crrFeature)
         if(crrFeature === '/portfolio') {
@@ -125,6 +125,6 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 }
 
-PortfolioPage.contextType = TextColor;
+PortfolioPage.contextType = AppMainContext;
 
 export default PortfolioPage;

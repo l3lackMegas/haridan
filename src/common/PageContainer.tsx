@@ -5,7 +5,7 @@ import { AnimatePresence, motion, MotionValue, stagger, useMotionValue, useSprin
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
-import { TextColor, IThemeState } from '../context';
+import { AppMainContext, IThemeState } from '../context';
 
 import './PageContainer.scss';
 import { checkIsMobile, isSafari } from '../lib/utility';
@@ -110,6 +110,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     componentWillUnmount(): void {
+        window.scrollTo(0, 0);
         window.removeEventListener('scroll', this.onScrollHandler);
     }
 
@@ -232,10 +233,12 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         <motion.div
                             // className="scroll-container"
                             style={!shouldFloat && this.isCanNotSmooth && !this.context.isToggleNav && !isNavToggling ? {
-                                position: 'relative'
+                                position: 'relative',
+                                width: '100%',
                             } : {
                                 position: 'fixed',
                                 y: -currentScroll,
+                                width: '100%',
                             }}
                         >
                             <motion.div className="sub content-overflow" ref={this.contentScroll}
@@ -254,7 +257,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                     }}></div>
                 }
                 
-                <motion.div className='overlay-header'
+                {this.props.headerOverlayColor && <motion.div className={`overlay-header ${this.isCanNotSmooth ? ' mobile' : ''}`}
                     initial={{
                         opacity: 0,
                         y: -70
@@ -271,7 +274,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                     style={{
                         backgroundColor: this.props.headerOverlayColor || 'transparent'
                     }}
-                ></motion.div>
+                ></motion.div>}
                 
                 <motion.div
                     className={'PageContainer toggled'}
@@ -365,7 +368,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 }
 
-PageContainer.contextType = TextColor;
+PageContainer.contextType = AppMainContext;
 
 export default PageContainer;
 
@@ -375,7 +378,7 @@ const WrapPageScroll = ({ children, crrPathName, refSmooth }: {
     refSmooth: React.RefObject<HTMLDivElement>
 }) => {
 
-    const appContext: IThemeState = React.useContext(TextColor);
+    const appContext: IThemeState = React.useContext(AppMainContext);
 
     const scrollY = useMotionValue(appContext.scrollTop);
     // const { scrollY } = useViewportScroll()

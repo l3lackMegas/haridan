@@ -1,9 +1,24 @@
 import * as React from 'react';
 import SmoothScroll from './common/SmoothScroll';
-import { checkIsMobile, isSafari } from './lib/utility';
+import { checkIsMobile, isSafari, sleep } from './lib/utility';
+
+import { useNavigate } from 'react-router-dom';
 
 export interface IThemeStateObject {
     [value: string]: string;
+}
+
+export interface IMusicPlayerController {
+    crrUrl: string;
+    setCrrUrl: (crrUrl: string) => void;
+    isPlaying: boolean;
+    isPaused: boolean;
+    play: () => void;
+    pause: () => void;
+    isPlayerDisplay: boolean;
+    showPlayer: () => void;
+    hidePlayer: () => void;
+    setYoutubePlayerEvent: (youtubePlayerEvent: any) => void;
 }
 
 export interface IThemeState {
@@ -21,6 +36,10 @@ export interface IThemeState {
     setCrrPageHeight: (crrPageHeight: number) => void;
     parallaxPos: number;
     setParallaxPos: (pararaxPosition: number) => void;
+
+    musicPlayerController: IMusicPlayerController;
+    youtubePlayerEvent: any;
+    pushNavigate: (url: string) => void;
 }
 
 
@@ -28,7 +47,7 @@ export interface IThemeState {
 const TextColorObject: IThemeStateObject = {
     value: 'black',
 };
-export const TextColor = React.createContext({
+export const AppMainContext = React.createContext({
     isCanNotSmooth: checkIsMobile() || isSafari(),
     textColor: TextColorObject,
     setTextColor: (textColor: string, textNavColor?: string) => {
@@ -54,10 +73,26 @@ export const TextColor = React.createContext({
     parallaxPos: 0,
     setParallaxPos: (pararaxPosition: number) => {
 
-    }
+    },
+
+    musicPlayerController: {
+        crrUrl: '',
+        setCrrUrl: (crrUrl: string) => {},
+        isPlaying: false,
+        isPaused: true,
+        play: () => {},
+        pause: () => {},
+        isPlayerDisplay: false,
+        showPlayer: () => {},
+        hidePlayer: () => {},
+        setYoutubePlayerEvent: (youtubePlayerEvent: any) => {},
+    },
+    youtubePlayerEvent: null,
+    pushNavigate: (url: string) => {},
 });
 
 type PageProps = {
+    navigate: ReturnType<typeof useNavigate>,
     children: React.ReactNode
 };
 type PageState = {
@@ -133,7 +168,73 @@ class ContextWraper extends React.Component<PageProps, PageState> {
             this.setState({
                 parallaxPos: pararaxPosition,
             });
-        }
+        },
+
+        pushNavigate: (url: string) => {
+            this.props.navigate(url)
+        },
+
+        musicPlayerController: {
+            crrUrl: '',
+            setCrrUrl: async (crrUrl: string) => {
+                await sleep(10);
+                this.setState({
+                    musicPlayerController: {
+                        ...this.state.musicPlayerController,
+                        crrUrl: crrUrl,
+                    },
+                });
+            },
+            isPlaying: false,
+            isPaused: true,
+            play: async () => {
+                await sleep(10);
+                this.state.youtubePlayerEvent.playVideo();
+                this.setState({
+                    musicPlayerController: {
+                        ...this.state.musicPlayerController,
+                        isPlaying: true,
+                        isPaused: false,
+                    },
+                });
+            },
+            pause: async () => {
+                await sleep(10);
+                this.state.youtubePlayerEvent.pauseVideo();
+                this.setState({
+                    musicPlayerController: {
+                        ...this.state.musicPlayerController,
+                        isPlaying: true,
+                        isPaused: true,
+                    },
+                });
+            },
+            isPlayerDisplay: false,
+            showPlayer: async () => {
+                await sleep(10);
+                this.setState({
+                    musicPlayerController: {
+                        ...this.state.musicPlayerController,
+                        isPlayerDisplay: true,
+                    },
+                });
+            },
+            hidePlayer: async () => {
+                await sleep(10);
+                this.setState({
+                    musicPlayerController: {
+                        ...this.state.musicPlayerController,
+                        isPlayerDisplay: false,
+                    },
+                });
+            },
+            setYoutubePlayerEvent: (youtubePlayerEvent: any) => {
+                this.setState({
+                    youtubePlayerEvent: youtubePlayerEvent,
+                });
+            },
+        },
+        youtubePlayerEvent: null,
     };
 
     constructor(props: PageProps) {
@@ -147,11 +248,26 @@ class ContextWraper extends React.Component<PageProps, PageState> {
 
     render() {
         return (
-            <TextColor.Provider value={this.state}>
+            <AppMainContext.Provider value={this.state}>
                 {this.props.children}
-            </TextColor.Provider>
+            </AppMainContext.Provider>
         );
     }
 }
 
-export default ContextWraper;
+export const withRouter = (Component: any) => {
+  const Wrapper = (props: any) => {
+    const navigate = useNavigate();
+    
+    return (
+      <Component
+        navigate={navigate}
+        {...props}
+        />
+    );
+  };
+  
+  return Wrapper;
+};
+
+export default withRouter(ContextWraper);

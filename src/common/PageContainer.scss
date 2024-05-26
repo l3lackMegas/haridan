@@ -1,9 +1,10 @@
 .PageContainer {
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
     transform-origin: top;
     position: fixed;
     overflow: hidden;
+    z-index: 1;
 
     .content-overflow {
         position: relative;
@@ -28,7 +29,7 @@
 }
 
 .btnTopCenter {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%) !important;

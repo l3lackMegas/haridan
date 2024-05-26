@@ -82,7 +82,7 @@ html, body {
 
 body {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 h1, h2, h3, h4, h5, h6, p {
@@ -120,7 +120,12 @@ img{
     left: 0;
     width: 100vw;
     height: 70px;
-    z-index: 0;
+    z-index: 1;
+    backdrop-filter: blur(30px) saturate(30%);
+
+    &.mobile {
+        backdrop-filter: none;
+    }
 }
 
 .scrollDown {
