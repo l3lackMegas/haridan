@@ -72,7 +72,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
             width: '100%',
             playerVars: {
                 // https://developers.google.com/youtube/player_parameters
-                // autoplay: 1,
+                autoplay: 1,
                 controls: 0,
                 //   start: 200,
                 volume: 50,
@@ -311,7 +311,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                         </motion.div>
                     </motion.div>    
                 </motion.div>}
-                {musicPlayerController.crrUrl !== '' && <motion.div className='player-backdrop'
+                <motion.div className='player-backdrop'
                     key={'player-backdrop'}
                     initial={{ opacity: 0 }}
                     animate={{
@@ -322,11 +322,11 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                         }
                     }}
                 >
-                    <YouTubePlayer videoId={youtubeId} opts={opts} onReady={this._onReady} style={{
+                    <YouTubePlayer opts={opts} onReady={this._onReady} style={{
                         width: '100%',
                         height: '100%'
                     }}  />
-                </motion.div>}
+                </motion.div>
             </AnimatePresence>
         );
     }
@@ -351,6 +351,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
             console.log(e.data)
             switch(e.data) {
                 case 1:
+                    musicPlayerController.play();
                     event.target.setVolume(50);
                     const videoDataInfo = event.target.getVideoData();
                     _this.setState({
@@ -389,8 +390,16 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
             }
         });
 
-        event.target.playVideo();
-        musicPlayerController.play();
+        // event.target.playVideo();
+        let canPlay = false;
+        while (!canPlay) {
+            try {
+                musicPlayerController.play();
+                canPlay = true;
+            } catch (error) {
+                await sleep(100);
+            }
+        }
     }
 }
 

@@ -76,6 +76,9 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                 <motion.div
                     key={'MusicPage'}
                     className='music-page'
+                    style={{
+                        pointerEvents: hidePageUI ? 'none' : 'auto',
+                    }}
                     animate={{
                         opacity: !isToggleNav && hidePageUI ? 0 : 1,
                         transition: {

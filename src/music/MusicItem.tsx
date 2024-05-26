@@ -43,7 +43,7 @@ class MusicItem extends React.Component<Props, State, IThemeState> {
 
         const youtubeId = getYoutubeId(songInfo.url);
 
-        const isCurrentSongPlay = songInfo.url === musicPlayerController.crrUrl || songInfo.videoUrl === musicPlayerController.crrUrl;
+        const isCurrentSongPlay = musicPlayerController.crrUrl !== '' && (songInfo.url === musicPlayerController.crrUrl || songInfo.videoUrl === musicPlayerController.crrUrl);
 
         return (
             <motion.div className='music-item'

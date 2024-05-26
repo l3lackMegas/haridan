@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SmoothScroll from './common/SmoothScroll';
-import { checkIsMobile, isSafari, sleep } from './lib/utility';
+import { checkIsMobile, getYoutubeId, isSafari, sleep } from './lib/utility';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -186,17 +186,14 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                         crrUrl: crrUrl,
                         isPlaying: crrUrl !== '',
                         isPaused: crrUrl !== '',
-                    },
-                    youtubePlayerEvent: null,
+                    }
                 });
+                if(crrUrl !== '') this.state.youtubePlayerEvent.loadVideoById({videoId: getYoutubeId(crrUrl), startSeconds: 0, endSeconds: 0, suggestedQuality: 'large'});
+                
             },
             isPlaying: false,
             isPaused: true,
             play: async () => {
-                await sleep(10);
-                while (!this.state.youtubePlayerEvent) {
-                    await sleep(100);
-                }
                 let canPlay = false;
                 while (!canPlay) {
                     try {
@@ -210,6 +207,7 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                 this.setState({
                     musicPlayerController: {
                         ...this.state.musicPlayerController,
+                        crrUrl: 'https://youtu.be/' + this.state.youtubePlayerEvent.playerInfo.videoData.video_id,
                         isPlaying: canPlay,
                         isPaused: false,
                     },
