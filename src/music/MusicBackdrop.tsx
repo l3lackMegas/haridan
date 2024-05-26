@@ -374,7 +374,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                         crrTime: 0,
                     })
                     await sleep(500);
-                    let tempSong = musicPlayerController.crrUrl;
+                    let tempSong = 'https://youtu.be/' + event.target.playerInfo.videoData.video_id;
                     let songList = MusicListData().songList;
                     let songIndex = songList.findIndex((item: MusicStructure) => item.url === tempSong || item.videoUrl === tempSong);
                     if(songIndex !== -1) {
