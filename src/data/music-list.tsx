@@ -28,14 +28,26 @@ let songList: Array<MusicStructure> = [
     },
     {
         pin: true,
-        id: 4,
-        title: "RTRT",
-        url: "https://youtu.be/uDfRUdbwpVY",
-        author: "Mili",
+        id: 19,
+        title: "Cinderella Step",
+        url: "https://youtu.be/q7LWz0QzOrI",
+        author: "Daoko",
     },
     
 
     {
+        id: 20,
+        title: "ゲシュタルト",
+        url: "https://youtu.be/B-wmpKLLv9A",
+        videoUrl: "https://youtu.be/ac6ImT50j9s",
+        author: "KAF",
+    },
+    {
+        id: 4,
+        title: "RTRT",
+        url: "https://youtu.be/uDfRUdbwpVY",
+        author: "Mili",
+    },{
         id: 8,
         title: "Astrogirl",
         url: "https://youtu.be/JB3C9i2TcKM",
@@ -55,12 +67,17 @@ let songList: Array<MusicStructure> = [
         url: "https://youtu.be/m_G5RMsteDk",
         author: "Yunomi",
     },
-    
     {
         id: 5,
         title: "Common World Domination (feat. HATSUNE MIKU)",
         url: "https://youtu.be/Ecg6ziEJ-MI",
         author: "PinocchioP",
+    },
+    {
+        id: 21,
+        title: "モンタージュ",
+        url: "https://youtu.be/5FnZ83UvRts",
+        author: "KAF",
     },
     {
         id: 6,
@@ -80,6 +97,19 @@ let songList: Array<MusicStructure> = [
         title: "Time-out",
         url: "https://youtu.be/uFwAfCXznUg",
         author: "Nyarons",
+    },
+    {
+        id: 22,
+        title: "奇縁ロマンス - Kien Romance",
+        url: "https://youtu.be/9GGDbVHz3yU",
+        videoUrl: "https://youtu.be/wlTMXFbPfKw",
+        author: "ナナヲアカリ",
+    },
+    {
+        id: 23,
+        title: "奇縁ロマンス - Kien Romance",
+        url: "https://youtu.be/GkFqe3tZVpg",
+        author: "WEDNESDAY CAMPANELLA",
     },
     {
         id: 10,
@@ -141,5 +171,12 @@ let songList: Array<MusicStructure> = [
         url: "https://youtu.be/vwZAqxL8rgs",
         videoUrl: "https://youtu.be/pgXpM4l_MwI",
         author: "Ado",
+    },
+    {
+        id: 18,
+        title: "それは小さな光のような - Sorewa Chiisana Hikarinoyouna",
+        url: "https://youtu.be/5_pdEtZS08A",
+        videoUrl: "https://youtu.be/M1ajQuujwKk",
+        author: "SAYURI",
     },
 ];
