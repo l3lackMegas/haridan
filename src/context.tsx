@@ -179,16 +179,22 @@ class ContextWraper extends React.Component<PageProps, PageState> {
         musicPlayerController: {
             crrUrl: '',
             setCrrUrl: async (crrUrl: string) => {
+                
                 await sleep(10);
-                this.setState({
+                if(crrUrl !== this.state.musicPlayerController.crrUrl) this.setState({
                     musicPlayerController: {
                         ...this.state.musicPlayerController,
                         crrUrl: crrUrl,
                         isPlaying: crrUrl !== '',
-                        isPaused: crrUrl !== '',
                     }
                 });
-                if(crrUrl !== '') this.state.youtubePlayerEvent.loadVideoById({videoId: getYoutubeId(crrUrl), startSeconds: 0, endSeconds: 0, suggestedQuality: 'large'});
+                try {
+                    let newVideoId = getYoutubeId(crrUrl);
+                    if(crrUrl !== '' && (!this.state.youtubePlayerEvent || newVideoId !== this.state.youtubePlayerEvent.playerInfo.videoData.video_id)) this.state.youtubePlayerEvent.loadVideoById({videoId: newVideoId, startSeconds: 0, endSeconds: 0, suggestedQuality: 'large'});
+                } catch (error) {
+                    await sleep(100);
+                    this.state.musicPlayerController.setCrrUrl(crrUrl);
+                }
                 
             },
             isPlaying: false,
@@ -218,7 +224,6 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                 while (!this.state.youtubePlayerEvent) {
                     await sleep(100);
                 }
-                this.state.youtubePlayerEvent.pauseVideo();
                 this.setState({
                     musicPlayerController: {
                         ...this.state.musicPlayerController,
@@ -226,6 +231,7 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                         isPaused: true,
                     },
                 });
+                this.state.youtubePlayerEvent.pauseVideo();
             },
             isPlayerDisplay: false,
             showPlayer: async () => {

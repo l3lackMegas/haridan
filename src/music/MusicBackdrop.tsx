@@ -42,8 +42,15 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
         this._onReady = this._onReady.bind(this);
     }
 
+    isWebBlur = false
     componentDidMount(): void {
-        
+        window.onblur = () => {
+            this.isWebBlur = true;
+        }
+
+        window.onfocus = () => {
+            this.isWebBlur = false;
+        }
     }
 
     render() {
@@ -332,26 +339,29 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
     }
 
     youtubeAPIRefresher: any = 0;
+
     async _onReady(event: any) {
         // access to player in all event handlers via event.target
         window.player = event.target;
         // console.log(event.target);
         // event.target.pauseVideo();
-        const { musicPlayerController } = this.context;
+        // const { musicPlayerController } = this.context;
 
         while (!event.target) {
             await sleep(100);
         }
 
-        musicPlayerController.setYoutubePlayerEvent(event.target);
+        this.context.musicPlayerController.setYoutubePlayerEvent(event.target);
 
         let _this = this;
 
         event.target.addEventListener('onStateChange', async (e: any) => {
-            console.log(e.data)
+            const { musicPlayerController } = _this.context;
+            // console.log(e.data)
+            // console.log(musicPlayerController.isPaused)
             switch(e.data) {
                 case 1:
-                    musicPlayerController.play();
+                    await musicPlayerController.play();
                     event.target.setVolume(50);
                     const videoDataInfo = event.target.getVideoData();
                     _this.setState({
@@ -361,12 +371,23 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     clearInterval(_this.youtubeAPIRefresher);
                     _this.youtubeAPIRefresher = setInterval(() => {
                         // console.log(event.target.getCurrentTime(), event.target.getDuration());
+                        // console.log(musicPlayerController.isPaused)
                         _this.setState({
                             crrTime: event.target.getCurrentTime(),
                             maxTime: event.target.getDuration()
                         })
                     }, 10);
                     break;
+
+                case 2:
+                    if(!musicPlayerController.isPaused && !_this.isWebBlur) {
+                        await musicPlayerController.play();
+                        console.log("Command to play again!")
+                    } else {
+                        await musicPlayerController.pause();
+                    }
+                    break;
+                    
                 case 0:
                     clearInterval(_this.youtubeAPIRefresher);
                     await musicPlayerController.pause();
@@ -385,7 +406,11 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     break;
 
                 case 5:
-                    musicPlayerController.play();
+                    // await musicPlayerController.play();
+                    break;
+
+                case -1:
+                    // if(musicPlayerController.crrUrl) await musicPlayerController.setCrrUrl(musicPlayerController.crrUrl);
                     break;
             }
         });
@@ -394,7 +419,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
         let canPlay = false;
         while (!canPlay) {
             try {
-                musicPlayerController.play();
+                this.context.musicPlayerController.play();
                 canPlay = true;
             } catch (error) {
                 await sleep(100);
