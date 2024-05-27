@@ -191,6 +191,12 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                 try {
                     let newVideoId = getYoutubeId(crrUrl);
                     if(crrUrl !== '' && (!this.state.youtubePlayerEvent || newVideoId !== this.state.youtubePlayerEvent.playerInfo.videoData.video_id)) this.state.youtubePlayerEvent.loadVideoById({videoId: newVideoId, startSeconds: 0, endSeconds: 0, suggestedQuality: 'large'});
+                    if(crrUrl === '') {
+                        this.state.youtubePlayerEvent.loadVideoById({videoId: ''});
+                        this.setState({
+                            isPlaying: false
+                        })
+                    }
                 } catch (error) {
                     await sleep(100);
                     this.state.musicPlayerController.setCrrUrl(crrUrl);

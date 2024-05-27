@@ -64,7 +64,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
             scale: .1,
             // opacity: 0,
             borderRadius: 50,
-            maxHeight: 0,
+            // maxHeight: 0,
             transition: {
                 duration: .75,
                 ease: [1, .1, .35, 1],

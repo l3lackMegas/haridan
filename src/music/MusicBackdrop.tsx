@@ -99,6 +99,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                         initial={{
                             opacity: 0,
                             y: 100,
+                            maxWidth: 600,
                             scale: 0.5,
                         }}
                         animate={{
@@ -125,6 +126,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                         exit={{
                             scale: 0.5,
                             y: 100,
+                            maxWidth: 600,
                             opacity: 0,
                             transition: {
                                 duration: 1,
@@ -132,29 +134,31 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             }
                         }}
                     >
-                        <motion.div className='player-progress'
-                            onClick={(e) => {
-                                // get mouse position
-                                const rect = e.currentTarget.getBoundingClientRect();
-                                const x = e.clientX - rect.left; //x position within the element
-                                let percent = x / rect.width;
+                        { musicPlayerController.crrUrl !== '' && 
+                            <motion.div className='player-progress'
+                                onClick={(e) => {
+                                    // get mouse position
+                                    const rect = e.currentTarget.getBoundingClientRect();
+                                    const x = e.clientX - rect.left; //x position within the element
+                                    let percent = x / rect.width;
 
-                                let newTime = percent * maxTime;
-                                musicPlayerController.seekTo(newTime);
-                            }}
-                            animate={{
-                                opacity: isOnMusicPage ? 1 : 0,
-                                transition: {
-                                    duration: isOnMusicPage ? 1 : .25,
-                                    delay: isOnMusicPage ? 1 : 0,
-                                    ease: [0.5, 0.025, 0, 1]
-                                }
-                            }}
-                        >
-                            <motion.div className='player-progress-bar' animate={{
-                                width: `${crrTime / maxTime * 100}%`
-                            }}></motion.div>
-                        </motion.div>
+                                    let newTime = percent * maxTime;
+                                    musicPlayerController.seekTo(newTime);
+                                }}
+                                animate={{
+                                    opacity: isOnMusicPage ? 1 : 0,
+                                    transition: {
+                                        duration: isOnMusicPage ? 1 : .25,
+                                        delay: isOnMusicPage ? 1 : 0,
+                                        ease: [0.5, 0.025, 0, 1]
+                                    }
+                                }}
+                            >
+                                <motion.div className='player-progress-bar' animate={{
+                                    width: `${crrTime / maxTime * 100}%`
+                                }}></motion.div>
+                            </motion.div>
+                        }
                         <motion.div className='player-flex-tools'>
                             { <motion.div className='player-button'
                                 style={{
@@ -195,7 +199,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     cursor: isOnMusicPage ? 'default' : 'pointer',
                                     backgroundImage: `url(https://img.youtube.com/vi/${thumbnailId}/maxresdefault.jpg)`,
                                 }}
-                                animate={{
+                                animate={musicPlayerController.crrUrl === '' ? {} : {
                                     width: isOnMusicPage ? 100 : 50,
                                     height: isOnMusicPage ? 100 : 50,
                                     minWidth: isOnMusicPage ? '100px' : '50px',

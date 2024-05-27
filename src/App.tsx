@@ -41,16 +41,17 @@ export default function App() {
                     <AppClass>
                         <AnimatePresence mode='sync' key="routeAnimated">
                                 <Routes location={location} key={location.pathname}>
-                                    <Route key={'resume'} path="/" element={<ResumePage key={'resume'}/>} />
-                                    <Route key={'portfolio'} path="/portfolio" element={<PortfolioPage key={'portfolio'}/>} />
-                                    <Route key={'music'} path="/music" element={<MusicPage key={'music'}/>} />
+                                    <Route key={'resume-route'} path="/" element={<ResumePage key={'resume'}/>} />
+                                    <Route key={'portfolio-route'} path="/portfolio" element={<PortfolioPage key={'portfolio'}/>} />
+                                    <Route key={'music-route'} path="/music" element={<MusicPage key={'music'}/>} />
                                     {/* <Route key={'story'} path="/story" element={<StoryPage key={'playlistPage'} />} /> */}
                                     <Route key={'404'} path="*" element={<NotFoundPage key={'404'}/>} />
                                 </Routes>
-
-                                <MusicBackdrop />
                         </AnimatePresence>
                     </AppClass>
+                    <AnimatePresence mode='sync' key="MusicPlayerAnimated">
+                        <MusicBackdrop />
+                    </AnimatePresence>
                 </ContextWraper>
             </SmoothScroll>
         </LayoutGroup>

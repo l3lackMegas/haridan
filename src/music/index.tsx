@@ -35,9 +35,6 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
         const { setTextColor, setCrrFeature, musicPlayerController }: IThemeState = this.context;
         setTextColor('#E3F0FF', '#c56464');
         // setCrrFeature('/music');
-        this.setState({
-            
-        })
 
         // this.playMusic('https://youtu.be/LaEgpNBt-bQ')
     }
@@ -70,7 +67,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
         const hidePageUI = musicPlayerController.isPlaying && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused;
 
         return (
-            <PageContainer key={'music'} pathName='/music' parallaxCallback={this.parallaxCallback}
+            <PageContainer key={'music-page-container'} pathName='/music' parallaxCallback={this.parallaxCallback}
                 headerOverlayColor={hidePageUI ? undefined : '#1818189d'}
             >
                 <motion.div
