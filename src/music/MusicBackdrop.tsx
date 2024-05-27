@@ -94,7 +94,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
 
         return (
             <AnimatePresence mode='sync' key={'music-backdrop-controller'}>
-                {musicPlayerController.crrUrl !== '' && <motion.div className='mini-player' key={'mini-player'}>
+                <motion.div className='mini-player' key={'mini-player'}>
                     <motion.div className='playerContainer'
                         initial={{
                             opacity: 0,
@@ -102,7 +102,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             maxWidth: 600,
                             scale: 0.5,
                         }}
-                        animate={{
+                        animate={musicPlayerController.crrUrl !== '' ? {
                             opacity: 1,
                             y: 0,
                             width: isOnMusicPage ? '95vw' : 300,
@@ -113,6 +113,15 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             transition: {
                                 duration: 1,
                                 delay: isOnMusicPage ? 1 : 0,
+                                ease: [0.5, 0.025, 0, 1]
+                            }
+                        } : {
+                            scale: 0.5,
+                            y: 100,
+                            maxWidth: 600,
+                            opacity: 0,
+                            transition: {
+                                duration: 1,
                                 ease: [0.5, 0.025, 0, 1]
                             }
                         }}
@@ -155,7 +164,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                 }}
                             >
                                 <motion.div className='player-progress-bar' animate={{
-                                    width: `${crrTime / maxTime * 100}%`
+                                    width: `${(crrTime / (maxTime || 1) * 100)}%`
                                 }}></motion.div>
                             </motion.div>
                         }
@@ -165,14 +174,24 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     overflow: 'hidden',
                                 }}
 
+                                initial={{
+                                    maxWidth: '1px',
+                                    minWidth: '1px'
+                                }}
+
                                 animate={{                    
-                                    maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '0px',
-                                    minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '0px',
+                                    maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
+                                    minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
                                     transition: {
                                         duration: 1,
                                         delay: musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused && isOnMusicPage ? .5 : 0,
                                         ease: [0.5, 0.025, 0, 1]
                                     }
+                                }}
+
+                                exit={{
+                                    maxWidth: '1px',
+                                    minWidth: '1px'
                                 }}
                             >
                                 <motion.button
@@ -199,6 +218,10 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     cursor: isOnMusicPage ? 'default' : 'pointer',
                                     backgroundImage: `url(https://img.youtube.com/vi/${thumbnailId}/maxresdefault.jpg)`,
                                 }}
+                                initial={{
+                                    minWidth: '1px',
+                                    minHeight: '1px',
+                                }}
                                 animate={musicPlayerController.crrUrl === '' ? {} : {
                                     width: isOnMusicPage ? 100 : 50,
                                     height: isOnMusicPage ? 100 : 50,
@@ -211,6 +234,10 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                         delay: isOnMusicPage ? 1 : 0,
                                         ease: [0.5, 0.025, 0, 1]
                                     }
+                                }}
+                                exit={{
+                                    minWidth: '1px',
+                                    minHeight: '1px',
                                 }}
                                 onClick={() => {
                                     if(isOnMusicPage) return;
@@ -315,7 +342,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     onClick={async () => {
                                         await musicPlayerController.pause();
                                         await musicPlayerController.hidePlayer();
-                                        await sleep(250);
+                                        await sleep(10);
                                         await musicPlayerController.setCrrUrl('');
                                     }}
                                 >
@@ -324,7 +351,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             </motion.div>
                         </motion.div>
                     </motion.div>    
-                </motion.div>}
+                </motion.div>
                 <motion.div className='player-backdrop'
                     key={'player-backdrop'}
                     initial={{ opacity: 0 }}
