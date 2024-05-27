@@ -76,7 +76,9 @@ class MusicItem extends React.Component<Props, State, IThemeState> {
                             await musicPlayerController.setCrrUrl(songInfo.videoUrl || songInfo.url);
                             // await musicPlayerController.showPlayer();
                         }}>
-                            {isCurrentSongPlay ? <FontAwesomeIcon icon={faStop} /> : <FontAwesomeIcon icon={faPlay} />}
+                            {isCurrentSongPlay ? <FontAwesomeIcon icon={faStop} /> : <FontAwesomeIcon icon={faPlay} style={{
+                                transform: 'translateX(1px)'
+                            }} />}
                         </motion.button>
                     </motion.div>
                 </motion.div>

@@ -115,7 +115,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                 ease: [0.5, 0.025, 0, 1]
                             }
                         }}
-                        whileHover={isOnMusicPage ? {} : {
+                        whileHover={isOnMusicPage || window.isMobile ? {} : {
                             scale: isOnMusicPage ? 1 : 1.1,
                             cursor: isOnMusicPage ? 'default' : 'pointer',
                             transition: {
