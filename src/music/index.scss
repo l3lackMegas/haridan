@@ -173,8 +173,10 @@
                 height: 100%;
                 background-color: white;
             }
+        }
 
-            &:hover {
+        &:hover {
+            .player-progress {
                 height: 10px;
             }
         }
