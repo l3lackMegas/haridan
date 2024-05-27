@@ -116,10 +116,10 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             }
                         }}
                         whileHover={isOnMusicPage || window.isMobile ? {} : {
-                            scale: isOnMusicPage ? 1 : 1.1,
+                            y: -5,
                             cursor: isOnMusicPage ? 'default' : 'pointer',
                             transition: {
-                                duration: .25,
+                                duration: .15,
                             }
                         }}
                         exit={{
