@@ -24,6 +24,7 @@ type State = {
     maxTime: number
     songName: string
     authorName: string
+    isPlaying: boolean
 };
 class MusicBackdrop extends React.Component<Props, State, IThemeState> {
     context!: IThemeState;
@@ -33,7 +34,8 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
         crrTime: 0,
         maxTime: 0,
         songName: '',
-        authorName: ''
+        authorName: '',
+        isPlaying: false
     };
 
 
@@ -56,7 +58,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
     render() {
         const { textColor, textNavColor, crrFeature, isToggleNav, musicPlayerController }: IThemeState = this.context;
 
-        const { playerReady, crrTime, maxTime } = this.state;
+        const { playerReady, isPlaying, crrTime, maxTime } = this.state;
 
         // if(musicPlayerController.crrUrl === '') return <></>;
         let youtubeId = getYoutubeId(musicPlayerController.crrUrl);
@@ -398,8 +400,11 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
 
         event.target.addEventListener('onStateChange', async (e: any) => {
             const { musicPlayerController } = _this.context;
-            // console.log(e.data)
+            console.log(e.data)
             // console.log(musicPlayerController.isPaused)
+            _this.setState({
+                isPlaying: e.data === 1,
+            });
             switch(e.data) {
                 case 1:
                     await musicPlayerController.play();

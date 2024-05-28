@@ -63,7 +63,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
 
     render() {
         const { currentScroll } = this.state;
-        const { isToggleNav, musicPlayerController } = this.context;
+        const { isToggleNav, youtubeIframeShow, musicPlayerController } = this.context;
 
         const hidePageUI = musicPlayerController.isPlaying && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused;
 
@@ -76,6 +76,8 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
         } else {
             thumbnailId = getYoutubeId(songList[songIndex].url);
         }
+
+        console.log('youtubeIframeShow', youtubeIframeShow)
 
         return (
             <PageContainer key={'music-page-container'} pathName='/music' parallaxCallback={this.parallaxCallback}
@@ -96,7 +98,11 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                             top: currentScroll,
                         }}
                         animate={{
-                            opacity: !isToggleNav && !window.isMobile && thumbnailId ? .25 : 1
+                            opacity: youtubeIframeShow && !isToggleNav && !window.isMobile && thumbnailId ? .25 : 1,
+                            transition: {
+                                duration: youtubeIframeShow && isToggleNav && !window.isMobile && thumbnailId ? .75 : .25,
+                                delay: youtubeIframeShow && !isToggleNav && !window.isMobile && thumbnailId ? .75 : 0
+                            }
                         }}
                     >
                         {/* <motion.div

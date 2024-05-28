@@ -38,6 +38,7 @@ export interface IThemeState {
     parallaxPos: number;
     setParallaxPos: (pararaxPosition: number) => void;
 
+    youtubeIframeShow: boolean;
     musicPlayerController: IMusicPlayerController;
     youtubePlayerEvent: any;
     pushNavigate: (url: string) => void;
@@ -76,6 +77,7 @@ export const AppMainContext = React.createContext({
 
     },
 
+    youtubeIframeShow: true,
     musicPlayerController: {
         crrUrl: '',
         setCrrUrl: (crrUrl: string) => {},
@@ -176,10 +178,18 @@ class ContextWraper extends React.Component<PageProps, PageState> {
             this.props.navigate(url)
         },
 
+        youtubeIframeShow: true,
         musicPlayerController: {
             crrUrl: '',
             setCrrUrl: async (crrUrl: string) => {
-                
+                if(crrUrl !== '' && crrUrl !== this.state.musicPlayerController.crrUrl && this.state.musicPlayerController.isPlaying) {
+                    console.log('pause');
+                    this.setState({
+                        youtubeIframeShow: false,
+                    });
+                    await sleep(250);
+                    console.log('pause', this.state.musicPlayerController.isPaused);
+                }
                 await sleep(10);
                 if(crrUrl !== this.state.musicPlayerController.crrUrl) this.setState({
                     musicPlayerController: {
@@ -190,11 +200,20 @@ class ContextWraper extends React.Component<PageProps, PageState> {
                 });
                 try {
                     let newVideoId = getYoutubeId(crrUrl);
-                    if(crrUrl !== '' && (!this.state.youtubePlayerEvent || newVideoId !== this.state.youtubePlayerEvent.playerInfo.videoData.video_id)) this.state.youtubePlayerEvent.loadVideoById({videoId: newVideoId, startSeconds: 0, endSeconds: 0, suggestedQuality: 'large'});
+                    if(crrUrl !== '' && (!this.state.youtubePlayerEvent || newVideoId !== this.state.youtubePlayerEvent.playerInfo.videoData.video_id)) {
+                        this.state.youtubePlayerEvent.loadVideoById({videoId: newVideoId, startSeconds: 0, endSeconds: 0, suggestedQuality: 'large'});
+                        this.setState({
+                            youtubeIframeShow: true,
+                        })
+                    }
                     if(crrUrl === '') {
                         this.state.youtubePlayerEvent.loadVideoById({videoId: ''});
                         this.setState({
-                            isPlaying: false
+                            musicPlayerController: {
+                                ...this.state.musicPlayerController,
+                                crrUrl: crrUrl,
+                                isPlaying: false,
+                            }
                         })
                     }
                 } catch (error) {
