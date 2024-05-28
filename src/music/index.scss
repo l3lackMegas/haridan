@@ -87,6 +87,8 @@
                 overflow: hidden;
 
                 .music-title {
+                    display: flex;
+                    align-items: center;
                     margin: 0;
                     width: 100%;
                     font-size: 20px;
@@ -94,6 +96,40 @@
                     color: white;
                     text-overflow: ellipsis;
                     overflow: hidden;
+
+                    span {
+                        display: block;
+                        padding: 0;
+                        width: fit-content;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        border-radius: 10px;
+                        overflow: hidden;
+                        transition-duration: .15s;
+                    }
+
+                    .iconNewTab {
+                        display: inline-block;
+                        opacity: 0;
+                        transform: translateX(-5px);
+                        transition-duration: .15s;
+                        font-size: 14px;
+                    }
+
+                    &:hover {
+                        // text-decoration: underline;
+
+                        span {
+                            padding: 0 5px;
+                            background-color: rgba(255, 255, 255, .15);
+                        }
+
+                        .iconNewTab {
+                            opacity: 1;
+                            transform: translateX(0px);
+                            margin-left: 5px;
+                        }
+                    }
                 }
 
                 .music-author {

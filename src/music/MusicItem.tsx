@@ -63,7 +63,12 @@ class MusicItem extends React.Component<Props, State, IThemeState> {
                     className='music-banner'
                 >
                     <motion.div className='music-info'>
-                        <motion.p className='music-title'>{songInfo.title}</motion.p>
+                        <motion.p className='music-title' onClick={() => {
+                            window.open(songInfo.videoUrl || songInfo.url, '_blank');
+                        }}>
+                            <motion.span>{songInfo.title}</motion.span>
+                            <FontAwesomeIcon className='iconNewTab' icon={faArrowUpRightFromSquare} />
+                        </motion.p>
                         <motion.p className='music-author'>{songInfo.author}</motion.p>
                     </motion.div>
                     <motion.div className='music-play-button'>
