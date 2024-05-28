@@ -10,6 +10,7 @@ import Section from '../resume/components/MainLayout/Section';
 import MusicItem from './MusicItem';
 
 import MusicListData, { MusicStructure } from '../data/music-list';
+import { getYoutubeId } from '../lib/utility';
 
 type PageProps = {
 };
@@ -66,6 +67,16 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
 
         const hidePageUI = musicPlayerController.isPlaying && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused;
 
+        // let youtubeId = getYoutubeId(musicPlayerController.crrUrl);
+        let songList = MusicListData().songList;
+        let songIndex = songList.findIndex((item: MusicStructure) => item.url === musicPlayerController.crrUrl || item.videoUrl === musicPlayerController.crrUrl);
+        let thumbnailId;
+        if(songIndex === -1) {
+            thumbnailId = getYoutubeId(musicPlayerController.crrUrl);
+        } else {
+            thumbnailId = getYoutubeId(songList[songIndex].url);
+        }
+
         return (
             <PageContainer key={'music-page-container'} pathName='/music' parallaxCallback={this.parallaxCallback}
                 headerOverlayColor={hidePageUI ? undefined : '#1818189d'}
@@ -75,14 +86,26 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                     className='music-page'
                     style={{
                         pointerEvents: hidePageUI ? 'none' : 'auto',
-                    }}
-                    animate={{
                         opacity: !isToggleNav && hidePageUI ? 0 : 1,
-                        transition: {
-                            duration: 0.75
-                        }
+                        backdropFilter: !window.isMobile && !isToggleNav && hidePageUI ? '' : 'blur(30px) saturate(30%)',
+                        transitionDuration: !isToggleNav && hidePageUI ? '.75s' : '.25s',
                     }}
                 >
+                    <motion.div className='background-overlay'
+                        style={{
+                            top: currentScroll,
+                        }}
+                        animate={{
+                            opacity: !isToggleNav && !window.isMobile && thumbnailId ? .25 : 1
+                        }}
+                    >
+                        {/* <motion.div
+                            className='imgBackdrop'
+                            style={{
+                                backgroundImage: `url(https://img.youtube.com/vi/${thumbnailId}/maxresdefault.jpg)`,
+                            }}
+                        ></motion.div> */}
+                    </motion.div>
                     <motion.div
                         className='music-secion'
                     >

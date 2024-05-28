@@ -184,7 +184,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
                                     transition: {
                                         duration: 1,
-                                        delay: musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused && isOnMusicPage ? .5 : 0,
+                                        // delay: musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused && isOnMusicPage ? .5 : 0,
                                         ease: [0.5, 0.025, 0, 1]
                                     }
                                 }}
@@ -356,17 +356,24 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     key={'player-backdrop'}
                     initial={{ opacity: 0 }}
                     animate={{
-                        opacity: !musicPlayerController.isPaused &&isOnMusicPage && !isToggleNav && musicPlayerController.isPlaying && musicPlayerController.isPlayerDisplay ? 1 : 0,
+                        opacity: !musicPlayerController.isPaused && isOnMusicPage && !isToggleNav && musicPlayerController.isPlaying ? musicPlayerController.isPlayerDisplay ? 1 : 0.5 : 0,
                         transition: {
                             duration: !musicPlayerController.isPlayerDisplay || !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? .25 : 1,
-                            delay: !musicPlayerController.isPlayerDisplay || !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? 0 : .75
+                            delay: !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? 0 : 1.5
                         }
                     }}
                 >
-                    <YouTubePlayer opts={opts} onReady={this._onReady} style={{
-                        width: '100%',
-                        height: '100%'
-                    }}  />
+                    <motion.div className='youtubeContainer'
+                        style={{
+                            transform: musicPlayerController.isPlayerDisplay ? 'scale(1)' : 'scale(2)',
+                            transitionDuration: musicPlayerController.isPlayerDisplay ? '.5s' : '.75s'
+                        }}
+                    >
+                        <YouTubePlayer opts={opts} onReady={this._onReady} style={{
+                            width: '100%',
+                            height: '100%'
+                        }} />
+                    </motion.div>
                 </motion.div>
             </AnimatePresence>
         );
