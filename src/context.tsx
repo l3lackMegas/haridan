@@ -31,6 +31,8 @@ export interface IThemeState {
     setCrrFeature: (textColor: string) => void;
     isToggleNav: boolean;
     setIsToggleNav: (isToggleNav: boolean) => void;
+    isTogglingNav: boolean;
+    setIsTogglingNav: (isToggleNav: boolean) => void;
     scrollTop: number;
     setScrollTop: (scrollTop: number) => void;
     crrPageHeight: number;
@@ -62,6 +64,10 @@ export const AppMainContext = React.createContext({
     },
     isToggleNav: false,
     setIsToggleNav: (isToggleNav: boolean) => {
+        
+    },
+    isTogglingNav: false,
+    setIsTogglingNav: (isToggleNav: boolean) => {
         
     },
     scrollTop: 0,
@@ -153,6 +159,12 @@ class ContextWraper extends React.Component<PageProps, PageState> {
         setIsToggleNav: (isToggleNav: boolean) => {
             this.setState({
                 isToggleNav: isToggleNav,
+            });
+        },
+        isTogglingNav: false,
+        setIsTogglingNav: (isToggleNav: boolean) => {
+            this.setState({
+                isTogglingNav: isToggleNav,
             });
         },
         scrollTop: 0,

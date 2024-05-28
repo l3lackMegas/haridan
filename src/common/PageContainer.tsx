@@ -148,9 +148,11 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
             isNavToggling: true,
             isToggleNavContext: !this.state.toggleNav
         });
+        this.context.setIsTogglingNav(true);
         this.context.setIsToggleNav(!this.state.toggleNav);
 
         setTimeout(() => {
+            this.context.setIsTogglingNav(false);
             this.setState({
                 toggleNav: !this.state.toggleNav,
                 isNavToggling: false
@@ -167,7 +169,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
 
         const namespace = (pathName.split('/')[1] || 'home') + unieqKey.toString();
 
-        let shouldFloat = crrFeature != pathName;
+        let shouldFloat = crrFeature !== pathName;
 
         return (
             <>
