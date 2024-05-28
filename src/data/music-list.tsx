@@ -127,7 +127,7 @@ let songList: Array<MusicStructure> = [
     {
         id: 12,
         title: "YELLOW",
-        url: "https://youtu.be/dUZabw9uGc",
+        url: "https://youtu.be/-dUZabw9uGc",
         videoUrl: "https://youtu.be/1_lap6dzSUc",
         author: "YOH KAMIYAMA",
     },
