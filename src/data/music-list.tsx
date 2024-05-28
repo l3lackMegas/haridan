@@ -126,9 +126,10 @@ let songList: Array<MusicStructure> = [
     },
     {
         id: 12,
-        title: "Tear Rain feat. えみぃ (ร่วมกับ Emmy)",
-        url: "https://youtu.be/4w1VU_OkCYQ",
-        author: "Amateras Records",
+        title: "YELLOW",
+        url: "https://youtu.be/dUZabw9uGc",
+        videoUrl: "https://youtu.be/1_lap6dzSUc",
+        author: "YOH KAMIYAMA",
     },
     {
         id: 13,
