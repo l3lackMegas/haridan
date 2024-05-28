@@ -400,7 +400,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
 
         event.target.addEventListener('onStateChange', async (e: any) => {
             const { musicPlayerController } = _this.context;
-            console.log(e.data)
+            // console.log(e.data)
             // console.log(musicPlayerController.isPaused)
             _this.setState({
                 isPlaying: e.data === 1,
