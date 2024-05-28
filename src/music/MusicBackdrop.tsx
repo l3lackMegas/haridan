@@ -358,9 +358,9 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     key={'player-backdrop'}
                     initial={{ opacity: 0 }}
                     animate={{
-                        opacity: !musicPlayerController.isPaused && isOnMusicPage && !isToggleNav && musicPlayerController.isPlaying ? musicPlayerController.isPlayerDisplay ? 1 : 0.5 : 0,
+                        opacity: (!window.isMobile || (window.isMobile && musicPlayerController.isPlayerDisplay)) && (!window.isSafari || (window.isSafari && musicPlayerController.isPlayerDisplay)) && !musicPlayerController.isPaused && isOnMusicPage && !isToggleNav && musicPlayerController.isPlaying ? musicPlayerController.isPlayerDisplay ? 1 : 0.5 : 0,
                         transition: {
-                            duration: !musicPlayerController.isPlayerDisplay || !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? .25 : 1,
+                            duration: !isOnMusicPage ? .1 : !musicPlayerController.isPlayerDisplay || isToggleNav || musicPlayerController.isPaused ? .25 : 1,
                             delay: !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? 0 : 1.5
                         }
                     }}

@@ -48,10 +48,12 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
 
     componentWillUnmount(): void {
         // console.log('unmount', "/music");
-        const { setTextColor, crrFeature, setCrrFeature }: IThemeState = this.context;
+        const { setTextColor, crrFeature, setCrrFeature, musicPlayerController }: IThemeState = this.context;
         // console.log(crrFeature)
         if(crrFeature === '/music') {
             setTextColor('white');
+        } else {
+            musicPlayerController.hidePlayer();
         }
     }
 
@@ -63,7 +65,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
 
     render() {
         const { currentScroll } = this.state;
-        const { isToggleNav, youtubeIframeShow, musicPlayerController } = this.context;
+        const { crrFeature, isToggleNav, youtubeIframeShow, musicPlayerController } = this.context;
 
         const hidePageUI = musicPlayerController.isPlaying && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused;
 
@@ -77,7 +79,9 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
             thumbnailId = getYoutubeId(songList[songIndex].url);
         }
 
-        console.log('youtubeIframeShow', youtubeIframeShow)
+        // console.log('youtubeIframeShow', youtubeIframeShow)
+
+        const isOnMusicPage = crrFeature === '/music';
 
         return (
             <PageContainer key={'music-page-container'} pathName='/music' parallaxCallback={this.parallaxCallback}
@@ -91,17 +95,18 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                         opacity: !isToggleNav && hidePageUI ? 0 : 1,
                         backdropFilter: !window.isMobile && !isToggleNav && hidePageUI ? '' : 'blur(30px) saturate(30%)',
                         transitionDuration: !isToggleNav && hidePageUI ? '.75s' : '.25s',
+                        backgroundColor: window.isMobile || window.isSafari ? '#181818' : ''
                     }}
                 >
-                    <motion.div className='background-overlay'
+                    {!window.isMobile && !window.isSafari && <motion.div className='background-overlay'
                         style={{
                             top: currentScroll,
                         }}
                         animate={{
-                            opacity: youtubeIframeShow && !isToggleNav && !window.isMobile && !window.isSafari && thumbnailId ? .25 : 1,
+                            opacity: isOnMusicPage && youtubeIframeShow && !isToggleNav && !window.isMobile && !window.isSafari && thumbnailId ? .25 : 1,
                             transition: {
-                                duration: youtubeIframeShow && isToggleNav && !window.isMobile && thumbnailId ? .75 : .25,
-                                delay: youtubeIframeShow && !isToggleNav && !window.isMobile && thumbnailId ? .75 : 0
+                                duration: !isOnMusicPage ? .5 : youtubeIframeShow && isToggleNav && !window.isMobile && thumbnailId ? .75 : .25,
+                                delay: isOnMusicPage && youtubeIframeShow && !isToggleNav && !window.isMobile && thumbnailId ? .75 : 0
                             }
                         }}
                     >
@@ -111,7 +116,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                                 backgroundImage: `url(https://img.youtube.com/vi/${thumbnailId}/maxresdefault.jpg)`,
                             }}
                         ></motion.div> */}
-                    </motion.div>
+                    </motion.div>}
                     <motion.div
                         className='music-secion'
                     >
