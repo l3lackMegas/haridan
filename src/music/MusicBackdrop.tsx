@@ -60,7 +60,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
 
         const { playerReady, isPlaying, crrTime, maxTime } = this.state;
 
-        console.log(isNavigating)
+        // console.log(isNavigating)
 
         // if(musicPlayerController.crrUrl === '') return <></>;
         let youtubeId = getYoutubeId(musicPlayerController.crrUrl);
