@@ -73,6 +73,11 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     isCanNotSmooth = false;
+    navigatingTimeout: any;
+
+    componentWillMount(): void {
+        this.context.setIsNavigating(true);
+    }
 
     componentDidMount(): void {
         this.isCanNotSmooth = checkIsMobile() || isSafari()
@@ -80,6 +85,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         this.setState({
             unieqKey: Date.now(),
         });
+        this.context.setIsNavigating(true);
         window.scrollTo(0, 0);
         this.context.setParallaxPos(0);
         this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
@@ -97,6 +103,10 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
             window.translateWithToggleNav = false;
         }, 1000);
 
+        this.navigatingTimeout = setTimeout(() => {
+            this.context.setIsNavigating(false);
+        }, 2500);
+
         if(!this.isCanNotSmooth) {
             window.addEventListener("scroll", this.onScrollHandler)
 
@@ -110,8 +120,10 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     componentWillUnmount(): void {
+        clearTimeout(this.navigatingTimeout);
         window.scrollTo(0, 0);
         window.removeEventListener('scroll', this.onScrollHandler);
+        this.context.setIsNavigating(true);
     }
 
     onScrollHandler: any = (e: Event) => {

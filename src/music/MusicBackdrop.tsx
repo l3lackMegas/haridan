@@ -56,9 +56,11 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
     }
 
     render() {
-        const { textColor, textNavColor, crrFeature, isToggleNav, musicPlayerController }: IThemeState = this.context;
+        const { textColor, textNavColor, crrFeature, isToggleNav, isNavigating, isTogglingNav, musicPlayerController }: IThemeState = this.context;
 
         const { playerReady, isPlaying, crrTime, maxTime } = this.state;
+
+        console.log(isNavigating)
 
         // if(musicPlayerController.crrUrl === '') return <></>;
         let youtubeId = getYoutubeId(musicPlayerController.crrUrl);
@@ -96,7 +98,11 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
 
         return (
             <AnimatePresence mode='sync' key={'music-backdrop-controller'}>
-                <motion.div className='mini-player' key={'mini-player'}>
+                <motion.div className='mini-player' key={'mini-player'}
+                    style={{
+                        pointerEvents: musicPlayerController.crrUrl === '' ? 'none' : 'auto',
+                    }}
+                >
                     <motion.div className='playerContainer'
                         initial={{
                             opacity: 0,
@@ -358,10 +364,14 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     key={'player-backdrop'}
                     initial={{ opacity: 0 }}
                     animate={{
-                        opacity: (!window.isMobile || (window.isMobile && musicPlayerController.isPlayerDisplay)) && (!window.isSafari || (window.isSafari && musicPlayerController.isPlayerDisplay)) && !musicPlayerController.isPaused && isOnMusicPage && !isToggleNav && musicPlayerController.isPlaying ? musicPlayerController.isPlayerDisplay ? 1 : 0.5 : 0,
+                        opacity: isTogglingNav || isToggleNav || isNavigating || !isOnMusicPage || (isNavigating && isOnMusicPage)
+                                ? 0
+                                : musicPlayerController.isPlayerDisplay && musicPlayerController.isPlaying
+                                    ? 1
+                                    : isOnMusicPage ? .5 : 0,
                         transition: {
-                            duration: !isOnMusicPage ? .1 : !musicPlayerController.isPlayerDisplay || isToggleNav || musicPlayerController.isPaused ? .25 : 1,
-                            delay: !isOnMusicPage || isToggleNav || musicPlayerController.isPaused ? 0 : 1.5
+                            duration: !isOnMusicPage || isNavigating || isTogglingNav || isToggleNav ? .15 : 1,
+                            delay: isToggleNav || !isOnMusicPage || (isNavigating && isOnMusicPage) ? 0 : isNavigating ? 1.5 : isTogglingNav ? 1 : 0,
                         }
                     }}
                 >
