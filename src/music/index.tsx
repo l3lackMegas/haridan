@@ -103,10 +103,10 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                             top: currentScroll,
                         }}
                         animate={{
-                            opacity: isOnMusicPage && youtubeIframeShow && !isToggleNav && !window.isMobile && !window.isSafari && thumbnailId ? .25 : 1,
+                            opacity: !musicPlayerController.isPaused && isOnMusicPage && youtubeIframeShow && !isToggleNav && !window.isMobile && !window.isSafari && thumbnailId ? .25 : 1,
                             transition: {
                                 duration: !isOnMusicPage ? .5 : youtubeIframeShow && isToggleNav && !window.isMobile && thumbnailId ? .75 : .25,
-                                delay: isOnMusicPage && youtubeIframeShow && !isToggleNav && !window.isMobile && thumbnailId ? .75 : 0
+                                delay: !musicPlayerController.isPaused && isOnMusicPage && youtubeIframeShow && !isToggleNav && !window.isMobile && thumbnailId ? .75 : 0
                             }
                         }}
                     >
