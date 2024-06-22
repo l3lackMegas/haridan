@@ -457,7 +457,9 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     if(songIndex !== -1) {
                         // play next song
                         let nextSongIndex = (songIndex + 1) % songList.length;
-                        await musicPlayerController.setCrrUrl(songList[nextSongIndex].url);
+                        let songUrl = _this.context.musicPlayerController.isPlayerDisplay ? songList[nextSongIndex].videoUrl : songList[nextSongIndex].url;
+                        songUrl = songUrl ? songUrl : songList[nextSongIndex].url;
+                        await musicPlayerController.setCrrUrl(songUrl);
                     }
                     break;
 
