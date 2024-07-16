@@ -42,7 +42,7 @@ class SkillCard extends Component {
                     icon={<FontAwesomeIcon icon={faTerminal}/>}
                     describe={<>
                         <p>Everything starts here.</p>
-                        <p>I started coding at 13 yeas old.</p>
+                        <p>I started coding at 13 years old.</p>
                     </>}
                 >
                     <div className={styles.info}>

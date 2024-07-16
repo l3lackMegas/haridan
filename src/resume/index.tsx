@@ -195,9 +195,9 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                             <h1 className="infoTitle">Hi there!</h1>
                             <div style={{ color: 'rgba(255, 255, 255, .75)' }}>
                                 <div style={{ lineHeight: '30px' }}>
-                                    <p>I am Jaruwat Pohong, a Software Developer who work in Web, Desktop and Mobile application.</p>
-                                    <p>Actually, I am a Frontend Dev and I would like to do anything about web design and frontend development.</p>
-                                    <p>But even if it{"'s"} not a frontend job, I can still enjoy with it. {"<3"}</p>
+                                    <p>I'm Jaruwat Pohong, a software developer with a passion for crafting user-friendly experiences across web, desktop, and mobile applications. As a frontend developer, I'm particularly drawn to the world of web design and frontend development, where I can bring ideas to life and create visually appealing and interactive interfaces.</p>
+                                    <br/>
+                                    <p>However, I'm always up for a challenge and enjoy exploring new areas of software development, regardless of whether they fall strictly within the frontend realm. Feel free to connect with me if you'd like to discuss web development, explore potential collaborations, or just chat about the ever-evolving world of technology. {"<3"}</p>
                                 </div>
                                 {/* <div className="understandCSS">
                                     <div className="frame">
