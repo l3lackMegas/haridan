@@ -146,6 +146,27 @@ let songList: Array<MusicStructure> = [
         author: "YOASOBI",
     },
     {
+        id: 24,
+        title: "UNDEAD",
+        url: "https://youtu.be/BryspbM6s3E",
+        videoUrl: "https://youtu.be/jAAZDIGWcio",
+        author: "YOASOBI",
+    },
+    {
+        id: 25,
+        title: "メズマライザー",
+        url: "https://youtu.be/ibjWftkJrd4",
+        videoUrl: "https://youtu.be/19y8YTbvri8",
+        author: "サツキ 初音ミク & 重音テト",
+    },
+    {
+        id: 26,
+        title: "スターマイン",
+        url: "https://youtu.be/hTnpGG4B5HI",
+        videoUrl: "https://youtu.be/YB_St-YN3Y8",
+        author: "Da-iCE",
+    },
+    {
         id: 15,
         title: "Shelter",
         url: "https://youtu.be/5UZ4V16d8eU",

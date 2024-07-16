@@ -115,7 +115,8 @@ class ModalContent extends Component<IReciept> {
                                 layoutUniqueId={`img-${img}`}
                                 closeAnyWhere={true}
                                 modalStyle={{
-                                    width: '90vw'
+                                    width: '90vw',
+                                    overflowY: 'auto' 
                                 }}
                                 modalChildren={<>
                                     <img src={img} width="100%" height="100%" alt="image" style={{ objectFit: 'contain' }}/>

@@ -27,6 +27,36 @@ export default function WorkListData() {
 
 let workItems: Array<WorkStructure> = [
     {
+        pin: true,
+        id: 10,
+        title: "BU ShowPro",
+        describe: `This project was a commissioned work from the School of Digital Media and Cinematic Arts, Digital Media program, Bangkok University. It was an exhibition showcasing the works of students from each year. The project had a total of 4 team members, and I was responsible for developing the entire Front-office.`,
+        // img: "/img/works/flight-visualization/logo.png",
+        img: "/img/works/bu-showpro/01.png",
+        date: {
+            from: new Date(2024, 5, 1),
+            to: new Date(2024, 7, 31)
+        },
+        tags: [
+            "React.js",
+            "Framer-Motion",
+            "Frontend Dev",
+            "Commission"
+        ],
+        link: 'https://dmthesis.bu.ac.th/',
+        imageList: [
+            "/img/works/bu-showpro/01.png",
+            "/img/works/bu-showpro/02.png",
+            "/img/works/bu-showpro/03.png",
+            "/img/works/bu-showpro/04.png",
+            "/img/works/bu-showpro/05.png",
+            "/img/works/bu-showpro/06.png",
+            "/img/works/bu-showpro/07.png",
+            "/img/works/bu-showpro/08.png",
+        ],
+        color: '#6f5d2c'
+    },
+    {
         id: 7,
         title: "Film Reporter Assistance",
         describe: `This is my undergraduate thesis project. It took three people to develop this project.
@@ -228,7 +258,6 @@ Project Description
         color: '#262045'
     },
     {
-        pin: true,
         id: 3,
         title: "Flight Visualization",
         describe: `This project was developed during my sophomore year of undergraduate studies. I was involved in the development of the frontend and integration with the backend system.`,
@@ -263,27 +292,5 @@ Project Description
             "/img/works/flight-visualization/15.png"
         ],
         color: '#493416'
-    },
-    // {
-    //     id: 11,
-    //     title: "Wasender",
-    //     describe: `Just a small calendar components and I don't know why it is called wasender.`,
-    //     img: "/img/works/wasender/01.png",
-    //     date: {
-    //         from: new Date(2017, 0, 30),
-    //         to: new Date(2017, 7, 30)
-    //     },
-    //     tags: [
-    //         "jQuery",
-    //         "Hobby",
-    //         "Learning"
-    //     ],
-    //     link: 'https://wasenders.pages.dev/',
-    //     imageList: [
-    //         "/img/works/wasender/01.png",
-    //         "/img/works/wasender/02.png",
-    //         "/img/works/wasender/03.png",
-    //     ],
-    //     color: '#85265b'
-    // },
+    }
 ];
