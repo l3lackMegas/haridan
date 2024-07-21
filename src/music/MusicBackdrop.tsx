@@ -109,7 +109,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     }}
                     animate={{
                         // check is scroll to bottom
-                        bottom: window.scrollY >= document.body.scrollHeight - window.innerHeight - creditComponentHeight ? creditComponentHeight + 1 : 20,
+                        bottom: !isNavigating && window.scrollY >= document.body.scrollHeight - window.innerHeight - creditComponentHeight ? creditComponentHeight + 1 : 20,
                         transition: {
                             duration: .35
                         }
