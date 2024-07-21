@@ -11,7 +11,7 @@ import YouTubePlayer from 'react-youtube';
 import { AppMainContext, IThemeState } from '../context';
 
 import './index.scss';
-import { getYoutubeId, sleep } from '../lib/utility';
+import { getAbsoluteHeight, getYoutubeId, sleep } from '../lib/utility';
 import LoadingIcon from '../common/LoadingIcon';
 
 import MusicListData, { MusicStructure } from '../data/music-list';
@@ -96,11 +96,23 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
 
         const isSongPlaying = (musicPlayerController.isPaused || this.state.songName === '') && this.context.youtubePlayerEvent && this.context.youtubePlayerEvent.getPlayerState();
 
+        // console.log(this.context.parallaxPos, (this.context.crrPageHeight - window.innerHeight))
+
+        console.log(isOnMusicPage)
+
+        const creditComponentHeight = (getAbsoluteHeight('#creditComponent') ?? 40);
         return (
             <AnimatePresence mode='sync' key={'music-backdrop-controller'}>
                 <motion.div className='mini-player' key={'mini-player'}
                     style={{
                         pointerEvents: musicPlayerController.crrUrl === '' ? 'none' : 'auto',
+                    }}
+                    animate={{
+                        // check is scroll to bottom
+                        bottom: window.scrollY >= document.body.scrollHeight - window.innerHeight - creditComponentHeight ? creditComponentHeight + 1 : 20,
+                        transition: {
+                            duration: .35
+                        }
                     }}
                 >
                     <motion.div className='playerContainer'
@@ -221,7 +233,9 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     <FontAwesomeIcon icon={faChevronLeft} style={{transform: 'translateX(1px)',}} />
                                 </motion.button>
                             </motion.div>}
-                            <motion.div className='player-thumbnail'
+                            <motion.div
+                                key={'player-thumbnail'}
+                                className='player-thumbnail'
                                 style={{
                                     cursor: isOnMusicPage ? 'default' : 'pointer',
                                     backgroundImage: `url(https://img.youtube.com/vi/${thumbnailId}/maxresdefault.jpg)`,

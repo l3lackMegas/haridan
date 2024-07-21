@@ -1,5 +1,6 @@
 .resume-page {
     // padding-top: 80px;
+    padding-bottom: 39px;
     width: 100vw;
     min-height: 100vh;
     background-color: rgb(6, 36, 60);
@@ -232,20 +233,6 @@
 .brinessDown {
     filter: brightness(.5);
     transition-duration: 1s;
-}
-
-.credit {
-    padding: 10px;
-    width: 100%;
-    text-align: right;
-    font-size: 15px;
-    color: rgb(255 255 255 / 75%);
-    text-align: center;
-    background-color: #041b2d;
-}
-
-.credit p {
-    display: inline;
 }
 
 @media screen and (max-width: 768px) {

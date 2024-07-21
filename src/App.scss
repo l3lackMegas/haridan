@@ -165,3 +165,20 @@ img{
         transform: scale(1);
     }
 }
+
+.credit {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 10px;
+    width: 100vw;
+    text-align: right;
+    font-size: 15px;
+    color: rgb(255 255 255 / 75%);
+    text-align: center;
+    background-color: rgba(0, 0, 0, .25);
+}
+
+.credit p {
+    display: inline;
+}

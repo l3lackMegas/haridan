@@ -9,6 +9,7 @@ import { AppMainContext, IThemeState } from '../context';
 
 import './PageContainer.scss';
 import { checkIsMobile, isSafari } from '../lib/utility';
+import Credit from './Credit';
 
 type Props = {
     pathName: string
@@ -261,6 +262,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                                 }}
                             >
                                 {this.props.children}
+                                <Credit/>
                             </motion.div>
                         </motion.div>
                     {/* </WrapPageScroll> */}

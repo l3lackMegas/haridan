@@ -9,6 +9,7 @@ import { AppMainContext, IThemeState } from '../context';
 import Section from '../resume/components/MainLayout/Section';
 import WorkListData, { WorkStructure } from '../data/work-list';
 import WorkList from '../resume/components/Works/List';
+import { getAbsoluteHeight } from '../lib/utility';
 
 type PageProps = {
 };
@@ -55,6 +56,9 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
 
     render() {
         const { currentScroll, workList } = this.state;
+
+        const creditComponentHeight = (getAbsoluteHeight('#creditComponent') ?? 40);
+
         return (
             <PageContainer key={'portfolio'} pathName='/portfolio' parallaxCallback={this.parallaxCallback}
                 headerOverlayColor='#1818189d'
@@ -62,6 +66,9 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
                 <motion.div
                     className='portfolio-page'
                     key={'PortfolioPage'}
+                    style={{
+                        paddingBottom: creditComponentHeight
+                    }}
                 >
                     <motion.div className='first-section'>
                         <motion.div className='wrapper'

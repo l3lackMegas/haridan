@@ -38,3 +38,15 @@ export function validateYouTubeUrl(url)
 }
 
 export const sleep = (ms) => new Promise(resolve=>setTimeout(resolve, ms))
+
+export function getAbsoluteHeight(el) {
+    // Get the DOM Node if you pass in a string
+    el = (typeof el === 'string') ? document.querySelector(el) : el; 
+    if(el == null) return 0;
+  
+    var styles = window.getComputedStyle(el);
+    var margin = parseFloat(styles['marginTop']) +
+                 parseFloat(styles['marginBottom']);
+  
+    return Math.ceil(el.offsetHeight + margin);
+}

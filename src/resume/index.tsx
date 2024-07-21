@@ -18,11 +18,12 @@ import SkillCard from "./components/SkillCard"
 import WorkList from './components/Works/List'
 
 import resumeData from '../data/resume'
-import Credit from './components/MainLayout/Credit';
+import Credit from '../common/Credit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import MusicItem from '../music/MusicItem';
 import MusicListData, { MusicStructure } from '../data/music-list';
+import { getAbsoluteHeight } from '../lib/utility';
 
 type PageProps = {
 };
@@ -124,11 +125,16 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
 
     render() {
         const { mounted, workItems, resume } = this.state;
+
+        const creditComponentHeight = (getAbsoluteHeight('#creditComponent') ?? 40);
         return (
             <PageContainer key={'home'} pathName='/' parallaxCallback={this.parallaxCallback}>
                 <motion.div
                     className='resume-page'
                     key={'resumePage'}
+                    style={{
+                        paddingBottom: creditComponentHeight
+                    }}
                 >
                     <motion.div style={{
                         position: 'relative',
@@ -261,7 +267,6 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                         </div>
                     </Section>
                 </motion.div>
-                <Credit/>
             </PageContainer>
         );
     }
