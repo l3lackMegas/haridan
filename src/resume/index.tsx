@@ -140,6 +140,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                         position: 'relative',
                         width: '100vw',
                         height: '100vh',
+                        minHeight: 600,
                         overflow: 'hidden',
                     }}>
                         <motion.div className="parallaxHero"

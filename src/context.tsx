@@ -207,12 +207,12 @@ class ContextWraper extends React.Component<PageProps, PageState> {
             crrUrl: '',
             setCrrUrl: async (crrUrl: string) => {
                 if(crrUrl !== '' && crrUrl !== this.state.musicPlayerController.crrUrl && this.state.musicPlayerController.isPlaying) {
-                    console.log('pause');
+                    // console.log('pause');
                     this.setState({
                         youtubeIframeShow: false,
                     });
                     await sleep(250);
-                    console.log('pause', this.state.musicPlayerController.isPaused);
+                    // console.log('pause', this.state.musicPlayerController.isPaused);
                 }
                 await sleep(10);
                 if(crrUrl !== this.state.musicPlayerController.crrUrl) this.setState({

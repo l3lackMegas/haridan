@@ -98,7 +98,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
 
         // console.log(this.context.parallaxPos, (this.context.crrPageHeight - window.innerHeight))
 
-        console.log(isOnMusicPage)
+        // console.log(isOnMusicPage)
 
         const creditComponentHeight = (getAbsoluteHeight('#creditComponent') ?? 40);
         return (
@@ -452,7 +452,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                 case 2:
                     if(!musicPlayerController.isPaused && !_this.isWebBlur) {
                         await musicPlayerController.play();
-                        console.log("Command to play again!")
+                        // console.log("Command to play again!")
                     } else {
                         await musicPlayerController.pause();
                     }
