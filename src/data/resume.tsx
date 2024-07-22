@@ -117,7 +117,7 @@ resumeItem: ResumeObject = {
     education: [
         {
             title: 'Bangkok University',
-            date: '2019 - Present',
+            date: '2019 - 2023',
             org: 'Pathum Thani - Thailand',
             link: 'https://www.bu.ac.th',
             describe: [

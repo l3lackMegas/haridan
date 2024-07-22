@@ -101,7 +101,7 @@ class SkillCard extends Component {
                     </div>
 
                     <div className={styles.info}>
-                        <p className={styles.topic}>Library &amp; Tools:</p>
+                        <p className={styles.topic}>Libraries &amp; Tools:</p>
                         <p>HTML, CSS</p>
                         <p>JavaScript</p>
                         <p>React.js</p>
