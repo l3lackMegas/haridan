@@ -54,7 +54,7 @@ class SkillCard extends Component {
                         <p className={styles.topic}>Tech Stack &amp; Language &amp; Tools:</p>
                         <p>Nodejs / TypeScript</p>
                         <p>Next.js</p>
-                        <p>Express.js</p>
+                        <p>Golang</p>
                         <p>PHP</p>
                         <p>Lua</p>
                         <p>C# / VB.NET</p>
