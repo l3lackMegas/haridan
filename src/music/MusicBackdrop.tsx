@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, stagger } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faGithub, faSquareYoutube, faYoutube, faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
 import { faArrowUpRightFromSquare, faAt, faChevronLeft, faLink, faPause, faPlay, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import YouTubePlayer from 'react-youtube';
@@ -115,7 +115,32 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                         }
                     }}
                 >
-                    <motion.div className='playerContainer'
+                    <motion.div className='floating-status'
+                        style={{
+                            pointerEvents: musicPlayerController.crrUrl === '' ? 'none' : 'auto',
+                        }}
+                        initial={{
+                            opacity: 0
+                        }}
+                        animate={{
+                            right: isOnMusicPage ? 0 : '50%',
+                            transform: isOnMusicPage ? 'translateX(0)' : 'translateX(50%)',
+                            opacity: isOnMusicPage && musicPlayerController.crrUrl !== '' ? 1 : 0,
+                            transition: {
+                                duration: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? .5 : .75,
+                                delay: isOnMusicPage && musicPlayerController.crrUrl !== '' ? 1 : 0,
+                                ease: [0.5, 0.025, 0, 1]
+                            }
+                        }}
+                        onClick={() => {
+                            if(musicPlayerController.crrUrl === '') return;
+                            window.open(musicPlayerController.crrUrl + '?t=' + Math.floor(this.state.crrTime), '_blank');
+                        }}
+                    >
+                        
+                        <p><FontAwesomeIcon icon={faYoutube} /> Youtube's iframe is playing</p>
+                    </motion.div>
+                    <motion.div className={`playerContainer`}
                         initial={{
                             opacity: 0,
                             y: 100,
@@ -203,7 +228,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
                                     minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
                                     transition: {
-                                        duration: 1,
+                                        duration: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? .5 : .75,
                                         // delay: musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused && isOnMusicPage ? .5 : 0,
                                         ease: [0.5, 0.025, 0, 1]
                                     }
@@ -266,15 +291,19 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     this.context.pushNavigate('/music');
                                 }}
                             >
-                                {isOnMusicPage && <motion.div className='link-overlay'
-                                    onClick={() => {
-                                        musicPlayerController.pause();
-                                        // console.log(musicPlayerController.crrUrl + '?t=' + Math.floor(this.state.crrTime));
-                                        window.open(musicPlayerController.crrUrl + '?t=' + Math.floor(this.state.crrTime), '_blank');
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                                </motion.div>}
+                                <motion.div animate={{
+                                    opacity: isOnMusicPage ? 1 : 0,
+                                }}>
+                                    {isOnMusicPage && <motion.div className='link-overlay'
+                                        onClick={() => {
+                                            musicPlayerController.pause();
+                                            // console.log(musicPlayerController.crrUrl + '?t=' + Math.floor(this.state.crrTime));
+                                            window.open(musicPlayerController.crrUrl + '?t=' + Math.floor(this.state.crrTime), '_blank');
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                                    </motion.div>}
+                                </motion.div>
                             </motion.div>
                             <motion.div className='player-info-text'
                                 animate={{

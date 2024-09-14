@@ -11,6 +11,8 @@ import MusicItem from './MusicItem';
 
 import MusicListData, { MusicStructure } from '../data/music-list';
 import { getYoutubeId } from '../lib/utility';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 type PageProps = {
 };
@@ -120,9 +122,18 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                     <motion.div
                         className='music-secion'
                     >
-                        <motion.div className='section-info'>
+                        <motion.div className='section-info'
+                            animate={this.context.isCanNotSmooth ? {} : {
+                                scale: !isToggleNav && hidePageUI ? .9 : 1,
+                                opacity: !isToggleNav && hidePageUI ? 0 : 1,
+                                transition: {
+                                    duration: !isToggleNav && hidePageUI ? .25 : .75,
+                                    ease: [0.5, 0.025, 0, 1],
+                                }
+                            }}
+                        >
                             <motion.h1>Most Favorites</motion.h1>
-                            <motion.p>All music on this website is using YouTube's iframe.</motion.p>
+                            <motion.p><FontAwesomeIcon icon={faYoutube} /> All music on this website is using YouTube's iframe.</motion.p>
                             <motion.div className='music-list'>
                                 {
                                     this.state.musicList.map((item, index) => {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, stagger } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebook, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faFacebook, faGithub, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import { faArrowUpRightFromSquare, faAt, faChevronLeft, faLink, faPause, faPlay, faStop, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import YouTubePlayer from 'react-youtube';
@@ -59,6 +59,9 @@ class MusicItem extends React.Component<Props, State, IThemeState> {
                         await musicPlayerController.showPlayer();
                     }
                 }}></motion.div>
+                <motion.div className='iframe-notice'>
+                    <motion.p><FontAwesomeIcon icon={faYoutube} /> This song will play on Youtube's iframe</motion.p>
+                </motion.div>
                 <motion.div
                     className='music-banner'
                 >
