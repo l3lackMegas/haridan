@@ -149,7 +149,7 @@ let songList: Array<MusicStructure> = [
         id: 24,
         title: "UNDEAD",
         url: "https://youtu.be/BryspbM6s3E",
-        videoUrl: "https://youtu.be/jAAZDIGWcio",
+        videoUrl: "https://youtu.be/Jj1_mfUzjOs",
         author: "YOASOBI",
     },
     {
