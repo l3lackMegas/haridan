@@ -190,7 +190,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                     >
                         { musicPlayerController.crrUrl !== '' && 
                             <motion.div className='player-progress'
-                                onClick={(e) => {
+                                onMouseDown={(e) => {
                                     // get mouse position
                                     const rect = e.currentTarget.getBoundingClientRect();
                                     const x = e.clientX - rect.left; //x position within the element
@@ -208,7 +208,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     }
                                 }}
                             >
-                                <motion.div className='player-progress-bar' animate={{
+                                <motion.div className='player-progress-bar' style={{
                                     width: `${(crrTime / (maxTime || 1) * 100)}%`
                                 }}></motion.div>
                             </motion.div>
