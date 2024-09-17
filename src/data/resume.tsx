@@ -39,8 +39,7 @@ resumeItem: ResumeObject = {
             org: 'Orisma Technology Co., Ltd.',
             link: 'https://www.orisma.com/',
             describe: [
-                'Develop products for company and their customers',
-                '(Taximail was merging to Orisma Technology)'
+                'Develop products for company and their customers'
             ]
         },
         {
@@ -50,7 +49,7 @@ resumeItem: ResumeObject = {
             link: 'https://taximail.com/',
             describe: [
                 'Develop products for company and their customers',
-                'Junior Full Stack Developer',
+                '(Taximail was merging to Orisma Technology)',
             ]
         },
         {
