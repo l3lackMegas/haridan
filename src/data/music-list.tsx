@@ -80,6 +80,26 @@ let songList: Array<MusicStructure> = [
         author: "KAF",
     },
     {
+        id: 28,
+        title: "あぼーん (2024 Remastered)",
+        url: "https://youtu.be/Xy5Zi1J4qKw",
+        videoUrl: "https://youtu.be/i4VwuseyA7Q",
+        author: "Daoko",
+    },
+    {
+        id: 29,
+        title: "好×2 + 嘘×2",
+        url: "https://youtu.be/wiE4_Hu130E",
+        videoUrl: "https://youtu.be/63V6WKYTeIk",
+        author: "Daoko",
+    },
+    {
+        id: 30,
+        title: "SLUMP",
+        url: "https://youtu.be/h-d6qaPKrHE",
+        author: "Daoko",
+    },
+    {
         id: 6,
         title: "livetune feat. 初音ミク「Redial」",
         url: "https://youtu.be/8JUcFfxL9cU",
@@ -195,7 +215,7 @@ let songList: Array<MusicStructure> = [
         author: "Ado",
     },
     {
-        id: 18,
+        id: 27,
         title: "それは小さな光のような - Sorewa Chiisana Hikarinoyouna",
         url: "https://youtu.be/5_pdEtZS08A",
         videoUrl: "https://youtu.be/M1ajQuujwKk",
