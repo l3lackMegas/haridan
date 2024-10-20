@@ -108,7 +108,18 @@ class ModalContent extends Component<IReciept> {
                             }}/>
                         </motion.div>
                     </motion.div>}
-                    <motion.div className={styles.gallery}>
+                    <motion.div className={styles.gallery}
+                        initial={{
+                            opacity: 0,
+                        }}
+                        animate={{
+                            opacity: 1,
+                            transition: {
+                                duration: .5,
+                                delay: .3
+                            }
+                        }}
+                    >
                         {imageListItems?.map((img: string, i: number) => {
                             return <ModalActive layoutId={`img-${img}`}
                                 isDisableScrollHandle={true}
