@@ -54,7 +54,7 @@ The project had a total of 4 team members, and I was responsible for developing 
             "/img/works/imaginasia2024/03.png",
             "/img/works/imaginasia2024/04.png"
         ],
-        color: '#6f5d2c'
+        color: '#a98573'
     },
     {
         pin: true,
@@ -113,26 +113,6 @@ Project Description
         ],
         color: '#0d3799'
     },
-    // {
-    //     id: 6,
-    //     title: "Flutter Image Color Summarizer",
-    //     describe: `This project is an experiment to create color summaries for 50 images simultaneously. Optimization is done to enable multi-threaded operation to reduce UI rendering latency.`,
-    //     img: "/img/works/flutter-image-color-summarizer/01.png",
-    //     tags: [
-    //         "Flutter",
-    //         "Learning",
-    //         "Hobby"
-    //     ],
-    //     date: {
-    //         from: new Date(2023, 8, 14),
-    //         to: new Date(2023, 8, 14)
-    //     },
-        
-    //     imageList: [
-    //         "https://youtube.com/watch?v=L0RlK03-yQ8",
-    //     ],
-    //     color: 'white'
-    // },
     {
         id: 5,
         title: "Valorant TH Ignition - Verify Riot ID",
@@ -158,6 +138,27 @@ I was involved in the development of the entire frontend.`,
             "/img/works/valorantth-ignition/04.png",
         ],
         color: '#dc3d4b'
+    },
+    {
+        id: 6,
+        title: "Flutter Image Color Summarizer",
+        describe: `This project is an experiment to create color summaries for 50 images simultaneously. Optimization is done to enable multi-threaded operation to reduce UI rendering latency.`,
+        img: "/img/works/flutter-image-color-summarizer/02.png",
+        tags: [
+            "Flutter",
+            "Learning",
+            "Hobby",
+            "Experiment"
+        ],
+        date: {
+            from: new Date(2023, 8, 14),
+            to: new Date(2023, 8, 14)
+        },
+        
+        imageList: [
+            "https://youtube.com/watch?v=L0RlK03-yQ8",
+        ],
+        color: 'black'
     },
     {
         id: 8,
@@ -189,7 +190,7 @@ I was involved in the development of the entire frontend.`,
         describe: `This project was an assignment for an algorithms course. My partner and I paired up to write an algorithm and create a simple visualization using React for a classroom presentation.`,
         img: "/img/works/maze-homework/05.png",
         tags: [
-            "JavaScript",
+            "Vanilla JS",
             "Visualization",
             "Learning"
         ],
@@ -250,7 +251,7 @@ I was involved in the development of the entire frontend.`,
 I was involved in the design and development of the frontend and the prize giveaway algorithm.`,
         img: "/img/works/fpsmember/01.png",
         tags: [
-            "JavaScript",
+            "Vanilla JS",
             "Frontend Dev",
             "Commission"
         ],
