@@ -28,9 +28,40 @@ export default function WorkListData() {
 let workItems: Array<WorkStructure> = [
     {
         pin: true,
+        id: 11,
+        title: "ImaginAsia 2024",
+        describe: `This project was a commissioned work from the Department of Creative Arts Faculty of Fine and Applied Arts, Chulalongkorn University Bangkok University.
+
+ImaginAsia 2024 is the international creative arts & design activities sponsored by the “Princess Sirivannavari Cultivated Arts Foundation” and “The Doctor and Master of Fine and Applied Arts Programs in Creative Arts, Faculty of Fine and Applied Arts, Chulalongkorn University”
+
+The project had a total of 4 team members, and I was responsible for developing the entire Front-office.`,
+        // img: "/img/works/flight-visualization/logo.png",
+        img: "/img/works/imaginasia2024/01.png",
+        date: {
+            from: new Date(2024, 5, 1),
+            to: new Date(2024, 7, 31)
+        },
+        tags: [
+            "Next.js",
+            "Framer-Motion",
+            "Frontend Dev",
+            "Commission"
+        ],
+        link: 'https://imaginasia2024.art/',
+        imageList: [
+            "/img/works/imaginasia2024/01.png",
+            "/img/works/imaginasia2024/02.png",
+            "/img/works/imaginasia2024/03.png",
+            "/img/works/imaginasia2024/04.png"
+        ],
+        color: '#6f5d2c'
+    },
+    {
+        pin: true,
         id: 10,
         title: "BU ShowPro",
-        describe: `This project was a commissioned work from the School of Digital Media and Cinematic Arts, Digital Media program, Bangkok University. It was an exhibition showcasing the works of students from each year. The project had a total of 4 team members, and I was responsible for developing the entire Front-office.`,
+        describe: `This project was a commissioned work from the School of Digital Media and Cinematic Arts, Digital Media program, Bangkok University. It was an exhibition showcasing the works of students from each year.
+The project had a total of 4 team members, and I was responsible for developing the entire Front-office.`,
         // img: "/img/works/flight-visualization/logo.png",
         img: "/img/works/bu-showpro/01.png",
         date: {
@@ -174,7 +205,6 @@ Project Description
     },
     {
         id: 9,
-        pin: true,
         title: "Dyztiny Store",
         describe: `This project is a concept design where I conceptualized and designed the web pages myself. It serves as an experiment in utilizing Framer motion within Next.js.`,
         img: "/img/works/dyz-store/02.png",
