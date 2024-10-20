@@ -16,6 +16,7 @@ interface IReciept {
     items: Array<WorkStructure>
     layoutUniqueId: string
     children?: React.ReactNode
+    disabledLayoutId?: boolean
 }
 
 class WorkList extends Component<IReciept> {
@@ -25,7 +26,7 @@ class WorkList extends Component<IReciept> {
     }
 
     render() {
-        const { items, layoutUniqueId, children } = this.props
+        const { items, disabledLayoutId, layoutUniqueId, children } = this.props
 
         return <>
             <motion.div className={styles.container}>
@@ -40,6 +41,9 @@ class WorkList extends Component<IReciept> {
                                 `${date.from.getFullYear()} - ${date.to.getFullYear()}`
                     return <motion.div
                         key={ctx.id}
+                        layoutId={disabledLayoutId ? undefined : `${layoutUniqueId}-modalCard-${ctx.id}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
                         // whileHover={{
                         //     y: -5
                         // }}

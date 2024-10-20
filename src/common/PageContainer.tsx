@@ -19,6 +19,7 @@ type Props = {
 };
 type State = {
     toggleNav: boolean,
+    inPageMounted: boolean,
     mounted: boolean,
     unieqKey: number,
     scrollY: number,
@@ -32,6 +33,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
 
     state: State = {
         toggleNav: true,
+        inPageMounted: false,
         mounted: false,
         unieqKey: 0,
         scrollY: 0,
@@ -105,6 +107,9 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
         }, 1000);
 
         this.navigatingTimeout = setTimeout(() => {
+            this.setState({
+                inPageMounted: true
+            })
             this.context.setIsNavigating(false);
         }, 2500);
 
@@ -178,7 +183,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     render() {
         const { textColor, crrFeature, isToggleNav, setIsToggleNav, isCanNotSmooth }: IThemeState = this.context;
         const { pathName } = this.props;
-        const { isToggleNavContext, toggleNav, isNavToggling, mounted, unieqKey, scrollY, currentScroll } = this.state;
+        const { isToggleNavContext, toggleNav, isNavToggling, inPageMounted, mounted, unieqKey, scrollY, currentScroll } = this.state;
 
         const namespace = (pathName.split('/')[1] || 'home') + unieqKey.toString();
 
@@ -279,12 +284,12 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
                         y: -70
                     }}
                     animate={{
-                        y: !mounted || this.context.isToggleNav ? -70 : -5,
-                        opacity: !mounted || this.context.isToggleNav ? 0 : 1,
+                        y: !mounted || this.context.isToggleNav || (inPageMounted && this.context.isNavigating) ? -70 : -5,
+                        opacity: !mounted || this.context.isToggleNav || (inPageMounted && this.context.isNavigating) ? 0 : 1,
                         transition: {
-                            duration: !mounted || this.context.isToggleNav ? .5 : .75,
+                            duration: !mounted || this.context.isToggleNav || (inPageMounted && this.context.isNavigating) ? .5 : .75,
                             ease: [0.5, 0.025, 0, 1],
-                            delay: !mounted || this.context.isToggleNav ? 0 : .5
+                            delay: !mounted || this.context.isToggleNav || (inPageMounted && this.context.isNavigating) ? 0 : .5
                         }
                     }}
                     style={{

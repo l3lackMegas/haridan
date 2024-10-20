@@ -247,7 +247,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                     <h1 className="work-list" style={{ textAlign: 'center', marginBottom: 20 }}>My Works</h1>
                     <Section id="work-section" maxWidth={'unset'}>
                         <div style={{ padding: '0 10px'}}>
-                            <WorkList layoutUniqueId={`layoutWorklist`} items={ workItems } />
+                            <WorkList disabledLayoutId={true} layoutUniqueId={`layoutWorklistHome`} items={ workItems } />
                         </div>
                         <Link to="/portfolio" className="btnViewMore">
                             <span>View More Works</span>

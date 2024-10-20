@@ -14,14 +14,20 @@ import { getAbsoluteHeight } from '../lib/utility';
 type PageProps = {
 };
 type PageState = {
+    pageInit: boolean
     currentScroll: number
+    crrTag: string
+    tagList: Array<string>
     workList: Array<WorkStructure>
 };
 class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
     context!: IThemeState;
 
     state: PageState = {
+        pageInit: false,
         currentScroll: 0,
+        crrTag: '',
+        tagList: [],
         workList: []
     };
 
@@ -34,12 +40,31 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
         const { setTextColor, setCrrFeature }: IThemeState = this.context;
         setTextColor('#E3F0FF', '#64c571');
         // setCrrFeature('/portfolio');
+
+        let tagList: Array<string> = [];
+        let workList = WorkListData().workItem;
+        workList.forEach(workItem => {
+            workItem.tags?.forEach(tag => {
+                if(tagList.indexOf(tag) === -1) {
+                    tagList.push(tag);
+                }
+            })
+        });
         this.setState({
-            workList: WorkListData().workItem
-        })
+            tagList: tagList,
+            workList: workList
+        });
+
+        this.pageInitTimeout = setTimeout(() => {
+            this.setState({
+                pageInit: true
+            })
+        }, 1000);
     }
 
+    pageInitTimeout: any;
     componentWillUnmount(): void {
+        clearTimeout(this.pageInitTimeout);
         // console.log('unmount', "/portfolio");
         const { setTextColor, crrFeature, setCrrFeature }: IThemeState = this.context;
         // console.log(crrFeature)
@@ -55,7 +80,13 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
     }
 
     render() {
-        const { currentScroll, workList } = this.state;
+        const { pageInit, currentScroll, crrTag, tagList, workList } = this.state;
+
+        const filteredWorkList = crrTag === "" ? workList : workList.filter((workItem: WorkStructure) => {
+            return workItem.tags?.some(tag => tag === crrTag);
+        });
+
+        const { isToggleNav, isTogglingNav, isNavigating, isCanNotSmooth } = this.context;
 
         const creditComponentHeight = (getAbsoluteHeight('#creditComponent') ?? 40);
 
@@ -119,9 +150,19 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
                         }}
                     >
                         <h1 className="work-list" style={{ textAlign: 'center' }}>Works</h1>
+                        <div className={'tagListWrapper'}>
+                            <motion.div className={'tagList'}>
+                                <motion.div key={'all-tags'} className={'tag ' + (crrTag === "" ? "active" : "")}
+                                    onClick={() => this.setState({ crrTag: "" })}
+                                >All</motion.div>
+                                {tagList.map((tag: string, i: number) => <motion.div key={'tag-filter-'+i} className={'tag ' + (crrTag === tag ? "active" : "")}
+                                    onClick={() => this.setState({ crrTag: crrTag === tag ? '' : tag })}
+                                >{tag}</motion.div>)}
+                            </motion.div>
+                        </div>
                         <Section id="work-section" disableBackground={true} maxWidth={'unset'}>
                             <div style={{ padding: '0 10px'}}>
-                                <WorkList layoutUniqueId={`layoutWorklist`} items={ workList } />
+                                <WorkList layoutUniqueId={`layoutWorklist`} items={ filteredWorkList } disabledLayoutId={!pageInit || isToggleNav || isTogglingNav || isNavigating || isCanNotSmooth} />
                             </div>
                         </Section>
                     </motion.div>

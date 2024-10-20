@@ -122,7 +122,7 @@ I was involved in the development of the entire frontend.`,
         img: "/img/works/valorantth-ignition/03.png",
         tags: [
             "React.js",
-            "Framer-motion",
+            "Framer-Motion",
             "Hobby"
         ],
         date: {
@@ -215,8 +215,8 @@ I was involved in the development of the entire frontend.`,
         img: "/img/works/dyz-store/02.png",
         tags: [
             "Next.js",
-            "Framer-motion",
-            "Frontend-dev",
+            "Framer-Motion",
+            "Frontend Dev",
             "Mockup",
             "Learning",
         ],
