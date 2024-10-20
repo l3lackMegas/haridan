@@ -61,6 +61,7 @@ The project had a total of 4 team members, and I was responsible for developing 
         id: 10,
         title: "BU ShowPro",
         describe: `This project was a commissioned work from the School of Digital Media and Cinematic Arts, Digital Media program, Bangkok University. It was an exhibition showcasing the works of students from each year.
+
 The project had a total of 4 team members, and I was responsible for developing the entire Front-office.`,
         // img: "/img/works/flight-visualization/logo.png",
         img: "/img/works/bu-showpro/01.png",
@@ -92,6 +93,7 @@ The project had a total of 4 team members, and I was responsible for developing 
         title: "Film Reporter Assistance",
         describe: `This is my undergraduate thesis project. It took three people to develop this project.
 Project Description
+
         In order to reduce unnecessary steps and facilitate the work of various departments, the Film's Reporter Assistance system was developed. This system helps store footage files and save details into a database. It also uses artificial intelligence to analyze various elements within the footage. The program is designed to be easy to use for storing files and can be accessed quickly. This allows reporters to finish their work faster without having to manage folders. They can simply drag and drop footage files, preview the content, and type in the file details immediately.`,
         img: "/img/works/film-reporter-assistance/01.png",
         tags: [
@@ -134,7 +136,9 @@ Project Description
     {
         id: 5,
         title: "Valorant TH Ignition - Verify Riot ID",
-        describe: `This project is an identity verification system using Riot ID for the Valorant TH Ignition community. I was involved in the development of the entire frontend.`,
+        describe: `This project is an identity verification system using Riot ID for the Valorant TH Ignition community.
+
+I was involved in the development of the entire frontend.`,
         img: "/img/works/valorantth-ignition/03.png",
         tags: [
             "React.js",
@@ -241,7 +245,9 @@ Project Description
         pin: true,
         id: 1,
         title: "FPSThailand Member",
-        describe: `This project was commissioned by FPSThailand to allow their Twitch members to participate in random prize giveaways from their favorite streamers. I was involved in the design and development of the frontend and the prize giveaway algorithm.`,
+        describe: `This project was commissioned by FPSThailand to allow their Twitch members to participate in random prize giveaways from their favorite streamers.
+
+I was involved in the design and development of the frontend and the prize giveaway algorithm.`,
         img: "/img/works/fpsmember/01.png",
         tags: [
             "JavaScript",
@@ -259,7 +265,9 @@ Project Description
     {
         id: 2,
         title: "Website BUMIT",
-        describe: `This project was developed during my sophomore year of undergraduate studies. I was involved in the development of the frontend and integration with the backend system.`,
+        describe: `This project was developed during my sophomore year of undergraduate studies.
+
+I was involved in the development of the frontend and integration with the backend system.`,
         img: "/img/works/website-bumit/12.png",
         tags: [
             "Next.js",
@@ -290,7 +298,9 @@ Project Description
     {
         id: 3,
         title: "Flight Visualization",
-        describe: `This project was developed during my sophomore year of undergraduate studies. I was involved in the development of the frontend and integration with the backend system.`,
+        describe: `This project was developed during my sophomore year of undergraduate studies.
+
+I was involved in the development of the frontend and integration with the backend system.`,
         // img: "/img/works/flight-visualization/logo.png",
         img: "/img/works/flight-visualization/1.png",
         date: {
