@@ -60,12 +60,12 @@ class NameCard extends Component<IReciept> {
                             contact@jaruwat.dev
                         </Link>
                     </div>
-                    <Link to="https://m.me/Jaruwat.P" target="_blank" rel="noreferrer">
+{/*                     <Link to="https://m.me/Jaruwat.P" target="_blank" rel="noreferrer">
                         <button className={`${styles.btn} ${styles.facebook}`}>
                             <FontAwesomeIcon icon={faFacebookMessenger} />
                             <span>Messenger</span>
                         </button>
-                    </Link>
+                    </Link> */}
                     <Link to="https://github.com/l3lackMegas" target="_blank" rel="noreferrer">
                         <button className={`${styles.btn} ${styles.github}`}>
                             <FontAwesomeIcon icon={faGithub} />
