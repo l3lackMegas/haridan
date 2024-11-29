@@ -19,6 +19,7 @@ type PageState = {
     crrTag: string
     tagList: Array<string>
     workList: Array<WorkStructure>
+    filteredWorkList: Array<WorkStructure>
 };
 class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
     context!: IThemeState;
@@ -28,7 +29,8 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
         currentScroll: 0,
         crrTag: '',
         tagList: [],
-        workList: []
+        workList: [],
+        filteredWorkList: []
     };
 
     constructor(props: PageProps) {
@@ -52,7 +54,8 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
         });
         this.setState({
             tagList: tagList,
-            workList: workList
+            workList: workList,
+            filteredWorkList: workList
         });
 
         this.pageInitTimeout = setTimeout(() => {
@@ -79,12 +82,19 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
         })
     }
 
-    render() {
-        const { pageInit, currentScroll, crrTag, tagList, workList } = this.state;
-
+    setCrrTag(crrTag: string) {
+        const { workList } = this.state;
         const filteredWorkList = crrTag === "" ? workList : workList.filter((workItem: WorkStructure) => {
             return workItem.tags?.some(tag => tag === crrTag);
         });
+        this.setState({
+            crrTag,
+            filteredWorkList,
+        })
+    }
+
+    render() {
+        const { pageInit, currentScroll, crrTag, tagList, filteredWorkList } = this.state;
 
         const { isToggleNav, isTogglingNav, isNavigating, isCanNotSmooth } = this.context;
 
@@ -153,10 +163,10 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
                         <div className={'tagListWrapper'}>
                             <motion.div className={'tagList'}>
                                 <motion.div key={'all-tags'} className={'tag ' + (crrTag === "" ? "active" : "")}
-                                    onClick={() => this.setState({ crrTag: "" })}
+                                    onClick={() => this.setCrrTag('')}
                                 >All</motion.div>
                                 {tagList.map((tag: string, i: number) => <motion.div key={'tag-filter-'+i} className={'tag ' + (crrTag === tag ? "active" : "")}
-                                    onClick={() => this.setState({ crrTag: crrTag === tag ? '' : tag })}
+                                    onClick={() => this.setCrrTag(crrTag === tag ? '' : tag)}
                                 >{tag}</motion.div>)}
                             </motion.div>
                         </div>

@@ -78,6 +78,8 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     isCanNotSmooth = false;
     navigatingTimeout: any;
 
+    intervalCheckPageHeight: any;
+
     componentWillMount(): void {
         this.context.setIsNavigating(true);
     }
@@ -113,6 +115,16 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
             this.context.setIsNavigating(false);
         }, 2500);
 
+        this.intervalCheckPageHeight = setInterval(() => {
+            // console.log(this.context.crrPageHeight, this.contentScroll.current?.clientHeight)
+            if(this.context.crrPageHeight !== this.contentScroll.current?.clientHeight) {
+                this.context.setCrrPageHeight(this.contentScroll.current?.clientHeight || 0);
+                this.setState({
+                    pageHeight: this.contentScroll.current?.clientHeight || 0
+                });
+            }
+        }, 500);
+
         if(!this.isCanNotSmooth) {
             window.addEventListener("scroll", this.onScrollHandler)
 
@@ -126,6 +138,7 @@ class PageContainer extends React.Component<Props, State, IThemeState> {
     }
 
     componentWillUnmount(): void {
+        clearInterval(this.intervalCheckPageHeight);
         clearTimeout(this.navigatingTimeout);
         window.scrollTo(0, 0);
         window.removeEventListener('scroll', this.onScrollHandler);
