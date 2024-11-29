@@ -96,7 +96,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                         pointerEvents: hidePageUI ? 'none' : 'auto',
                         opacity: !isToggleNav && hidePageUI ? 0 : 1,
                         backdropFilter: !window.isMobile && !isToggleNav && hidePageUI ? '' : 'blur(30px) saturate(30%)',
-                        transitionDuration: !isToggleNav && hidePageUI ? '.75s' : '.25s',
+                        transition: 'opacity .25s ease-in-out, backdrop-filter .25s ease-in-out',
                         backgroundColor: window.isMobile || window.isSafari ? '#181818' : ''
                     }}
                 >
