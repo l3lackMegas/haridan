@@ -1,3 +1,6 @@
+# Deprecated and Migrating to React.js
+This current main branch is deprecated and I was about to migrate code base from Next.js to Pure React.js (https://github.com/l3lackMegas/haridan/pull/3)
+
 # l3lackmegas Resume Website
 This is a source code of my [Resume Website](https://jaruwat.dev/).
 
@@ -6,8 +9,8 @@ First, You have to make sure that you're install [tools and dependencies](#tools
 
 Then clone this repo to your workspace.
 ```
-git clone https://github.com/BUMIT-Lab/Website-BUMIT.git
-cd Website-BUMIT/
+git clone https://github.com/l3lackMegas/haridan.git
+cd haridan/
 ```
 
 And install all dependencies by use this commands.
