@@ -132,8 +132,8 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                                 }
                             }}
                         >
-                            <motion.h1>Most Favorites</motion.h1>
-                            <motion.p><FontAwesomeIcon icon={faYoutube} /> All music on this website is using YouTube's iframe.</motion.p>
+                            <motion.h1 style={{color: '#ff2929'}}>Most Favorites</motion.h1>
+                            <motion.p><FontAwesomeIcon icon={faYoutube} style={{color: 'red'}} /> All music on this website is using YouTube's iframe.</motion.p>
                             <motion.div className='music-list'>
                                 {
                                     this.state.musicList.map((item, index) => {
