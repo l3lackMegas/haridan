@@ -138,7 +138,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                         }}
                     >
                         
-                        <p><FontAwesomeIcon icon={faYoutube} /> Youtube's iframe is playing</p>
+                        <p><FontAwesomeIcon icon={faYoutube} style={{color: 'red'}} /> Youtube's iframe is playing</p>
                     </motion.div>
                     <motion.div className={`playerContainer`}
                         initial={{
