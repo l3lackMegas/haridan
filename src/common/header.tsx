@@ -177,11 +177,11 @@ class Header extends React.Component<Props, State, IThemeState> {
                         opacity: 0,
                     }}
                     animate={{
-                        y: 0,
-                        opacity: 1,
+                        y: crrPageName === "" ? -100 : 0 ,
+                        opacity: crrPageName === "" ? 0 : 1,
                         transition: {
                             duration: .5,
-                            delay: 1,
+                            delay: .75,
                             ease: [0.5, 0.025, 0, 1],
                         }
                     }}
