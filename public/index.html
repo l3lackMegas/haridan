@@ -47,6 +47,10 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 
+    <div id="IE-Message" style="display: none; top: 50px; margin: auto; width: 90%; color: orange; text-align:center;">
+      <p style="padding: 5px 15px; border: 1px rgba(255, 255, 255, .5) solid;">Sorry, This website may not support your browser.</p>
+    </div>
+
     <div id="preloaderTxt">
       <p id="preloadTxt">&lt;/&gt; Preparing...</p>
       <style>
@@ -91,5 +95,7 @@
         window.onLoadSuccessfully();
       })
     </script>
+
+    <script async src="/js/checkOutdataBrowser.js?v=3"></script>
   </body>
 </html>
