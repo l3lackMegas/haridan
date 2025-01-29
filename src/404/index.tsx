@@ -26,13 +26,13 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
         mounted: false,
         crrLetter: 'JARUWAT.DEV',
         letterList: [
-            'JARUWAT.DEV',
             'WEB DEVELOPER',
             'FRONT-END DEVELOPER',
             'BACK-END DEVELOPER',
             'FULL-STACK DEVELOPER',
             'CAT LOVER',
             'SOFTWARE DEVELOPER',
+            'JARUWAT.DEV',
         ]
     };
 
@@ -212,7 +212,7 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
                 { mounted && <>
                     <motion.p style={{
                         position: 'fixed',
-                        bottom: 100,
+                        bottom: 30,
                         left: '50%',
                         transform: 'translateX(-50%)',
                         color: 'white',
