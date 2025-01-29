@@ -26,13 +26,12 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
         mounted: false,
         crrLetter: 'JARUWAT.DEV',
         letterList: [
-            'JARUWAT.DEV',
-            'WEB DEVELOPER',
-            'FRONT-END DEVELOPER',
-            'BACK-END DEVELOPER',
-            'FULL-STACK DEVELOPER',
-            'CAT LOVER',
             'SOFTWARE DEVELOPER',
+            'CAT LOVER',
+            'OSU PLAYER',
+            'KFC LOVER',
+            'FULL-STACK DEVELOPER',
+            'JARUWAT.DEV',
         ]
     };
 
