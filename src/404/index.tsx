@@ -212,7 +212,7 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
                 { mounted && <>
                     <motion.p style={{
                         position: 'fixed',
-                        bottom: 30,
+                        bottom: 100,
                         left: '50%',
                         transform: 'translateX(-50%)',
                         color: 'white',
