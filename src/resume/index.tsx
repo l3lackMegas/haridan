@@ -66,7 +66,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
 
     componentDidMount() {
         const { setTextColor, setCrrFeature }: IThemeState = this.context;
-        setTextColor('white', '#58b1ff');
+        setTextColor('#fff', '#58b1ff');
         setCrrFeature('/');
         setTimeout(() => {
             this.setState({

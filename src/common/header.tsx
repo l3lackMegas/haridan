@@ -9,6 +9,7 @@ import { faAt } from '@fortawesome/free-solid-svg-icons'
 import { AppMainContext, IThemeState } from '../context';
 
 import './header.scss';
+import WebringSVG from './WebringSVG';
 
 type Props = {
 };
@@ -216,18 +217,19 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 {/* <motion.div
                                     layoutId={'link-item-crr-page'}
                                 >{crrPageName}</motion.div> */}
-                                <motion.div style={{
-                                    position: 'fixed',
-                                    top: 10,
-                                    right: 10,
-                                    padding: '10px',
-                                    width: 52,
-                                    height: 51,
-                                    backgroundColor: 'rgba(0, 0, 0, .5)',
-                                    borderRadius: '50%',
-                                }}
+                                <motion.div
+                                    style={{
+                                        position: 'fixed',
+                                        top: 10,
+                                        right: 10,
+                                        padding: '10px',
+                                        width: 52,
+                                        height: 51,
+                                        backgroundColor: 'rgba(0, 0, 0, .5)',
+                                        borderRadius: '50%',
+                                    }}
                                     animate={{
-                                        opacity: isToggleNav ? 0 : 1,
+                                        opacity: 1, // isToggleNav ? 0 : 
                                         transition: {
                                             duration: .35,
                                         }
@@ -330,12 +332,16 @@ class Header extends React.Component<Props, State, IThemeState> {
                     }
                 }}
             >
-                <img
+                <WebringSVG style={{
+                    width: 32,
+                    height: 32
+                }}/>
+                {/* <img
                     alt="วงแหวนเว็บ"
                     width="32"
                     height="32"
                     src={`https://webring.wonderful.software/webring.${isBlack ? 'black' : 'white'}.svg`}
-                />
+                /> */}
             </motion.div>
         </motion.a>;
     }
