@@ -41,7 +41,7 @@ class WorkList extends Component<IReciept> {
                                 `${date.from.getFullYear()} - ${date.to.getFullYear()}`
                     return <motion.div
                         key={ctx.id}
-                        layoutId={disabledLayoutId ? undefined : `${layoutUniqueId}-modalCard-${ctx.id}`}
+                        // layoutId={disabledLayoutId ? undefined : `${layoutUniqueId}-modalCard-${ctx.id}`}
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         // whileHover={{
