@@ -96,6 +96,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
 
     componentDidMount(): void {
         document.getElementById('preloaderTxt')?.remove();
+        document.getElementById('IE-Message')?.remove();
         window.onLoadSuccessfully = () => {
             window.onFirstMounted = true;
             setTimeout(() => {
