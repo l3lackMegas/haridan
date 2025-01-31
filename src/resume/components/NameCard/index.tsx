@@ -39,7 +39,7 @@ class NameCard extends Component<IReciept> {
                 >
                     <div className={styles.circlePic}>
                         <div className={styles.img}
-                            style={{ backgroundImage: 'url(/img/profile-portrait.jpg)' }}
+                            style={{ backgroundImage: 'url(/img/profile-lowres.JPEG)' }}
                         ></div>
                     </div>
                     <div className={styles.identity}>
