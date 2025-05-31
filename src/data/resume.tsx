@@ -35,7 +35,7 @@ resumeItem: ResumeObject = {
     experience: [
         {
             title: 'Full Stack Developer',
-            date: '2024 - Present',
+            date: '2024 - 2025',
             org: 'Orisma Technology Co., Ltd.',
             link: 'https://www.orisma.com/',
             describe: [
