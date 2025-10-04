@@ -97,6 +97,7 @@ let workItems: Array<WorkStructure> = [
         },
         link: 'https://mit.bu.ac.th/visualization/',
         imageList: [
+            "https://www.youtube.com/watch?v=7Y44-X98xi8",
             "/img/works/flight-visualization/1.png",
             "/img/works/flight-visualization/2.png",
             "/img/works/flight-visualization/3.png",
