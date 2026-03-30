@@ -27,6 +27,28 @@ export default function WorkListData() {
 
 let workItems: Array<WorkStructure> = [
     {
+        pin: false,
+        id: 12,
+        title: "Mamiyaho",
+        describe: `This is a fan site dedicated to MamiMumei, the gal girl from Papa NAK3DS's NAKAMA crew. Please support them by subscribing through their various channels and purchasing their merchandise!`,
+        date: {
+            from: new Date(2025, 4, 16),
+            to: new Date(2025, 4, 16)
+        },
+        img: "/img/works/mamiyaho/01.png",
+        tags: [
+            "React.js",
+            "Framer-Motion",
+            "Frontend Dev",
+            "Hobby",
+        ],
+        link: 'https://mamiyaho.com/',
+        imageList: [
+            'https://youtu.be/Dp6JOn0zJu8',
+        ],
+        color: '#5a87be',
+    },
+    {
         pin: true,
         id: 11,
         title: "ImaginAsia 2024",

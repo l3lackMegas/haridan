@@ -34,6 +34,15 @@ let workItems: Array<WorkStructure> = WorkListData().workItem.filter((item: Work
 resumeItem: ResumeObject = {
     experience: [
         {
+            title: 'Senior Software Engineer',
+            date: '2025 - Present',
+            org: 'Larngear Technology Co., Ltd.',
+            link: 'https://larngeartech.com/',
+            describe: [
+                'Develop software solutions for the company and its clients while overseeing assigned projects. Provide technical guidance to the team to ensure efficient development processes and meet customer requirements.',
+            ]
+        },
+        {
             title: 'Full Stack Developer',
             date: '2024 - 2025',
             org: 'Orisma Technology Co., Ltd.',
