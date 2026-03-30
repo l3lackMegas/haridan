@@ -44,7 +44,7 @@ class NameCard extends Component<IReciept> {
                     </div>
                     <div className={styles.identity}>
                         <p className={styles.name}>JARUWAT POHONG</p>
-                        <p className={styles.subName}>Software Developer</p>
+                        <p className={styles.subName}>Senior Software Engineer</p>
                     </div>
                     <div className={styles.statusQuote}>
                         <p>l3lackMegas ༼ つ ◕_◕ ༽つ</p>
