@@ -100,7 +100,6 @@ class WorkList extends Component<IReciept> {
                                     src={ctx.img}
                                 />
                             </motion.div>
-                            <br/>
                             <motion.div className={styles.contentInfo}>
                                 <motion.p 
                                     // layoutId={`modalTitle-${ctx.id}`}

@@ -123,33 +123,53 @@
 }
 
 .btnViewMore {
-    margin: 0 auto;
+    position: relative;
+    margin: 30px auto 0;
     display: block;
-    padding: 8px 15px;
-    width: 100%;
-    max-width: 700px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 18px;
+    width: fit-content;
+    // max-width: 100%;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
     white-space: nowrap;
-    color: white;
+    color: rgba(255, 255, 255, 0.85);
     text-align: center;
-    background-color: #ffffff0f;
-    border: 1px solid #ffffff03;
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05) inset;
     outline: 0;
-    transition-duration: 0.15s;
     cursor: pointer;
+    transition:
+        color .25s ease,
+        background-color .25s ease,
+        border-color .25s ease,
+        transform .25s ease;
 
     &:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid transparent;
+        color: white;
+        background: rgba(255, 255, 255, 0.10);
+        border-color: rgba(255, 255, 255, 0.28);
+        transform: translateY(-1px);
     }
 
     &:active {
-        background-color: rgba(255, 255, 255, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.14);
+        transform: translateY(0);
         transition-duration: 0.1s;
     }
+}
+
+// Wrap so the button can sit centered without forcing a full-width block
+.more-works {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 /* =========================================================
