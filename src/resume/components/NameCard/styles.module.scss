@@ -1,125 +1,268 @@
+/* ==============================================================
+   NameCard — minimal profile, refined editorial layout
+   ============================================================== */
 .nameCard {
+    position: relative;
     margin: 0 auto;
-    padding: 20px;
-    width: 100vw;
+    padding: 0;
+    width: min(420px, calc(100vw - 32px));
     color: white;
-    /* background-color: #19395594;
-    border: 1px rgba(255, 255, 255, .1) solid; */
+    text-align: center;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
-.nameCard .circlePic {
+.nameCard > div {
     position: relative;
-    margin: 20px auto;
-    padding: 5px;
+    z-index: 1;
+}
+
+/* ---------- Avatar ---------- */
+.circlePic {
+    position: relative;
+    margin: 0 auto 28px;
+    padding: 18px;
     width: fit-content;
     height: fit-content;
-    border: 3px #1d8cc1 solid;
+    background: transparent;
+    border: none;
     border-radius: 50%;
-    overflow: hidden;
+    overflow: visible;
 }
-.nameCard .circlePic .img {
-    width: 100%;
-    height: 100%;
-    width: 175px;
-    height: 175px;
+
+/* inner rotating dashed ring */
+.circlePic::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.45);
+    border-radius: 50%;
+    animation: avatarRingSpinCW 8s ease-out;
+    pointer-events: none;
+}
+
+/* outer rotating dashed ring (opposite direction, slower, wider gaps) */
+.circlePic::after {
+    content: '';
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    border: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='49.5' fill='none' stroke='white' stroke-opacity='0.22' stroke-width='5.6' stroke-dasharray='2 6' /></svg>");
+    background-size: 100% 100%;
+    animation: avatarRingSpinCCW 7s ease-out;
+    pointer-events: none;
+}
+
+.circlePic .img {
+    display: block;
+    width: 168px;
+    height: 168px;
     background-size: cover;
     background-position: center;
     border-radius: 50%;
-    overflow: hidden;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.nameCard .identity {
-    margin-top: 20px;
+@keyframes avatarRingSpinCW {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
 
-.nameCard .identity .name {
-    margin-top: 5px;
-    font-size: 25px;
+@keyframes avatarRingSpinCCW {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(-360deg); }
 }
 
-.nameCard .identity .subName {
-    color: rgb(184, 184, 184);
+/* ---------- Identity ---------- */
+.identity {
+    margin: 0 auto;
+    padding-bottom: 14px;
 }
 
-.nameCard .statusQuote {
-    margin-top: 5px;
-    font-size: 18px;
-    color: rgb(219, 219, 219);
+.identity .name {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    line-height: 1.15;
+    color: white;
+    text-transform: uppercase;
 }
 
-.nameCard .statusQuote span {
-    font-size: 23px;
+.identity .subName {
+    position: relative;
+    display: inline-block;
+    margin: 14px 0 0;
+    padding-top: 12px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
 }
 
-.nameCard .buttonPanel {
-    margin: 8vh 0 20px 0;
+.identity .subName::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.statusQuote {
+    margin: 12px auto 0;
+    padding: 0;
+    display: block;
+    width: fit-content;
+    font-size: 11.5px;
+    line-height: 1.4;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+    color: rgba(255, 255, 255, 0.35);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+}
+
+.statusQuote p {
+    margin: 0;
+}
+
+.statusQuote span {
+    font-size: inherit;
+}
+
+/* ---------- Buttons panel ---------- */
+.buttonPanel {
+    margin: 26px 0 0;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+/* email row spans full width on top */
+.buttonPanel > div:first-child {
+    grid-column: 1 / -1;
+    margin: 0 0 4px !important;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+    font-size: 12px;
+    text-align: center;
+}
+
+.buttonPanel > div:first-child a {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 14px;
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background-color .25s ease, border-color .25s ease, color .25s ease;
+}
+
+.buttonPanel > div:first-child a::before {
+    content: '✉';
+    font-size: 11px;
+    opacity: 0.5;
+}
+
+.buttonPanel > div:first-child a:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: white;
+}
+
+.buttonPanel > a {
+    text-decoration: none;
+    display: block;
 }
 
 .btn {
-    margin: 5px 10px 10px 5px;
-    padding: 8px 15px;
-    min-width: 146px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin: 0;
+    padding: 11px 16px;
+    width: 100%;
+    min-width: 0;
     font-family: inherit;
-    font-size: 16px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
     white-space: nowrap;
-    color: white;
-    background-color: rgba(255, 255, 255, .2);
-    border: unset;
-    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
     outline: 0;
-    transition-duration: .15s;
+    cursor: pointer;
+    transition: background-color .25s ease, border-color .25s ease, transform .25s ease, color .25s ease;
 }
 
 .btn:hover {
-    background-color: rgba(255, 255, 255, .3);
+    color: white;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+    transform: translateY(-1px);
 }
 
 .btn:active {
-    background-color: rgba(255, 255, 255, .4);
-    transition-duration: .1s;
+    background-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(0);
 }
 
-.btn.facebook {
-    background-color: #006AFF;
+.btn svg {
+    font-size: 13px;
+    opacity: 0.8;
 }
 
-.btn.facebook:hover {
-    background-color: #1576ff;
-}
-
-.btn.facebook:active {
-    background-color: #005fe4;
-}
-
-.btn.github {
-    color: #333;
-    background-color: white;
-}
-
-.btn.github:hover {
-    background-color: rgb(230, 230, 230);
-}
-
-.btn.github:active {
-    background-color: rgb(197, 197, 197);
-}
-
-.btn:disabled {
-    background-color: rgba(255, 255, 255, .1);
+.btn:hover svg {
+    opacity: 1;
 }
 
 .btn > svg + span {
-    margin-left: 5px;
+    margin-left: 0;
 }
 
-@media only screen and (max-width: 500px) {
+/* All buttons keep neutral glass — no blue fills */
+.btn.github,
+.btn.facebook {
+    color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.04);
+    border-color: rgba(255, 255, 255, 0.10);
+}
 
-    .nameCard {
-        // width: 100vw;
-        background: transparent;
-        backdrop-filter: unset;
-        border: unset;
-        box-shadow: unset;
+.btn.github:hover,
+.btn.facebook:hover {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.22);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ---------- Mobile ---------- */
+@media only screen and (max-width: 500px) {
+    .circlePic .img {
+        width: 144px;
+        height: 144px;
+    }
+
+    .identity .name {
+        font-size: 26px;
     }
 
     .cardMobile {
