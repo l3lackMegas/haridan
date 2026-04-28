@@ -132,7 +132,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                 >
                     <motion.div className='floating-status'
                         style={{
-                            pointerEvents: musicPlayerController.crrUrl === '' ? 'none' : 'auto',
+                            pointerEvents: !isOnMusicPage || musicPlayerController.crrUrl === '' ? 'none' : 'auto',
                         }}
                         initial={{
                             opacity: 0
