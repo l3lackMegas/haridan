@@ -220,12 +220,16 @@ class Header extends React.Component<Props, State, IThemeState> {
                                 <motion.div
                                     style={{
                                         position: 'fixed',
-                                        top: 10,
-                                        right: 10,
+                                        top: 14,
+                                        right: 14,
                                         padding: '10px',
                                         width: 52,
-                                        height: 51,
-                                        backgroundColor: 'rgba(0, 0, 0, .5)',
+                                        height: 52,
+                                        background: 'rgba(255, 255, 255, 0.06)',
+                                        backdropFilter: 'blur(18px) saturate(160%)',
+                                        WebkitBackdropFilter: 'blur(18px) saturate(160%)',
+                                        border: '1px solid rgba(255, 255, 255, 0.14)',
+                                        boxShadow: '0 8px 30px -10px rgba(0, 0, 0, 0.4)',
                                         borderRadius: '50%',
                                     }}
                                     animate={{
