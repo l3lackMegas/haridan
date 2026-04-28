@@ -1,138 +1,121 @@
-/* React Module */
-import { Component, createRef, CSSProperties, ReactNode, useState} from 'react';
-import ReactDOM from 'react-dom'
+import { CSSProperties, ReactNode, useEffect, useRef, useState } from 'react';
+import ReactDOM from 'react-dom';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-/* External Module */
-import { AnimatePresence, motion } from 'framer-motion'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
-
-interface IReciept {
-    id?: number | string
-    style?: CSSProperties
-    isShow: boolean
-    onClose: Function
-    closeAnyWhere?: boolean
-    isDisableScrollHandle?: boolean
-    children: React.ReactNode
+interface ModalProps {
+    id?: number | string;
+    style?: CSSProperties;
+    isShow: boolean;
+    onClose: () => void;
+    closeAnyWhere?: boolean;
+    isDisableScrollHandle?: boolean;
+    variant?: 'default' | 'image-preview';
+    children: ReactNode;
 }
 
-class Modal extends Component<IReciept> {
+function Modal({ id, style, isShow, children, onClose, closeAnyWhere, isDisableScrollHandle, variant }: ModalProps) {
+    const [mounted, setMounted] = useState(false);
+    const modalRoot = useRef<Element | null>(null);
 
-    constructor(props: any){
-        super(props)
-    }
+    useEffect(() => {
+        modalRoot.current = document.querySelector('#modal-root');
+        setMounted(true);
+    }, []);
 
-    state = {
-        isMounted: false
-    }
+    useEffect(() => {
+        if (isShow && !isDisableScrollHandle) {
+            document.body.style.overflow = 'hidden';
+        }
+        return () => {
+            if (isShow && !isDisableScrollHandle) document.body.style.overflow = '';
+        };
+    }, [isShow, isDisableScrollHandle]);
 
-    modalRoot: any = createRef()
+    if (!mounted || !modalRoot.current) return null;
 
-    currModal: any = createRef()
-
-    componentDidMount() {
-        this.modalRoot.current = document.querySelector('#modal-root');
-        this.setState({ isMounted: true })
-        //let modalContainer = document.createElement('div');
-    }
-
-    componentDidUpdate() {
-        if(this.props.isShow && this.props.isDisableScrollHandle)
-            document.body.style.overflow = 'hidden'
-    }
-
-    render() {
-        const { id, style, isShow, children, onClose, closeAnyWhere, isDisableScrollHandle } = this.props
-        const { isMounted } = this.state
-        // console.log(this.modalRoot.current)
-        return isMounted ? ReactDOM.createPortal(<>
-        <AnimatePresence key={`animated-modal-${id}`} mode="sync" onExitComplete={()=>{
-            if(!isDisableScrollHandle) document.body.style.overflow = ''
-        }}>
-            { isShow &&
-                <motion.div className="modal" ref={this.currModal}
+    return ReactDOM.createPortal(
+        <AnimatePresence
+            mode="sync"
+            onExitComplete={() => { if (!isDisableScrollHandle) document.body.style.overflow = ''; }}
+        >
+            {isShow && (
+                <motion.div
+                    key={`modal-${id}`}
+                    className={`modal${variant === 'image-preview' ? ' image-preview' : ''}`}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ 
-                        duration: .25,
-                        ease: [0.5, 0.025, 0, 1],
-                    }}
-                    onClick={()=>closeAnyWhere ? onClose() : false }
+                    transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                    onClick={() => onClose()}
                 >
-                    <motion.div className="sub"
-                        initial={{ y: 200, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: 200, opacity: 0 }}
-                        transition={{ 
-                            duration: .25,
-                            ease: [0.5, 0.025, 0, 1],
-                        }}
+                    <motion.div
+                        className="sub"
+                        initial={{ y: 60, opacity: 0, scale: 0.96 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        exit={{ y: 60, opacity: 0, scale: 0.96 }}
+                        transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        onClick={(e) => e.stopPropagation()}
                     >
-                        <div className="sub" onClick={()=>{onClose()}}></div>
-                        <motion.div className="modalContainer" style={style}>
-                            <motion.div className="sub" >
-                                <h2 className="xButton" onClick={()=>{onClose()}}>
-                                    <FontAwesomeIcon icon={faTimes}/>
-                                </h2>
-                                { children }
-                            </motion.div>
-                        </motion.div>
+                        <div className="modalContainer" style={style}>
+                            <div className="xButtonWrap">
+                                <button className="xButton" onClick={onClose} aria-label="Close">
+                                    <FontAwesomeIcon icon={faTimes} />
+                                </button>
+                            </div>
+                            {children}
+                        </div>
                     </motion.div>
                 </motion.div>
-            }
-        </AnimatePresence>
-        </>
-        , this.modalRoot.current) : null;
-    }
+            )}
+        </AnimatePresence>,
+        modalRoot.current
+    );
 }
 
 export default Modal;
 
-
-interface ModalActive {
-    layoutId?: number | string
-    layoutUniqueId: number | string
-    children?: ReactNode
-    modalChildren?: ReactNode
-    modalStyle?: CSSProperties
-    isDelay?: boolean
-    closeAnyWhere?: boolean
-    isDisableScrollHandle?: boolean
-    onClose?: Function
+interface ModalActiveProps {
+    layoutId?: number | string;
+    layoutUniqueId: number | string;
+    children?: ReactNode;
+    modalChildren?: ReactNode;
+    modalStyle?: CSSProperties;
+    isDelay?: boolean;
+    closeAnyWhere?: boolean;
+    isDisableScrollHandle?: boolean;
+    variant?: 'default' | 'image-preview';
+    onClose?: () => void;
 }
-export function ModalActive({ layoutId, layoutUniqueId, children, modalChildren, modalStyle, isDelay, closeAnyWhere, isDisableScrollHandle, onClose }: ModalActive) {
-    const [showModal, setShowModal] = useState(false);
-    const [prepairing, setPrepairState] = useState(false);
-    // console.log('layoutUniqueId', layoutUniqueId)
+
+export function ModalActive({
+    layoutId,
+    layoutUniqueId,
+    children,
+    modalChildren,
+    modalStyle,
+    closeAnyWhere,
+    isDisableScrollHandle,
+    variant,
+    onClose,
+}: ModalActiveProps) {
+    const [show, setShow] = useState(false);
     return (
-      <>
-        <AnimatePresence key={`modalActive-${layoutUniqueId}`} mode="sync">
-            <div className={ prepairing && isDelay ? 'brinessDown' : ''}
-            onClick={() => {
-                document.body.style.overflow = 'hidden'
-                setPrepairState(true)
-                setTimeout(()=>setShowModal(true), isDelay ? 750 : 0)
-            }}>
-                { children }
-            </div>
+        <>
+            <div onClick={() => setShow(true)}>{children}</div>
             <Modal
-                key={`modalActive-${layoutUniqueId}`}
+                key={`modal-active-${layoutUniqueId}`}
                 style={modalStyle}
                 id={layoutId}
-                onClose={() => {
-                    setPrepairState(false)
-                    setShowModal(false)
-                    if(onClose) onClose()
-                }}
+                isShow={show}
                 closeAnyWhere={closeAnyWhere}
                 isDisableScrollHandle={isDisableScrollHandle}
-                isShow={showModal}
+                variant={variant}
+                onClose={() => { setShow(false); onClose?.(); }}
             >
-                { modalChildren }
+                {modalChildren}
             </Modal>
-        </AnimatePresence>
-      </>
-    )
+        </>
+    );
 }

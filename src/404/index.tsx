@@ -8,7 +8,7 @@ import { AppMainContext, IThemeState } from '../context';
 
 import PageContainer from '../common/PageContainer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faWarning } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -26,12 +26,12 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
         mounted: false,
         crrLetter: 'JARUWAT.DEV',
         letterList: [
+            'JARUWAT.DEV',
             'SOFTWARE DEVELOPER',
             'CAT LOVER',
             'OSU PLAYER',
             'KFC LOVER',
             'FULL-STACK DEVELOPER',
-            'JARUWAT.DEV',
         ]
     };
 
@@ -45,14 +45,14 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
             this.setState({
                 mounted: true,
             });
-            this.shuffleInterval = setInterval(this.shuffleLetter, 4000);
+            this.shuffleInterval = setInterval(this.shuffleLetter, 2400);
         }, window.onFirstMounted ? 500 : 1000);
     }
 
     componentWillUnmount(): void {
         clearInterval(this.shuffleInterval);
         // console.log('unmount', "/404");
-        const { setTextColor, crrFeature, setCrrFeature, scrollTop }: IThemeState = this.context;
+        const { setTextColor, crrFeature }: IThemeState = this.context;
         if(crrFeature === '/') {
             setTextColor('white');
         }
@@ -73,182 +73,64 @@ class NotFoundPage extends React.Component<PageProps, PageState, IThemeState> {
         });
     }
 
-    aboutTextAnimateVariant = {
-        hidden: {
-            opacity: 0,
-        },
-        show: {
-            opacity: 1,
-            transition: {
-                duration: .25,
-                ease: 'easeInOut',
-                staggerChildren: 0.025,
-                delayChildren: 0.5,
-            },
-        },
-    }
-
-    variantEachLetter = {
-        hidden: {
-            opacity: 0,
-            // x: 150,
-            y: 150,
-        },
-        show: {
-            opacity: 1,
-            // x: 0,
-            y: 0,
-            transition: {
-                duration: .5,
-                ease: 'easeInOut',
-            },
-        },
-    }
-
     render() {
         const { mounted, crrLetter } = this.state;
         return (
-            <PageContainer key={'about'} pathName='/about'>
-                
-                <motion.div
-                    className='notfound-page'
-                    key={'NotFoundPage'}
-                    style={{
-                        fontSize: 'calc(150/1920*100*1vw)',
-                        lineHeight: 1,
-                    }}
-                >
-                    { mounted && <>
-                        <br/>
-                        <motion.div
-                            className='centerContain'
-                            // style={{
-                            //     textAlign: 'right',
-                            // }}
-                        >
-                            <motion.p
-                                variants={this.aboutTextAnimateVariant}
-                                initial="hidden"
-                                animate="show"
-                                style={{
-                                    whiteSpace: 'nowrap',
-                                    fontWeight: 'normal',
-                                }}
-                            >
-                            
-                                <this.wrapLetterAnimated letter='4' />
-                                <this.wrapLetterAnimated letter="0" />
-                                <this.wrapLetterAnimated letter='4' />
-                                <motion.div style={{
-                                    display: 'inline-block',
-                                    width: 'calc(100/2920*100*1vw)',
-                                }}></motion.div>
-                                <this.wrapLetterAnimated letter='N' />
-                                <this.wrapLetterAnimated letter='o' />
-                                <this.wrapLetterAnimated letter='t' />
-                                <motion.div style={{
-                                    display: 'inline-block',
-                                    width: 'calc(100/2920*100*1vw)',
-                                }}></motion.div>
-                                <this.wrapLetterAnimated letter='F' />
-                                <this.wrapLetterAnimated letter='o' />
-                                <this.wrapLetterAnimated letter='u' />
-                                <this.wrapLetterAnimated letter='n' />
-                                <this.wrapLetterAnimated letter='d' />
-                            </motion.p>
-                            <motion.div
-                                style={{
-                                    display: 'inline-block',
-                                    height: 73
-                                }}
-                            >
-                                <AnimatePresence mode='sync'
-                                    key={'about-me-text'}
-                                >
-                                
-                                    {crrLetter && 
-                                        <motion.p
-                                            style={{
-                                                whiteSpace: 'nowrap',
-                                                fontWeight: 'bold',
-                                                fontSize: '0.5em',
-                                                backgroundColor: '#952525',
-                                                color: 'white',
-                                                display: 'inline-block',
-                                                padding: '0 10px',
-                                                overflow: 'hidden',
-                                            }}
-                                            initial={{
-                                                opacity: 0,
-                                                // x: 150,
-                                                y: 150,
-                                            }}
-                                            animate={{
-                                                opacity: 1,
-                                                // x: 0,
-                                                y: 0,
-                                                transition: {
-                                                    duration: .5,
-                                                    ease: 'easeInOut',
-                                                    delay: .65,
-                                                },
-                                            }}
-                                            exit={{
-                                                opacity: 0,
-                                                y: -50,
-                                                transition: {
-                                                    duration: .5,
-                                                    ease: 'easeInOut',
-                                                },
-                                            }}
-                                        >{crrLetter}</motion.p>
-                                    }
-                                </AnimatePresence>
-                            </motion.div>
-                        </motion.div>
-                    </>}
-                </motion.div>
-                { mounted && <>
-                    <motion.p style={{
-                        position: 'fixed',
-                        bottom: 100,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        color: 'white',
-                        fontSize: '1.1em',
-                        whiteSpace: 'nowrap' 
-                    }}
-                    initial={{
-                        opacity: 0,
-                    }}
-                    animate={{
-                        opacity: 1,
-                        transition: {
-                            duration: .5,
-                            ease: 'easeInOut',
-                            delay: 1,
-                        },
-                    }}
-                    >
-                        {/* <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} /> */}
-                        <span style={{margin: '0 10px' }}>Go to <Link to='/' replace={true} style={{textDecoration: 'underline'}}>Résumé</Link>.</span>
-                        {/* <FontAwesomeIcon icon={faWarning} style={{color: 'orange'}} /> */}
-                    </motion.p>
-                </>}
-            </PageContainer>
-        );
-    }
+            <PageContainer key={'not-found'} pathName='/404'>
+                <div className='not-found-page'>
+                    <section className='nf-hero'>
+                        <div className='nf-bg-grid' />
+                        <div className='nf-bg-orbs' aria-hidden>
+                            <span className='orb orb-1' />
+                            <span className='orb orb-2' />
+                            <span className='orb orb-3' />
+                        </div>
 
-    wrapLetterAnimated = ({letter} : {
-        letter?: string,
-    }) => {
-        return (
-            <motion.span
-                variants={this.variantEachLetter}
-                style={{
-                    display: 'inline-block',
-                }}
-            >{letter}</motion.span>
+                        <motion.div
+                            className='nf-content'
+                            initial={{ opacity: 0, y: 40 }}
+                            animate={{ opacity: mounted ? 1 : 0, y: mounted ? 0 : 40 }}
+                            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+                        >
+                            <p className='nf-eyebrow'>PAGE NOT FOUND</p>
+                            <h1 className='nf-num'>404</h1>
+                            <p className='nf-msg'>The page you're looking for got lost in the void.</p>
+
+                            <div style={{
+                                marginBottom: 32,
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                            }}>
+                                <div className='nf-rotator'>
+                                    <span className='prefix'>I'm a&nbsp;</span>
+                                    <span className='rotator-window'>
+                                        <AnimatePresence mode='wait'>
+                                            {crrLetter &&
+                                                <motion.span
+                                                    key={crrLetter}
+                                                    className='rotator-item'
+                                                    initial={{ y: 30, opacity: 0 }}
+                                                    animate={{ y: 0, opacity: 1 }}
+                                                    exit={{ y: -30, opacity: 0 }}
+                                                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                                                >
+                                                    {crrLetter}
+                                                </motion.span>
+                                            }
+                                        </AnimatePresence>
+                                    </span>
+                                </div>
+
+                                <Link to='/' replace={true} className='commonBtn nf-btn'>
+                                    <FontAwesomeIcon icon={faArrowLeft} />
+                                    <span>Go Home</span>
+                                </Link>
+                            </div>
+                        </motion.div>
+                    </section>
+                </div>
+            </PageContainer>
         );
     }
 }

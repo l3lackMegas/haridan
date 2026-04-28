@@ -16,18 +16,17 @@ class ColumnResume extends Component<IReciept> {
 
         const { title, children } = this.props
 
-        return <>
-            <div className="harfShade">
-                <div className="topic">
-                    <div className="navContainer">
-                        <h2>{title}</h2>
-                    </div>
-                </div>
-                <div className="detail">
+        return (
+            <section className="resume-section-block">
+                <header className="resume-section-header">
+                    <h2 className="resume-section-title">{title}</h2>
+                    <span className="resume-section-divider" />
+                </header>
+                <div className="resume-section-body">
                     { children }
                 </div>
-            </div>
-        </>
+            </section>
+        )
     }
 
 }

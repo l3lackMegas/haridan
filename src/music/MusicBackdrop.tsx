@@ -4,7 +4,7 @@ import { AnimatePresence, motion, stagger } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faGithub, faSquareYoutube, faYoutube, faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
-import { faArrowUpRightFromSquare, faAt, faChevronLeft, faLink, faPause, faPlay, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUpRightFromSquare, faAt, faDisplay, faLink, faPause, faPlay, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import YouTubePlayer from 'react-youtube';
 
@@ -15,6 +15,14 @@ import { getAbsoluteHeight, getYoutubeId, sleep } from '../lib/utility';
 import LoadingIcon from '../common/LoadingIcon';
 
 import MusicListData, { MusicStructure } from '../data/music-list';
+
+const formatTime = (s: number) => {
+    if (!isFinite(s) || s < 0) s = 0;
+    const total = Math.floor(s);
+    const m = Math.floor(total / 60);
+    const sec = total % 60;
+    return `${m}:${sec.toString().padStart(2, '0')}`;
+};
 
 type Props = {
 };
@@ -93,6 +101,13 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
         };
         
         const isOnMusicPage = crrFeature === '/music';
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 500;
+
+        const bigHeight = isMobile ? 84 : 80;
+        const bigThumb = isMobile ? 56 : 100;
+        const bigThumbMargin = isMobile ? '0' : '0 0 56px 0';
+        const bigInfoMarginBottom = isMobile ? '0px' : '10px';
+        const bigButtonMarginBottom = isMobile ? '0px' : '13px';
 
         const isSongPlaying = (musicPlayerController.isPaused || this.state.songName === '') && this.context.youtubePlayerEvent && this.context.youtubePlayerEvent.getPlayerState();
 
@@ -117,7 +132,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                 >
                     <motion.div className='floating-status'
                         style={{
-                            pointerEvents: musicPlayerController.crrUrl === '' ? 'none' : 'auto',
+                            pointerEvents: !isOnMusicPage || musicPlayerController.crrUrl === '' ? 'none' : 'auto',
                         }}
                         initial={{
                             opacity: 0
@@ -152,9 +167,9 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             y: 0,
                             width: isOnMusicPage ? '95vw' : 300,
                             maxWidth: 600,
-                            height: isOnMusicPage ? 80 : 60,
+                            height: isOnMusicPage ? bigHeight : 56,
                             scale: 1,
-                            borderRadius: isOnMusicPage ? 10 : 40,
+                            borderRadius: isOnMusicPage ? 16 : 999,
                             transition: {
                                 duration: 1,
                                 delay: isOnMusicPage ? 1 : 0,
@@ -214,50 +229,6 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             </motion.div>
                         }
                         <motion.div className='player-flex-tools'>
-                            { <motion.div className='player-button'
-                                style={{
-                                    overflow: 'hidden',
-                                }}
-
-                                initial={{
-                                    maxWidth: '1px',
-                                    minWidth: '1px'
-                                }}
-
-                                animate={{                    
-                                    maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
-                                    minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
-                                    transition: {
-                                        duration: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? .5 : .75,
-                                        // delay: musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused && isOnMusicPage ? .5 : 0,
-                                        ease: [0.5, 0.025, 0, 1]
-                                    }
-                                }}
-
-                                exit={{
-                                    maxWidth: '1px',
-                                    minWidth: '1px'
-                                }}
-                            >
-                                <motion.button
-                                    key={'player-button-back'}
-                                    className='button-control'
-                                    animate={{
-                                        width: isOnMusicPage ? 40 : 30,
-                                        height: isOnMusicPage ? 40 : 30,
-                                        minWidth: '40px',
-                                        opacity: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? 1 : 0,
-                                        transition: {
-                                            duration: .5,
-                                        }
-                                    }}
-                                    onClick={() => {
-                                        musicPlayerController.hidePlayer();
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faChevronLeft} style={{transform: 'translateX(1px)',}} />
-                                </motion.button>
-                            </motion.div>}
                             <motion.div
                                 key={'player-thumbnail'}
                                 className='player-thumbnail'
@@ -270,12 +241,12 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     minHeight: '1px',
                                 }}
                                 animate={musicPlayerController.crrUrl === '' ? {} : {
-                                    width: isOnMusicPage ? 100 : 50,
-                                    height: isOnMusicPage ? 100 : 50,
-                                    minWidth: isOnMusicPage ? '100px' : '50px',
-                                    minHeight: isOnMusicPage ? '100px' : '50px',
-                                    borderRadius: isOnMusicPage ? 10 : 50,
-                                    margin: isOnMusicPage ? '10px 10px 50px 10px' : '10px 0px 10px 0px',
+                                    width: isOnMusicPage ? bigThumb : 40,
+                                    height: isOnMusicPage ? bigThumb : 40,
+                                    minWidth: isOnMusicPage ? `${bigThumb}px` : '40px',
+                                    minHeight: isOnMusicPage ? `${bigThumb}px` : '40px',
+                                    borderRadius: isOnMusicPage ? (isMobile ? 999 : 10) : 999,
+                                    margin: isOnMusicPage ? bigThumbMargin : '0',
                                     transition: {
                                         duration: 1,
                                         delay: isOnMusicPage ? 1 : 0,
@@ -307,7 +278,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             </motion.div>
                             <motion.div className='player-info-text'
                                 animate={{
-                                    marginBottom: isOnMusicPage ? '10px' : '0px',
+                                    marginBottom: isOnMusicPage ? bigInfoMarginBottom : '0px',
                                     transition: {
                                         duration: 1,
                                         delay: isOnMusicPage ? 1 : 0,
@@ -354,8 +325,55 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                         }
                                     }}
                                 >{authorName}</motion.p>
+                                <motion.p
+                                    key={'player-time'}
+                                    className='player-time'
+                                >
+                                    {formatTime(crrTime)} <span className='sep'>/</span> {formatTime(maxTime)}
+                                </motion.p>
                             </motion.div>
-                            <motion.div className='player-button'>
+                            <motion.div className='player-button'
+                                animate={{
+                                    marginBottom: isOnMusicPage ? bigButtonMarginBottom : '0px',
+                                    transition: {
+                                        duration: 1,
+                                        delay: isOnMusicPage ? 1 : 0,
+                                        ease: [0.5, 0.025, 0, 1]
+                                    }
+                                }}
+                            >
+                                {isOnMusicPage && <>
+                                    <motion.button
+                                        key={'player-button-toggle-display'}
+                                        className={`button-control ${musicPlayerController.isPlayerDisplay ? 'is-active' : ''}`}
+                                        title={musicPlayerController.isPlayerDisplay ? 'Hide video' : 'Show video'}
+                                        initial={{
+                                            opacity: 0,
+                                        }}
+                                        animate={{
+                                            width: isOnMusicPage ? 40 : 30,
+                                            height: isOnMusicPage ? 40 : 30,
+                                            minWidth: '40px',
+                                            opacity: isOnMusicPage && musicPlayerController.crrUrl !== '' ? 1 : 0,
+                                            transition: {
+                                                duration: .5,
+                                            }
+                                        }}
+                                        exit={{
+                                            opacity: 0,
+                                        }}
+                                        onClick={() => {
+                                            if (musicPlayerController.isPlayerDisplay) {
+                                                musicPlayerController.hidePlayer();
+                                            } else {
+                                                musicPlayerController.showPlayer();
+                                            }
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faDisplay} />
+                                    </motion.button>
+                                    <span className='player-button__divider' aria-hidden='true' />
+                                </>}
                                 <motion.button
                                     key={'player-button-toggle'}
                                     className='button-control'

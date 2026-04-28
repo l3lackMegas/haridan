@@ -20,6 +20,7 @@ import styles from './styles.module.css'
 /* Components */
 import Youtube from '../MainLayout/YoutubeIframe'
 import { ModalActive } from "../MainLayout/Modal";
+import { LoadingOverlay } from '../../../common/LoadingImage';
 
 
 /* Other Library */
@@ -135,15 +136,18 @@ const SliderImage: React.FC<IReciept> = (props) => {
                                     color: 'white',
                                     backgroundColor: 'rgba(0, 0, 0, .5)',
                                     zIndex: 1000
-                                }}>{imageIndex + 1}/{images.length}{!isImgLoaded ? ' Loading...' : ''}</p>
-                                <img src={images[imageIndex]} style={{
-                                    maxWidth: '100vw',
-                                    maxHeight: '90vh',
-                                    transitionDuration: '.15s',
-                                    opacity: isImgLoaded ? 1 : 0
-                                }}
-                                onLoad={() => setImgLoadState(true)}
-                                alt="image"/>
+                                }}>{imageIndex + 1}/{images.length}</p>
+                                <div style={{ position: 'relative', display: 'inline-block' }}>
+                                    <img src={images[imageIndex]} style={{
+                                        maxWidth: '100vw',
+                                        maxHeight: '90vh',
+                                        transitionDuration: '.15s',
+                                        opacity: isImgLoaded ? 1 : 0
+                                    }}
+                                    onLoad={() => setImgLoadState(true)}
+                                    alt="image"/>
+                                    <LoadingOverlay show={!isImgLoaded} spinnerSize={48} />
+                                </div>
                             </motion.div>
                         </div>}
                     >

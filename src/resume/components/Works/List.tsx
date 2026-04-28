@@ -11,6 +11,7 @@ import styles from './styles.module.scss'
 import { ModalActive } from '../MainLayout/Modal'
 import ModalContent from './ModalContent'
 import { WorkStructure } from "../../../data/work-list";
+import { useImageLoaded, LoadingOverlay } from '../../../common/LoadingImage'
 
 interface IReciept {
     items: Array<WorkStructure>
@@ -41,22 +42,22 @@ class WorkList extends Component<IReciept> {
                                 `${date.from.getFullYear()} - ${date.to.getFullYear()}`
                     return <motion.div
                         key={ctx.id}
-                        // layoutId={disabledLayoutId ? undefined : `${layoutUniqueId}-modalCard-${ctx.id}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        // whileHover={{
-                        //     y: -5
-                        // }}
-                        // whileTap={{
-                        //     y: -5,
-                        //     scale: 1.02
-                        // }}
+                        initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+                        whileInView={{
+                            opacity: 1, y: 0, filter: 'blur(0px)',
+                            transition: {
+                                duration: 0.6,
+                                delay: Math.min(i, 12) * 0.05,
+                                ease: [0.5, 0.025, 0, 1]
+                            }
+                        }}
+                        viewport={{ once: true, amount: 0.15 }}
                         className={styles.item}
                     >
                         <ModalActive layoutId={ctx.id}
                             layoutUniqueId={`modal-${layoutUniqueId}-${ctx.id}`}
                             isDelay={false}
-                            modalStyle={{ width: '100vw', height: '100%', maxWidth: 'unset', maxHeight: 'unset' }}
+                            modalStyle={{ width: '100%', maxWidth: 1100 }}
                             modalChildren={
                                 <ModalContent
                                     id={ctx.id}
@@ -78,20 +79,8 @@ class WorkList extends Component<IReciept> {
                                 }}
                                 className={styles.imgContain}
                             >
-                                <motion.div className={styles.subImgBlur} style={{
-                                    backgroundImage: `url(${ctx.img})`
-                                }}></motion.div>
-                                <motion.div className={styles.subGradient}></motion.div>
-                                <motion.img 
-                                    // layoutId={`modalLogo-${ctx.id}`}
-                                    className={styles.img}
-                                    // style={{
-                                    //     backgroundImage: `url(${ctx.img})`
-                                    // }}
-                                    src={ctx.img}
-                                />
+                                <WorkCardImage src={ctx.img} />
                             </motion.div>
-                            <br/>
                             <motion.div className={styles.contentInfo}>
                                 <motion.p 
                                     // layoutId={`modalTitle-${ctx.id}`}
@@ -116,3 +105,24 @@ class WorkList extends Component<IReciept> {
 }
 
 export default WorkList;
+
+function WorkCardImage({ src }: { src: string }) {
+    const loaded = useImageLoaded(src);
+    return (
+        <>
+            <motion.div
+                className={styles.subImgBlur}
+                style={{
+                    backgroundImage: loaded ? `url(${src})` : undefined,
+                }}
+            />
+            <motion.div className={styles.subGradient}></motion.div>
+            <motion.img
+                className={styles.img}
+                src={src}
+                style={{ opacity: loaded ? 1 : 0 }}
+            />
+            <LoadingOverlay show={!loaded} spinnerSize={36} />
+        </>
+    );
+}

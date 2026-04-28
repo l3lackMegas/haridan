@@ -13,6 +13,7 @@ import styles from './styles.module.scss'
 /* Components */
 import Youtube from '../MainLayout/YoutubeIframe'
 import { ModalActive } from '../MainLayout/Modal'
+import LoadingImage from '../../../common/LoadingImage'
 
 interface IReciept {
     imageList: Array<string>,
@@ -54,11 +55,11 @@ class Gallery extends Component<IReciept> {
                                             width: '90vw'
                                         }}
                                         modalChildren={<>
-                                            <img src={ctx} width="100%" height="100%" alt="image"/>
+                                            <LoadingImage src={ctx} width="100%" height="100%" alt="image" spinnerSize={48} />
                                             <p style={{ textAlign: 'center', color: 'white' }}>Click any where to close image.</p>
                                         </>}
                                     >
-                                        <img src={ctx} alt="image"/>
+                                        <LoadingImage src={ctx} alt="image" wrapperStyle={{ width: '100%', height: '100%' }} />
                                     </ModalActive>
                                 </>
                             

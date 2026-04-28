@@ -24,8 +24,8 @@ export default function LoadingIcon({ size = 56 }: { size?: number }) {
                     inset: 0,
                     borderRadius: '50%',
                     border: '2px solid transparent',
-                    borderTopColor: '#5fd0ff',
-                    borderRightColor: '#1ba3e4',
+                    borderTopColor: '#ffffff',
+                    borderRightColor: 'rgba(255,255,255,0.7)',
                 }}
                 animate={{ rotate: 360 }}
                 transition={{ duration: 1.1, repeat: Infinity, ease: 'linear' }}
@@ -35,7 +35,7 @@ export default function LoadingIcon({ size = 56 }: { size?: number }) {
                     position: 'absolute',
                     inset: '32%',
                     borderRadius: '50%',
-                    background: 'linear-gradient(135deg,#1ba3e4,#a07bff)',
+                    background: 'linear-gradient(135deg,#ffffff,rgba(255,255,255,0.6))',
                     filter: 'blur(2px)',
                 }}
                 animate={{ scale: [1, 1.25, 1], opacity: [0.65, 1, 0.65] }}
