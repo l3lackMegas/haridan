@@ -47,7 +47,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
             : musicList.filter(item => item.author === artist);
         if (pool.length === 0) return;
         const pick = pool[Math.floor(Math.random() * pool.length)];
-        await this.playMusic(pick.url);
+        await this.playMusic(pick.videoUrl ?? pick.url);
     }
 
     componentDidMount() {
@@ -57,7 +57,7 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
 
     async playMusic(url: string) {
         const { musicPlayerController }: IThemeState = this.context;
-        await musicPlayerController.showPlayer();
+        // await musicPlayerController.showPlayer();
         await musicPlayerController.setCrrUrl(url);
     }
 
@@ -113,6 +113,18 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
             || musicList[0];
         const featuredThumbId = featuredSong ? getYoutubeId(featuredSong.url) : '';
         const isFeaturedPlaying = !!playingSong && musicPlayerController.isPlaying && !musicPlayerController.isPaused;
+        const isFeaturedPaused = !!playingSong && musicPlayerController.isPaused;
+        const featuredPlayLabel = isFeaturedPlaying ? 'Watch Video' : isFeaturedPaused ? 'Resume' : 'Play';
+        const handleFeaturedPlay = () => {
+            if (isFeaturedPaused) {
+                musicPlayerController.play();
+                return;
+            } else if(isFeaturedPlaying) {
+                musicPlayerController.showPlayer();
+                return;
+            }
+            this.playMusic(featuredSong.videoUrl ?? featuredSong.url);
+        };
 
         const fadeUp = {
             hidden: { opacity: 0, y: 24, filter: 'blur(8px)' },
@@ -221,12 +233,12 @@ class MusicPage extends React.Component<PageProps, PageState, IThemeState> {
                                                 <motion.button
                                                     type='button'
                                                     className='music-feature__play'
-                                                    onClick={() => this.playMusic(featuredSong.url)}
+                                                    onClick={handleFeaturedPlay}
                                                     whileHover={{ scale: 1.04 }}
                                                     whileTap={{ scale: 0.96 }}
                                                 >
                                                     <FontAwesomeIcon icon={faPlay} />
-                                                    <span>{isFeaturedPlaying ? 'Replay' : 'Play'}</span>
+                                                    <span>{featuredPlayLabel}</span>
                                                 </motion.button>
                                                 <motion.button
                                                     type='button'

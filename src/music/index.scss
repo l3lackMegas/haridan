@@ -1031,6 +1031,7 @@
 
             .player-button {
                 display: flex;
+                align-items: center;
                 gap: 6px;
 
                 // Only the right-side button group gets the gap padding;
@@ -1039,6 +1040,15 @@
                 &:last-child {
                     margin-left: auto;
                     padding-left: 12px;
+                }
+
+                &__divider {
+                    display: inline-block;
+                    width: 1px;
+                    align-self: stretch;
+                    margin: 4px 8px;
+                    background: rgba(255, 255, 255, 0.18);
+                    border-radius: 1px;
                 }
             }
         }
@@ -1080,6 +1090,17 @@
 
     &:active {
         transform: scale(0.94);
+    }
+
+    &.is-active {
+        background: #fff;
+        border-color: #fff;
+        color: #181818;
+
+        &:hover {
+            background: #fff;
+            border-color: #fff;
+        }
     }
 }
 

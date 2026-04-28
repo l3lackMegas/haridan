@@ -4,7 +4,7 @@ import { AnimatePresence, motion, stagger } from 'framer-motion';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebook, faGithub, faSquareYoutube, faYoutube, faYoutubeSquare } from '@fortawesome/free-brands-svg-icons'
-import { faArrowUpRightFromSquare, faAt, faChevronLeft, faLink, faPause, faPlay, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faArrowUpRightFromSquare, faAt, faDisplay, faLink, faPause, faPlay, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 import YouTubePlayer from 'react-youtube';
 
@@ -229,51 +229,6 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             </motion.div>
                         }
                         <motion.div className='player-flex-tools'>
-                            { <motion.div className='player-button'
-                                style={{
-                                    overflow: 'hidden',
-                                }}
-
-                                initial={{
-                                    maxWidth: '1px',
-                                    minWidth: '1px'
-                                }}
-
-                                animate={{                    
-                                    maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
-                                    minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
-                                    marginBottom: isOnMusicPage ? bigButtonMarginBottom : '0px',
-                                    transition: {
-                                        duration: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? .5 : .75,
-                                        // delay: musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused && isOnMusicPage ? .5 : 0,
-                                        ease: [0.5, 0.025, 0, 1]
-                                    }
-                                }}
-
-                                exit={{
-                                    maxWidth: '1px',
-                                    minWidth: '1px'
-                                }}
-                            >
-                                <motion.button
-                                    key={'player-button-back'}
-                                    className='button-control'
-                                    animate={{
-                                        width: isOnMusicPage ? 40 : 30,
-                                        height: isOnMusicPage ? 40 : 30,
-                                        minWidth: '40px',
-                                        opacity: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? 1 : 0,
-                                        transition: {
-                                            duration: .5,
-                                        }
-                                    }}
-                                    onClick={() => {
-                                        musicPlayerController.hidePlayer();
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faChevronLeft} style={{transform: 'translateX(1px)',}} />
-                                </motion.button>
-                            </motion.div>}
                             <motion.div
                                 key={'player-thumbnail'}
                                 className='player-thumbnail'
@@ -387,6 +342,38 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     }
                                 }}
                             >
+                                {isOnMusicPage && <>
+                                    <motion.button
+                                        key={'player-button-toggle-display'}
+                                        className={`button-control ${musicPlayerController.isPlayerDisplay ? 'is-active' : ''}`}
+                                        title={musicPlayerController.isPlayerDisplay ? 'Hide video' : 'Show video'}
+                                        initial={{
+                                            opacity: 0,
+                                        }}
+                                        animate={{
+                                            width: isOnMusicPage ? 40 : 30,
+                                            height: isOnMusicPage ? 40 : 30,
+                                            minWidth: '40px',
+                                            opacity: isOnMusicPage && musicPlayerController.crrUrl !== '' ? 1 : 0,
+                                            transition: {
+                                                duration: .5,
+                                            }
+                                        }}
+                                        exit={{
+                                            opacity: 0,
+                                        }}
+                                        onClick={() => {
+                                            if (musicPlayerController.isPlayerDisplay) {
+                                                musicPlayerController.hidePlayer();
+                                            } else {
+                                                musicPlayerController.showPlayer();
+                                            }
+                                        }}
+                                    >
+                                        <FontAwesomeIcon icon={faDisplay} />
+                                    </motion.button>
+                                    <span className='player-button__divider' aria-hidden='true' />
+                                </>}
                                 <motion.button
                                     key={'player-button-toggle'}
                                     className='button-control'
