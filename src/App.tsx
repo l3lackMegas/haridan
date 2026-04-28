@@ -171,7 +171,8 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                     {this.state.performanceMode && <motion.div className="loadingCenter"
                         key={'root-performance-mode'}
                         style={{
-                            width: '90%',
+                            margin: 'auto',
+                            width: '100%',
                             color: "white",
                             textAlign: 'center',
                             fontSize: 18
