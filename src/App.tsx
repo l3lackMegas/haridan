@@ -119,7 +119,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                 this.setState({
                     isLoaded: true,
                 });
-            }, 2000);
+            }, 1500);
         }
     }
 

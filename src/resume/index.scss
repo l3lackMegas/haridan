@@ -162,10 +162,9 @@
     display: block;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
     padding: 8px 18px;
     width: fit-content;
-    // max-width: 100%;
     font-family: inherit;
     font-size: 13px;
     font-weight: 500;
@@ -173,6 +172,7 @@
     white-space: nowrap;
     color: rgba(255, 255, 255, 0.85);
     text-align: center;
+    text-decoration: none;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 999px;
@@ -185,11 +185,23 @@
         border-color .25s ease,
         transform .25s ease;
 
+    svg {
+        margin-left: 6px;
+        font-size: 11px;
+        opacity: 0.7;
+        transition: transform .25s ease, opacity .25s ease;
+    }
+
     &:hover {
         color: white;
         background: rgba(255, 255, 255, 0.10);
         border-color: rgba(255, 255, 255, 0.28);
         transform: translateY(-1px);
+
+        svg {
+            opacity: 1;
+            transform: translateX(4px);
+        }
     }
 
     &:active {

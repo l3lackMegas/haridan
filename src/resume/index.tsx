@@ -16,12 +16,12 @@ import Experience from "./components/Resume/Experience"
 import Rewards from "./components/Resume/Rewards"
 import SkillCard from "./components/SkillCard"
 import WorkList from './components/Works/List'
+import IntroSection from './components/IntroSection'
 
 import resumeData from '../data/resume'
 import Credit from '../common/Credit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import MusicItem from '../music/MusicItem';
+import { faChevronDown, faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
 import MusicListData, { MusicStructure } from '../data/music-list';
 import { getAbsoluteHeight } from '../lib/utility';
 
@@ -197,39 +197,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                         </motion.div>
                         <NameCard isReady={mounted} />
                     </motion.div>
-                    <Section id="information" style={{ textAlign: 'left' }}>
-                        <div style={{ padding: '0 20px'}}>
-                            <h1 className="infoTitle">Hi there!</h1>
-                            <div style={{ color: 'rgba(255, 255, 255, .75)' }}>
-                                <div style={{ lineHeight: '30px' }}>
-                                    <p>I'm Jaruwat Pohong, a software developer with a passion for crafting user-friendly experiences across web, desktop, and mobile applications. As a frontend developer, I'm particularly drawn to the world of web design and frontend development, where I can bring ideas to life and create visually appealing and interactive interfaces.</p>
-                                    <br/>
-                                    <p>However, I'm always up for a challenge and enjoy exploring new areas of software development, regardless of whether they fall strictly within the frontend realm. Feel free to connect with me if you'd like to discuss web development, explore potential collaborations, or just chat about the ever-evolving world of technology. {"<3"}</p>
-                                </div>
-                                {/* <div className="understandCSS">
-                                    <div className="frame">
-                                        <h1 style={{marginTop: 40}}>CSS</h1>
-                                        <h1>IS</h1>
-                                        <h1 style={{transform: 'translateX(-23px)'}}>AWESOME</h1>
-                                    </div>
-                                    <p style={{textAlign: 'center'}}>Just kidding</p>
-                                </div> */}
-                                <div className="understandCSS">
-                                    <p style={{textAlign: 'center'}}>Music is a part of my life ;3</p>
-                                    <motion.div className='music-list'>
-                                        {
-                                            this.state.musicList.map((item, index) => {
-                                                return (<MusicItem key={index} songInfo={item} videoDisabled={true} />)
-                                            })
-                                        }
-                                    </motion.div>
-                                    <Link to="/music" className="btnViewMore">
-                                        <span>View All Music Collections</span>
-                                    </Link>
-                                </div>
-                            </div>
-                        </div>
-                    </Section>
+                    <IntroSection musicList={this.state.musicList} />
                     <Section
                         id="skill-section"
                         style={{
@@ -251,6 +219,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                         </div>
                         <Link to="/portfolio" className="btnViewMore">
                             <span>View More Works</span>
+                            <FontAwesomeIcon icon={faArrowRightLong} />
                         </Link>
                     </Section>
 
