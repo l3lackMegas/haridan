@@ -178,11 +178,11 @@ class Header extends React.Component<Props, State, IThemeState> {
                         opacity: 0,
                     }}
                     animate={{
-                        y: crrPageName === "" ? -100 : 0 ,
-                        opacity: crrPageName === "" ? 0 : 1,
+                        y: crrPageName === "" || isToggleNav ? -100 : 0 ,
+                        opacity: crrPageName === "" || isToggleNav ? 0 : 1,
                         transition: {
                             duration: .5,
-                            delay: .75,
+                            delay: isToggleNav ? 0 : .75,
                             ease: [0.5, 0.025, 0, 1],
                         }
                     }}
@@ -218,6 +218,7 @@ class Header extends React.Component<Props, State, IThemeState> {
                                     layoutId={'link-item-crr-page'}
                                 >{crrPageName}</motion.div> */}
                                 <motion.div
+                                    className="webringBadge"
                                     style={{
                                         position: 'fixed',
                                         top: 14,
