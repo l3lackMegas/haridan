@@ -56,7 +56,7 @@ class WorkList extends Component<IReciept> {
                         <ModalActive layoutId={ctx.id}
                             layoutUniqueId={`modal-${layoutUniqueId}-${ctx.id}`}
                             isDelay={false}
-                            modalStyle={{ width: '100vw', height: '100%', maxWidth: 'unset', maxHeight: 'unset' }}
+                            modalStyle={{ width: '100%', maxWidth: 1100 }}
                             modalChildren={
                                 <ModalContent
                                     id={ctx.id}

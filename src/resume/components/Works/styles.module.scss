@@ -124,166 +124,150 @@
     }
 }
 
-.content {
-    min-width: 600px;
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: center;
-    min-height: 100vh;
-    max-height: 100vh;
-    color: white;
-    overflow: auto;
-
-    .logoArea {
-        position: relative;
-        margin-bottom: 25px;
-        width: 100%;
-        height: 140px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        border-radius: 20px;
-        overflow: hidden;
-        box-shadow: 0 0 20px 0 rgba(0, 0, 0, .5);
-
-        .subGradient {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, .5));
-        }
-        
-        .img {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            box-shadow: 0 0 30px 3px rgba(0, 0, 0, .5);
-            border-radius: 3px;
-            z-index: 1;
-            transform-origin: center;
-            transform: rotate(-10deg) translate(3%, -20%) scale(0.8);
-        }
-
-
-    }
-
-    .describe {
-        margin: 15px 0;
-        font-size: 15px;
-        color: #8d8d8d;
-        white-space: break-spaces;
-    }
-    
-    .btnViewProject {
-        margin-top: 10px;
-        padding: 10px 15px;
-        width: 100%;
-        font-family: inherit;
-        font-size: 18px;
-        white-space: nowrap;
-        color: white;
-        background-color: rgba(255, 255, 255, .1);
-        border: unset;
-        border-radius: 5px;
-        outline: 0;
-        cursor: pointer;
-        transition-duration: .15s;
-
-        &:hover {
-            background-color: rgba(255, 255, 255, .3);
-        }
-
-        &:active {
-            background-color: rgba(255, 255, 255, .4);
-        }
-    }
-}
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    width: 100%;
-    text-align: center;
-
-    .rightSide {
-        position: relative;
-        width: 80%;
-        min-height: 100vh;
-        max-height: 100vh;
-        background-color: rgba(0, 0, 0, .5);
-        display: flex;
-        flex-direction: column;
-        overflow: auto;
-
-        .padding {
-            padding-top: 60px;
-            margin: auto 30px;
-        }
-    }
-
-    .youtubeIframe {
-        width: 100%;
-        height: 600px;
-        border-radius: 20px;
-        overflow: hidden;
-    }
-
-    .gallery {
-        padding: 60px 30px 20px;
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px,1fr));
-        grid-gap: 15px;
-    
-        .galleryItem {
-            width: 100%;
-            height: 300px;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            border-radius: 20px;
-            overflow: hidden;
-            transition-duration: .25s;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0);
-            cursor: pointer;
-    
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-    
-            &:hover {
-                transform: scale(1.075);
-                box-shadow: 0 5px 20px rgba(0, 0, 0, .5);
-                border-radius: 10px;
-                z-index: 1;
-            }
-        }
-    }
-}
-
-
-.modal .content {
-    padding: 40px 40px;
-    width: 40%;
+/* ========================= Works Modal Content ========================= */
+.modalLayout {
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 32px;
+    color: var(--text-primary);
     text-align: left;
 
-    h2 {
-        font-size: 3rem;
+    @media (max-width: 880px) {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+}
+
+.modalLeft {
+    position: sticky;
+    top: 0;
+    align-self: start;
+
+    @media (max-width: 880px) {
+        position: static;
+    }
+}
+
+.modalLogoArea {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modalLogoOverlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(0,0,0,0.35), transparent 60%);
+}
+
+.modalLogo {
+    position: relative;
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.modalTitle {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
+.modalDate {
+    font-size: 13px;
+    color: var(--text-faint);
+    margin-bottom: 14px;
+}
+
+.modalTagList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.modalTag {
+    padding: 4px 10px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-pill);
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+.modalDescribe {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin: 14px 0 18px;
+    white-space: pre-line;
+}
+
+.visitBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--accent-grad);
+    color: white;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(27, 163, 228, 0.4);
+    transition: transform var(--dur-fast) var(--ease-out-expo);
+
+    &:hover { transform: translateY(-2px); }
+}
+
+.modalRight {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.youtubeWrap {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: black;
+}
+
+.modalGallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 12px;
+}
+
+.modalGalleryItem {
+    aspect-ratio: 1;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: zoom-in;
+    transition: transform var(--dur-fast) var(--ease-out-expo);
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
-    p {
-        font-size: 1.5rem;
-    }
+    &:hover { transform: scale(1.04); }
 }
 
 @media screen and (max-width: 1000px) {
-
     .container {
         margin: 0;
 
@@ -294,54 +278,5 @@
 
     .subImgBlur {
         display: none;
-    }
-
-    .modal {
-        display: block;
-        padding: 0 0;
-        height: 100vh;
-        overflow: auto;
-
-        .content {
-            padding: 60px 20px 20px;
-            width: 100%;
-            min-width: unset;
-            min-height: unset;
-            max-height: unset;
-            overflow: unset;
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            p {
-                font-size: 1.1rem;
-            }
-        }
-
-        .rightSide {
-            display: block;
-            padding: 20px;
-            width: 100%;
-            height: auto;
-            min-height: unset;
-            max-height: unset;
-
-            .padding {
-                margin: 0;
-            }
-        }
-
-        .youtubeIframe {
-            height: 250px;
-
-            iframe {
-                height: 100% !important;
-            }
-        }
-
-        .gallery {
-            padding: 0;
-        }
     }
 }
