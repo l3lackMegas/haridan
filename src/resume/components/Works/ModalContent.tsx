@@ -5,6 +5,7 @@ import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
 import Youtube from '../MainLayout/YoutubeIframe';
 import { ModalActive } from '../MainLayout/Modal';
 import { validateYouTubeUrl } from '../../../lib/utility';
+import LoadingImage from '../../../common/LoadingImage';
 import styles from './styles.module.scss';
 
 interface Props {
@@ -33,7 +34,13 @@ export default function ModalContent({ title, describe, img, date, link, imageLi
             >
                 <div className={styles.modalLogoArea} style={{ backgroundColor: color }}>
                     <div className={styles.modalLogoOverlay} />
-                    <img className={styles.modalLogo} src={img} alt={title} />
+                    <LoadingImage
+                        className={styles.modalLogo}
+                        wrapperStyle={{ width: '100%', height: '100%' }}
+                        src={img}
+                        alt={title}
+                        spinnerSize={40}
+                    />
                 </div>
                 <h2 className={styles.modalTitle}>{title}</h2>
                 <p className={styles.modalDate}>{date}</p>
@@ -74,10 +81,10 @@ export default function ModalContent({ title, describe, img, date, link, imageLi
                                 isDisableScrollHandle
                                 closeAnyWhere
                                 variant="image-preview"
-                                modalChildren={<img src={src} alt="preview" />}
+                                modalChildren={<LoadingImage src={src} alt="preview" spinnerSize={48} />}
                             >
                                 <div className={styles.modalGalleryItem} style={{ backgroundColor: color }}>
-                                    <img src={src} alt={title} />
+                                    <LoadingImage src={src} alt={title} wrapperStyle={{ width: '100%', height: '100%' }} />
                                 </div>
                             </ModalActive>
                         ))}

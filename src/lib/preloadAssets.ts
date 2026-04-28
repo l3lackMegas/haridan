@@ -1,3 +1,7 @@
+import WorkListData from '../data/work-list';
+import MusicListData from '../data/music-list';
+import { getYoutubeId } from './utility';
+
 const STATIC_ASSETS: string[] = [
     '/img/icon50.jpg',
     '/img/profile-mask.jpg',
@@ -25,8 +29,29 @@ export function collectAssetUrls(): string[] {
 
     STATIC_ASSETS.forEach(u => urls.add(u));
 
-    // NOTE: Skip preloading work item images (w.img / w.imageList) for now.
-    // Those will be lazy-loaded by the modal/image viewer later.
+    // Preload pinned work item cover images only.
+    try {
+        const work = WorkListData();
+        work.workItem
+            .filter(w => w.pin)
+            .forEach(w => {
+                if (w.img && isImageUrl(w.img)) urls.add(w.img);
+            });
+    } catch (e) { /* ignore */ }
+
+    // Preload YouTube thumbnails for pinned songs.
+    try {
+        const music = MusicListData();
+        music.songList
+            .filter(s => s.pin)
+            .forEach(s => {
+                const id = getYoutubeId(s.url);
+                if (id) urls.add(`https://img.youtube.com/vi/${id}/maxresdefault.jpg`);
+            });
+    } catch (e) { /* ignore */ }
+
+    // NOTE: Non-pinned work images and full gallery image lists are still
+    // lazy-loaded by their components / image viewer.
 
     return Array.from(urls);
 }

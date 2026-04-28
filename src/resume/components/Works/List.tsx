@@ -11,6 +11,7 @@ import styles from './styles.module.scss'
 import { ModalActive } from '../MainLayout/Modal'
 import ModalContent from './ModalContent'
 import { WorkStructure } from "../../../data/work-list";
+import { useImageLoaded, LoadingOverlay } from '../../../common/LoadingImage'
 
 interface IReciept {
     items: Array<WorkStructure>
@@ -78,18 +79,7 @@ class WorkList extends Component<IReciept> {
                                 }}
                                 className={styles.imgContain}
                             >
-                                <motion.div className={styles.subImgBlur} style={{
-                                    backgroundImage: `url(${ctx.img})`
-                                }}></motion.div>
-                                <motion.div className={styles.subGradient}></motion.div>
-                                <motion.img 
-                                    // layoutId={`modalLogo-${ctx.id}`}
-                                    className={styles.img}
-                                    // style={{
-                                    //     backgroundImage: `url(${ctx.img})`
-                                    // }}
-                                    src={ctx.img}
-                                />
+                                <WorkCardImage src={ctx.img} />
                             </motion.div>
                             <motion.div className={styles.contentInfo}>
                                 <motion.p 
@@ -115,3 +105,24 @@ class WorkList extends Component<IReciept> {
 }
 
 export default WorkList;
+
+function WorkCardImage({ src }: { src: string }) {
+    const loaded = useImageLoaded(src);
+    return (
+        <>
+            <motion.div
+                className={styles.subImgBlur}
+                style={{
+                    backgroundImage: loaded ? `url(${src})` : undefined,
+                }}
+            />
+            <motion.div className={styles.subGradient}></motion.div>
+            <motion.img
+                className={styles.img}
+                src={src}
+                style={{ opacity: loaded ? 1 : 0 }}
+            />
+            <LoadingOverlay show={!loaded} spinnerSize={36} />
+        </>
+    );
+}

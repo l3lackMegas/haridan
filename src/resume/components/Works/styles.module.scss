@@ -65,7 +65,8 @@
             border-radius: 4px;
             z-index: 1;
             transition: transform .6s cubic-bezier(0.5, 0.025, 0, 1),
-                        filter .6s cubic-bezier(0.5, 0.025, 0, 1);
+                        filter .6s cubic-bezier(0.5, 0.025, 0, 1),
+                        opacity .3s ease;
         }
     }
 

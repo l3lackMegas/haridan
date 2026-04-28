@@ -12,6 +12,7 @@ import { AppMainContext, IThemeState } from '../context';
 
 import { getYoutubeId, sleep } from '../lib/utility';
 import LoadingIcon from '../common/LoadingIcon';
+import { useImageLoaded, LoadingOverlay } from '../common/LoadingImage';
 import { MusicStructure } from '../data/music-list';
 
 type Props = {
@@ -42,15 +43,12 @@ class MusicItem extends React.Component<Props, State, IThemeState> {
         const { songInfo } = this.props;
 
         const youtubeId = getYoutubeId(songInfo.url);
+        const thumbUrl = `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
 
         const isCurrentSongPlay = musicPlayerController.crrUrl !== '' && (songInfo.url === musicPlayerController.crrUrl || songInfo.videoUrl === musicPlayerController.crrUrl);
 
         return (
-            <motion.div className='music-item'
-                style={{
-                    backgroundImage: `url(https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg)`,
-                }}
-            >
+            <MusicItemThumb thumbUrl={thumbUrl}>
                 <motion.div className='music-overlay'  onClick={async () => {
                     if(songInfo.url !== musicPlayerController.crrUrl) {
                         await musicPlayerController.setCrrUrl(songInfo.videoUrl || songInfo.url);
@@ -90,7 +88,7 @@ class MusicItem extends React.Component<Props, State, IThemeState> {
                         </motion.button>
                     </motion.div>
                 </motion.div>
-            </motion.div>
+            </MusicItemThumb>
         );
     }
 }
@@ -98,3 +96,19 @@ class MusicItem extends React.Component<Props, State, IThemeState> {
 MusicItem.contextType = AppMainContext;
 
 export default MusicItem;
+
+function MusicItemThumb({ thumbUrl, children }: { thumbUrl: string; children: React.ReactNode }) {
+    const loaded = useImageLoaded(thumbUrl);
+    return (
+        <motion.div
+            className='music-item'
+            style={{
+                backgroundImage: loaded ? `url(${thumbUrl})` : undefined,
+                position: 'relative',
+            }}
+        >
+            {children}
+            <LoadingOverlay show={!loaded} spinnerSize={36} />
+        </motion.div>
+    );
+}
