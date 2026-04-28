@@ -250,25 +250,32 @@
 
 .floating-status {
     position: absolute;
-    top: -40px;
+    top: -44px;
     margin: 5px auto;
-    padding: 5px 10px;
+    padding: 8px 16px;
     width: fit-content;
     color: white;
-    background-color: #1818189d;
-    backdrop-filter: blur(30px) saturate(30%);
-    box-shadow: 0 0 30px 0 rgba(0, 0, 0, .5);
+    background: rgba(20, 20, 22, 0.55);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.08) inset,
+        0 10px 30px -12px rgba(0, 0, 0, 0.45);
     text-align: center;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: normal;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     cursor: pointer;
+    transition: background-color .35s ease, border-color .35s ease, transform .35s ease;
 
     &:hover {
-        background-color: #3838389d;
+        background: rgba(40, 40, 44, 0.6);
+        border-color: rgba(255, 255, 255, 0.18);
     }
 }
 
@@ -283,27 +290,31 @@
         position: relative;
         width: 100%;
         height: 100%;
-        background-color: #1818189d;
-        backdrop-filter: blur(30px) saturate(30%);
-        box-shadow: 0 0 30px 0 rgba(0, 0, 0, .5);
+        background: rgba(20, 20, 22, 0.55);
+        backdrop-filter: blur(22px) saturate(160%);
+        -webkit-backdrop-filter: blur(22px) saturate(160%);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.08) inset,
+            0 12px 40px -14px rgba(0, 0, 0, 0.5);
 
         .player-progress {
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: 100%;
-            height: 5px;
-            background-color: rgba(255, 255, 255, .25);
+            width: calc(100% - 16px);
+            height: 3px;
+            background-color: rgba(255, 255, 255, .12);
             z-index: 1;
-            transition-duration: .25s;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
+            transition: height .25s ease, background-color .25s ease;
+            border-radius: 999px;
+            margin-bottom: 10px;
             cursor: pointer;
             overflow: hidden;
 
             &:hover {
-                background-color: rgba(255, 255, 255, .4);
+                background-color: rgba(255, 255, 255, .25);
             }
 
             .player-progress-bar {
@@ -313,25 +324,26 @@
                 width: 0;
                 height: 100%;
                 background-color: white;
+                border-radius: 999px;
             }
         }
 
         &:hover {
             .player-progress {
-                height: 10px;
+                height: 6px;
             }
         }
 
         .player-flex-tools {
             display: flex;
-            padding: 10px;
+            padding: 8px;
             width: 100%;
             height: 100%;
             align-items: center;
 
             .player-thumbnail {
                 position: relative;
-                // border-radius: 10px;
+                flex-shrink: 0;
                 overflow: hidden;
                 background-color: #ccc;
                 background-size: cover;
@@ -369,7 +381,7 @@
                 width: 100%;
                 color: white;
                 text-align: left;
-                margin-left: 10px;
+                margin-left: 12px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -377,7 +389,10 @@
                 .song-name {
                     position: relative;
                     margin: 0;
-                    height: 23px;
+                    height: 22px;
+                    font-size: 14px;
+                    font-weight: 500;
+                    letter-spacing: 0.01em;
 
                     span {
                         position: absolute;
@@ -387,7 +402,24 @@
 
                 .author-name {
                     margin: 0;
-                    font-size: 15px;
+                    font-size: 12px;
+                    opacity: 0.65;
+                    letter-spacing: 0.04em;
+                }
+
+                .player-time {
+                    margin: 0;
+                    font-size: 11px;
+                    line-height: 1.2;
+                    opacity: 0.55;
+                    letter-spacing: 0.06em;
+                    font-variant-numeric: tabular-nums;
+                    font-feature-settings: 'tnum';
+
+                    .sep {
+                        opacity: 0.5;
+                        margin: 0 2px;
+                    }
                 }
 
                 p {
@@ -398,11 +430,16 @@
             }
 
             .player-button {
-                margin-left: auto;
-                margin-right: 10px;
                 display: flex;
+                gap: 6px;
 
-                
+                // Only the right-side button group gets the gap padding;
+                // the collapsed back-button wrapper on the left must not push
+                // the thumbnail away from the container's left edge.
+                &:last-child {
+                    margin-left: auto;
+                    padding-left: 12px;
+                }
             }
         }
 
@@ -420,7 +457,7 @@
 
 .button-control {
     display: flex;
-    margin-left: 10px;
+    margin: 0;
     padding: 10px;
     min-width: 40px !important;
     max-width: 40px !important;
@@ -428,16 +465,21 @@
     max-height: 40px;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, .1);
-    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .10);
     color: white;
-    font-size: 20px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color .25s ease, border-color .25s ease, transform .25s ease;
 
     &:hover {
-        background-color: rgba(255, 255, 255, .2);
-        border: 1px solid rgba(255, 255, 255, .2);
+        background: rgba(255, 255, 255, .14);
+        border-color: rgba(255, 255, 255, .22);
+    }
+
+    &:active {
+        transform: scale(0.94);
     }
 }
 
@@ -457,9 +499,25 @@
             .player-button {
                 .button-control {
                     padding: 5px;
-                    font-size: 15px;
+                    font-size: 14px;
+                    min-width: 36px !important;
+                    max-width: 36px !important;
+                    min-height: 36px;
+                    max-height: 36px;
                 }
             }
         }
+    }
+}
+
+// Mobile / coarse pointers: drop expensive backdrop-filter, keep glass look
+// using a slightly more opaque translucent fill — matches the navbar fallback.
+@media (hover: none) and (pointer: coarse), (max-width: 768px) {
+    .floating-status,
+    .mini-player .playerContainer {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: rgba(20, 20, 22, 0.78) !important;
+        border-color: rgba(255, 255, 255, 0.10) !important;
     }
 }

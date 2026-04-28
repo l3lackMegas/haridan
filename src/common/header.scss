@@ -30,13 +30,14 @@
             font-size: 0.92rem;
             font-weight: 500;
             letter-spacing: 0.02em;
-            padding: 8px 18px;
             border-radius: 999px;
             transition: opacity .35s ease, transform .35s ease, background-color .35s ease;
             opacity: .6;
             cursor: pointer;
 
             a {
+                display: block;
+                padding: 8px 18px;
                 color: black;
                 transition-duration: .5s;
                 position: relative;
@@ -172,7 +173,10 @@
 
             .link-item {
                 font-size: 0.85rem;
-                padding: 7px 14px;
+
+                a {
+                    padding: 7px 14px;
+                }
             }
         }
     }

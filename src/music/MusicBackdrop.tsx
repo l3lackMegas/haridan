@@ -16,6 +16,14 @@ import LoadingIcon from '../common/LoadingIcon';
 
 import MusicListData, { MusicStructure } from '../data/music-list';
 
+const formatTime = (s: number) => {
+    if (!isFinite(s) || s < 0) s = 0;
+    const total = Math.floor(s);
+    const m = Math.floor(total / 60);
+    const sec = total % 60;
+    return `${m}:${sec.toString().padStart(2, '0')}`;
+};
+
 type Props = {
 };
 type State = {
@@ -152,9 +160,9 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             y: 0,
                             width: isOnMusicPage ? '95vw' : 300,
                             maxWidth: 600,
-                            height: isOnMusicPage ? 80 : 60,
+                            height: isOnMusicPage ? 80 : 56,
                             scale: 1,
-                            borderRadius: isOnMusicPage ? 10 : 40,
+                            borderRadius: isOnMusicPage ? 16 : 999,
                             transition: {
                                 duration: 1,
                                 delay: isOnMusicPage ? 1 : 0,
@@ -270,12 +278,12 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     minHeight: '1px',
                                 }}
                                 animate={musicPlayerController.crrUrl === '' ? {} : {
-                                    width: isOnMusicPage ? 100 : 50,
-                                    height: isOnMusicPage ? 100 : 50,
-                                    minWidth: isOnMusicPage ? '100px' : '50px',
-                                    minHeight: isOnMusicPage ? '100px' : '50px',
-                                    borderRadius: isOnMusicPage ? 10 : 50,
-                                    margin: isOnMusicPage ? '10px 10px 50px 10px' : '10px 0px 10px 0px',
+                                    width: isOnMusicPage ? 100 : 40,
+                                    height: isOnMusicPage ? 100 : 40,
+                                    minWidth: isOnMusicPage ? '100px' : '40px',
+                                    minHeight: isOnMusicPage ? '100px' : '40px',
+                                    borderRadius: isOnMusicPage ? 10 : 999,
+                                    margin: isOnMusicPage ? '0 0 56px 0' : '0',
                                     transition: {
                                         duration: 1,
                                         delay: isOnMusicPage ? 1 : 0,
@@ -354,8 +362,23 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                         }
                                     }}
                                 >{authorName}</motion.p>
+                                <motion.p
+                                    key={'player-time'}
+                                    className='player-time'
+                                >
+                                    {formatTime(crrTime)} <span className='sep'>/</span> {formatTime(maxTime)}
+                                </motion.p>
                             </motion.div>
-                            <motion.div className='player-button'>
+                            <motion.div className='player-button'
+                                animate={{
+                                    marginBottom: isOnMusicPage ? '13px' : '0px',
+                                    transition: {
+                                        duration: 1,
+                                        delay: isOnMusicPage ? 1 : 0,
+                                        ease: [0.5, 0.025, 0, 1]
+                                    }
+                                }}
+                            >
                                 <motion.button
                                     key={'player-button-toggle'}
                                     className='button-control'
