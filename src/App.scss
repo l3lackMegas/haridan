@@ -65,6 +65,15 @@
 
 :root {
     --primary-color: #1ba3e4;
+
+    /* Surfaces */
+    --bg-base: #06080d;
+    --bg-deep: #03050a;
+    --bg-elev: #0c1018;
+    --glass-bg: rgba(255, 255, 255, 0.045);
+    --glass-bg-strong: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.09);
+    --glass-border-strong: rgba(255, 255, 255, 0.18);
 }
 
 * {
@@ -101,10 +110,13 @@ img{
 }
 
 .loadingCenter {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: fixed; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    background: radial-gradient(circle at 50% 50%, rgba(27, 163, 228, 0.08), transparent 65%), var(--bg-base);
+    color: white;
+    z-index: 99999;
+    .sub { display: flex; flex-direction: column; align-items: center; gap: 18px; }
 }
 
 .centerContain {

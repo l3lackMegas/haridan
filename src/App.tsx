@@ -119,7 +119,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                 this.setState({
                     isLoaded: true,
                 });
-            }, 1000);
+            }, 2000);
         }
     }
 
@@ -145,37 +145,27 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                     height: this.context.crrPageHeight,
                 }}></div> */}
                 <AnimatePresence mode='sync' key="landing-loader">
-                    {!this.state.isLoaded && !this.state.performanceMode && <motion.div className="loadingCenter"
-                        key={'root-loading'}
+                    {!this.state.isLoaded && !this.state.performanceMode && <motion.div
+                        className="loadingCenter"
+                        key="root-loader"
                         initial={{ opacity: 0 }}
                         animate={{
                             opacity: 1,
                             transition: {
-                                duration: 1,
+                                duration: 0.4,
+                                delay: 0.4
                             }
                         }}
-                        exit={{
-                            opacity: 0,
-                            transition: {
-                                duration: .35,
-                            }
-                        }}
+                        exit={{ opacity: 0, transition: { duration: 0.4 } }}
                     >
-                        <motion.div className="sub"
-                            initial={{ opacity: 0 }}
-                            animate={{
-                                opacity: 1,
-                                transition: {
-                                    duration: 1,
-                                }
-                            }}
-                            exit={{
-                                opacity: 0,
-                                scale: 0,
-                            }}
+                        <LoadingIcon />
+                        <motion.p
+                            initial={{ opacity: 0, y: 12 }}
+                            animate={{ opacity: 0.6, y: 0, transition: { delay: 0.8 } }}
+                            style={{ marginTop: 18, fontSize: 13, letterSpacing: '0.3em', textTransform: 'uppercase' }}
                         >
-                            <LoadingIcon/>
-                        </motion.div>
+                            Loading
+                        </motion.p>
                     </motion.div>}
 
                     {this.state.performanceMode && <motion.div className="loadingCenter"

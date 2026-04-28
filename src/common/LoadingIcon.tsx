@@ -1,46 +1,46 @@
 import { motion } from 'framer-motion';
 
-
-import './LoadingIcon.scss';
-export default function LoadingIcon(
-{
-    duration,
-    elmKey,
-    size,
-    borderSize
-} : {
-    duration?: number
-    elmKey?: string,
-    size?: number,
-    borderSize?: number
-}) {
-
-    return <motion.div
-    key={elmKey}
-    className="loading-icon"
-    animate={{
-        scale: [0.75, 0.6, 2, 1.5, 1.5, 2, 0.6, 0.75],
-        opacity: [1, 0.5, 1, 1, 1, 1, 0.5, 1],
-        rotate: [0, 0, 300, 270, 270, 320, 0, 0],
-        borderRadius: ["50%", "50%", "10%", "10%", "10%", "10%", "50%", "50%"],
-        width: size || 50,
-        height: size || 50,
-        border: `${borderSize || 7}px white solid`
-    }}
-    transition={{
-        duration: duration || 2,
-        ease: "easeInOut",
-        times: [0, 0.2, 0.5, 0.8, 0.2, 0.1, 0.2],
-        repeat: Infinity,
-        repeatDelay: 0.5
-    }}
-    exit={{
-        scale: 0.5,
-        opacity: 0,
-        transition: {
-            delay: 0.5,
-            duration: 0.5,
-        }
-    }}
-/>;
-};
+export default function LoadingIcon({ size = 56 }: { size?: number }) {
+    return (
+        <motion.div
+            style={{
+                width: size,
+                height: size,
+                borderRadius: '50%',
+                position: 'relative',
+            }}
+        >
+            <motion.div
+                style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: '50%',
+                    border: '2px solid rgba(255,255,255,0.08)',
+                }}
+            />
+            <motion.div
+                style={{
+                    position: 'absolute',
+                    inset: 0,
+                    borderRadius: '50%',
+                    border: '2px solid transparent',
+                    borderTopColor: '#5fd0ff',
+                    borderRightColor: '#1ba3e4',
+                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1.1, repeat: Infinity, ease: 'linear' }}
+            />
+            <motion.div
+                style={{
+                    position: 'absolute',
+                    inset: '32%',
+                    borderRadius: '50%',
+                    background: 'linear-gradient(135deg,#1ba3e4,#a07bff)',
+                    filter: 'blur(2px)',
+                }}
+                animate={{ scale: [1, 1.25, 1], opacity: [0.65, 1, 0.65] }}
+                transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
+            />
+        </motion.div>
+    );
+}
