@@ -211,7 +211,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                             <SkillCard/>
                         </div>
                     </Section>
-
+                    <br/>
                     <h1 className="work-list" style={{ textAlign: 'center', marginBottom: 20 }}>My Works</h1>
                     <Section id="work-section" maxWidth={'unset'}>
                         <div style={{ padding: '0 10px'}}>

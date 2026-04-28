@@ -1,10 +1,136 @@
-.notfound-page {
-    // padding-top: 80px;
-    width: 100vw;
-    min-height: 100vh;
-    // background-color: rgb(201, 204, 162); //#245476;
-    background: rgb(74,70,146);
-    background: linear-gradient(158deg, rgba(74,70,146,1) 0%, rgba(9,9,121,1) 35%, rgba(147,1,1,1) 100%);
-    color: white; //#ffa700;
+.not-found-page {
+    color: white;
+
+    .nf-hero {
+        position: relative;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        padding: 100px 24px 60px;
+    }
+
+    .nf-bg-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        background-size: 56px 56px;
+        mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.7), transparent 72%);
+        -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.7), transparent 72%);
+        pointer-events: none;
+    }
+
+    .nf-bg-orbs {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: 0.45;
+        }
+        .orb-1 { width: 380px; height: 380px; background: rgba(255, 80, 80, 0.5); top: 8%; left: 4%; }
+        .orb-2 { width: 440px; height: 440px; background: rgba(160, 123, 255, 0.45); bottom: 4%; right: 6%; }
+        .orb-3 { width: 300px; height: 300px; background: rgba(27, 163, 228, 0.4); top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    }
+
+    .nf-content {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        max-width: 560px;
+        width: 100%;
+    }
+
+    .nf-eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.4em;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--primary);
+        margin: 0 0 16px;
+    }
+
+    .nf-num {
+        font-size: clamp(110px, 20vw, 210px);
+        font-weight: 700;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        margin: 0 0 20px;
+        background: linear-gradient(160deg, #fff 25%, rgba(255, 255, 255, 0.3));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nf-msg {
+        font-size: 15.5px;
+        line-height: 1.6;
+        color: var(--text-secondary);
+        margin: 0 0 28px;
+    }
+
+    .nf-rotator {
+        display: inline-flex;
+        align-items: center;
+        padding: 10px 20px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-pill);
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        color: rgba(255, 255, 255, 0.5);
+
+        .prefix {
+            color: rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .rotator-window {
+            position: relative;
+            display: inline-block;
+            min-width: 210px;
+            height: 20px;
+            overflow: hidden;
+            vertical-align: middle;
+            text-align: left;
+        }
+
+        .rotator-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            line-height: 20px;
+            color: var(--accent-1);
+            white-space: nowrap;
+        }
+    }
+
+    .nf-btn {
+        margin-left: 10px;
+        display: inline-flex !important;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px !important;
+        font-weight: 500;
+        padding: 11px 24px !important;
+        border-radius: var(--radius-pill) !important;
+        border-color: rgba(255, 255, 255, 0.18) !important;
+        letter-spacing: 0.02em;
+        transition: background-color .3s ease, border-color .3s ease, transform .3s ease !important;
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.10) !important;
+            border-color: rgba(255, 255, 255, 0.3) !important;
+            transform: translateY(-2px) !important;
+        }
+    }
 }
 
