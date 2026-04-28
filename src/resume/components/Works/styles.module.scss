@@ -151,7 +151,7 @@
 .modalLogoArea {
     position: relative;
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 16 / 9;
     border-radius: var(--radius-lg);
     overflow: hidden;
     margin-bottom: 18px;
@@ -169,10 +169,11 @@
 
 .modalLogo {
     position: relative;
-    width: 70%;
-    height: 70%;
+    width: 90%;
+    height: 90%;
     object-fit: contain;
     z-index: 1;
+    border-radius: var(--radius-md);
 }
 
 .modalTitle {
@@ -217,18 +218,22 @@
     align-items: center;
     gap: 10px;
     padding: 12px 22px;
-    border: 0;
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: var(--radius-pill);
-    background: var(--accent-grad);
-    color: white;
+    background: white;
+    color: #0a0d18;
     font-family: inherit;
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0 8px 20px rgba(27, 163, 228, 0.4);
-    transition: transform var(--dur-fast) var(--ease-out-expo);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transition: transform var(--dur-fast) var(--ease-out-expo),
+                box-shadow var(--dur-fast) var(--ease-out-expo);
 
-    &:hover { transform: translateY(-2px); }
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 28px rgba(255, 255, 255, 0.25);
+    }
 }
 
 .modalRight {
