@@ -52,7 +52,7 @@
     </div>
 
     <div id="preloaderTxt">
-      <p id="preloadTxt">&lt;/&gt; Preparing...</p>
+      <p id="preloadTxt">&lt;/&gt; Preparing<span id="preloadDots"></span></p>
       <style>
         html, body {
           background-color: #000;
@@ -71,6 +71,21 @@
           color: white;
           border: 1px rgba(255, 255, 255, 0.5) solid;
           animation: fadeIn 3s forwards;
+        }
+
+        #preloadDots::after {
+          content: '';
+          display: inline-block;
+          width: 1.2em;
+          text-align: left;
+          animation: preloadDots 1.2s steps(3, end) infinite;
+        }
+
+        @keyframes preloadDots {
+          0%   { content: '.'; }
+          33%  { content: '..'; }
+          66%  { content: '...'; }
+          100% { content: '.'; }
         }
 
         @keyframes fadeIn {

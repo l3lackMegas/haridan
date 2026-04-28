@@ -21,6 +21,7 @@ import ContextWraper, { AppMainContext, IThemeState } from './context';
 
 import './App.scss';
 import { checkIsMobile, isSafari } from './lib/utility';
+import { preloadAssets } from './lib/preloadAssets';
 import SmoothScroll from './common/SmoothScroll';
 import NotFoundPage from './404';
 import PortfolioPage from './portfolio';
@@ -77,6 +78,7 @@ interface IAppClassState {
     isLoaded: boolean;
     performanceMode: boolean;
     performanceModeTimerLeft: number;
+    loadProgress: number;
 }
 class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeState> {
     context!: IThemeState;
@@ -84,7 +86,8 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
     state: IAppClassState = {
         isLoaded: false,
         performanceMode: false,
-        performanceModeTimerLeft: 8
+        performanceModeTimerLeft: 8,
+        loadProgress: 0
     }
 
     constructor(props: IAppClassProps) {
@@ -97,31 +100,58 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
     componentDidMount(): void {
         document.getElementById('preloaderTxt')?.remove();
         document.getElementById('IE-Message')?.remove();
+
+        // Real asset preloading: images from data + core static assets + fonts.
+        const startPreload = () => {
+            preloadAssets((_loaded, _total, percent) => {
+                if (percent > this.state.loadProgress) {
+                    this.setState({ loadProgress: percent });
+                }
+            }).then(() => {
+                this.setState({ loadProgress: 100 });
+                this.handleAssetsReady();
+            });
+        };
+
+        // Keep window.onLoadSuccessfully wired so the inline preloader script in
+        // public/index.html can remove its loading text. The actual `isLoaded`
+        // flag is driven by preloadAssets() above.
         window.onLoadSuccessfully = () => {
             window.onFirstMounted = true;
-            setTimeout(() => {
-                if(window.isMobile || window.isSafari) {
-                    this.setState({
-                        performanceMode: true,
-                    });
-                    this.performanceModeTimerInterval = window.setInterval(() => {
-                        if(this.state.performanceModeTimerLeft <= 1) {
-                            this.hidePerformanceDialog();
-                            return;
-                        }
-                        this.setState({
-                            performanceModeTimerLeft: this.state.performanceModeTimerLeft - 1
-                        })
-                    }, 1000);
-                    return;
-                }
+        };
 
-                this.setState({
-                    isLoaded: true,
-                });
-            }, 1500);
-        }
+        startPreload();
     }
+
+    handleAssetsReady() {
+        if (this.assetsHandled) return;
+        this.assetsHandled = true;
+
+        // Small delay so the 100% can render before swapping views.
+        setTimeout(() => {
+            if (window.isMobile || window.isSafari) {
+                this.setState({ performanceMode: true });
+                this.performanceModeTimerInterval = window.setInterval(() => {
+                    if (this.state.performanceModeTimerLeft <= 1) {
+                        this.hidePerformanceDialog();
+                        return;
+                    }
+                    this.setState({
+                        performanceModeTimerLeft: this.state.performanceModeTimerLeft - 1
+                    });
+                }, 1000);
+                return;
+            }
+
+            this.setState({ isLoaded: true });
+        }, 1500);
+    }
+
+    componentWillUnmount(): void {
+        window.clearInterval(this.performanceModeTimerInterval);
+    }
+
+    assetsHandled = false;
 
     performanceModeTimerInterval = 0;
     hidePerformanceDialog() {
@@ -164,7 +194,7 @@ class AppClass extends React.Component<IAppClassProps, IAppClassState, IThemeSta
                             animate={{ opacity: 0.6, y: 0, transition: { delay: 0.8 } }}
                             style={{ marginTop: 18, fontSize: 13, letterSpacing: '0.3em', textTransform: 'uppercase' }}
                         >
-                            Loading
+                            {`Loading ${this.state.loadProgress}%`}
                         </motion.p>
                     </motion.div>}
 
