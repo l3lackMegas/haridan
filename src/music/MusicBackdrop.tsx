@@ -101,6 +101,13 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
         };
         
         const isOnMusicPage = crrFeature === '/music';
+        const isMobile = typeof window !== 'undefined' && window.innerWidth <= 500;
+
+        const bigHeight = isMobile ? 84 : 80;
+        const bigThumb = isMobile ? 56 : 100;
+        const bigThumbMargin = isMobile ? '0' : '0 0 56px 0';
+        const bigInfoMarginBottom = isMobile ? '0px' : '10px';
+        const bigButtonMarginBottom = isMobile ? '0px' : '13px';
 
         const isSongPlaying = (musicPlayerController.isPaused || this.state.songName === '') && this.context.youtubePlayerEvent && this.context.youtubePlayerEvent.getPlayerState();
 
@@ -160,7 +167,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             y: 0,
                             width: isOnMusicPage ? '95vw' : 300,
                             maxWidth: 600,
-                            height: isOnMusicPage ? 80 : 56,
+                            height: isOnMusicPage ? bigHeight : 56,
                             scale: 1,
                             borderRadius: isOnMusicPage ? 16 : 999,
                             transition: {
@@ -235,6 +242,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                 animate={{                    
                                     maxWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
                                     minWidth: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? '50px' : '1px',
+                                    marginBottom: isOnMusicPage ? bigButtonMarginBottom : '0px',
                                     transition: {
                                         duration: isOnMusicPage && musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused ? .5 : .75,
                                         // delay: musicPlayerController.isPlayerDisplay && !musicPlayerController.isPaused && isOnMusicPage ? .5 : 0,
@@ -278,12 +286,12 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                                     minHeight: '1px',
                                 }}
                                 animate={musicPlayerController.crrUrl === '' ? {} : {
-                                    width: isOnMusicPage ? 100 : 40,
-                                    height: isOnMusicPage ? 100 : 40,
-                                    minWidth: isOnMusicPage ? '100px' : '40px',
-                                    minHeight: isOnMusicPage ? '100px' : '40px',
-                                    borderRadius: isOnMusicPage ? 10 : 999,
-                                    margin: isOnMusicPage ? '0 0 56px 0' : '0',
+                                    width: isOnMusicPage ? bigThumb : 40,
+                                    height: isOnMusicPage ? bigThumb : 40,
+                                    minWidth: isOnMusicPage ? `${bigThumb}px` : '40px',
+                                    minHeight: isOnMusicPage ? `${bigThumb}px` : '40px',
+                                    borderRadius: isOnMusicPage ? (isMobile ? 999 : 10) : 999,
+                                    margin: isOnMusicPage ? bigThumbMargin : '0',
                                     transition: {
                                         duration: 1,
                                         delay: isOnMusicPage ? 1 : 0,
@@ -315,7 +323,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             </motion.div>
                             <motion.div className='player-info-text'
                                 animate={{
-                                    marginBottom: isOnMusicPage ? '10px' : '0px',
+                                    marginBottom: isOnMusicPage ? bigInfoMarginBottom : '0px',
                                     transition: {
                                         duration: 1,
                                         delay: isOnMusicPage ? 1 : 0,
@@ -371,7 +379,7 @@ class MusicBackdrop extends React.Component<Props, State, IThemeState> {
                             </motion.div>
                             <motion.div className='player-button'
                                 animate={{
-                                    marginBottom: isOnMusicPage ? '13px' : '0px',
+                                    marginBottom: isOnMusicPage ? bigButtonMarginBottom : '0px',
                                     transition: {
                                         duration: 1,
                                         delay: isOnMusicPage ? 1 : 0,
