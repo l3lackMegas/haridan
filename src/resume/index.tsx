@@ -207,23 +207,50 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                             backgroundPositionY: this.state.skillParallax
                     }}>
                         <div style={{ padding: '0 20px'}}>
-                            <h1 className="infoTitle">My Skill</h1>
+                            <motion.h1
+                                className="infoTitle"
+                                initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+                                whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                                viewport={{ once: true, amount: 0.4 }}
+                                transition={{ duration: 0.7, ease: [0.5, 0.025, 0, 1] }}
+                            >My Skill</motion.h1>
                             <SkillCard/>
                         </div>
                     </Section>
                     <br/>
-                    <h1 className="work-list" style={{ textAlign: 'center', marginBottom: 20 }}>My Works</h1>
+                    <motion.h1
+                        className="work-list"
+                        style={{ textAlign: 'center', marginBottom: 20 }}
+                        initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+                        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 0.7, ease: [0.5, 0.025, 0, 1] }}
+                    >My Works</motion.h1>
                     <Section id="work-section" maxWidth={'unset'}>
                         <div style={{ padding: '0 10px'}}>
                             <WorkList disabledLayoutId={true} layoutUniqueId={`layoutWorklistHome`} items={ workItems } />
                         </div>
-                        <Link to="/portfolio" className="btnViewMore">
-                            <span>View More Works</span>
-                            <FontAwesomeIcon icon={faArrowRightLong} />
-                        </Link>
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.6 }}
+                            transition={{ duration: 0.6, ease: [0.5, 0.025, 0, 1] }}
+                        >
+                            <Link to="/portfolio" className="btnViewMore">
+                                <span>View More Works</span>
+                                <FontAwesomeIcon icon={faArrowRightLong} />
+                            </Link>
+                        </motion.div>
                     </Section>
 
-                    <h1 className="infoTitle" style={{ textAlign: 'center' }}>Résumé</h1>
+                    <motion.h1
+                        className="infoTitle"
+                        style={{ textAlign: 'center' }}
+                        initial={{ opacity: 0, y: 24, filter: 'blur(8px)' }}
+                        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 0.7, ease: [0.5, 0.025, 0, 1] }}
+                    >Résumé</motion.h1>
                     <Section id="resume-section"
                         style={{
                             backgroundImage: 'url(/img/mobile-background.jpg)',

@@ -1,5 +1,6 @@
 /* React Module */
 import { Component } from "react";
+import { motion, Variants } from "framer-motion";
 
 /* External Module */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -8,12 +9,39 @@ import { faPencilRuler, faTerminal, faCode, faMobileAlt } from '@fortawesome/fre
 /* Styles */
 import styles from './styles.module.scss'
 
+const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+        transition: {
+            staggerChildren: 0.1,
+            delayChildren: 0.1,
+        },
+    },
+}
+
+const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        transition: { duration: 0.7, ease: [0.5, 0.025, 0, 1] },
+    },
+}
+
 class SkillCard extends Component {
 
     render() {
 
         return <>
-            <div className={styles.container} style={{marginBottom: '0'}}>
+            <motion.div
+                className={styles.container}
+                style={{marginBottom: '0'}}
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+            >
                 {/* <ItemSkill
                     title="Designer"
                     icon={<FontAwesomeIcon icon={faPencilRuler}/>}
@@ -111,7 +139,7 @@ class SkillCard extends Component {
                         <p>jQuery</p>
                     </div>
                 </ItemSkill>
-            </div>
+            </motion.div>
         </>
     }
 
@@ -131,14 +159,14 @@ class ItemSkill extends Component<ItemProps> {
 
         const { title, icon, describe, children} = this.props
 
-        return <div className={styles.item}>
+        return <motion.div className={styles.item} variants={itemVariants}>
             <div className={styles.headInfo}>
                 <h1>{icon}</h1>
                 <p className={styles.title}>{title}</p>
                 <div>{describe}</div>
             </div>
             { children }
-        </div>
+        </motion.div>
     }
 
 }

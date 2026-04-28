@@ -168,12 +168,6 @@
     transition: background-color .25s ease, border-color .25s ease, color .25s ease;
 }
 
-.buttonPanel > div:first-child a::before {
-    content: '✉';
-    font-size: 11px;
-    opacity: 0.5;
-}
-
 .buttonPanel > div:first-child a:hover {
     background: rgba(255, 255, 255, 0.06);
     border-color: rgba(255, 255, 255, 0.18);

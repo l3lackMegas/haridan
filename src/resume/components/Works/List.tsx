@@ -29,19 +29,7 @@ class WorkList extends Component<IReciept> {
         const { items, disabledLayoutId, layoutUniqueId, children } = this.props
 
         return <>
-            <motion.div className={styles.container}
-                initial='hidden'
-                animate='visible'
-                variants={{
-                    hidden: {},
-                    visible: {
-                        transition: {
-                            staggerChildren: 0.06,
-                            delayChildren: 0.1,
-                        }
-                    }
-                }}
-            >
+            <motion.div className={styles.container}>
 
                 { items.map((ctx: WorkStructure, i)=>{
                     let date = {
@@ -53,13 +41,16 @@ class WorkList extends Component<IReciept> {
                                 `${date.from.getFullYear()} - ${date.to.getFullYear()}`
                     return <motion.div
                         key={ctx.id}
-                        variants={{
-                            hidden: { opacity: 0, y: 30, filter: 'blur(8px)' },
-                            visible: {
-                                opacity: 1, y: 0, filter: 'blur(0px)',
-                                transition: { duration: 0.7, ease: [0.5, 0.025, 0, 1] }
+                        initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+                        whileInView={{
+                            opacity: 1, y: 0, filter: 'blur(0px)',
+                            transition: {
+                                duration: 0.6,
+                                delay: Math.min(i, 12) * 0.05,
+                                ease: [0.5, 0.025, 0, 1]
                             }
                         }}
+                        viewport={{ once: true, amount: 0.15 }}
                         className={styles.item}
                     >
                         <ModalActive layoutId={ctx.id}

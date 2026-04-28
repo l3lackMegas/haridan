@@ -74,18 +74,39 @@ class IntroSection extends Component<IProps> {
                     </motion.div>
 
                     {/* Music block — original layout */}
-                    <div className="understandCSS">
-                        <p style={{ textAlign: 'center' }}>Music is a part of my life ;3</p>
-                        <motion.div className='music-list'>
+                    <motion.div
+                        className="understandCSS"
+                        variants={containerVariants}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.15 }}
+                    >
+                        <motion.p style={{ textAlign: 'center' }} variants={itemVariants}>Music is a part of my life ;3</motion.p>
+                        <motion.div
+                            className='music-list'
+                            variants={{
+                                hidden: {},
+                                visible: {
+                                    transition: {
+                                        staggerChildren: 0.06,
+                                        delayChildren: 0.05,
+                                    },
+                                },
+                            }}
+                        >
                             {musicList.map((item, index) => (
-                                <MusicItem key={index} songInfo={item} videoDisabled={true} />
+                                <motion.div key={index} variants={itemVariants}>
+                                    <MusicItem songInfo={item} videoDisabled={true} />
+                                </motion.div>
                             ))}
                         </motion.div>
-                        <Link to="/music" className="btnViewMore">
-                            <span>View All Music Collections</span>
-                            <FontAwesomeIcon icon={faArrowRightLong} />
-                        </Link>
-                    </div>
+                        <motion.div variants={itemVariants}>
+                            <Link to="/music" className="btnViewMore">
+                                <span>View All Music Collections</span>
+                                <FontAwesomeIcon icon={faArrowRightLong} />
+                            </Link>
+                        </motion.div>
+                    </motion.div>
 
                 </div>
             </Section>
