@@ -1,5 +1,6 @@
 .portfolio-page {
     position: relative;
+    padding-top: 70px;
     padding-bottom: 39px;
     width: 100vw;
     min-height: 100vh;
@@ -9,28 +10,75 @@
     h1 {
         margin: 0;
     }
-    
+
     .first-section {
-        margin: 0 40px;
         position: relative;
-        padding: 70px 40px 0;
+        margin: 0 40px;
+        padding: 0 48px;
         width: calc(100% - 95px);
         height: 70vh;
         min-height: 517px;
-        // background-color: #64c571;
         color: #64c571;
-        border-radius: 40px;
+        border-radius: 28px;
         overflow: hidden;
+        background:
+            radial-gradient(120% 120% at 0% 0%, rgba(100, 197, 113, 0.10) 0%, rgba(100, 197, 113, 0) 55%),
+            radial-gradient(80% 80% at 100% 100%, rgba(100, 197, 113, 0.06) 0%, rgba(100, 197, 113, 0) 60%),
+            #1d1d1f;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        box-shadow:
+            0 1px 0 rgba(255, 255, 255, 0.04) inset,
+            0 30px 80px -40px rgba(0, 0, 0, 0.6);
 
-        h1 {
-            font-size: 7em;
+        // Subtle grid pattern overlay
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 100%);
+            -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 100%);
+            pointer-events: none;
         }
 
         .wrapper {
+            position: relative;
             display: flex;
             align-items: center;
             width: 100%;
             height: 100%;
+            z-index: 1;
+
+            .hero-content {
+                flex: 1;
+                min-width: 0;
+            }
+
+            .eyebrow {
+                display: inline-block;
+                margin-bottom: 24px;
+                padding: 6px 14px;
+                font-size: 12px;
+                font-weight: 500;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: rgba(227, 240, 255, 0.7);
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 999px;
+            }
+
+            .hero-sub {
+                margin: 32px 0 0;
+                max-width: 520px;
+                font-size: 15px;
+                line-height: 1.7;
+                color: rgba(227, 240, 255, 0.6);
+                letter-spacing: 0.01em;
+            }
 
             .block-poly {
                 font-size: 25px;
@@ -40,24 +88,61 @@
             }
         }
 
+        h1 {
+            font-size: 6em;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+        }
+
         .in-row {
-            margin: 0 auto;
-            width: 95%;
+            margin: 0;
+            width: 100%;
         }
     }
 
     .work-section {
         position: relative;
-        padding: 40px 40px 0;
+        padding: 64px 40px 0;
         width: 100vw;
-        background-color: #292929;
+        // background-color: #1f1f1f;
         color: #EBECDB;
-        border-top-left-radius: 40px;
-        border-top-right-radius: 40px;
+        // border-top-left-radius: 32px;
+        // border-top-right-radius: 32px;
         overflow: hidden;
+        // border-top: 1px solid rgba(255, 255, 255, 0.04);
 
-        h1 {
-            font-size: 3.5em;
+        .section-heading {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+
+            .kicker {
+                font-size: 12px;
+                font-weight: 500;
+                letter-spacing: 0.2em;
+                text-transform: uppercase;
+                color: rgba(235, 236, 219, 0.5);
+            }
+
+            h1.work-list {
+                margin: 0;
+                font-size: 3em;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                text-align: center;
+            }
+
+            .section-divider {
+                display: block;
+                width: 40px;
+                height: 2px;
+                background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+                border-radius: 999px;
+                margin-top: 4px;
+            }
         }
     }
 
@@ -66,30 +151,42 @@
         max-width: 1200px;
         margin: 0 auto;
         text-align: center;
+
         .tagList {
             display: flex;
-            margin-top: 15px;
+            margin-top: 28px;
+            margin-bottom: 28px;
             flex-wrap: wrap;
-            margin-bottom: 15px;
-            font-size: 15px;
+            font-size: 13px;
             justify-content: center;
-        
+            gap: 8px;
+
             .tag {
-                margin-right: 10px;
-                margin-bottom: 10px;
-                padding: 5px 10px;
-                background-color: rgba(255, 255, 255, .1);
-                border-radius: 5px;
+                margin: 0;
+                padding: 7px 14px;
+                font-weight: 500;
+                letter-spacing: 0.02em;
+                color: rgba(255, 255, 255, 0.75);
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 999px;
                 cursor: pointer;
+                transition: background-color .25s ease, border-color .25s ease, color .25s ease, transform .25s ease;
 
                 &:hover {
-                    background-color: rgba(255, 255, 255, .3);
+                    background: rgba(255, 255, 255, 0.10);
+                    border-color: rgba(255, 255, 255, 0.18);
+                    color: rgba(255, 255, 255, 0.95);
                 }
 
-                &:active,
+                &:active {
+                    transform: scale(0.96);
+                }
+
                 &.active {
-                    background-color: rgba(255, 255, 255, 1);
-                    color: black
+                    background: rgba(255, 255, 255, 0.95);
+                    border-color: rgba(255, 255, 255, 0.95);
+                    color: #181818;
                 }
             }
         }
@@ -128,16 +225,26 @@
     .portfolio-page {
         .first-section {
             margin: 0 20px;
-            width: 100%;
-            height: 400px;
+            padding: 60px 28px 0;
+            width: calc(100% - 40px);
+            height: 420px;
 
             h1 {
                 font-size: 2.5em;
             }
+
+            .wrapper .hero-sub {
+                font-size: 14px;
+                margin-top: 24px;
+            }
         }
 
-        .tagListWrapper {
-            display: none;
+        .work-section {
+            padding: 48px 24px 0;
+
+            .section-heading h1.work-list {
+                font-size: 2.4em;
+            }
         }
     }
 }
@@ -155,22 +262,30 @@
 @media screen and (max-width: 500px) {
     .portfolio-page {
         .first-section {
-            margin: 0 20px;
-            width: 100%;
-            height: 300px;
-            min-height: 300px;
-            padding: 0;
-            padding-top: 40px;
+            margin: 0 16px;
+            width: calc(100% - 32px);
+            height: auto;
+            min-height: 320px;
+            padding: 40px 24px 32px;
+            border-radius: 22px;
 
             .understandCSS {
                 display: none;
             }
 
-            h1 {
-                font-size: 2.5em;
-            }
-
             .wrapper {
+                .eyebrow {
+                    margin-bottom: 18px;
+                    font-size: 10px;
+                    padding: 5px 12px;
+                }
+
+                .hero-sub {
+                    font-size: 13px;
+                    line-height: 1.6;
+                    margin-top: 20px;
+                }
+
                 .block-poly {
                     font-size: 20px;
                     h2 {
@@ -178,16 +293,20 @@
                     }
                 }
             }
+
+            h1 {
+                font-size: 2.2em;
+            }
         }
-    }
 
-    .portfolio-page .work-section {
-        padding: 20px 5px 0;
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
+        .work-section {
+            padding: 40px 8px 0;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
 
-        h1 {
-            font-size: 2.5em;
+            .section-heading h1.work-list {
+                font-size: 2em;
+            }
         }
     }
 }

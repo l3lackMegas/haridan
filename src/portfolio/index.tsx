@@ -127,10 +127,17 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
                                 }
                             }}
                         >
-                            <motion.div className='in-row'>
-                                <motion.h1>COMMISSION,</motion.h1>
-                                <motion.h1>LEARNING</motion.h1>
-                                <motion.h1>and HOBBY</motion.h1>
+                            <motion.div className='hero-content'>
+                                <motion.span className='eyebrow'>Programming</motion.span>
+                                <motion.div className='in-row'>
+                                    <motion.h1>COMMISSION,</motion.h1>
+                                    <motion.h1>LEARNING</motion.h1>
+                                    <motion.h1>and HOBBY</motion.h1>
+                                </motion.div>
+                                <motion.p className='hero-sub'>
+                                    A curated collection of projects across web, mobile, and desktop —
+                                    spanning client work, experiments, and personal explorations.
+                                </motion.p>
                             </motion.div>
                             <motion.div className='block-poly'>
                                 <div className="understandCSS">
@@ -159,7 +166,11 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
                             }
                         }}
                     >
-                        <h1 className="work-list" style={{ textAlign: 'center' }}>Works</h1>
+                        <div className='section-heading'>
+                            <span className='kicker'>{this.state.workList.length} projects</span>
+                            <h1 className="work-list">Works</h1>
+                            <span className='section-divider' />
+                        </div>
                         <div className={'tagListWrapper'}>
                             <motion.div className={'tagList'}>
                                 <motion.div key={'all-tags'} className={'tag ' + (crrTag === "" ? "active" : "")}
