@@ -1,71 +1,254 @@
 .container {
-    padding-bottom: 20px;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 18px;
     width: 100%;
     word-break: normal;
+    background: rgba(255, 255, 255, 0.025);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 16px;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.04) inset,
+        0 12px 28px -20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition:
+        background-color .35s ease,
+        border-color .35s ease,
+        transform .35s ease,
+        box-shadow .35s ease;
 }
 
-.container + .container:before {
+.container.hasMeta {
+    grid-template-columns: 1fr 240px;
+}
+
+/* Timeline accent line */
+.container::before {
     content: '';
-    margin-bottom: 20px;
-    display: block;
-    width: 100%;
-    height: 1px;
-    background-image: linear-gradient(to right,
-                    rgba(255, 255, 255, .75),
-                    rgba(255, 255, 255, 0));
+    position: absolute;
+    top: 26px;
+    bottom: 26px;
+    left: 0;
+    width: 2px;
+    border-radius: 2px;
+    background: linear-gradient(
+        180deg,
+        rgba(var(--primary-color-rgb, 0, 200, 150), 0.6),
+        rgba(var(--primary-color-rgb, 0, 200, 150), 0)
+    );
+    opacity: 0.5;
+    transition: opacity .35s ease;
 }
 
-.container .date {
-    padding: 3px 10px;
-    width: fit-content;
-    color: var(--primary-color);
-    border: 1px var(--primary-color) solid;
-    border-radius: 5px;
+.container:hover {
+    background: rgba(255, 255, 255, 0.045);
+    border-color: rgba(255, 255, 255, 0.12);
+    transform: translateY(-2px);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.05) inset,
+        0 18px 36px -22px rgba(0, 0, 0, 0.65);
+}
+
+.container:hover::before {
+    opacity: 1;
+}
+
+/* ---------- Main column ---------- */
+.main {
+    padding: 24px 24px 26px 28px;
+    min-width: 0;
 }
 
 .infoZone {
-    margin-top: 10px;
+    /* date moved out; no top spacing needed */
 }
 
-.container .title {
-    font-size: 25px;
+.title {
+    font-size: 22px;
+    line-height: 1.3;
+    letter-spacing: -0.015em;
     color: white;
     font-weight: 600;
 }
 
-.container .org {
+.org {
+    margin-top: 4px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+.detail {
+    margin-top: 14px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 14.5px;
+    line-height: 1.65;
+}
+
+.detail p + p {
+    margin-top: 6px;
+}
+
+/* ---------- Right meta panel (date + links) ---------- */
+.metaPanel {
+    position: relative;
+    padding: 22px 22px 22px 22px;
+    background: rgba(255, 255, 255, 0.018);
+    border-left: 1px solid rgba(255, 255, 255, 0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    min-width: 0;
+}
+
+.metaSection {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.metaLabel {
+    margin: 0;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.date {
+    margin: 0;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+    color: white;
+}
+
+.dateRange {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    font-family: ui-monospace, "SF Mono", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+}
+
+.dateFrom {
     font-size: 18px;
-    color: rgb(199, 199, 199);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    color: white;
 }
 
-.container .detail {
-    margin-top: 20px;
-    color: rgb(199, 199, 199);
+.dateSep {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.30);
 }
 
-.container .link {
-    margin-top: 20px;
-    display: block;
-    padding: 0 5px;
-    width: fit-content;
-    word-break: normal;
+.dateTo {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.linksList {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 12px;
+    width: 100%;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.78);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    text-decoration: none;
+    transition:
+        background-color .25s ease,
+        border-color .25s ease,
+        color .25s ease,
+        transform .25s ease;
+}
+
+.linkText {
+    flex: 1;
+    min-width: 0;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    background-color: rgba(255, 255, 255, .15);
 }
 
-.container .link:hover {
-    background-color: rgba(255, 255, 255, .2);
+.linkIcon {
+    flex-shrink: 0;
+    font-size: 10px;
+    opacity: 0.5;
+    transition: opacity .25s ease, transform .25s ease;
 }
 
-.container .link + .link {
-    margin-top: 5px;
+.link:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.20);
+    transform: translateX(2px);
+}
+
+.link:hover .linkIcon {
+    opacity: 1;
+    transform: translate(1px, -1px);
+}
+
+/* ---------- Responsive ---------- */
+@media only screen and (max-width: 768px) {
+    .container.hasMeta {
+        grid-template-columns: 1fr;
+    }
+
+    .metaPanel {
+        border-left: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.07);
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 22px;
+    }
+
+    .metaSection {
+        flex: 1;
+        min-width: 180px;
+    }
 }
 
 @media only screen and (max-width: 500px) {
-    .container .link {
-        max-width: 100%;
-        width: fit-content;
+    .main {
+        padding: 20px 20px 22px 24px;
+    }
+
+    .metaPanel {
+        padding: 16px 18px 18px;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .title {
+        font-size: 19px;
+    }
+
+    .org {
+        font-size: 14px;
+    }
+
+    .detail {
+        font-size: 14px;
     }
 }
