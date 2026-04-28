@@ -166,7 +166,7 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
                                             transition: { duration: 0.7, ease: [0.5, 0.025, 0, 1] }
                                         }
                                     }}
-                                >Programming</motion.span>
+                                >Software Development</motion.span>
                                 <motion.div className='in-row'>
                                     {['COMMISSION,', 'LEARNING', 'and HOBBY'].map((line, i) => (
                                         <motion.h1 key={i}
@@ -229,7 +229,7 @@ class PortfolioPage extends React.Component<PageProps, PageState, IThemeState> {
                         }}
                     >
                         <div className='section-heading'>
-                            <span className='kicker'>{this.state.workList.length} projects</span>
+                            {/* <span className='kicker'>{this.state.workList.length} projects</span> */}
                             <h1 className="work-list">Works</h1>
                             <span className='section-divider' />
                         </div>
