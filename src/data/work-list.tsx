@@ -29,7 +29,7 @@ let workItems: Array<WorkStructure> = [
     {
         id: 13,
         title: "Onboarding Screen Design",
-        describe: `This project is an experiment to create color summaries for 50 images simultaneously. Optimization is done to enable multi-threaded operation to reduce UI rendering latency.`,
+        describe: `This project is an experiment to create a visually appealing onboarding screen design for a mobile application. The design focuses on user experience and aesthetics, aiming to provide a smooth transition for new users.`,
         img: "/img/works/onboarding-screen-design/01.png",
         tags: [
             "Flutter",
