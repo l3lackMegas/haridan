@@ -259,7 +259,7 @@ class resumePage extends React.Component<PageProps, PageState, IThemeState> {
                     }}>
                         <div style={{ padding: '0 10px'}}>
                             <Resume title="Experience" data={resume.experience}/>
-                            <Resume title="Rewards" data={resume.rewards}/>
+                            <Resume title="Awards" data={resume.rewards}/>
                             <Resume title="Education" data={resume.education}/>
                         </div>
                     </Section>

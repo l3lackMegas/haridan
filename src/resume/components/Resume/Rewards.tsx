@@ -10,7 +10,7 @@ class Rewards extends Component {
     render() {
 
         return <>
-            <ColumnResume title="Rewards">
+            <ColumnResume title="Awards">
                 <CardInfo
                     title="BUCreative Scholarship"
                     date="2019 - Present"
