@@ -27,6 +27,27 @@ export default function WorkListData() {
 
 let workItems: Array<WorkStructure> = [
     {
+        id: 13,
+        title: "Onboarding Screen Design",
+        describe: `This project is an experiment to create color summaries for 50 images simultaneously. Optimization is done to enable multi-threaded operation to reduce UI rendering latency.`,
+        img: "/img/works/onboarding-screen-design/01.png",
+        tags: [
+            "Flutter",
+            "Learning",
+            "Hobby",
+            "Experiment"
+        ],
+        date: {
+            from: new Date(2025, 8, 14),
+            to: new Date(2025, 8, 14)
+        },
+        
+        imageList: [
+            "https://youtu.be/mQ_TPIxATqI",
+        ],
+        color: 'white'
+    },
+    {
         pin: false,
         id: 12,
         title: "Mamiyaho",
